@@ -4,3 +4,6 @@ script: gradle build
 
 jdk:
   - oraclejdk8
+
+notifications:
+  slack: reportportal:fl6xWHVQp1jvsMmCJxYW9YKP
