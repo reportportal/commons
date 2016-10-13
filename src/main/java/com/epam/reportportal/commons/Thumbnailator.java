@@ -17,8 +17,8 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with Report Portal.  If not, see <http://www.gnu.org/licenses/>.
- */ 
- 
+ */
+
 package com.epam.reportportal.commons;
 
 import java.io.IOException;
@@ -26,28 +26,26 @@ import java.io.InputStream;
 
 /**
  * Creates Thumbnails of images
- * 
+ *
  * @author Andrei Varabyeu
- * 
  */
 public interface Thumbnailator {
 
-	/**
-	 * Creates thumbnail of provided image
-	 * 
-	 * @param is
-	 *            - Image <InputStream>
-	 * @return - Thumbnail <InputStream>
-	 * @throws IOException IO exception
-	 */
-	InputStream createThumbnail(InputStream is) throws IOException;
+    /**
+     * Creates thumbnail of provided image
+     *
+     * @param is - Image's InputStream
+     * @return - Thumbnail's InputStream
+     * @throws IOException IO exception
+     */
+    InputStream createThumbnail(InputStream is) throws IOException;
 
-	/**
-	 * Creates thumbnail of provided image
-	 * 
-	 * @param data Image to be Thumbnailed
-	 * @return Thumbnail of image
-	 * @throws IOException IO exception
-	 */
-	byte[] createThumbnail(byte[] data) throws IOException;
+    /**
+     * Creates thumbnail of provided image
+     *
+     * @param data Image to be Thumbnailed
+     * @return Thumbnail of image
+     * @throws IOException IO exception
+     */
+    byte[] createThumbnail(byte[] data) throws IOException;
 }
