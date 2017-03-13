@@ -9,7 +9,7 @@ buildscript {
 plugins {
     id 'net.researchgate.release' version '2.4.1'
     id "com.jfrog.bintray" version "1.7"
-    id "io.spring.dependency-management" version "0.6.0.RELEASE"
+    id "io.spring.dependency-management" version "1.0.0.RELEASE"
 }
 
 apply plugin: 'java'
@@ -24,21 +24,21 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:1.4.0.RELEASE"
+        mavenBom "org.springframework.boot:spring-boot-dependencies:1.5.2.RELEASE"
     }
 }
 
 dependencies {
 
-    compile 'org.apache.velocity:velocity'
+    compile 'org.apache.velocity:velocity:1.7'
     compile 'ch.qos.logback:logback-classic'
 
-    compile 'com.google.guava:guava:19.0'
+    compile 'com.google.guava:guava:21.0'
 
-    compile 'org.apache.tika:tika-core:1.13'
-    compile 'net.coobird:thumbnailator:0.4.7'
+    compile 'org.apache.tika:tika-core:1.14'
+    compile 'net.coobird:thumbnailator:0.4.8'
 
-    compile 'com.google.code.findbugs:jsr305:2.0.3'
+    compile 'com.google.code.findbugs:jsr305:3.0.1'
     compile 'javax.inject:javax.inject:1'
 
     testCompile 'junit:junit'
