@@ -30,11 +30,10 @@ dependencyManagement {
 
 dependencies {
 
-    compile 'org.apache.velocity:velocity:1.7'
+    compile 'org.freemarker:freemarker'
     compile 'ch.qos.logback:logback-classic'
 
     compile 'com.google.guava:guava:21.0'
-
     compile 'org.apache.tika:tika-core:1.14'
     compile 'net.coobird:thumbnailator:0.4.8'
 
