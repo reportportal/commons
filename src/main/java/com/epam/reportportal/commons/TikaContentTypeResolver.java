@@ -33,7 +33,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-class TikaContentTypeResolver implements ContentTypeResolver {
+public class TikaContentTypeResolver implements ContentTypeResolver {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TikaContentTypeResolver.class);
 
