@@ -35,6 +35,8 @@ dependencies {
 
     compile 'org.apache.tika:tika-core:1.14'
     compile 'net.coobird:thumbnailator:0.4.8'
+    compile 'com.google.guava:guava:25.1-jre'
+    compile 'javax.inject:javax.inject:1'
 
     testCompile 'junit:junit'
 }
