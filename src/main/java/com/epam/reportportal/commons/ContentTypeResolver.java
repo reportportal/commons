@@ -17,9 +17,11 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with Report Portal.  If not, see <http://www.gnu.org/licenses/>.
- */ 
+ */
 
 package com.epam.reportportal.commons;
+
+import java.io.InputStream;
 
 /**
  * Content type resolver
@@ -28,12 +30,20 @@ package com.epam.reportportal.commons;
  */
 public interface ContentTypeResolver {
 
-	/**
-	 * Detects content type of data in input stream
-	 *
-	 * @param data Data to be resolved
-	 * @return detected media type, or <code>application/octet-stream</code>
-	 */
-	String detectContentType(byte[] data);
+    /**
+     * Detects content type of data in input stream
+     *
+     * @param data Data to be resolved
+     * @return detected media type, or <code>application/octet-stream</code>
+     */
+    String detectContentType(byte[] data);
+
+    /**
+     * Detects content type of data in input stream
+     *
+     * @param data Data to be resolved
+     * @return detected media type, or <code>application/octet-stream</code>
+     */
+    String detectContentType(InputStream data);
 
 }

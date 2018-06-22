@@ -17,7 +17,7 @@
  * 
  * You should have received a copy of the GNU General Public License
  * along with Report Portal.  If not, see <http://www.gnu.org/licenses/>.
- */ 
+ */
 
 package com.epam.reportportal.commons;
 
@@ -29,24 +29,30 @@ import org.apache.tika.parser.AutoDetectParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
-class TikaContentTypeResolver implements ContentTypeResolver {
+public class TikaContentTypeResolver implements ContentTypeResolver {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TikaContentTypeResolver.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TikaContentTypeResolver.class);
 
-	@Override
-	public String detectContentType(byte[] data) {
-		try {
-			AutoDetectParser parser = new AutoDetectParser();
-			Detector detector = parser.getDetector();
-			MediaType mediaType = detector.detect(TikaInputStream.get(data), new Metadata());
-			return mediaType.toString();
-		} catch (IOException e) {
-			LOGGER.error("Cannot read data stream", e);
-			return MediaType.OCTET_STREAM.toString();
-		}
+    @Override
+    public String detectContentType(byte[] data) {
+        return detectContentType(new ByteArrayInputStream(data));
+    }
 
-	}
+    @Override
+    public String detectContentType(InputStream data) {
+        try {
+            AutoDetectParser parser = new AutoDetectParser();
+            Detector detector = parser.getDetector();
+            MediaType mediaType = detector.detect(TikaInputStream.get(data), new Metadata());
+            return mediaType.toString();
+        } catch (IOException e) {
+            LOGGER.error("Cannot read data stream", e);
+            return MediaType.OCTET_STREAM.toString();
+        }
+    }
 
 }
