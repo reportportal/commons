@@ -22,6 +22,7 @@
 package com.epam.reportportal.commons;
 
 import java.io.InputStream;
+import java.nio.file.Path;
 
 /**
  * Content type resolver
@@ -45,5 +46,13 @@ public interface ContentTypeResolver {
      * @return detected media type, or <code>application/octet-stream</code>
      */
     String detectContentType(InputStream data);
+
+    /**
+     * Detects content type of data in file
+     *
+     * @param data Data to be resolved
+     * @return detected media type, or <code>application/octet-stream</code>
+     */
+    String detectContentType(Path data);
 
 }
