@@ -1,6 +1,6 @@
 language: java
-
-script: gradle build
+dist: trusty
+script: ./gradlew build
 
 jdk:
   - oraclejdk8
