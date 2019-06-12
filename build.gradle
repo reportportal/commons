@@ -6,15 +6,17 @@ buildscript {
     }
 }
 
+
 plugins {
-    id 'net.researchgate.release' version '2.4.1'
-    id "com.jfrog.bintray" version "1.7"
-    id "io.spring.dependency-management" version "1.0.0.RELEASE"
+    id 'net.researchgate.release' version '2.8.0'
+    id "com.jfrog.bintray" version "1.7.3"
+    id "io.spring.dependency-management" version "1.0.7.RELEASE"
+    id 'java'
 }
 
 apply plugin: 'java'
+apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/master/release-commons.gradle'
 apply from: 'build-quality.gradle'
-apply from: 'release-lib.gradle'
 
 description = 'EPAM Report portal. Report Portal Commons'
 
@@ -24,7 +26,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:1.5.4.RELEASE"
+        mavenBom "org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE"
     }
 }
 
@@ -33,16 +35,14 @@ dependencies {
     compile 'org.freemarker:freemarker'
     compile 'ch.qos.logback:logback-classic'
 
-    compile 'com.google.guava:guava:21.0'
     compile 'org.apache.tika:tika-core:1.14'
     compile 'net.coobird:thumbnailator:0.4.8'
-
-    compile 'com.google.code.findbugs:jsr305:3.0.1'
+    compile 'com.google.guava:guava:25.1-jre'
     compile 'javax.inject:javax.inject:1'
 
     testCompile 'junit:junit'
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '3.2'
+wrapper {
+    gradleVersion = '5.4.1'
 }

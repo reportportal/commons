@@ -20,7 +20,6 @@
  */
 package com.epam.reportportal.commons.template;
 
-import com.google.common.collect.ImmutableMap;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
@@ -28,6 +27,7 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Collections;
 import java.util.Locale;
 
 /**
@@ -49,7 +49,7 @@ public class TemplateEngineTest {
 		cfg.setLocale(Locale.US);
 		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 
-		String result = new FreemarkerTemplateEngine(cfg).merge("template.ftl", ImmutableMap.builder().put("var", "hello world").build());
+		String result = new FreemarkerTemplateEngine(cfg).merge("template.ftl", Collections.singletonMap("var", "hello world"));
 
 		Assert.assertThat(result, CoreMatchers.is("hello world"));
 	}
