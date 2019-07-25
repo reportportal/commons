@@ -12,21 +12,26 @@ plugins {
     id "com.jfrog.bintray" version "1.8.4"
     id "io.spring.dependency-management" version "1.0.7.RELEASE"
     id 'java'
+    id "org.owasp.dependencycheck" version "5.2.0"
 }
 
 apply plugin: 'java'
 apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/master/release-commons.gradle'
 apply from: 'build-quality.gradle'
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 description = 'EPAM Report portal. Report Portal Commons'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE"
+        mavenBom "com.github.reportportal:commons-bom:274c63e"
     }
 }
 
@@ -34,10 +39,10 @@ dependencies {
 
     compile 'org.freemarker:freemarker'
     compile 'ch.qos.logback:logback-classic'
+    compile 'org.apache.tika:tika-core'
+    compile 'com.google.guava:guava'
 
-    compile 'org.apache.tika:tika-core:1.14'
     compile 'net.coobird:thumbnailator:0.4.8'
-    compile 'com.google.guava:guava:25.1-jre'
     compile 'javax.inject:javax.inject:1'
 
     testCompile 'junit:junit'
