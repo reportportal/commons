@@ -8,9 +8,7 @@ buildscript {
 
 
 plugins {
-    id 'net.researchgate.release' version '2.8.0'
-    id "com.jfrog.bintray" version "1.8.4"
-    id "io.spring.dependency-management" version "1.0.7.RELEASE"
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
     id 'java'
     id "org.owasp.dependencycheck" version "5.2.0"
 }
@@ -26,12 +24,18 @@ description = 'EPAM Report portal. Report Portal Commons'
 
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
+    if (!releaseMode) {
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 dependencyManagement {
     imports {
-        mavenBom "com.github.reportportal:commons-bom:274c63e"
+        if (releaseMode) {
+            mavenBom "com.epam.reportportal:commons-bom:5.0.0-RC-5"
+        } else {
+            mavenBom "com.github.reportportal:commons-bom:4b7ed8a"
+        }
     }
 }
 
