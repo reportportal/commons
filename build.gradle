@@ -22,6 +22,10 @@ targetCompatibility = 1.8
 
 description = 'EPAM Report portal. Report Portal Commons'
 
+project.ext {
+    releaseMode = project.hasProperty("releaseMode")
+}
+
 repositories {
     mavenCentral()
     if (!releaseMode) {
