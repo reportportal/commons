@@ -28,9 +28,7 @@ project.ext {
 
 repositories {
     mavenCentral()
-    if (!releaseMode) {
-        maven { url 'https://jitpack.io' }
-    }
+    releaseMode ? maven { url "http://dl.bintray.com/epam/reportportal" } : maven { url 'https://jitpack.io' }
 }
 
 dependencyManagement {
