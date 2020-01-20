@@ -14,7 +14,7 @@ plugins {
 }
 
 apply plugin: 'java'
-apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/master/release-commons.gradle'
+apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/5.0.0/release-commons.gradle'
 apply from: 'build-quality.gradle'
 
 sourceCompatibility = 1.8
@@ -35,11 +35,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        if (releaseMode) {
-            mavenBom "com.epam.reportportal:commons-bom:5.0.0-RC-5"
-        } else {
-            mavenBom "com.github.reportportal:commons-bom:4b7ed8a"
-        }
+        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.0.0' : 'com.github.reportportal:commons-bom:4b7ed8a')
     }
 }
 
