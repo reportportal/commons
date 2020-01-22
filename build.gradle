@@ -1,16 +1,12 @@
 plugins {
     id "io.spring.dependency-management" version "1.0.8.RELEASE"
     id 'java'
-    id 'net.researchgate.release' version '2.8.1'
-    id "com.jfrog.bintray" version "1.8.4"
     id "org.owasp.dependencycheck" version "5.2.0"
-    id "com.github.spotbugs" version "2.0.1"
 }
 
 apply plugin: 'java'
 apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/release-commons.gradle'
 apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/build-quality.gradle'
-apply from: 'build-quality.gradle'
 
 sourceCompatibility = 11
 targetCompatibility = 11
