@@ -1,4 +1,5 @@
 plugins {
+    id "io.spring.dependency-management" version "1.0.8.RELEASE"
     id 'java'
     id 'net.researchgate.release' version '2.8.1'
     id "com.jfrog.bintray" version "1.8.4"
@@ -7,22 +8,28 @@ plugins {
     id "com.github.spotbugs" version "2.0.1"
 }
 
-apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/master/release-commons.gradle'
-apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/v5.1/build-quality.gradle'
+apply plugin: 'java'
+apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/release-commons.gradle'
+apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/build-quality.gradle'
+apply from: 'build-quality.gradle'
 
 sourceCompatibility = 11
 targetCompatibility = 11
 
 description = 'EPAM Report portal. Report Portal Commons'
 
+project.ext {
+    releaseMode = project.hasProperty("releaseMode")
+}
+
 repositories {
     mavenCentral()
-    maven { url 'https://jitpack.io' }
+    releaseMode ? maven { url "http://dl.bintray.com/epam/reportportal" } : maven { url 'https://jitpack.io' }
 }
 
 dependencyManagement {
     imports {
-        mavenBom "com.github.reportportal:commons-bom:f060f9c"
+        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.0.0' : 'com.github.reportportal:commons-bom:4b7ed8a')
     }
 }
 
@@ -40,3 +47,5 @@ dependencies {
 wrapper {
     gradleVersion = '6.0'
 }
+
+afterReleaseBuild.dependsOn bintrayUpload
