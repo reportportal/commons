@@ -3,7 +3,6 @@ plugins {
     id 'java'
     id 'net.researchgate.release' version '2.8.1'
     id "com.jfrog.bintray" version "1.8.4"
-    id "io.spring.dependency-management" version "1.0.8.RELEASE"
     id "org.owasp.dependencycheck" version "5.2.0"
     id "com.github.spotbugs" version "2.0.1"
 }
