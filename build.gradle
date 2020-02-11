@@ -5,11 +5,11 @@ plugins {
 }
 
 apply plugin: 'java'
-apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/5.0.0/release-commons.gradle'
-apply from: 'build-quality.gradle'
+apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/release-commons.gradle'
+apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/build-quality.gradle'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 11
+targetCompatibility = 11
 
 description = 'EPAM Report portal. Report Portal Commons'
 
@@ -24,25 +24,23 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.0.0' : 'com.github.reportportal:commons-bom:4b7ed8a')
+        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.0.0' : 'com.github.reportportal:commons-bom:7affe20')
     }
 }
 
 dependencies {
-
     compile 'org.freemarker:freemarker'
     compile 'ch.qos.logback:logback-classic'
     compile 'org.apache.tika:tika-core'
-    compile 'com.google.guava:guava'
-
     compile 'net.coobird:thumbnailator:0.4.8'
-    compile 'javax.inject:javax.inject:1'
+    implementation 'com.google.guava:guava'
+    implementation 'javax.inject:javax.inject:1'
 
-    testCompile 'junit:junit'
+    testImplementation 'junit:junit'
 }
 
 wrapper {
-    gradleVersion = '5.4.1'
+    gradleVersion = '6.0'
 }
 
 afterReleaseBuild.dependsOn bintrayUpload
