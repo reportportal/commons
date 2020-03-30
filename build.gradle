@@ -16,10 +16,9 @@ repositories {
     mavenCentral()
     releaseMode ? maven { url "http://dl.bintray.com/epam/reportportal" } : maven { url 'https://jitpack.io' }
 }
-
 dependencyManagement {
     imports {
-        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.1.0-RC' : 'com.github.reportportal:commons-bom:7ea4bf3')
+        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.1.0-RC-2' : 'com.github.reportportal:commons-bom:7ea4bf3')
     }
 }
 
