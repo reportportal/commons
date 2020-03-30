@@ -1,30 +1,24 @@
 plugins {
-    id "io.spring.dependency-management" version "1.0.8.RELEASE"
+    id "io.spring.dependency-management" version "1.0.9.RELEASE"
     id 'java'
-    id "org.owasp.dependencycheck" version "5.2.0"
+    id "org.owasp.dependencycheck" version "5.3.1"
 }
 
-apply plugin: 'java'
-apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/5.1.0-RC/release-commons.gradle'
-apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/5.1.0-RC/build-quality.gradle'
+apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/release-commons.gradle'
+apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/build-quality.gradle'
 
-sourceCompatibility = 11
-targetCompatibility = 11
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
-description = 'EPAM Report portal. Report Portal Commons'
-
-project.ext {
-    releaseMode = project.hasProperty("releaseMode")
-}
+project.ext.releaseMode = project.hasProperty("releaseMode")
 
 repositories {
     mavenCentral()
     releaseMode ? maven { url "http://dl.bintray.com/epam/reportportal" } : maven { url 'https://jitpack.io' }
 }
-
 dependencyManagement {
     imports {
-        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.1.0-RC' : 'com.github.reportportal:commons-bom:7affe20')
+        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.1.0-RC-2' : 'com.github.reportportal:commons-bom:7ea4bf3')
     }
 }
 
@@ -32,7 +26,7 @@ dependencies {
     compile 'org.freemarker:freemarker'
     compile 'ch.qos.logback:logback-classic'
     compile 'org.apache.tika:tika-core'
-    compile 'net.coobird:thumbnailator:0.4.8'
+    compile 'net.coobird:thumbnailator:0.4.11'
     implementation 'com.google.guava:guava'
     implementation 'javax.inject:javax.inject:1'
 
