@@ -4,13 +4,16 @@ plugins {
     id "org.owasp.dependencycheck" version "5.3.1"
 }
 
-apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/release-commons.gradle'
-apply from: 'https://raw.githubusercontent.com/reportportal/gradle-scripts/develop/build-quality.gradle'
+project.ext.releaseMode = project.hasProperty("releaseMode")
+
+def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/' +
+        (releaseMode ? getProperty('scripts.version') : 'develop')
+
+apply from: scriptsUrl + '/release-commons.gradle'
+apply from: scriptsUrl + '/build-quality.gradle'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
-
-project.ext.releaseMode = project.hasProperty("releaseMode")
 
 repositories {
     mavenCentral()
