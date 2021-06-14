@@ -4,12 +4,17 @@ plugins {
     id "org.owasp.dependencycheck" version "5.3.1"
 }
 
-project.ext.releaseMode = project.hasProperty("releaseMode")
+project.ext {
+    releaseMode = project.hasProperty("releaseMode")
+    publishRepo = "https://maven.pkg.github.com/reportportal/commons"
+    dependencyRepos = ["commons-bom"]
+}
 
 def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/' +
         (releaseMode ? getProperty('scripts.version') : 'develop')
 
 apply from: scriptsUrl + '/release-commons.gradle'
+apply from: scriptsUrl + '/signing.gradle'
 apply from: scriptsUrl + '/build-quality.gradle'
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -17,11 +22,23 @@ targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
-    releaseMode ? maven { url "http://dl.bintray.com/epam/reportportal" } : maven { url 'https://jitpack.io' }
+    if (releaseMode) {
+        dependencyRepos.forEach { path ->
+            maven {
+                setUrl("https://maven.pkg.github.com/reportportal/${path}")
+                credentials {
+                    username = findProperty("githubUserName")
+                    password = findProperty("githubToken")
+                }
+            }
+        }
+    } else {
+        maven { url 'https://jitpack.io' }
+    }
 }
 dependencyManagement {
     imports {
-        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:' + getProperty('bom.version') : 'com.github.reportportal:commons-bom:7affe20')
+        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:' + getProperty('bom.version') : 'com.github.reportportal:commons-bom:efc4947e')
     }
 }
 
@@ -39,5 +56,3 @@ dependencies {
 wrapper {
     gradleVersion = '6.0'
 }
-
-afterReleaseBuild.dependsOn bintrayUpload

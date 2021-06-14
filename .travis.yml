@@ -1,9 +1,14 @@
 language: java
-dist: trusty
+dist: xenial
 script: ./gradlew build
 
+env:
+  global:
+    - GRADLE_OPTS="-Xms128m -Xmx1g"
+    - JAVA_TOOL_OPTIONS=-Dhttps.protocols=TLSv1.2
+
 jdk:
-  - oraclejdk11
+  - openjdk11
 
 cache:
   directories:
