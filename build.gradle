@@ -21,21 +21,13 @@ sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
-    mavenCentral()
-    if (releaseMode) {
-        dependencyRepos.forEach { path ->
-            maven {
-                setUrl("https://maven.pkg.github.com/reportportal/${path}")
-                credentials {
-                    username = findProperty("githubUserName")
-                    password = findProperty("githubToken")
-                }
-            }
-        }
-    } else {
+    mavenCentral { url "https://repo1.maven.org/maven2" }
+
+    if (!releaseMode) {
         maven { url 'https://jitpack.io' }
     }
 }
+
 dependencyManagement {
     imports {
         mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:' + getProperty('bom.version') : 'com.github.reportportal:commons-bom:efc4947e')
