@@ -15,14 +15,13 @@ def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/
 
 apply from: scriptsUrl + '/release-commons.gradle'
 apply from: scriptsUrl + '/signing.gradle'
-apply from: scriptsUrl + '/build-quality.gradle'
+//apply from: scriptsUrl + '/build-quality.gradle'
 
 sourceCompatibility = JavaVersion.VERSION_11
 targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral { url "https://repo1.maven.org/maven2" }
-
     if (!releaseMode) {
         maven { url 'https://jitpack.io' }
     }
@@ -30,21 +29,42 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:' + getProperty('bom.version') : 'com.github.reportportal:commons-bom:efc4947e')
+        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE'
+        mavenBom('com.epam.reportportal:commons-bom:5.11.6')
     }
 }
 
+
 dependencies {
-    compile 'org.freemarker:freemarker'
-    compile 'ch.qos.logback:logback-classic'
-    compile 'org.apache.tika:tika-core'
-    compile 'net.coobird:thumbnailator:0.4.11'
+    implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
+    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    implementation "javax.validation:validation-api:${validationApiVersion}"
+    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+    implementation group: 'com.google.guava', name: 'guava', version: '28.2-jre'
+    implementation 'org.springframework:spring-webmvc'
+    implementation 'javax.servlet:javax.servlet-api'
+    implementation 'org.springframework.security:spring-security-core'
+
+    implementation 'org.freemarker:freemarker'
+    implementation 'ch.qos.logback:logback-classic'
+    implementation 'org.apache.tika:tika-core'
+    implementation 'net.coobird:thumbnailator:0.4.11'
     implementation 'com.google.guava:guava'
     implementation 'javax.inject:javax.inject:1'
 
-    testImplementation 'junit:junit'
+    // add lombok support
+    compileOnly "org.projectlombok:lombok:${lombokVersion}"
+    annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+    testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+    testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.mockito:mockito-junit-jupiter:${mockitoJunitJupiter}"
+    testImplementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
+    testImplementation "javax.el:javax.el-api:${elApiVersion}"
+    testImplementation "org.glassfish:javax.el:${elApiVersion}"
 }
 
 wrapper {
-    gradleVersion = '6.0'
+    gradleVersion = '8.5'
 }
