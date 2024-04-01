@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
+ */
 
 package com.epam.reportportal.rules.rest;
 
@@ -23,21 +23,20 @@ import org.junit.Test;
 
 /**
  * Status Code mapping test
- * 
+ *
  * @author Andrei Varabyeu
- * 
  */
 public class StatusCodeMappingTest {
 
-	@Test
-	public void testMapping() {
-		StringBuilder errors = new StringBuilder();
-		for (ErrorType errorType : ErrorType.values()) {
-			if (StatusCodeMapping.getHttpStatus(errorType).isEmpty()) {
-				errors.append("Error type ").append(errorType).append(" is not mapped").append("\n");
-			}
-		}
+  @Test
+  public void testMapping() {
+    StringBuilder errors = new StringBuilder();
+    for (ErrorType errorType : ErrorType.values()) {
+      if (StatusCodeMapping.getHttpStatus(errorType).isEmpty()) {
+        errors.append("Error type ").append(errorType).append(" is not mapped").append("\n");
+      }
+    }
 
-		Assert.assertEquals(errors.toString(), 0, errors.length());
-	}
+    Assert.assertEquals(errors.toString(), 0, errors.length());
+  }
 }

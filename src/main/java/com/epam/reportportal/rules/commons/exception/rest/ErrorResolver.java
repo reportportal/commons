@@ -12,23 +12,22 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
- 
+ */
+
 package com.epam.reportportal.rules.commons.exception.rest;
 
 /**
  * Custom exception resolver. Creates {@link RestError}
- * 
+ *
  * @author Andrei Varabyeu
- * 
  */
 public interface ErrorResolver {
 
-	/**
-	 * Create RestError from provided exception
-	 *
-	 * @param ex Exception to be resolved
-	 * @return Resolved {@link RestError}
-	 */
-	RestError resolveError(Exception ex);
+  /**
+   * Create RestError from provided exception
+   *
+   * @param ex Exception to be resolved
+   * @return Resolved {@link RestError}
+   */
+  RestError resolveError(Exception ex);
 }

@@ -23,37 +23,36 @@ import com.epam.ta.reportportal.ws.reporting.ErrorType;
  * Error response builder
  *
  * @author Andrei Varabyeu
- *
  */
 public class ErrorResponseBuilder {
 
-	private RestErrorDefinition definition;
+  private final RestErrorDefinition definition;
 
-	private ErrorType error;
-	private String message;
-	private String stackTrace;
+  private final ErrorType error;
+  private String message;
+  private String stackTrace;
 
-	public ErrorResponseBuilder(RestErrorDefinition definition) {
-		this.error = definition.getError();
-		this.definition = definition;
-	}
+  public ErrorResponseBuilder(RestErrorDefinition definition) {
+    this.error = definition.getError();
+    this.definition = definition;
+  }
 
-	public ErrorResponseBuilder setMessage(Exception ex) {
-		this.message = definition.getExceptionMessage(ex);
-		return this;
-	}
+  public ErrorResponseBuilder setMessage(Exception ex) {
+    this.message = definition.getExceptionMessage(ex);
+    return this;
+  }
 
-	public ErrorResponseBuilder setStackTrace(String stackTrace) {
-		this.stackTrace = stackTrace;
-		return this;
-	}
+  public ErrorResponseBuilder setStackTrace(String stackTrace) {
+    this.stackTrace = stackTrace;
+    return this;
+  }
 
-	public ErrorRS build() {
-		ErrorRS errorRS = new ErrorRS();
-		errorRS.setMessage(message);
-		errorRS.setStackTrace(stackTrace);
-		errorRS.setErrorType(error);
-		return errorRS;
-	}
+  public ErrorRS build() {
+    ErrorRS errorRS = new ErrorRS();
+    errorRS.setMessage(message);
+    errorRS.setStackTrace(stackTrace);
+    errorRS.setErrorType(error);
+    return errorRS;
+  }
 
 }

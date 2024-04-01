@@ -12,21 +12,20 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
- 
+ */
+
 package com.epam.reportportal.rules.commons.exception.message;
 
 /**
  * Default exception builder. Just reads the exception message
- * 
+ *
  * @author Andrei Varabyeu
- * 
  */
 public class DefaultExceptionMessageBuilder implements ExceptionMessageBuilder<Exception> {
 
-	@Override
-	public String buildMessage(Exception e) {
-		return e.getMessage();
-	}
+  @Override
+  public String buildMessage(Exception e) {
+    return e.getMessage();
+  }
 
 }

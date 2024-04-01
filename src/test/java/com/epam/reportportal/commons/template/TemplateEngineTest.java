@@ -23,35 +23,36 @@ package com.epam.reportportal.commons.template;
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
+import java.util.Collections;
+import java.util.Locale;
 import org.hamcrest.CoreMatchers;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Collections;
-import java.util.Locale;
 
 /**
  * @author <a href="mailto:andrei_varabyeu@epam.com">Andrei Varabyeu</a>
  */
 public class TemplateEngineTest {
-	@Test
-	public void merge() throws Exception {
-		Version version = new Version(2, 3, 20);
-		Configuration cfg = new Configuration(version);
 
-		// Where do we load the templates from:
-		cfg.setClassForTemplateLoading(TemplateEngineTest.class, "/");
+  @Test
+  public void merge() throws Exception {
+    Version version = new Version(2, 3, 20);
+    Configuration cfg = new Configuration(version);
 
-		// Some other recommended settings:
+    // Where do we load the templates from:
+    cfg.setClassForTemplateLoading(TemplateEngineTest.class, "/");
 
-		cfg.setIncompatibleImprovements(version);
-		cfg.setDefaultEncoding("UTF-8");
-		cfg.setLocale(Locale.US);
-		cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
+    // Some other recommended settings:
 
-		String result = new FreemarkerTemplateEngine(cfg).merge("template.ftl", Collections.singletonMap("var", "hello world"));
+    cfg.setIncompatibleImprovements(version);
+    cfg.setDefaultEncoding("UTF-8");
+    cfg.setLocale(Locale.US);
+    cfg.setTemplateExceptionHandler(TemplateExceptionHandler.RETHROW_HANDLER);
 
-		Assert.assertThat(result, CoreMatchers.is("hello world"));
-	}
+    String result = new FreemarkerTemplateEngine(cfg).merge("template.ftl",
+        Collections.singletonMap("var", "hello world"));
+
+    Assert.assertThat(result, CoreMatchers.is("hello world"));
+  }
 
 }

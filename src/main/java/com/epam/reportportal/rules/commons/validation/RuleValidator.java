@@ -12,8 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
- 
+ */
+
 package com.epam.reportportal.rules.commons.validation;
 
 
@@ -21,13 +21,13 @@ import java.util.function.Predicate;
 
 public abstract class RuleValidator<T> {
 
-    protected final Predicate<T> predicate;
-    protected final T target;
+  protected final Predicate<T> predicate;
+  protected final T target;
 
-    public RuleValidator(T target, Predicate<T> predicate) {
-        this.target = target;
-        this.predicate = predicate;
+  public RuleValidator(T target, Predicate<T> predicate) {
+    this.target = target;
+    this.predicate = predicate;
 
-    }
+  }
 
 }

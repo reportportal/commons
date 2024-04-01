@@ -1,9 +1,8 @@
 package com.epam.reportportal.model.externalsystem;
 
+import java.io.Serializable;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.io.Serializable;
 
 /**
  * Represents value that consists of id for making request and human readable name

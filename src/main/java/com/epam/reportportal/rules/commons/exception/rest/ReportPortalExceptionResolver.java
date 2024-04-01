@@ -27,30 +27,32 @@ import org.springframework.http.HttpStatus;
  * @author Andrei Varabyeu
  */
 public class ReportPortalExceptionResolver implements ErrorResolver {
-    private static final Logger LOGGER = LoggerFactory.getLogger(ReportPortalExceptionResolver.class);
 
-    private ErrorResolver defaultErrorResolver;
+  private static final Logger LOGGER = LoggerFactory.getLogger(ReportPortalExceptionResolver.class);
 
-    public ReportPortalExceptionResolver(ErrorResolver defaultErrorResolver) {
-        this.defaultErrorResolver = defaultErrorResolver;
+  private final ErrorResolver defaultErrorResolver;
+
+  public ReportPortalExceptionResolver(ErrorResolver defaultErrorResolver) {
+    this.defaultErrorResolver = defaultErrorResolver;
+  }
+
+  @Override
+  public RestError resolveError(Exception ex) {
+
+    LOGGER.error("ReportPortalExceptionResolver > " + ex.getMessage(), ex);
+
+    if (ReportPortalException.class.isAssignableFrom(ex.getClass())) {
+      ReportPortalException currentException = (ReportPortalException) ex;
+      RestError.Builder builder = new RestError.Builder();
+      builder.setMessage(currentException.getMessage())
+          // .setStackTrace(errors.toString())
+          .setStatus(StatusCodeMapping.getHttpStatus(currentException.getErrorType(),
+              HttpStatus.INTERNAL_SERVER_ERROR))
+          .setError(currentException.getErrorType());
+
+      return builder.build();
+    } else {
+      return defaultErrorResolver.resolveError(ex);
     }
-
-    @Override
-    public RestError resolveError(Exception ex) {
-
-        LOGGER.error("ReportPortalExceptionResolver > " + ex.getMessage(), ex);
-
-        if (ReportPortalException.class.isAssignableFrom(ex.getClass())) {
-            ReportPortalException currentException = (ReportPortalException) ex;
-            RestError.Builder builder = new RestError.Builder();
-            builder.setMessage(currentException.getMessage())
-                    // .setStackTrace(errors.toString())
-                    .setStatus(StatusCodeMapping.getHttpStatus(currentException.getErrorType(), HttpStatus.INTERNAL_SERVER_ERROR))
-                    .setError(currentException.getErrorType());
-
-            return builder.build();
-        } else {
-            return defaultErrorResolver.resolveError(ex);
-        }
-    }
+  }
 }

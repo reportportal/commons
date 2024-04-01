@@ -23,8 +23,8 @@ import static com.epam.reportportal.rules.exception.ReportPortalException.MAX_ER
 @SuppressWarnings("serial")
 public class BusinessRuleViolationException extends Exception {
 
-    public BusinessRuleViolationException(String message) {
-        super(trimMessage(message, MAX_ERROR_MESSAGE_LENGTH));
-    }
+  public BusinessRuleViolationException(String message) {
+    super(trimMessage(message, MAX_ERROR_MESSAGE_LENGTH));
+  }
 
 }

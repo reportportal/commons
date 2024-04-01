@@ -12,26 +12,24 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
+ */
 package com.epam.reportportal.rules.commons.exception.forwarding;
 
+import java.io.IOException;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.web.client.DefaultResponseErrorHandler;
 
-import java.io.IOException;
-
 /**
- * Exception handler for Spring's RestTemplate
- * Throws exception with downstream service response to be
- * forwarded to upstream service (just propagates exception to upstream service)
+ * Exception handler for Spring's RestTemplate Throws exception with downstream service response to
+ * be forwarded to upstream service (just propagates exception to upstream service)
  *
  * @author Andrei Varabyeu
  */
 public class ForwardingClientExceptionHandler extends DefaultResponseErrorHandler {
 
 
-    @Override
-    public void handleError(ClientHttpResponse response) throws IOException {
-        throw new ResponseForwardingException(response);
-    }
+  @Override
+  public void handleError(ClientHttpResponse response) throws IOException {
+    throw new ResponseForwardingException(response);
+  }
 }

@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
+ */
 
 package com.epam.reportportal.rules.commons.exception.rest;
 
@@ -21,42 +21,42 @@ import com.epam.ta.reportportal.ws.reporting.ErrorType;
 import org.springframework.http.HttpStatus;
 
 /**
- * REST Error template. Created to be able to configure error templates in
- * Spring's IoC container
- * 
+ * REST Error template. Created to be able to configure error templates in Spring's IoC container
+ *
  * @author Andrei Varabyeu
- * 
  */
 public class RestErrorDefinition<T extends Exception> {
 
-	private final HttpStatus httpStatus;
-	private final ErrorType error;
-	private final ExceptionMessageBuilder<T> exceptionMessageBuilder;
+  private final HttpStatus httpStatus;
+  private final ErrorType error;
+  private final ExceptionMessageBuilder<T> exceptionMessageBuilder;
 
-	public RestErrorDefinition(HttpStatus httpStatus, ErrorType error, ExceptionMessageBuilder<T> exceptionMessageBuilder) {
-		super();
-		this.httpStatus = httpStatus;
-		this.error = error;
-		this.exceptionMessageBuilder = exceptionMessageBuilder;
-	}
+  public RestErrorDefinition(HttpStatus httpStatus, ErrorType error,
+      ExceptionMessageBuilder<T> exceptionMessageBuilder) {
+    super();
+    this.httpStatus = httpStatus;
+    this.error = error;
+    this.exceptionMessageBuilder = exceptionMessageBuilder;
+  }
 
-	public RestErrorDefinition(int httpStatus, ErrorType error, ExceptionMessageBuilder<T> exceptionMessageBuilder) {
-		this(HttpStatus.valueOf(httpStatus), error, exceptionMessageBuilder);
-	}
+  public RestErrorDefinition(int httpStatus, ErrorType error,
+      ExceptionMessageBuilder<T> exceptionMessageBuilder) {
+    this(HttpStatus.valueOf(httpStatus), error, exceptionMessageBuilder);
+  }
 
-	public HttpStatus getHttpStatus() {
-		return httpStatus;
-	}
+  public HttpStatus getHttpStatus() {
+    return httpStatus;
+  }
 
-	public ErrorType getError() {
-		return error;
-	}
+  public ErrorType getError() {
+    return error;
+  }
 
-	public String getExceptionMessage(T e) {
-		return exceptionMessageBuilder.buildMessage(e);
-	}
+  public String getExceptionMessage(T e) {
+    return exceptionMessageBuilder.buildMessage(e);
+  }
 
-	public ExceptionMessageBuilder<? extends Exception> getExceptionMessageBuilder() {
-		return exceptionMessageBuilder;
-	}
+  public ExceptionMessageBuilder<? extends Exception> getExceptionMessageBuilder() {
+    return exceptionMessageBuilder;
+  }
 }

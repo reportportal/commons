@@ -21,9 +21,8 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.media.Schema.RequiredMode;
-
-import javax.validation.constraints.NotNull;
 import java.util.Date;
+import javax.validation.constraints.NotNull;
 
 /**
  * JSON Representation of Report Portal's Activity domain object.
@@ -33,142 +32,142 @@ import java.util.Date;
 @JsonInclude(Include.NON_NULL)
 public class ActivityResource {
 
-	@NotNull
-	@JsonProperty(value = "id", required = true)
-	@Schema(requiredMode = RequiredMode.REQUIRED)
-	private Long id;
+  @NotNull
+  @JsonProperty(value = "id", required = true)
+  @Schema(requiredMode = RequiredMode.REQUIRED)
+  private Long id;
 
-	@NotNull
-	@JsonProperty(value = "user", required = true)
-	@Schema(requiredMode = RequiredMode.REQUIRED)
-	private String user;
+  @NotNull
+  @JsonProperty(value = "user", required = true)
+  @Schema(requiredMode = RequiredMode.REQUIRED)
+  private String user;
 
-	@NotNull
-	@JsonProperty(value = "loggedObjectId", required = true)
-	@Schema(requiredMode = RequiredMode.REQUIRED)
-	private Long loggedObjectId;
+  @NotNull
+  @JsonProperty(value = "loggedObjectId", required = true)
+  @Schema(requiredMode = RequiredMode.REQUIRED)
+  private Long loggedObjectId;
 
-	@NotNull
-	@JsonProperty(value = "lastModified", required = true)
-	@Schema(requiredMode = RequiredMode.REQUIRED)
-	private Date lastModified;
+  @NotNull
+  @JsonProperty(value = "lastModified", required = true)
+  @Schema(requiredMode = RequiredMode.REQUIRED)
+  private Date lastModified;
 
-	@NotNull
-	@JsonProperty(value = "actionType", required = true)
-	@Schema(requiredMode = RequiredMode.REQUIRED)
-	private String actionType;
+  @NotNull
+  @JsonProperty(value = "actionType", required = true)
+  @Schema(requiredMode = RequiredMode.REQUIRED)
+  private String actionType;
 
-	@NotNull
-	@JsonProperty(value = "objectType", required = true)
-	@Schema(requiredMode = RequiredMode.REQUIRED)
-	private String objectType;
+  @NotNull
+  @JsonProperty(value = "objectType", required = true)
+  @Schema(requiredMode = RequiredMode.REQUIRED)
+  private String objectType;
 
-	@NotNull
-	@JsonProperty(value = "projectId", required = true)
-	@Schema(requiredMode = RequiredMode.REQUIRED)
-	private Long projectId;
+  @NotNull
+  @JsonProperty(value = "projectId", required = true)
+  @Schema(requiredMode = RequiredMode.REQUIRED)
+  private Long projectId;
 
-	@JsonProperty(value = "projectName")
-	private String projectName;
+  @JsonProperty(value = "projectName")
+  private String projectName;
 
-	@JsonProperty(value = "details")
-	private Object details;
+  @JsonProperty(value = "details")
+  private Object details;
 
-	@JsonProperty(value = "objectName")
-	private String objectName;
+  @JsonProperty(value = "objectName")
+  private String objectName;
 
-	public Long getId() {
-		return id;
-	}
+  public Long getId() {
+    return id;
+  }
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-	public String getUser() {
-		return user;
-	}
+  public String getUser() {
+    return user;
+  }
 
-	public void setUser(String user) {
-		this.user = user;
-	}
+  public void setUser(String user) {
+    this.user = user;
+  }
 
-	public Long getLoggedObjectId() {
-		return loggedObjectId;
-	}
+  public Long getLoggedObjectId() {
+    return loggedObjectId;
+  }
 
-	public void setLoggedObjectId(Long loggedObjectId) {
-		this.loggedObjectId = loggedObjectId;
-	}
+  public void setLoggedObjectId(Long loggedObjectId) {
+    this.loggedObjectId = loggedObjectId;
+  }
 
-	public Date getLastModified() {
-		return lastModified;
-	}
+  public Date getLastModified() {
+    return lastModified;
+  }
 
-	public void setLastModified(Date lastModified) {
-		this.lastModified = lastModified;
-	}
+  public void setLastModified(Date lastModified) {
+    this.lastModified = lastModified;
+  }
 
-	public String getActionType() {
-		return actionType;
-	}
+  public String getActionType() {
+    return actionType;
+  }
 
-	public void setActionType(String actionType) {
-		this.actionType = actionType;
-	}
+  public void setActionType(String actionType) {
+    this.actionType = actionType;
+  }
 
-	public String getObjectType() {
-		return objectType;
-	}
+  public String getObjectType() {
+    return objectType;
+  }
 
-	public void setObjectType(String objectType) {
-		this.objectType = objectType;
-	}
+  public void setObjectType(String objectType) {
+    this.objectType = objectType;
+  }
 
-	public Long getProjectId() {
-		return projectId;
-	}
+  public Long getProjectId() {
+    return projectId;
+  }
 
-	public void setProjectId(Long projectId) {
-		this.projectId = projectId;
-	}
+  public void setProjectId(Long projectId) {
+    this.projectId = projectId;
+  }
 
-	public String getProjectName() {
-		return projectName;
-	}
+  public String getProjectName() {
+    return projectName;
+  }
 
-	public void setProjectName(String projectName) {
-		this.projectName = projectName;
-	}
+  public void setProjectName(String projectName) {
+    this.projectName = projectName;
+  }
 
-	public Object getDetails() {
-		return details;
-	}
+  public Object getDetails() {
+    return details;
+  }
 
-	public void setDetails(Object details) {
-		this.details = details;
-	}
+  public void setDetails(Object details) {
+    this.details = details;
+  }
 
-	public String getObjectName() {
-		return objectName;
-	}
+  public String getObjectName() {
+    return objectName;
+  }
 
-	public void setObjectName(String objectName) {
-		this.objectName = objectName;
-	}
+  public void setObjectName(String objectName) {
+    this.objectName = objectName;
+  }
 
-	@Override
-	public String toString() {
-		return "ActivityResource{" + "id=" + id
-				+ ", user='" + user + '\''
-				+ ", loggedObjectId='" + loggedObjectId + '\''
-				+ ", lastModified=" + lastModified
-				+ ", actionType='" + actionType + '\''
-				+ ", objectType='" + objectType + '\''
-				+ ", projectId=" + projectId
-				+ ", projectName='" + projectName + '\''
-				+ ", objectName='" + objectName + '\''
-				+ ", details=" + details
-				+ '}';
-	}
+  @Override
+  public String toString() {
+    return "ActivityResource{" + "id=" + id
+        + ", user='" + user + '\''
+        + ", loggedObjectId='" + loggedObjectId + '\''
+        + ", lastModified=" + lastModified
+        + ", actionType='" + actionType + '\''
+        + ", objectType='" + objectType + '\''
+        + ", projectId=" + projectId
+        + ", projectName='" + projectName + '\''
+        + ", objectName='" + objectName + '\''
+        + ", details=" + details
+        + '}';
+  }
 }

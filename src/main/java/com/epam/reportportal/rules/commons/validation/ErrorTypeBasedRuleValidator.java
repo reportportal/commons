@@ -12,24 +12,23 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
+ */
 
 package com.epam.reportportal.rules.commons.validation;
 
 import com.epam.reportportal.rules.exception.ReportPortalException;
 import com.epam.ta.reportportal.ws.reporting.ErrorType;
-
 import java.util.function.Predicate;
 
 public class ErrorTypeBasedRuleValidator<T> extends RuleValidator<T> {
 
-	public ErrorTypeBasedRuleValidator(T target, Predicate<T> predicate) {
-		super(target, predicate);
-	}
+  public ErrorTypeBasedRuleValidator(T target, Predicate<T> predicate) {
+    super(target, predicate);
+  }
 
-	public void verify(ErrorType errorType, Object... args) {
-		if (!predicate.test(target)) {
-			throw new ReportPortalException(errorType, args);
-		}
-	}
+  public void verify(ErrorType errorType, Object... args) {
+    if (!predicate.test(target)) {
+      throw new ReportPortalException(errorType, args);
+    }
+  }
 }

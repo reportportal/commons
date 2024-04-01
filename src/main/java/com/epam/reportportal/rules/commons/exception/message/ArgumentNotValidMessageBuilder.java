@@ -12,8 +12,8 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
- 
+ */
+
 package com.epam.reportportal.rules.commons.exception.message;
 
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -23,38 +23,38 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 
 /**
  * {@link MethodArgumentNotValidException} message builder
- * 
+ *
  * @author Andrei Varabyeu
- * 
  */
-public class ArgumentNotValidMessageBuilder implements ExceptionMessageBuilder<MethodArgumentNotValidException> {
+public class ArgumentNotValidMessageBuilder implements
+    ExceptionMessageBuilder<MethodArgumentNotValidException> {
 
-	private ReloadableResourceBundleMessageSource messageSource;
+  private ReloadableResourceBundleMessageSource messageSource;
 
-	public ArgumentNotValidMessageBuilder() {
-	}
+  public ArgumentNotValidMessageBuilder() {
+  }
 
-	public ArgumentNotValidMessageBuilder(ReloadableResourceBundleMessageSource messageSource) {
-		this.messageSource = messageSource;
-	}
+  public ArgumentNotValidMessageBuilder(ReloadableResourceBundleMessageSource messageSource) {
+    this.messageSource = messageSource;
+  }
 
-	@Override
-	public String buildMessage(MethodArgumentNotValidException e) {
-		StringBuilder sb = new StringBuilder();
-		for (ObjectError error : e.getBindingResult().getAllErrors()) {
-			sb.append("[").append(messageSource.getMessage(error, LocaleContextHolder.getLocale())).append("] ");
-		}
-		return sb.toString();
-	}
+  @Override
+  public String buildMessage(MethodArgumentNotValidException e) {
+    StringBuilder sb = new StringBuilder();
+    for (ObjectError error : e.getBindingResult().getAllErrors()) {
+      sb.append("[").append(messageSource.getMessage(error, LocaleContextHolder.getLocale()))
+          .append("] ");
+    }
+    return sb.toString();
+  }
 
-	public ReloadableResourceBundleMessageSource getMessageSource() {
-		return messageSource;
-	}
+  public ReloadableResourceBundleMessageSource getMessageSource() {
+    return messageSource;
+  }
 
-	public void setMessageSource(ReloadableResourceBundleMessageSource messageSource) {
-		this.messageSource = messageSource;
-	}
-	
-	
+  public void setMessageSource(ReloadableResourceBundleMessageSource messageSource) {
+    this.messageSource = messageSource;
+  }
+
 
 }

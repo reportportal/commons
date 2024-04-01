@@ -12,7 +12,7 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
+ */
 /*
  * This file is part of Report Portal.
  *
@@ -32,11 +32,10 @@
 package com.epam.reportportal.rules.commons.exception.forwarding;
 
 import com.google.common.io.ByteStreams;
+import java.io.IOException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
-
-import java.io.IOException;
 
 /**
  * Exception to be forwarded from downstream to upstream microservice
@@ -45,25 +44,25 @@ import java.io.IOException;
  */
 public class ResponseForwardingException extends RuntimeException {
 
-	private final byte[] body;
-	private final HttpHeaders headers;
-	private final HttpStatus status;
+  private final byte[] body;
+  private final HttpHeaders headers;
+  private final HttpStatus status;
 
-	public ResponseForwardingException(ClientHttpResponse response) throws IOException {
-		this.headers = response.getHeaders();
-		this.status = response.getStatusCode();
-		this.body = ByteStreams.toByteArray(response.getBody());
-	}
+  public ResponseForwardingException(ClientHttpResponse response) throws IOException {
+    this.headers = response.getHeaders();
+    this.status = response.getStatusCode();
+    this.body = ByteStreams.toByteArray(response.getBody());
+  }
 
-	public byte[] getBody() {
-		return body;
-	}
+  public byte[] getBody() {
+    return body;
+  }
 
-	public HttpHeaders getHeaders() {
-		return headers;
-	}
+  public HttpHeaders getHeaders() {
+    return headers;
+  }
 
-	public HttpStatus getStatus() {
-		return status;
-	}
+  public HttpStatus getStatus() {
+    return status;
+  }
 }

@@ -12,24 +12,23 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
- 
+ */
+
 package com.epam.reportportal.rules.commons.exception.message;
 
 /**
- * Builds custom exception strings from Exception. Lots of exceptions have
- * custom data which should be showed to clients in custom way
- * 
+ * Builds custom exception strings from Exception. Lots of exceptions have custom data which should
+ * be showed to clients in custom way
+ *
  * @author Andrei Varabyeu
- * 
  */
 public interface ExceptionMessageBuilder<T extends Exception> {
 
-	/**
-	 * Builds message string from provided exception
-	 * 
-	 * @param e Exception message should be built from
-	 * @return Built message
-	 */
-	String buildMessage(T e);
+  /**
+   * Builds message string from provided exception
+   *
+   * @param e Exception message should be built from
+   * @return Built message
+   */
+  String buildMessage(T e);
 }

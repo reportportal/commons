@@ -16,11 +16,10 @@
 
 package com.epam.reportportal.rules.exception;
 
+import static com.epam.reportportal.rules.commons.validation.Suppliers.trimMessage;
+
 import com.epam.reportportal.rules.commons.validation.Suppliers;
 import com.epam.ta.reportportal.ws.reporting.ErrorType;
-
-
-import static com.epam.reportportal.rules.commons.validation.Suppliers.trimMessage;
 
 
 /**
@@ -29,33 +28,35 @@ import static com.epam.reportportal.rules.commons.validation.Suppliers.trimMessa
  * @author Andrei Varabyeu
  */
 public class ReportPortalException extends RuntimeException {
-	public static final int MAX_ERROR_MESSAGE_LENGTH = 10000;
 
-	private static final long serialVersionUID = -7599195984281555977L;
+  public static final int MAX_ERROR_MESSAGE_LENGTH = 10000;
 
-	private ErrorType errorType;
-	private Object[] parameters; //NOSONAR
+  private static final long serialVersionUID = -7599195984281555977L;
 
-	public ReportPortalException(String message) {
-		super(message);
-	}
+  private ErrorType errorType;
+  private Object[] parameters; //NOSONAR
 
-	public ReportPortalException(ErrorType errorType, Object... parameters) {
-		super(trimMessage(Suppliers.formattedSupplier(errorType.getDescription(), parameters).get(), MAX_ERROR_MESSAGE_LENGTH));
-		this.errorType = errorType;
-		this.parameters = parameters;
-	}
+  public ReportPortalException(String message) {
+    super(message);
+  }
 
-	public ReportPortalException(String message, Throwable e) {
-		super(trimMessage(message, MAX_ERROR_MESSAGE_LENGTH), e);
-	}
+  public ReportPortalException(ErrorType errorType, Object... parameters) {
+    super(trimMessage(Suppliers.formattedSupplier(errorType.getDescription(), parameters).get(),
+        MAX_ERROR_MESSAGE_LENGTH));
+    this.errorType = errorType;
+    this.parameters = parameters;
+  }
 
-	public ErrorType getErrorType() {
-		return errorType;
-	}
+  public ReportPortalException(String message, Throwable e) {
+    super(trimMessage(message, MAX_ERROR_MESSAGE_LENGTH), e);
+  }
 
-	public Object[] getParameters() {
-		return parameters;
-	}
+  public ErrorType getErrorType() {
+    return errorType;
+  }
+
+  public Object[] getParameters() {
+    return parameters;
+  }
 
 }

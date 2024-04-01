@@ -21,72 +21,71 @@ import com.epam.ta.reportportal.ws.reporting.ErrorType;
 import org.springframework.http.HttpStatus;
 
 /**
- * Rest Error representation. Contains rest error template and real exception
- * data
+ * Rest Error representation. Contains rest error template and real exception data
  *
  * @author Andrei Varabyeu
- *
  */
 public class RestError {
 
-	private final ErrorRS errorRS;
+  private final ErrorRS errorRS;
 
-	/** HTTP Status */
-	private final HttpStatus httpStatus;
+  /**
+   * HTTP Status
+   */
+  private final HttpStatus httpStatus;
 
-	public RestError(HttpStatus httpStatus, ErrorRS errorRS) {
-		this.httpStatus = httpStatus;
-		this.errorRS = errorRS;
-	}
+  public RestError(HttpStatus httpStatus, ErrorRS errorRS) {
+    this.httpStatus = httpStatus;
+    this.errorRS = errorRS;
+  }
 
-	public ErrorRS getErrorRS() {
-		return errorRS;
-	}
+  public ErrorRS getErrorRS() {
+    return errorRS;
+  }
 
-	public HttpStatus getHttpStatus() {
-		return httpStatus;
-	}
+  public HttpStatus getHttpStatus() {
+    return httpStatus;
+  }
 
-	/**
-	 * Builder for Rest Error
-	 *
-	 * @author Andrei Varabyeu
-	 *
-	 */
-	public static class Builder {
+  /**
+   * Builder for Rest Error
+   *
+   * @author Andrei Varabyeu
+   */
+  public static class Builder {
 
-		private HttpStatus status;
-		private ErrorType error;
-		private String message;
-		private String stackTrace;
+    private HttpStatus status;
+    private ErrorType error;
+    private String message;
+    private String stackTrace;
 
-		public Builder setStatus(HttpStatus status) {
-			this.status = status;
-			return this;
-		}
+    public Builder setStatus(HttpStatus status) {
+      this.status = status;
+      return this;
+    }
 
-		public Builder setError(ErrorType error) {
-			this.error = error;
-			return this;
-		}
+    public Builder setError(ErrorType error) {
+      this.error = error;
+      return this;
+    }
 
-		public Builder setMessage(String message) {
-			this.message = message;
-			return this;
-		}
+    public Builder setMessage(String message) {
+      this.message = message;
+      return this;
+    }
 
-		public Builder setStackTrace(String stackTrace) {
-			this.stackTrace = stackTrace;
-			return this;
-		}
+    public Builder setStackTrace(String stackTrace) {
+      this.stackTrace = stackTrace;
+      return this;
+    }
 
-		public RestError build() {
-			ErrorRS errorRS = new ErrorRS();
-			errorRS.setMessage(message);
-			errorRS.setStackTrace(stackTrace);
-			errorRS.setErrorType(error);
+    public RestError build() {
+      ErrorRS errorRS = new ErrorRS();
+      errorRS.setMessage(message);
+      errorRS.setStackTrace(stackTrace);
+      errorRS.setErrorType(error);
 
-			return new RestError(status, errorRS);
-		}
-	}
+      return new RestError(status, errorRS);
+    }
+  }
 }
