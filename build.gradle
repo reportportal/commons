@@ -39,6 +39,7 @@ dependencyManagement {
 dependencies {
     api 'com.github.reportportal:commons-reporting:5c74bb2'
     api 'org.springframework:spring-webmvc'
+    api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
 
     implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
@@ -47,7 +48,6 @@ dependencies {
     implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
     implementation group: 'com.google.guava', name: 'guava', version: '28.2-jre'
     implementation 'javax.servlet:javax.servlet-api'
-    implementation 'org.springframework.security:spring-security-core'
 
     implementation 'org.freemarker:freemarker'
     implementation 'ch.qos.logback:logback-classic'
