@@ -16,8 +16,8 @@
  
 package com.epam.reportportal.rules.commons.validation;
 
-import com.epam.reportportal.rules.commons.exception.rest.ErrorType;
 import com.epam.reportportal.rules.exception.ReportPortalException;
+import com.epam.ta.reportportal.ws.reporting.ErrorType;
 
 /**
  * Added for rules which is going to be always fail

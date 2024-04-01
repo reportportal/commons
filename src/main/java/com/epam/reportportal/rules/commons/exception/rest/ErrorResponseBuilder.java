@@ -16,6 +16,9 @@
 
 package com.epam.reportportal.rules.commons.exception.rest;
 
+import com.epam.ta.reportportal.ws.reporting.ErrorRS;
+import com.epam.ta.reportportal.ws.reporting.ErrorType;
+
 /**
  * Error response builder
  *

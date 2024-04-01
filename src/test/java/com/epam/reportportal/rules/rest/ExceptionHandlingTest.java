@@ -16,12 +16,12 @@
 
 package com.epam.reportportal.rules.rest;
 
-import com.epam.reportportal.rules.commons.exception.rest.ErrorType;
 import com.epam.reportportal.rules.commons.ExceptionMappings;
 import com.epam.reportportal.rules.commons.exception.rest.DefaultErrorResolver;
 import com.epam.reportportal.rules.commons.exception.rest.ErrorResolver;
 import com.epam.reportportal.rules.commons.exception.rest.RestError;
 import com.epam.reportportal.rules.exception.ReportPortalException;
+import com.epam.ta.reportportal.ws.reporting.ErrorType;
 import com.google.common.base.Strings;
 import org.hamcrest.Matchers;
 import org.junit.Assert;
