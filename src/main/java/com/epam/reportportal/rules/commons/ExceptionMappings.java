@@ -19,8 +19,8 @@ import com.epam.reportportal.rules.commons.exception.message.ArgumentNotValidMes
 import com.epam.reportportal.rules.commons.exception.message.DefaultExceptionMessageBuilder;
 import com.epam.reportportal.rules.commons.exception.message.ExceptionMessageBuilder;
 import com.epam.reportportal.rules.commons.exception.rest.RestErrorDefinition;
+import com.epam.reportportal.rules.exception.ErrorType;
 import com.epam.reportportal.rules.exception.ReportPortalException;
-import com.epam.ta.reportportal.ws.reporting.ErrorType;
 import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;

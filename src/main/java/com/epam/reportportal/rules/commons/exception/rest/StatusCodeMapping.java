@@ -16,7 +16,7 @@
 
 package com.epam.reportportal.rules.commons.exception.rest;
 
-import com.epam.ta.reportportal.ws.reporting.ErrorType;
+import com.epam.reportportal.rules.exception.ErrorType;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
