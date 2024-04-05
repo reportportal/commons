@@ -10,10 +10,10 @@ import org.junit.Test;
  */
 public class TemplateEngineProviderTest {
 
-    @Test
-    public void testProvider() {
-        final String res = new TemplateEngineProvider().get()
-                .merge("template.ftl", ImmutableMap.builder().put("var", "hello world").build());
-        Assert.assertThat(res, CoreMatchers.is("hello world"));
-    }
+  @Test
+  public void testProvider() {
+    final String res = new TemplateEngineProvider().get()
+        .merge("template.ftl", ImmutableMap.builder().put("var", "hello world").build());
+    Assert.assertThat(res, CoreMatchers.is("hello world"));
+  }
 }

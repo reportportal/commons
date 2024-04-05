@@ -23,7 +23,6 @@ package com.epam.reportportal.commons.template;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
-
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.Map;
@@ -35,20 +34,20 @@ import java.util.Map;
  */
 public class FreemarkerTemplateEngine implements TemplateEngine {
 
-	private final Configuration cfg;
+  private final Configuration cfg;
 
-	public FreemarkerTemplateEngine(Configuration cfg) {
-		this.cfg = cfg;
-	}
+  public FreemarkerTemplateEngine(Configuration cfg) {
+    this.cfg = cfg;
+  }
 
-	@Override
-	public String merge(String template, Map<?, ?> data) {
-		try (StringWriter writer = new StringWriter()) {
-			Template tmpl = cfg.getTemplate(template);
-			tmpl.process(data, writer);
-			return writer.toString();
-		} catch (TemplateException | IOException e) {
-			throw new RuntimeException("Unable to process template '" + template + "'", e);
-		}
-	}
+  @Override
+  public String merge(String template, Map<?, ?> data) {
+    try (StringWriter writer = new StringWriter()) {
+      Template tmpl = cfg.getTemplate(template);
+      tmpl.process(data, writer);
+      return writer.toString();
+    } catch (TemplateException | IOException e) {
+      throw new RuntimeException("Unable to process template '" + template + "'", e);
+    }
+  }
 }
