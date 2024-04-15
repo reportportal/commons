@@ -16,8 +16,10 @@
 
 package com.epam.reportportal.model.analyzer;
 
+import com.epam.reportportal.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -36,6 +38,7 @@ public class IndexLog {
   private int logLevel;
 
   @JsonProperty("logTime")
+  @JsonSerialize(using = LocalDateTimeSerializer.class)
   private LocalDateTime logTime;
 
   @JsonProperty("message")

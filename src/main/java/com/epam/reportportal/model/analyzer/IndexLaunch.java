@@ -16,9 +16,11 @@
 
 package com.epam.reportportal.model.analyzer;
 
+import com.epam.reportportal.databind.LocalDateTimeSerializer;
 import com.epam.reportportal.model.project.AnalyzerConfig;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
@@ -38,6 +40,7 @@ public class IndexLaunch {
   private String launchName;
 
   @JsonProperty("launchStartTime")
+  @JsonSerialize(using = LocalDateTimeSerializer.class)
   private LocalDateTime launchStartTime;
 
   @JsonProperty("project")

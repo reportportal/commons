@@ -16,7 +16,9 @@
 
 package com.epam.reportportal.model.analyzer;
 
+import com.epam.reportportal.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.Set;
@@ -37,6 +39,7 @@ public class IndexTestItem {
   @JsonProperty("issueType")
   private String issueTypeLocator;
 
+  @JsonSerialize(using = LocalDateTimeSerializer.class)
   private LocalDateTime startTime;
 
   @JsonProperty("logs")
