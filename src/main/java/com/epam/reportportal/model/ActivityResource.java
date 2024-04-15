@@ -78,6 +78,9 @@ public class ActivityResource {
   @JsonProperty(value = "projectName")
   private String projectName;
 
+  @JsonProperty(value = "projectKey")
+  private String projectKey;
+
   @JsonProperty(value = "details")
   private Object details;
 
