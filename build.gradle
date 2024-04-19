@@ -39,7 +39,7 @@ dependencyManagement {
 dependencies {
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
-    api 'org.apache.tika:tika-core'
+    api 'org.apache.tika:tika-core:2.9.2'
 
     implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
