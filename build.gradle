@@ -41,6 +41,8 @@ dependencies {
     api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
 
+    api 'com.github.reportportal:commons-reporting:d99e842'
+
     implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     implementation "javax.validation:validation-api:${validationApiVersion}"
