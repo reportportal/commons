@@ -241,9 +241,9 @@ public enum ErrorType {
   UNABLE_INTERACT_WITH_INTEGRATION(40302, "Impossible interact with integration. {}"),
 
   /**
-   * "Unable assign/unassign user to/from project
+   * "Unable to assign/unassign user to/from project
    */
-  UNABLE_ASSIGN_UNASSIGN_USER_TO_PROJECT(40304, "Unable assign/unassign user to/from project. {}"),
+  UNABLE_ASSIGN_UNASSIGN_USER_TO_PROJECT(40304, "Unable to assign/unassign user to/from project. {}"),
 
   /**
    * Impossible operation on server side
