@@ -15,28 +15,25 @@
  */
 package com.epam.reportportal.events;
 
+import com.epam.ta.reportportal.ws.reporting.FinishExecutionRQ;
+import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
 /**
  * @author <a href="mailto:pavel_bortnik@epam.com">Pavel Bortnik</a>
  */
-public class ElementsDeletedEvent extends ApplicationEvent {
+@Getter
+public class FinishLaunchRqEvent extends ApplicationEvent {
 
-	private final Long projectId;
+  private final String projectName;
+  private final String launchUuid;
+  private final FinishExecutionRQ finishExecutionRQ;
 
-	private final long numberOfDeletedElements;
-
-	public ElementsDeletedEvent(Object source, Long projectId, long numberOfDeletedElements) {
-		super(source);
-		this.projectId = projectId;
-		this.numberOfDeletedElements = numberOfDeletedElements;
-	}
-
-	public Long getProjectId() {
-		return projectId;
-	}
-
-	public long getNumberOfDeletedElements() {
-		return numberOfDeletedElements;
-	}
+  public FinishLaunchRqEvent(Object source, String projectName, String launchUuid,
+      FinishExecutionRQ finishExecutionRQ) {
+    super(source);
+    this.projectName = projectName;
+    this.launchUuid = launchUuid;
+    this.finishExecutionRQ = finishExecutionRQ;
+  }
 }
