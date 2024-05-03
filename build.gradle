@@ -37,6 +37,7 @@ dependencyManagement {
 
 
 dependencies {
+    api 'com.github.reportportal:commons-reporting:b846dfd'
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
