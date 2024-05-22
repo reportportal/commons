@@ -35,7 +35,6 @@ dependencyManagement {
     }
 }
 
-
 dependencies {
     api 'com.github.reportportal:commons-reporting:923562e57d'
     api 'org.springframework:spring-webmvc'
