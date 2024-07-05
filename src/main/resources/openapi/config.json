@@ -8,6 +8,8 @@
   "importMappings": {
     "java.time.OffsetDateTime": "java.time.Instant"
   },
+  "interfaceOnly": true,
+  "useTags": true,
   "library": "spring-boot",
   "hideGenerationTimestamp": true
 }

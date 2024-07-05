@@ -88,7 +88,7 @@ swaggerSources {
         code {
             language = 'spring'
             configFile = file("$rootDir/src/main/resources/openapi/config.json")
-            components = ['models']
+            components = ['models', 'apis']
             jvmArgs = ['--add-opens=java.base/java.util=ALL-UNNAMED']
             outputDir = file("$buildDir/generated")
             wipeOutputDir = true
