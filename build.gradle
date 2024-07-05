@@ -3,6 +3,7 @@ plugins {
     id 'java'
     id 'java-library'
     id "org.owasp.dependencycheck" version "5.3.1"
+    id 'org.hidetake.swagger.generator' version '2.19.2'
 }
 
 project.ext {
@@ -41,6 +42,8 @@ dependencies {
     api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
 
+    swaggerCodegen 'io.swagger.codegen.v3:swagger-codegen-cli:3.0.57'
+
     implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     implementation "javax.validation:validation-api:${validationApiVersion}"
@@ -66,6 +69,35 @@ dependencies {
     testImplementation "javax.el:javax.el-api:${elApiVersion}"
     testImplementation "org.glassfish:javax.el:${elApiVersion}"
 }
+
+tasks.register('updateApiSubmodule', Exec) {
+    commandLine 'git', 'submodule', 'update', '--init' , "--recursive"
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs "$buildDir/generated/src/main/java"
+        }
+    }
+}
+
+swaggerSources {
+    organizations {
+        inputFile = file("$rootDir/reportportal-common-api/api/openapi/organizations.yaml")
+        code {
+            language = 'spring'
+            configFile = file("$rootDir/src/main/resources/openapi/config.json")
+            components = ['models']
+            jvmArgs = ['--add-opens=java.base/java.util=ALL-UNNAMED']
+            outputDir = file("$buildDir/generated")
+            wipeOutputDir = true
+        }
+    }
+}
+
+swaggerSources.organizations.code.dependsOn updateApiSubmodule
+compileJava.dependsOn swaggerSources.organizations.code
 
 wrapper {
     gradleVersion = '8.5'
