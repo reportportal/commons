@@ -71,7 +71,8 @@ dependencies {
 }
 
 tasks.register('updateApiSubmodule', Exec) {
-    commandLine 'git', 'submodule', 'update', '--init' , "--recursive"
+    commandLine "git", "init"
+    commandLine "git", "submodule", "update", "--init" , "--recursive"
 }
 
 sourceSets {
