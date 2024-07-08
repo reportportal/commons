@@ -70,10 +70,6 @@ dependencies {
     testImplementation "org.glassfish:javax.el:${elApiVersion}"
 }
 
-wrapper {
-    gradleVersion = '8.5'
-}
-
 sourceSets {
     main {
         java {
@@ -83,7 +79,7 @@ sourceSets {
 }
 
 tasks.register('updateApiSubmodule', Exec) {
-    commandLine "git", "submodule", "update", "--init" , "--recursive", "remote"
+    commandLine "git", "submodule", "update", "--init" , "--recursive", "--remote"
 }
 
 swaggerSources {
