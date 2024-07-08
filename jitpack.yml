@@ -1,4 +1,5 @@
 jdk:
   - openjdk11
 install:
+  - git submodule add https://github.com/reportportal/reportportal-common-api.git
   - git submodule update --init --recursive
