@@ -2,8 +2,6 @@ package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -26,8 +24,7 @@ public class ProjectProfile extends ProjectMetadata  {
   private String slug = null;
 
   @JsonProperty("relationships")
-  @Valid
-  private List<ProjectRelation> relationships = null;
+  private ProjectRelationshipsRelationships relationships = null;
 
   public ProjectProfile name(String name) {
     this.name = name;
@@ -69,16 +66,8 @@ public class ProjectProfile extends ProjectMetadata  {
     this.slug = slug;
   }
 
-  public ProjectProfile relationships(List<ProjectRelation> relationships) {
+  public ProjectProfile relationships(ProjectRelationshipsRelationships relationships) {
     this.relationships = relationships;
-    return this;
-  }
-
-  public ProjectProfile addRelationshipsItem(ProjectRelation relationshipsItem) {
-    if (this.relationships == null) {
-      this.relationships = new ArrayList<>();
-    }
-    this.relationships.add(relationshipsItem);
     return this;
   }
 
@@ -88,12 +77,13 @@ public class ProjectProfile extends ProjectMetadata  {
    **/
   @Schema(description = "")
       @NotNull
+
     @Valid
-    public List<ProjectRelation> getRelationships() {
+    public ProjectRelationshipsRelationships getRelationships() {
     return relationships;
   }
 
-  public void setRelationships(List<ProjectRelation> relationships) {
+  public void setRelationships(ProjectRelationshipsRelationships relationships) {
     this.relationships = relationships;
   }
 

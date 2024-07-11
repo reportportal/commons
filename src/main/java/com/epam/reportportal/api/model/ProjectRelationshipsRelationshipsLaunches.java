@@ -8,18 +8,18 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Users assigned to the project.
+ * Launches associated with the project.
  */
-@Schema(description = "Users assigned to the project.")
+@Schema(description = "Launches associated with the project.")
 @Validated
 
 
 
-public class ProjectRelationUsers   {
+public class ProjectRelationshipsRelationshipsLaunches   {
   @JsonProperty("meta")
-  private ProjectRelationUsersMeta meta = null;
+  private ProjectRelationshipsRelationshipsLaunchesMeta meta = null;
 
-  public ProjectRelationUsers meta(ProjectRelationUsersMeta meta) {
+  public ProjectRelationshipsRelationshipsLaunches meta(ProjectRelationshipsRelationshipsLaunchesMeta meta) {
     this.meta = meta;
     return this;
   }
@@ -32,11 +32,11 @@ public class ProjectRelationUsers   {
       @NotNull
 
     @Valid
-    public ProjectRelationUsersMeta getMeta() {
+    public ProjectRelationshipsRelationshipsLaunchesMeta getMeta() {
     return meta;
   }
 
-  public void setMeta(ProjectRelationUsersMeta meta) {
+  public void setMeta(ProjectRelationshipsRelationshipsLaunchesMeta meta) {
     this.meta = meta;
   }
 
@@ -49,8 +49,8 @@ public class ProjectRelationUsers   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationUsers projectRelationUsers = (ProjectRelationUsers) o;
-    return Objects.equals(this.meta, projectRelationUsers.meta);
+    ProjectRelationshipsRelationshipsLaunches projectRelationshipsRelationshipsLaunches = (ProjectRelationshipsRelationshipsLaunches) o;
+    return Objects.equals(this.meta, projectRelationshipsRelationshipsLaunches.meta);
   }
 
   @Override
@@ -61,7 +61,7 @@ public class ProjectRelationUsers   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationUsers {\n");
+    sb.append("class ProjectRelationshipsRelationshipsLaunches {\n");
     
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");

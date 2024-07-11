@@ -15,11 +15,11 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class ProjectRelationBilling   {
+public class ProjectRelationshipsRelationshipsBilling   {
   @JsonProperty("meta")
-  private ProjectRelationBillingMeta meta = null;
+  private ProjectRelationshipsRelationshipsBillingMeta meta = null;
 
-  public ProjectRelationBilling meta(ProjectRelationBillingMeta meta) {
+  public ProjectRelationshipsRelationshipsBilling meta(ProjectRelationshipsRelationshipsBillingMeta meta) {
     this.meta = meta;
     return this;
   }
@@ -32,11 +32,11 @@ public class ProjectRelationBilling   {
       @NotNull
 
     @Valid
-    public ProjectRelationBillingMeta getMeta() {
+    public ProjectRelationshipsRelationshipsBillingMeta getMeta() {
     return meta;
   }
 
-  public void setMeta(ProjectRelationBillingMeta meta) {
+  public void setMeta(ProjectRelationshipsRelationshipsBillingMeta meta) {
     this.meta = meta;
   }
 
@@ -49,8 +49,8 @@ public class ProjectRelationBilling   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationBilling projectRelationBilling = (ProjectRelationBilling) o;
-    return Objects.equals(this.meta, projectRelationBilling.meta);
+    ProjectRelationshipsRelationshipsBilling projectRelationshipsRelationshipsBilling = (ProjectRelationshipsRelationshipsBilling) o;
+    return Objects.equals(this.meta, projectRelationshipsRelationshipsBilling.meta);
   }
 
   @Override
@@ -61,7 +61,7 @@ public class ProjectRelationBilling   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationBilling {\n");
+    sb.append("class ProjectRelationshipsRelationshipsBilling {\n");
     
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");

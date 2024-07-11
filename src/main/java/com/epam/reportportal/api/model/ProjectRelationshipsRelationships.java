@@ -8,24 +8,23 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Information about the relationships of a project.
+ * ProjectRelationshipsRelationships
  */
-@Schema(description = "Information about the relationships of a project.")
 @Validated
 
 
 
-public class ProjectRelation   {
+public class ProjectRelationshipsRelationships   {
   @JsonProperty("users")
-  private ProjectRelationUsers users = null;
+  private ProjectRelationshipsRelationshipsUsers users = null;
 
   @JsonProperty("launches")
-  private ProjectRelationLaunches launches = null;
+  private ProjectRelationshipsRelationshipsLaunches launches = null;
 
   @JsonProperty("billing")
-  private ProjectRelationBilling billing = null;
+  private ProjectRelationshipsRelationshipsBilling billing = null;
 
-  public ProjectRelation users(ProjectRelationUsers users) {
+  public ProjectRelationshipsRelationships users(ProjectRelationshipsRelationshipsUsers users) {
     this.users = users;
     return this;
   }
@@ -38,15 +37,15 @@ public class ProjectRelation   {
       @NotNull
 
     @Valid
-    public ProjectRelationUsers getUsers() {
+    public ProjectRelationshipsRelationshipsUsers getUsers() {
     return users;
   }
 
-  public void setUsers(ProjectRelationUsers users) {
+  public void setUsers(ProjectRelationshipsRelationshipsUsers users) {
     this.users = users;
   }
 
-  public ProjectRelation launches(ProjectRelationLaunches launches) {
+  public ProjectRelationshipsRelationships launches(ProjectRelationshipsRelationshipsLaunches launches) {
     this.launches = launches;
     return this;
   }
@@ -59,15 +58,15 @@ public class ProjectRelation   {
       @NotNull
 
     @Valid
-    public ProjectRelationLaunches getLaunches() {
+    public ProjectRelationshipsRelationshipsLaunches getLaunches() {
     return launches;
   }
 
-  public void setLaunches(ProjectRelationLaunches launches) {
+  public void setLaunches(ProjectRelationshipsRelationshipsLaunches launches) {
     this.launches = launches;
   }
 
-  public ProjectRelation billing(ProjectRelationBilling billing) {
+  public ProjectRelationshipsRelationships billing(ProjectRelationshipsRelationshipsBilling billing) {
     this.billing = billing;
     return this;
   }
@@ -80,11 +79,11 @@ public class ProjectRelation   {
       @NotNull
 
     @Valid
-    public ProjectRelationBilling getBilling() {
+    public ProjectRelationshipsRelationshipsBilling getBilling() {
     return billing;
   }
 
-  public void setBilling(ProjectRelationBilling billing) {
+  public void setBilling(ProjectRelationshipsRelationshipsBilling billing) {
     this.billing = billing;
   }
 
@@ -97,10 +96,10 @@ public class ProjectRelation   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelation projectRelation = (ProjectRelation) o;
-    return Objects.equals(this.users, projectRelation.users) &&
-        Objects.equals(this.launches, projectRelation.launches) &&
-        Objects.equals(this.billing, projectRelation.billing);
+    ProjectRelationshipsRelationships projectRelationshipsRelationships = (ProjectRelationshipsRelationships) o;
+    return Objects.equals(this.users, projectRelationshipsRelationships.users) &&
+        Objects.equals(this.launches, projectRelationshipsRelationships.launches) &&
+        Objects.equals(this.billing, projectRelationshipsRelationships.billing);
   }
 
   @Override
@@ -111,7 +110,7 @@ public class ProjectRelation   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelation {\n");
+    sb.append("class ProjectRelationshipsRelationships {\n");
     
     sb.append("    users: ").append(toIndentedString(users)).append("\n");
     sb.append("    launches: ").append(toIndentedString(launches)).append("\n");
