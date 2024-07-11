@@ -9,17 +9,17 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ProjectRelationBillingMeta
+ * ProjectRelationshipsRelationshipsBillingMeta
  */
 @Validated
 
 
 
-public class ProjectRelationBillingMeta   {
+public class ProjectRelationshipsRelationshipsBillingMeta   {
   @JsonProperty("storage_usage")
   private Integer storageUsage = null;
 
-  public ProjectRelationBillingMeta storageUsage(Integer storageUsage) {
+  public ProjectRelationshipsRelationshipsBillingMeta storageUsage(Integer storageUsage) {
     this.storageUsage = storageUsage;
     return this;
   }
@@ -50,8 +50,8 @@ public class ProjectRelationBillingMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationBillingMeta projectRelationBillingMeta = (ProjectRelationBillingMeta) o;
-    return Objects.equals(this.storageUsage, projectRelationBillingMeta.storageUsage);
+    ProjectRelationshipsRelationshipsBillingMeta projectRelationshipsRelationshipsBillingMeta = (ProjectRelationshipsRelationshipsBillingMeta) o;
+    return Objects.equals(this.storageUsage, projectRelationshipsRelationshipsBillingMeta.storageUsage);
   }
 
   @Override
@@ -62,7 +62,7 @@ public class ProjectRelationBillingMeta   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationBillingMeta {\n");
+    sb.append("class ProjectRelationshipsRelationshipsBillingMeta {\n");
     
     sb.append("    storageUsage: ").append(toIndentedString(storageUsage)).append("\n");
     sb.append("}");

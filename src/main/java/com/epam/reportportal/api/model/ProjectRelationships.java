@@ -2,35 +2,25 @@ package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ProjectRelationships
+ * Information about the relationships of a project.
  */
+@Schema(description = "Information about the relationships of a project.")
 @Validated
 
 
 
 public class ProjectRelationships   {
   @JsonProperty("relationships")
-  @Valid
-  private List<ProjectRelation> relationships = null;
+  private ProjectRelationshipsRelationships relationships = null;
 
-  public ProjectRelationships relationships(List<ProjectRelation> relationships) {
+  public ProjectRelationships relationships(ProjectRelationshipsRelationships relationships) {
     this.relationships = relationships;
-    return this;
-  }
-
-  public ProjectRelationships addRelationshipsItem(ProjectRelation relationshipsItem) {
-    if (this.relationships == null) {
-      this.relationships = new ArrayList<>();
-    }
-    this.relationships.add(relationshipsItem);
     return this;
   }
 
@@ -40,12 +30,13 @@ public class ProjectRelationships   {
    **/
   @Schema(description = "")
       @NotNull
+
     @Valid
-    public List<ProjectRelation> getRelationships() {
+    public ProjectRelationshipsRelationships getRelationships() {
     return relationships;
   }
 
-  public void setRelationships(List<ProjectRelation> relationships) {
+  public void setRelationships(ProjectRelationshipsRelationships relationships) {
     this.relationships = relationships;
   }
 

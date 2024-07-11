@@ -10,20 +10,20 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ProjectRelationLaunchesMeta
+ * ProjectRelationshipsRelationshipsLaunchesMeta
  */
 @Validated
 
 
 
-public class ProjectRelationLaunchesMeta   {
+public class ProjectRelationshipsRelationshipsLaunchesMeta   {
   @JsonProperty("last_occurred_at")
   private Instant lastOccurredAt = null;
 
   @JsonProperty("count")
   private Integer count = null;
 
-  public ProjectRelationLaunchesMeta lastOccurredAt(Instant lastOccurredAt) {
+  public ProjectRelationshipsRelationshipsLaunchesMeta lastOccurredAt(Instant lastOccurredAt) {
     this.lastOccurredAt = lastOccurredAt;
     return this;
   }
@@ -44,7 +44,7 @@ public class ProjectRelationLaunchesMeta   {
     this.lastOccurredAt = lastOccurredAt;
   }
 
-  public ProjectRelationLaunchesMeta count(Integer count) {
+  public ProjectRelationshipsRelationshipsLaunchesMeta count(Integer count) {
     this.count = count;
     return this;
   }
@@ -74,9 +74,9 @@ public class ProjectRelationLaunchesMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationLaunchesMeta projectRelationLaunchesMeta = (ProjectRelationLaunchesMeta) o;
-    return Objects.equals(this.lastOccurredAt, projectRelationLaunchesMeta.lastOccurredAt) &&
-        Objects.equals(this.count, projectRelationLaunchesMeta.count);
+    ProjectRelationshipsRelationshipsLaunchesMeta projectRelationshipsRelationshipsLaunchesMeta = (ProjectRelationshipsRelationshipsLaunchesMeta) o;
+    return Objects.equals(this.lastOccurredAt, projectRelationshipsRelationshipsLaunchesMeta.lastOccurredAt) &&
+        Objects.equals(this.count, projectRelationshipsRelationshipsLaunchesMeta.count);
   }
 
   @Override
@@ -87,7 +87,7 @@ public class ProjectRelationLaunchesMeta   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationLaunchesMeta {\n");
+    sb.append("class ProjectRelationshipsRelationshipsLaunchesMeta {\n");
     
     sb.append("    lastOccurredAt: ").append(toIndentedString(lastOccurredAt)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");

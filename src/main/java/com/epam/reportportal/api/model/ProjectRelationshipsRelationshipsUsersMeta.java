@@ -8,17 +8,17 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ProjectRelationUsersMeta
+ * ProjectRelationshipsRelationshipsUsersMeta
  */
 @Validated
 
 
 
-public class ProjectRelationUsersMeta   {
+public class ProjectRelationshipsRelationshipsUsersMeta   {
   @JsonProperty("count")
   private Integer count = null;
 
-  public ProjectRelationUsersMeta count(Integer count) {
+  public ProjectRelationshipsRelationshipsUsersMeta count(Integer count) {
     this.count = count;
     return this;
   }
@@ -48,8 +48,8 @@ public class ProjectRelationUsersMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationUsersMeta projectRelationUsersMeta = (ProjectRelationUsersMeta) o;
-    return Objects.equals(this.count, projectRelationUsersMeta.count);
+    ProjectRelationshipsRelationshipsUsersMeta projectRelationshipsRelationshipsUsersMeta = (ProjectRelationshipsRelationshipsUsersMeta) o;
+    return Objects.equals(this.count, projectRelationshipsRelationshipsUsersMeta.count);
   }
 
   @Override
@@ -60,7 +60,7 @@ public class ProjectRelationUsersMeta   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationUsersMeta {\n");
+    sb.append("class ProjectRelationshipsRelationshipsUsersMeta {\n");
     
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("}");
