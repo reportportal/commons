@@ -47,6 +47,14 @@ public class ClusterInfoResource {
   public ClusterInfoResource() {
   }
 
+  public ClusterInfoResource(Long id, Long index, Long launchId, String message, Long matchedTest) {
+    this.id = id;
+    this.index = index;
+    this.launchId = launchId;
+    this.message = message;
+    this.matchedTest = matchedTest;
+  }
+
   public Long getId() {
     return id;
   }
