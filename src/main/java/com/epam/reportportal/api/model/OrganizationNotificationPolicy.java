@@ -13,7 +13,7 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class OrganizationNotificationPolicy  implements InlineResponse2005, SettingsSettingNameBody, SettingsSettingNameBody1, SettingsSettingNameBody2 {
+public class OrganizationNotificationPolicy  implements InlineResponse2003, SettingsSettingNameBody, SettingsSettingNameBody1, SettingsSettingNameBody2 {
   @JsonProperty("auto_notification")
   private Boolean autoNotification = null;
 

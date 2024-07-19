@@ -14,7 +14,7 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class OrganizationRetentionPolicy  implements InlineResponse2005, SettingsSettingNameBody, SettingsSettingNameBody1, SettingsSettingNameBody2 {
+public class OrganizationRetentionPolicy  implements InlineResponse2003, SettingsSettingNameBody, SettingsSettingNameBody1, SettingsSettingNameBody2 {
   @JsonProperty("log_retention_period")
   private String logRetentionPeriod = null;
 

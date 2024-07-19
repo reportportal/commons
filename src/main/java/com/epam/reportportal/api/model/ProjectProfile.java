@@ -35,7 +35,7 @@ public class ProjectProfile extends ProjectMetadata  {
    * Display project name.
    * @return name
    **/
-  @Schema(required = true, description = "Display project name.")
+  @Schema(description = "Display project name.")
       @NotNull
 
     public String getName() {
@@ -56,8 +56,7 @@ public class ProjectProfile extends ProjectMetadata  {
    * @return slug
    **/
   @Schema(description = "")
-      @NotNull
-
+  
   @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$")   public String getSlug() {
     return slug;
   }

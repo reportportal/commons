@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -14,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class ProjectDetails   {
+public class ProjectDetails {
   @JsonProperty("name")
   private String name = null;
 
@@ -33,7 +34,7 @@ public class ProjectDetails   {
   @Schema(required = true, description = "Display project name.")
       @NotNull
 
-    public String getName() {
+  @Size(min=3,max=256)   public String getName() {
     return name;
   }
 
@@ -51,9 +52,8 @@ public class ProjectDetails   {
    * @return slug
    **/
   @Schema(description = "")
-      @NotNull
-
-  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$")   public String getSlug() {
+  
+  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min=3,max=256)   public String getSlug() {
     return slug;
   }
 
