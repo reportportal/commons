@@ -12,9 +12,6 @@ import org.springframework.validation.annotation.Validated;
  * ProjectDetails
  */
 @Validated
-
-
-
 public class ProjectDetails {
   @JsonProperty("name")
   private String name = null;
