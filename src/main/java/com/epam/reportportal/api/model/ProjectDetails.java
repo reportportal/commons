@@ -34,7 +34,7 @@ public class ProjectDetails {
   @Schema(required = true, description = "Display project name.")
       @NotNull
 
-  @Size(min=3,max=256)   public String getName() {
+  @Size(min=3,max=250)   public String getName() {
     return name;
   }
 
@@ -53,7 +53,7 @@ public class ProjectDetails {
    **/
   @Schema(description = "")
   
-  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min=3,max=256)   public String getSlug() {
+  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min=3,max=250)   public String getSlug() {
     return slug;
   }
 
