@@ -41,7 +41,18 @@ public class ClusterInfoResource {
   @JsonProperty(value = "metadata")
   private Map<String, Object> metadata;
 
+  @JsonProperty(value = "matchedTests")
+  private Long matchedTests;
+
   public ClusterInfoResource() {
+  }
+
+  public ClusterInfoResource(Long id, Long index, Long launchId, String message, Long matchedTests) {
+    this.id = id;
+    this.index = index;
+    this.launchId = launchId;
+    this.message = message;
+    this.matchedTests = matchedTests;
   }
 
   public Long getId() {
@@ -82,5 +93,13 @@ public class ClusterInfoResource {
 
   public void setMetadata(Map<String, Object> metadata) {
     this.metadata = metadata;
+  }
+
+  public Long getMatchedTests() {
+    return matchedTests;
+  }
+
+  public void setMatchedTests(Long matchedTests) {
+    this.matchedTests = matchedTests;
   }
 }
