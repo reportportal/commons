@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -30,10 +31,10 @@ public class OrganizationProjectInfo extends ProjectMetadata  {
    * Display project name.
    * @return name
    **/
-  @Schema(description = "Display project name.")
+  @Schema(required = true, description = "Display project name.")
       @NotNull
 
-    public String getName() {
+  @Size(min=3,max=250)   public String getName() {
     return name;
   }
 
@@ -52,7 +53,7 @@ public class OrganizationProjectInfo extends ProjectMetadata  {
    **/
   @Schema(description = "")
   
-  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$")   public String getSlug() {
+  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min=3,max=250)   public String getSlug() {
     return slug;
   }
 

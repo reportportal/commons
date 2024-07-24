@@ -8,28 +8,27 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * User&#x27;s projects relation metadata.
+ * OrganizationRelationRelationshipsProjectsMeta
  */
-@Schema(description = "User's projects relation metadata.")
 @Validated
 
 
 
-public class OrganizationUserRelationProjectsMeta   {
+public class OrganizationRelationRelationshipsProjectsMeta   {
   @JsonProperty("count")
   private Integer count = null;
 
-  public OrganizationUserRelationProjectsMeta count(Integer count) {
+  public OrganizationRelationRelationshipsProjectsMeta count(Integer count) {
     this.count = count;
     return this;
   }
 
   /**
-   * Total number of user's projects in organization.
+   * Total count of projects in the organization.
    * minimum: 0
    * @return count
    **/
-  @Schema(description = "Total number of user's projects in organization.")
+  @Schema(description = "Total count of projects in the organization.")
       @NotNull
 
   @Min(0)  public Integer getCount() {
@@ -49,8 +48,8 @@ public class OrganizationUserRelationProjectsMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserRelationProjectsMeta organizationUserRelationProjectsMeta = (OrganizationUserRelationProjectsMeta) o;
-    return Objects.equals(this.count, organizationUserRelationProjectsMeta.count);
+    OrganizationRelationRelationshipsProjectsMeta organizationRelationRelationshipsProjectsMeta = (OrganizationRelationRelationshipsProjectsMeta) o;
+    return Objects.equals(this.count, organizationRelationRelationshipsProjectsMeta.count);
   }
 
   @Override
@@ -61,7 +60,7 @@ public class OrganizationUserRelationProjectsMeta   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserRelationProjectsMeta {\n");
+    sb.append("class OrganizationRelationRelationshipsProjectsMeta {\n");
     
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("}");

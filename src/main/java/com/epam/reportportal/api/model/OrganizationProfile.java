@@ -17,9 +17,9 @@ import org.springframework.validation.annotation.Validated;
 
 public class OrganizationProfile extends OrganizationInfo  {
   @JsonProperty("relationships")
-  private OrganizationRelation relationships = null;
+  private OrganizationRelationRelationships relationships = null;
 
-  public OrganizationProfile relationships(OrganizationRelation relationships) {
+  public OrganizationProfile relationships(OrganizationRelationRelationships relationships) {
     this.relationships = relationships;
     return this;
   }
@@ -32,11 +32,11 @@ public class OrganizationProfile extends OrganizationInfo  {
       @NotNull
 
     @Valid
-    public OrganizationRelation getRelationships() {
+    public OrganizationRelationRelationships getRelationships() {
     return relationships;
   }
 
-  public void setRelationships(OrganizationRelation relationships) {
+  public void setRelationships(OrganizationRelationRelationships relationships) {
     this.relationships = relationships;
   }
 

@@ -19,14 +19,14 @@ import org.springframework.validation.annotation.Validated;
 public class OrganizationUsersPage extends Offset  {
   @JsonProperty("items")
   @Valid
-  private List<OrganizationUserProfile> items = new ArrayList<>();
+  private List<OrganizationUserInfo> items = new ArrayList<>();
 
-  public OrganizationUsersPage items(List<OrganizationUserProfile> items) {
+  public OrganizationUsersPage items(List<OrganizationUserInfo> items) {
     this.items = items;
     return this;
   }
 
-  public OrganizationUsersPage addItemsItem(OrganizationUserProfile itemsItem) {
+  public OrganizationUsersPage addItemsItem(OrganizationUserInfo itemsItem) {
     this.items.add(itemsItem);
     return this;
   }
@@ -38,11 +38,11 @@ public class OrganizationUsersPage extends Offset  {
   @Schema(required = true, description = "")
       @NotNull
     @Valid
-    public List<OrganizationUserProfile> getItems() {
+    public List<OrganizationUserInfo> getItems() {
     return items;
   }
 
-  public void setItems(List<OrganizationUserProfile> items) {
+  public void setItems(List<OrganizationUserInfo> items) {
     this.items = items;
   }
 

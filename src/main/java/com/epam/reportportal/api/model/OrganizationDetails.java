@@ -35,7 +35,7 @@ public class OrganizationDetails   {
   @Schema(required = true, description = "Organization display name.")
       @NotNull
 
-  @Size(min=1)   public String getName() {
+  @Size(min=3,max=250)   public String getName() {
     return name;
   }
 
@@ -53,9 +53,8 @@ public class OrganizationDetails   {
    * @return slug
    **/
   @Schema(description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.")
-      @NotNull
-
-  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$")   public String getSlug() {
+  
+  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min=3,max=250)   public String getSlug() {
     return slug;
   }
 

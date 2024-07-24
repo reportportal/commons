@@ -2,39 +2,51 @@ package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * InlineResponse2009
+ * UserProjectsList
  */
 @Validated
 
 
 
-public class InlineResponse2009   {
-  @JsonProperty("message")
-  private String message = null;
+public class UserProjectsList   {
+  @JsonProperty("items")
+  @Valid
+  private List<UserProjectInfo> items = null;
 
-  public InlineResponse2009 message(String message) {
-    this.message = message;
+  public UserProjectsList items(List<UserProjectInfo> items) {
+    this.items = items;
+    return this;
+  }
+
+  public UserProjectsList addItemsItem(UserProjectInfo itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
+    this.items.add(itemsItem);
     return this;
   }
 
   /**
-   * Get message
-   * @return message
+   * Get items
+   * @return items
    **/
   @Schema(description = "")
       @NotNull
-
-    public String getMessage() {
-    return message;
+    @Valid
+    public List<UserProjectInfo> getItems() {
+    return items;
   }
 
-  public void setMessage(String message) {
-    this.message = message;
+  public void setItems(List<UserProjectInfo> items) {
+    this.items = items;
   }
 
 
@@ -46,21 +58,21 @@ public class InlineResponse2009   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2009 inlineResponse2009 = (InlineResponse2009) o;
-    return Objects.equals(this.message, inlineResponse2009.message);
+    UserProjectsList userProjectsList = (UserProjectsList) o;
+    return Objects.equals(this.items, userProjectsList.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(message);
+    return Objects.hash(items);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2009 {\n");
+    sb.append("class UserProjectsList {\n");
     
-    sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }

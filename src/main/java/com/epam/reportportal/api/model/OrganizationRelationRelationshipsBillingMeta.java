@@ -9,20 +9,20 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationRelationBillingMeta
+ * OrganizationRelationRelationshipsBillingMeta
  */
 @Validated
 
 
 
-public class OrganizationRelationBillingMeta   {
+public class OrganizationRelationRelationshipsBillingMeta   {
   @JsonProperty("plan_name")
   private String planName = null;
 
   @JsonProperty("storage_usage")
   private Integer storageUsage = null;
 
-  public OrganizationRelationBillingMeta planName(String planName) {
+  public OrganizationRelationRelationshipsBillingMeta planName(String planName) {
     this.planName = planName;
     return this;
   }
@@ -42,7 +42,7 @@ public class OrganizationRelationBillingMeta   {
     this.planName = planName;
   }
 
-  public OrganizationRelationBillingMeta storageUsage(Integer storageUsage) {
+  public OrganizationRelationRelationshipsBillingMeta storageUsage(Integer storageUsage) {
     this.storageUsage = storageUsage;
     return this;
   }
@@ -73,9 +73,9 @@ public class OrganizationRelationBillingMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationRelationBillingMeta organizationRelationBillingMeta = (OrganizationRelationBillingMeta) o;
-    return Objects.equals(this.planName, organizationRelationBillingMeta.planName) &&
-        Objects.equals(this.storageUsage, organizationRelationBillingMeta.storageUsage);
+    OrganizationRelationRelationshipsBillingMeta organizationRelationRelationshipsBillingMeta = (OrganizationRelationRelationshipsBillingMeta) o;
+    return Objects.equals(this.planName, organizationRelationRelationshipsBillingMeta.planName) &&
+        Objects.equals(this.storageUsage, organizationRelationRelationshipsBillingMeta.storageUsage);
   }
 
   @Override
@@ -86,7 +86,7 @@ public class OrganizationRelationBillingMeta   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationRelationBillingMeta {\n");
+    sb.append("class OrganizationRelationRelationshipsBillingMeta {\n");
     
     sb.append("    planName: ").append(toIndentedString(planName)).append("\n");
     sb.append("    storageUsage: ").append(toIndentedString(storageUsage)).append("\n");

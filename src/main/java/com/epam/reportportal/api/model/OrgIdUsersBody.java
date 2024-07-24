@@ -4,19 +4,21 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Basic information about a user in the organization.
+ * OrgIdUsersBody
  */
-@Schema(description = "Basic information about a user in the organization.")
 @Validated
 
 
 
-public class OrganizationUserDetails   {
+public class OrgIdUsersBody extends OrganizationUserDefinition  {
   /**
    * Organization user role.
    */
@@ -50,7 +52,11 @@ public class OrganizationUserDetails   {
   @JsonProperty("organization_role")
   private OrganizationRoleEnum organizationRole = null;
 
-  public OrganizationUserDetails organizationRole(OrganizationRoleEnum organizationRole) {
+  @JsonProperty("items")
+  @Valid
+  private List<UserProjectInfo> items = null;
+
+  public OrgIdUsersBody organizationRole(OrganizationRoleEnum organizationRole) {
     this.organizationRole = organizationRole;
     return this;
   }
@@ -70,6 +76,34 @@ public class OrganizationUserDetails   {
     this.organizationRole = organizationRole;
   }
 
+  public OrgIdUsersBody items(List<UserProjectInfo> items) {
+    this.items = items;
+    return this;
+  }
+
+  public OrgIdUsersBody addItemsItem(UserProjectInfo itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
+    this.items.add(itemsItem);
+    return this;
+  }
+
+  /**
+   * Get items
+   * @return items
+   **/
+  @Schema(description = "")
+      @NotNull
+    @Valid
+    public List<UserProjectInfo> getItems() {
+    return items;
+  }
+
+  public void setItems(List<UserProjectInfo> items) {
+    this.items = items;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -79,21 +113,24 @@ public class OrganizationUserDetails   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserDetails organizationUserDetails = (OrganizationUserDetails) o;
-    return Objects.equals(this.organizationRole, organizationUserDetails.organizationRole);
+    OrgIdUsersBody orgIdUsersBody = (OrgIdUsersBody) o;
+    return Objects.equals(this.organizationRole, orgIdUsersBody.organizationRole) &&
+        Objects.equals(this.items, orgIdUsersBody.items) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(organizationRole);
+    return Objects.hash(organizationRole, items, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserDetails {\n");
-    
+    sb.append("class OrgIdUsersBody {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    organizationRole: ").append(toIndentedString(organizationRole)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }

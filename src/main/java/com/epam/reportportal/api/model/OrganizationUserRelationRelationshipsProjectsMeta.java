@@ -8,27 +8,28 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationRelationProjectsMeta
+ * User&#x27;s projects relation metadata.
  */
+@Schema(description = "User's projects relation metadata.")
 @Validated
 
 
 
-public class OrganizationRelationProjectsMeta   {
+public class OrganizationUserRelationRelationshipsProjectsMeta   {
   @JsonProperty("count")
   private Integer count = null;
 
-  public OrganizationRelationProjectsMeta count(Integer count) {
+  public OrganizationUserRelationRelationshipsProjectsMeta count(Integer count) {
     this.count = count;
     return this;
   }
 
   /**
-   * Total count of projects in the organization.
+   * Total number of user's projects in organization.
    * minimum: 0
    * @return count
    **/
-  @Schema(description = "Total count of projects in the organization.")
+  @Schema(description = "Total number of user's projects in organization.")
       @NotNull
 
   @Min(0)  public Integer getCount() {
@@ -48,8 +49,8 @@ public class OrganizationRelationProjectsMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationRelationProjectsMeta organizationRelationProjectsMeta = (OrganizationRelationProjectsMeta) o;
-    return Objects.equals(this.count, organizationRelationProjectsMeta.count);
+    OrganizationUserRelationRelationshipsProjectsMeta organizationUserRelationRelationshipsProjectsMeta = (OrganizationUserRelationRelationshipsProjectsMeta) o;
+    return Objects.equals(this.count, organizationUserRelationRelationshipsProjectsMeta.count);
   }
 
   @Override
@@ -60,7 +61,7 @@ public class OrganizationRelationProjectsMeta   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationRelationProjectsMeta {\n");
+    sb.append("class OrganizationUserRelationRelationshipsProjectsMeta {\n");
     
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
     sb.append("}");

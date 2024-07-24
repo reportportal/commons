@@ -8,18 +8,18 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * User&#x27;s projects relations.
+ * General information about the organization launches.
  */
-@Schema(description = "User's projects relations.")
+@Schema(description = "General information about the organization launches.")
 @Validated
 
 
 
-public class OrganizationUserRelationProjects   {
+public class OrganizationRelationRelationshipsLaunches   {
   @JsonProperty("meta")
-  private OrganizationUserRelationProjectsMeta meta = null;
+  private OrganizationRelationRelationshipsLaunchesMeta meta = null;
 
-  public OrganizationUserRelationProjects meta(OrganizationUserRelationProjectsMeta meta) {
+  public OrganizationRelationRelationshipsLaunches meta(OrganizationRelationRelationshipsLaunchesMeta meta) {
     this.meta = meta;
     return this;
   }
@@ -32,11 +32,11 @@ public class OrganizationUserRelationProjects   {
       @NotNull
 
     @Valid
-    public OrganizationUserRelationProjectsMeta getMeta() {
+    public OrganizationRelationRelationshipsLaunchesMeta getMeta() {
     return meta;
   }
 
-  public void setMeta(OrganizationUserRelationProjectsMeta meta) {
+  public void setMeta(OrganizationRelationRelationshipsLaunchesMeta meta) {
     this.meta = meta;
   }
 
@@ -49,8 +49,8 @@ public class OrganizationUserRelationProjects   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserRelationProjects organizationUserRelationProjects = (OrganizationUserRelationProjects) o;
-    return Objects.equals(this.meta, organizationUserRelationProjects.meta);
+    OrganizationRelationRelationshipsLaunches organizationRelationRelationshipsLaunches = (OrganizationRelationRelationshipsLaunches) o;
+    return Objects.equals(this.meta, organizationRelationRelationshipsLaunches.meta);
   }
 
   @Override
@@ -61,7 +61,7 @@ public class OrganizationUserRelationProjects   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserRelationProjects {\n");
+    sb.append("class OrganizationRelationRelationshipsLaunches {\n");
     
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");

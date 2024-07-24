@@ -16,100 +16,28 @@ import org.springframework.validation.annotation.Validated;
 
 
 public class OrganizationRelation   {
-  @JsonProperty("users")
-  private OrganizationRelationUsers users = null;
+  @JsonProperty("relationships")
+  private OrganizationRelationRelationships relationships = null;
 
-  @JsonProperty("projects")
-  private OrganizationRelationProjects projects = null;
-
-  @JsonProperty("launches")
-  private OrganizationRelationLaunches launches = null;
-
-  @JsonProperty("billing")
-  private OrganizationRelationBilling billing = null;
-
-  public OrganizationRelation users(OrganizationRelationUsers users) {
-    this.users = users;
+  public OrganizationRelation relationships(OrganizationRelationRelationships relationships) {
+    this.relationships = relationships;
     return this;
   }
 
   /**
-   * Get users
-   * @return users
+   * Get relationships
+   * @return relationships
    **/
   @Schema(description = "")
       @NotNull
 
     @Valid
-    public OrganizationRelationUsers getUsers() {
-    return users;
+    public OrganizationRelationRelationships getRelationships() {
+    return relationships;
   }
 
-  public void setUsers(OrganizationRelationUsers users) {
-    this.users = users;
-  }
-
-  public OrganizationRelation projects(OrganizationRelationProjects projects) {
-    this.projects = projects;
-    return this;
-  }
-
-  /**
-   * Get projects
-   * @return projects
-   **/
-  @Schema(description = "")
-      @NotNull
-
-    @Valid
-    public OrganizationRelationProjects getProjects() {
-    return projects;
-  }
-
-  public void setProjects(OrganizationRelationProjects projects) {
-    this.projects = projects;
-  }
-
-  public OrganizationRelation launches(OrganizationRelationLaunches launches) {
-    this.launches = launches;
-    return this;
-  }
-
-  /**
-   * Get launches
-   * @return launches
-   **/
-  @Schema(description = "")
-      @NotNull
-
-    @Valid
-    public OrganizationRelationLaunches getLaunches() {
-    return launches;
-  }
-
-  public void setLaunches(OrganizationRelationLaunches launches) {
-    this.launches = launches;
-  }
-
-  public OrganizationRelation billing(OrganizationRelationBilling billing) {
-    this.billing = billing;
-    return this;
-  }
-
-  /**
-   * Get billing
-   * @return billing
-   **/
-  @Schema(description = "")
-      @NotNull
-
-    @Valid
-    public OrganizationRelationBilling getBilling() {
-    return billing;
-  }
-
-  public void setBilling(OrganizationRelationBilling billing) {
-    this.billing = billing;
+  public void setRelationships(OrganizationRelationRelationships relationships) {
+    this.relationships = relationships;
   }
 
 
@@ -122,15 +50,12 @@ public class OrganizationRelation   {
       return false;
     }
     OrganizationRelation organizationRelation = (OrganizationRelation) o;
-    return Objects.equals(this.users, organizationRelation.users) &&
-        Objects.equals(this.projects, organizationRelation.projects) &&
-        Objects.equals(this.launches, organizationRelation.launches) &&
-        Objects.equals(this.billing, organizationRelation.billing);
+    return Objects.equals(this.relationships, organizationRelation.relationships);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(users, projects, launches, billing);
+    return Objects.hash(relationships);
   }
 
   @Override
@@ -138,10 +63,7 @@ public class OrganizationRelation   {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrganizationRelation {\n");
     
-    sb.append("    users: ").append(toIndentedString(users)).append("\n");
-    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
-    sb.append("    launches: ").append(toIndentedString(launches)).append("\n");
-    sb.append("    billing: ").append(toIndentedString(billing)).append("\n");
+    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");
     return sb.toString();
   }
