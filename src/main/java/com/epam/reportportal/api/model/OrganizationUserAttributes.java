@@ -5,19 +5,18 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * A comprehensive set of user information related to a user&#x27;s organization.
+ * Basic information about a user in the organization.
  */
-@Schema(description = "A comprehensive set of user information related to a user's organization.")
+@Schema(description = "Basic information about a user in the organization.")
 @Validated
 
 
 
-public class OrganizationUserProfile extends UserAccountInfo  {
+public class OrganizationUserAttributes   {
   /**
    * Organization user role.
    */
@@ -51,10 +50,7 @@ public class OrganizationUserProfile extends UserAccountInfo  {
   @JsonProperty("organization_role")
   private OrganizationRoleEnum organizationRole = null;
 
-  @JsonProperty("relationships")
-  private OrganizationUserRelation relationships = null;
-
-  public OrganizationUserProfile organizationRole(OrganizationRoleEnum organizationRole) {
+  public OrganizationUserAttributes organizationRole(OrganizationRoleEnum organizationRole) {
     this.organizationRole = organizationRole;
     return this;
   }
@@ -74,27 +70,6 @@ public class OrganizationUserProfile extends UserAccountInfo  {
     this.organizationRole = organizationRole;
   }
 
-  public OrganizationUserProfile relationships(OrganizationUserRelation relationships) {
-    this.relationships = relationships;
-    return this;
-  }
-
-  /**
-   * Get relationships
-   * @return relationships
-   **/
-  @Schema(description = "")
-      @NotNull
-
-    @Valid
-    public OrganizationUserRelation getRelationships() {
-    return relationships;
-  }
-
-  public void setRelationships(OrganizationUserRelation relationships) {
-    this.relationships = relationships;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -104,24 +79,21 @@ public class OrganizationUserProfile extends UserAccountInfo  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserProfile organizationUserProfile = (OrganizationUserProfile) o;
-    return Objects.equals(this.organizationRole, organizationUserProfile.organizationRole) &&
-        Objects.equals(this.relationships, organizationUserProfile.relationships) &&
-        super.equals(o);
+    OrganizationUserAttributes organizationUserAttributes = (OrganizationUserAttributes) o;
+    return Objects.equals(this.organizationRole, organizationUserAttributes.organizationRole);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(organizationRole, relationships, super.hashCode());
+    return Objects.hash(organizationRole);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserProfile {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("class OrganizationUserAttributes {\n");
+    
     sb.append("    organizationRole: ").append(toIndentedString(organizationRole)).append("\n");
-    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");
     return sb.toString();
   }

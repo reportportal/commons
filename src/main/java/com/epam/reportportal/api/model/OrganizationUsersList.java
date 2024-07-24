@@ -19,14 +19,14 @@ import org.springframework.validation.annotation.Validated;
 public class OrganizationUsersList   {
   @JsonProperty("items")
   @Valid
-  private List<OrganizationUserProfile> items = new ArrayList<>();
+  private List<OrganizationUserInfo> items = new ArrayList<>();
 
-  public OrganizationUsersList items(List<OrganizationUserProfile> items) {
+  public OrganizationUsersList items(List<OrganizationUserInfo> items) {
     this.items = items;
     return this;
   }
 
-  public OrganizationUsersList addItemsItem(OrganizationUserProfile itemsItem) {
+  public OrganizationUsersList addItemsItem(OrganizationUserInfo itemsItem) {
     this.items.add(itemsItem);
     return this;
   }
@@ -38,11 +38,11 @@ public class OrganizationUsersList   {
   @Schema(required = true, description = "")
       @NotNull
     @Valid
-    public List<OrganizationUserProfile> getItems() {
+    public List<OrganizationUserInfo> getItems() {
     return items;
   }
 
-  public void setItems(List<OrganizationUserProfile> items) {
+  public void setItems(List<OrganizationUserInfo> items) {
     this.items = items;
   }
 

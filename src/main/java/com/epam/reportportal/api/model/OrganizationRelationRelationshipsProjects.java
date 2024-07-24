@@ -8,18 +8,18 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * General information about the organization billing. Available only if a Billing plugin is enabled.
+ * General information about the organization projects.
  */
-@Schema(description = "General information about the organization billing. Available only if a Billing plugin is enabled.")
+@Schema(description = "General information about the organization projects.")
 @Validated
 
 
 
-public class OrganizationRelationBilling   {
+public class OrganizationRelationRelationshipsProjects   {
   @JsonProperty("meta")
-  private OrganizationRelationBillingMeta meta = null;
+  private OrganizationRelationRelationshipsProjectsMeta meta = null;
 
-  public OrganizationRelationBilling meta(OrganizationRelationBillingMeta meta) {
+  public OrganizationRelationRelationshipsProjects meta(OrganizationRelationRelationshipsProjectsMeta meta) {
     this.meta = meta;
     return this;
   }
@@ -32,11 +32,11 @@ public class OrganizationRelationBilling   {
       @NotNull
 
     @Valid
-    public OrganizationRelationBillingMeta getMeta() {
+    public OrganizationRelationRelationshipsProjectsMeta getMeta() {
     return meta;
   }
 
-  public void setMeta(OrganizationRelationBillingMeta meta) {
+  public void setMeta(OrganizationRelationRelationshipsProjectsMeta meta) {
     this.meta = meta;
   }
 
@@ -49,8 +49,8 @@ public class OrganizationRelationBilling   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationRelationBilling organizationRelationBilling = (OrganizationRelationBilling) o;
-    return Objects.equals(this.meta, organizationRelationBilling.meta);
+    OrganizationRelationRelationshipsProjects organizationRelationRelationshipsProjects = (OrganizationRelationRelationshipsProjects) o;
+    return Objects.equals(this.meta, organizationRelationRelationshipsProjects.meta);
   }
 
   @Override
@@ -61,7 +61,7 @@ public class OrganizationRelationBilling   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationRelationBilling {\n");
+    sb.append("class OrganizationRelationRelationshipsProjects {\n");
     
     sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
     sb.append("}");

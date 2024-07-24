@@ -18,7 +18,7 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class UserProjectDefinition   {
+public class UserProjectInfo   {
   @JsonProperty("id")
   private Long id = null;
 
@@ -26,7 +26,7 @@ public class UserProjectDefinition   {
   private String slug = null;
 
   /**
-   * User role in the project.
+   * User role in the project. 
    */
   public enum RoleEnum {
     EDITOR("EDITOR"),
@@ -58,7 +58,7 @@ public class UserProjectDefinition   {
   @JsonProperty("role")
   private RoleEnum role = null;
 
-  public UserProjectDefinition id(Long id) {
+  public UserProjectInfo id(Long id) {
     this.id = id;
     return this;
   }
@@ -79,16 +79,16 @@ public class UserProjectDefinition   {
     this.id = id;
   }
 
-  public UserProjectDefinition slug(String slug) {
+  public UserProjectInfo slug(String slug) {
     this.slug = slug;
     return this;
   }
 
   /**
-   * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.
+   * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen. 
    * @return slug
    **/
-  @Schema(description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.")
+  @Schema(description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen. ")
       @NotNull
 
   @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$")   public String getSlug() {
@@ -99,17 +99,18 @@ public class UserProjectDefinition   {
     this.slug = slug;
   }
 
-  public UserProjectDefinition role(RoleEnum role) {
+  public UserProjectInfo role(RoleEnum role) {
     this.role = role;
     return this;
   }
 
   /**
-   * User role in the project.
+   * User role in the project. 
    * @return role
    **/
-  @Schema(description = "User role in the project.")
-  
+  @Schema(description = "User role in the project. ")
+      @NotNull
+
     public RoleEnum getRole() {
     return role;
   }
@@ -127,10 +128,10 @@ public class UserProjectDefinition   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserProjectDefinition userProjectDefinition = (UserProjectDefinition) o;
-    return Objects.equals(this.id, userProjectDefinition.id) &&
-        Objects.equals(this.slug, userProjectDefinition.slug) &&
-        Objects.equals(this.role, userProjectDefinition.role);
+    UserProjectInfo userProjectInfo = (UserProjectInfo) o;
+    return Objects.equals(this.id, userProjectInfo.id) &&
+        Objects.equals(this.slug, userProjectInfo.slug) &&
+        Objects.equals(this.role, userProjectInfo.role);
   }
 
   @Override
@@ -141,7 +142,7 @@ public class UserProjectDefinition   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserProjectDefinition {\n");
+    sb.append("class UserProjectInfo {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    slug: ").append(toIndentedString(slug)).append("\n");

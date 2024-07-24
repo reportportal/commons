@@ -26,7 +26,7 @@ public class InlineResponse201   {
    * Get message
    * @return message
    **/
-  @Schema(example = "The user has been created in the organization.", description = "")
+  @Schema(example = "The user was added to the organization.", description = "")
       @NotNull
 
     public String getMessage() {

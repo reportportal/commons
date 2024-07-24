@@ -16,28 +16,28 @@ import org.springframework.validation.annotation.Validated;
 
 
 public class OrganizationUserRelation   {
-  @JsonProperty("projects")
-  private OrganizationUserRelationProjects projects = null;
+  @JsonProperty("relationships")
+  private OrganizationUserRelationRelationships relationships = null;
 
-  public OrganizationUserRelation projects(OrganizationUserRelationProjects projects) {
-    this.projects = projects;
+  public OrganizationUserRelation relationships(OrganizationUserRelationRelationships relationships) {
+    this.relationships = relationships;
     return this;
   }
 
   /**
-   * Get projects
-   * @return projects
+   * Get relationships
+   * @return relationships
    **/
   @Schema(description = "")
       @NotNull
 
     @Valid
-    public OrganizationUserRelationProjects getProjects() {
-    return projects;
+    public OrganizationUserRelationRelationships getRelationships() {
+    return relationships;
   }
 
-  public void setProjects(OrganizationUserRelationProjects projects) {
-    this.projects = projects;
+  public void setRelationships(OrganizationUserRelationRelationships relationships) {
+    this.relationships = relationships;
   }
 
 
@@ -50,12 +50,12 @@ public class OrganizationUserRelation   {
       return false;
     }
     OrganizationUserRelation organizationUserRelation = (OrganizationUserRelation) o;
-    return Objects.equals(this.projects, organizationUserRelation.projects);
+    return Objects.equals(this.relationships, organizationUserRelation.relationships);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projects);
+    return Objects.hash(relationships);
   }
 
   @Override
@@ -63,7 +63,7 @@ public class OrganizationUserRelation   {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrganizationUserRelation {\n");
     
-    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
+    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");
     return sb.toString();
   }

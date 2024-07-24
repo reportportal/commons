@@ -10,23 +10,23 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationProfilesList
+ * UsersUserIdBody
  */
 @Validated
 
 
 
-public class OrganizationProfilesList   {
+public class UsersUserIdBody extends OrganizationUserAttributes  {
   @JsonProperty("items")
   @Valid
-  private List<OrganizationProfile> items = null;
+  private List<UserProjectInfo> items = null;
 
-  public OrganizationProfilesList items(List<OrganizationProfile> items) {
+  public UsersUserIdBody items(List<UserProjectInfo> items) {
     this.items = items;
     return this;
   }
 
-  public OrganizationProfilesList addItemsItem(OrganizationProfile itemsItem) {
+  public UsersUserIdBody addItemsItem(UserProjectInfo itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -41,11 +41,11 @@ public class OrganizationProfilesList   {
   @Schema(description = "")
       @NotNull
     @Valid
-    public List<OrganizationProfile> getItems() {
+    public List<UserProjectInfo> getItems() {
     return items;
   }
 
-  public void setItems(List<OrganizationProfile> items) {
+  public void setItems(List<UserProjectInfo> items) {
     this.items = items;
   }
 
@@ -58,20 +58,21 @@ public class OrganizationProfilesList   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationProfilesList organizationProfilesList = (OrganizationProfilesList) o;
-    return Objects.equals(this.items, organizationProfilesList.items);
+    UsersUserIdBody usersUserIdBody = (UsersUserIdBody) o;
+    return Objects.equals(this.items, usersUserIdBody.items) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(items, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationProfilesList {\n");
-    
+    sb.append("class UsersUserIdBody {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();

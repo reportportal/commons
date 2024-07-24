@@ -10,20 +10,20 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationRelationLaunchesMeta
+ * OrganizationRelationRelationshipsLaunchesMeta
  */
 @Validated
 
 
 
-public class OrganizationRelationLaunchesMeta   {
+public class OrganizationRelationRelationshipsLaunchesMeta   {
   @JsonProperty("last_occurred_at")
   private Instant lastOccurredAt = null;
 
   @JsonProperty("count")
   private Integer count = null;
 
-  public OrganizationRelationLaunchesMeta lastOccurredAt(Instant lastOccurredAt) {
+  public OrganizationRelationRelationshipsLaunchesMeta lastOccurredAt(Instant lastOccurredAt) {
     this.lastOccurredAt = lastOccurredAt;
     return this;
   }
@@ -44,7 +44,7 @@ public class OrganizationRelationLaunchesMeta   {
     this.lastOccurredAt = lastOccurredAt;
   }
 
-  public OrganizationRelationLaunchesMeta count(Integer count) {
+  public OrganizationRelationRelationshipsLaunchesMeta count(Integer count) {
     this.count = count;
     return this;
   }
@@ -74,9 +74,9 @@ public class OrganizationRelationLaunchesMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationRelationLaunchesMeta organizationRelationLaunchesMeta = (OrganizationRelationLaunchesMeta) o;
-    return Objects.equals(this.lastOccurredAt, organizationRelationLaunchesMeta.lastOccurredAt) &&
-        Objects.equals(this.count, organizationRelationLaunchesMeta.count);
+    OrganizationRelationRelationshipsLaunchesMeta organizationRelationRelationshipsLaunchesMeta = (OrganizationRelationRelationshipsLaunchesMeta) o;
+    return Objects.equals(this.lastOccurredAt, organizationRelationRelationshipsLaunchesMeta.lastOccurredAt) &&
+        Objects.equals(this.count, organizationRelationRelationshipsLaunchesMeta.count);
   }
 
   @Override
@@ -87,7 +87,7 @@ public class OrganizationRelationLaunchesMeta   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationRelationLaunchesMeta {\n");
+    sb.append("class OrganizationRelationRelationshipsLaunchesMeta {\n");
     
     sb.append("    lastOccurredAt: ").append(toIndentedString(lastOccurredAt)).append("\n");
     sb.append("    count: ").append(toIndentedString(count)).append("\n");
