@@ -34,6 +34,12 @@ public class SynchronizationAttributesResource implements Serializable {
   @JsonProperty(value = "fullName")
   private String fullName;
 
+  @JsonProperty(value = "firstName")
+  private String firstName;
+
+  @JsonProperty(value = "lastName")
+  private String lastName;
+
   @JsonProperty(value = "photo")
   private String photo;
 
@@ -61,9 +67,30 @@ public class SynchronizationAttributesResource implements Serializable {
     this.photo = photo;
   }
 
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
   @Override
   public String toString() {
-    return "SynchronizationAttributesResource{" + "email='" + email + '\'' + ", fullName='"
-        + fullName + '\'' + ", photo='" + photo + '\'' + '}';
+    return "SynchronizationAttributesResource{" +
+        "email='" + email + '\'' +
+        ", fullName='" + fullName + '\'' +
+        ", firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", photo='" + photo + '\'' +
+        '}';
   }
 }
