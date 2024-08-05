@@ -17,13 +17,33 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class OrganizationProjectSearchCriteria extends OffsetRequest  {
+public class OrganizationProjectSearchCriteria   {
+  @JsonProperty("sort")
+  private String sort = "name";
+
   @JsonProperty("search_criteria")
   @Valid
   private List<OrganizationProjectSearchCriteriaSearchCriteria> searchCriteria = null;
 
-  @JsonProperty("sort")
-  private String organizationProjectSearchCriteriaSort = "name";
+  public OrganizationProjectSearchCriteria sort(String sort) {
+    this.sort = sort;
+    return this;
+  }
+
+  /**
+   * Field to define the sort field.
+   * @return sort
+   **/
+  @Schema(description = "Field to define the sort field.")
+      @NotNull
+
+    public String getSort() {
+    return sort;
+  }
+
+  public void setSort(String sort) {
+    this.sort = sort;
+  }
 
   public OrganizationProjectSearchCriteria searchCriteria(List<OrganizationProjectSearchCriteriaSearchCriteria> searchCriteria) {
     this.searchCriteria = searchCriteria;
@@ -53,26 +73,6 @@ public class OrganizationProjectSearchCriteria extends OffsetRequest  {
     this.searchCriteria = searchCriteria;
   }
 
-  public OrganizationProjectSearchCriteria organizationProjectSearchCriteriaSort(String organizationProjectSearchCriteriaSort) {
-    this.organizationProjectSearchCriteriaSort = organizationProjectSearchCriteriaSort;
-    return this;
-  }
-
-  /**
-   * Field to define the sort field.
-   * @return organizationProjectSearchCriteriaSort
-   **/
-  @Schema(description = "Field to define the sort field.")
-      @NotNull
-
-    public String getOrganizationProjectSearchCriteriaSort() {
-    return organizationProjectSearchCriteriaSort;
-  }
-
-  public void setOrganizationProjectSearchCriteriaSort(String organizationProjectSearchCriteriaSort) {
-    this.organizationProjectSearchCriteriaSort = organizationProjectSearchCriteriaSort;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -83,23 +83,22 @@ public class OrganizationProjectSearchCriteria extends OffsetRequest  {
       return false;
     }
     OrganizationProjectSearchCriteria organizationProjectSearchCriteria = (OrganizationProjectSearchCriteria) o;
-    return Objects.equals(this.searchCriteria, organizationProjectSearchCriteria.searchCriteria) &&
-        Objects.equals(this.organizationProjectSearchCriteriaSort, organizationProjectSearchCriteria.organizationProjectSearchCriteriaSort) &&
-        super.equals(o);
+    return Objects.equals(this.sort, organizationProjectSearchCriteria.sort) &&
+        Objects.equals(this.searchCriteria, organizationProjectSearchCriteria.searchCriteria);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(searchCriteria, organizationProjectSearchCriteriaSort, super.hashCode());
+    return Objects.hash(sort, searchCriteria);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrganizationProjectSearchCriteria {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
+    sb.append("    sort: ").append(toIndentedString(sort)).append("\n");
     sb.append("    searchCriteria: ").append(toIndentedString(searchCriteria)).append("\n");
-    sb.append("    organizationProjectSearchCriteriaSort: ").append(toIndentedString(organizationProjectSearchCriteriaSort)).append("\n");
     sb.append("}");
     return sb.toString();
   }

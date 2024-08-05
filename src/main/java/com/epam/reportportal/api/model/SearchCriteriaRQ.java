@@ -10,23 +10,23 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * SearchCriteriaList
+ * SearchCriteriaRQ
  */
 @Validated
 
 
 
-public class SearchCriteriaList   {
+public class SearchCriteriaRQ extends OffsetRequest  {
   @JsonProperty("search_criteria")
   @Valid
-  private List<SearchCriteria> searchCriteria = null;
+  private List<SearchCriteriaSearchCriteria> searchCriteria = null;
 
-  public SearchCriteriaList searchCriteria(List<SearchCriteria> searchCriteria) {
+  public SearchCriteriaRQ searchCriteria(List<SearchCriteriaSearchCriteria> searchCriteria) {
     this.searchCriteria = searchCriteria;
     return this;
   }
 
-  public SearchCriteriaList addSearchCriteriaItem(SearchCriteria searchCriteriaItem) {
+  public SearchCriteriaRQ addSearchCriteriaItem(SearchCriteriaSearchCriteria searchCriteriaItem) {
     if (this.searchCriteria == null) {
       this.searchCriteria = new ArrayList<>();
     }
@@ -41,11 +41,11 @@ public class SearchCriteriaList   {
   @Schema(description = "")
       @NotNull
     @Valid
-    public List<SearchCriteria> getSearchCriteria() {
+    public List<SearchCriteriaSearchCriteria> getSearchCriteria() {
     return searchCriteria;
   }
 
-  public void setSearchCriteria(List<SearchCriteria> searchCriteria) {
+  public void setSearchCriteria(List<SearchCriteriaSearchCriteria> searchCriteria) {
     this.searchCriteria = searchCriteria;
   }
 
@@ -58,20 +58,21 @@ public class SearchCriteriaList   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SearchCriteriaList searchCriteriaList = (SearchCriteriaList) o;
-    return Objects.equals(this.searchCriteria, searchCriteriaList.searchCriteria);
+    SearchCriteriaRQ searchCriteriaRQ = (SearchCriteriaRQ) o;
+    return Objects.equals(this.searchCriteria, searchCriteriaRQ.searchCriteria) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(searchCriteria);
+    return Objects.hash(searchCriteria, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SearchCriteriaList {\n");
-    
+    sb.append("class SearchCriteriaRQ {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    searchCriteria: ").append(toIndentedString(searchCriteria)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -1,10 +1,11 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
@@ -16,111 +17,36 @@ import org.springframework.validation.annotation.Validated;
 
 
 public class SearchCriteria   {
-  @JsonProperty("filter_key")
-  private String filterKey = null;
+  @JsonProperty("search_criteria")
+  @Valid
+  private List<SearchCriteriaSearchCriteria> searchCriteria = null;
 
-  /**
-   * operation to perform for the filter
-   */
-  public enum OperationEnum {
-    EQ("EQ"),
-    
-    NE("NE"),
-    
-    CNT("CNT"),
-    
-    NON_CNT("NON_CNT"),
-    
-    BTW("BTW"),
-    
-    IN("IN");
-
-    private String value;
-
-    OperationEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OperationEnum fromValue(String text) {
-      for (OperationEnum b : OperationEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
+  public SearchCriteria searchCriteria(List<SearchCriteriaSearchCriteria> searchCriteria) {
+    this.searchCriteria = searchCriteria;
+    return this;
   }
-  @JsonProperty("operation")
-  private OperationEnum operation = null;
 
-  @JsonProperty("value")
-  private String value = null;
-
-  public SearchCriteria filterKey(String filterKey) {
-    this.filterKey = filterKey;
+  public SearchCriteria addSearchCriteriaItem(SearchCriteriaSearchCriteria searchCriteriaItem) {
+    if (this.searchCriteria == null) {
+      this.searchCriteria = new ArrayList<>();
+    }
+    this.searchCriteria.add(searchCriteriaItem);
     return this;
   }
 
   /**
-   * search by field
-   * @return filterKey
+   * Get searchCriteria
+   * @return searchCriteria
    **/
-  @Schema(description = "search by field")
+  @Schema(description = "")
       @NotNull
-
-    public String getFilterKey() {
-    return filterKey;
+    @Valid
+    public List<SearchCriteriaSearchCriteria> getSearchCriteria() {
+    return searchCriteria;
   }
 
-  public void setFilterKey(String filterKey) {
-    this.filterKey = filterKey;
-  }
-
-  public SearchCriteria operation(OperationEnum operation) {
-    this.operation = operation;
-    return this;
-  }
-
-  /**
-   * operation to perform for the filter
-   * @return operation
-   **/
-  @Schema(description = "operation to perform for the filter")
-      @NotNull
-
-    public OperationEnum getOperation() {
-    return operation;
-  }
-
-  public void setOperation(OperationEnum operation) {
-    this.operation = operation;
-  }
-
-  public SearchCriteria value(String value) {
-    this.value = value;
-    return this;
-  }
-
-  /**
-   * search value
-   * @return value
-   **/
-  @Schema(description = "search value")
-      @NotNull
-
-    public String getValue() {
-    return value;
-  }
-
-  public void setValue(String value) {
-    this.value = value;
+  public void setSearchCriteria(List<SearchCriteriaSearchCriteria> searchCriteria) {
+    this.searchCriteria = searchCriteria;
   }
 
 
@@ -133,14 +59,12 @@ public class SearchCriteria   {
       return false;
     }
     SearchCriteria searchCriteria = (SearchCriteria) o;
-    return Objects.equals(this.filterKey, searchCriteria.filterKey) &&
-        Objects.equals(this.operation, searchCriteria.operation) &&
-        Objects.equals(this.value, searchCriteria.value);
+    return Objects.equals(this.searchCriteria, searchCriteria.searchCriteria);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filterKey, operation, value);
+    return Objects.hash(searchCriteria);
   }
 
   @Override
@@ -148,9 +72,7 @@ public class SearchCriteria   {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchCriteria {\n");
     
-    sb.append("    filterKey: ").append(toIndentedString(filterKey)).append("\n");
-    sb.append("    operation: ").append(toIndentedString(operation)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    searchCriteria: ").append(toIndentedString(searchCriteria)).append("\n");
     sb.append("}");
     return sb.toString();
   }

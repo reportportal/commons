@@ -25,7 +25,7 @@ public class OffsetRequest   {
   private Integer limit = 300;
 
   @JsonProperty("sort")
-  private String sort = "id";
+  private String sort = null;
 
   /**
    * To indicate sorting direction. Ascending or Descending.

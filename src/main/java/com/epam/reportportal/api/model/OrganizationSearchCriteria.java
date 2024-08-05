@@ -17,13 +17,33 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class OrganizationSearchCriteria extends OffsetRequest  {
+public class OrganizationSearchCriteria   {
+  @JsonProperty("sort")
+  private String sort = "name";
+
   @JsonProperty("search_criteria")
   @Valid
   private List<OrganizationSearchCriteriaSearchCriteria> searchCriteria = null;
 
-  @JsonProperty("sort")
-  private String organizationSearchCriteriaSort = "name";
+  public OrganizationSearchCriteria sort(String sort) {
+    this.sort = sort;
+    return this;
+  }
+
+  /**
+   * Field to define the sort field.
+   * @return sort
+   **/
+  @Schema(description = "Field to define the sort field.")
+      @NotNull
+
+    public String getSort() {
+    return sort;
+  }
+
+  public void setSort(String sort) {
+    this.sort = sort;
+  }
 
   public OrganizationSearchCriteria searchCriteria(List<OrganizationSearchCriteriaSearchCriteria> searchCriteria) {
     this.searchCriteria = searchCriteria;
@@ -53,26 +73,6 @@ public class OrganizationSearchCriteria extends OffsetRequest  {
     this.searchCriteria = searchCriteria;
   }
 
-  public OrganizationSearchCriteria organizationSearchCriteriaSort(String organizationSearchCriteriaSort) {
-    this.organizationSearchCriteriaSort = organizationSearchCriteriaSort;
-    return this;
-  }
-
-  /**
-   * Field to define the sort field.
-   * @return organizationSearchCriteriaSort
-   **/
-  @Schema(description = "Field to define the sort field.")
-      @NotNull
-
-    public String getOrganizationSearchCriteriaSort() {
-    return organizationSearchCriteriaSort;
-  }
-
-  public void setOrganizationSearchCriteriaSort(String organizationSearchCriteriaSort) {
-    this.organizationSearchCriteriaSort = organizationSearchCriteriaSort;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -83,23 +83,22 @@ public class OrganizationSearchCriteria extends OffsetRequest  {
       return false;
     }
     OrganizationSearchCriteria organizationSearchCriteria = (OrganizationSearchCriteria) o;
-    return Objects.equals(this.searchCriteria, organizationSearchCriteria.searchCriteria) &&
-        Objects.equals(this.organizationSearchCriteriaSort, organizationSearchCriteria.organizationSearchCriteriaSort) &&
-        super.equals(o);
+    return Objects.equals(this.sort, organizationSearchCriteria.sort) &&
+        Objects.equals(this.searchCriteria, organizationSearchCriteria.searchCriteria);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(searchCriteria, organizationSearchCriteriaSort, super.hashCode());
+    return Objects.hash(sort, searchCriteria);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrganizationSearchCriteria {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    
+    sb.append("    sort: ").append(toIndentedString(sort)).append("\n");
     sb.append("    searchCriteria: ").append(toIndentedString(searchCriteria)).append("\n");
-    sb.append("    organizationSearchCriteriaSort: ").append(toIndentedString(organizationSearchCriteriaSort)).append("\n");
     sb.append("}");
     return sb.toString();
   }
