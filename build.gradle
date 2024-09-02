@@ -23,7 +23,9 @@ targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral { url "https://repo1.maven.org/maven2" }
-    maven { url 'https://jitpack.io' }
+    if (!releaseMode) {
+        maven { url 'https://jitpack.io' }
+    }
 }
 
 dependencyManagement {
@@ -34,10 +36,14 @@ dependencyManagement {
 }
 
 dependencies {
-    api 'com.github.reportportal:commons-reporting:ad1f69b'
-    api 'org.springframework:spring-webmvc'
-    api 'org.springframework.security:spring-security-core'
-    api 'org.apache.tika:tika-core'
+    if (releaseMode) {
+        api 'com.epam.reportportal:commons-reporting:5.12.1'
+    } else {
+        api 'com.github.reportportal:commons-reporting:ad1f69b'
+        api 'org.springframework:spring-webmvc'
+        api 'org.springframework.security:spring-security-core'
+        api 'org.apache.tika:tika-core'
+    }
 
     implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
