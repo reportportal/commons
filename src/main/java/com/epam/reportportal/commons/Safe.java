@@ -20,10 +20,9 @@
  */
 package com.epam.reportportal.commons;
 
+import java.util.function.Consumer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.function.Consumer;
 
 /**
  * Utility class to easily wraps logic with try/catch blocks
@@ -32,54 +31,55 @@ import java.util.function.Consumer;
  */
 public final class Safe {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(Safe.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(Safe.class);
 
-	private Action work;
-	private Consumer<Exception> errorCallback;
+  private final Action work;
+  private final Consumer<Exception> errorCallback;
 
-	private Safe(Action work, Consumer<Exception> errorCallback) {
-		this.work = work;
-		this.errorCallback = errorCallback;
-	}
+  private Safe(Action work, Consumer<Exception> errorCallback) {
+    this.work = work;
+    this.errorCallback = errorCallback;
+  }
 
-	/**
-	 * Executes action in try/catch block ignoring any errors
-	 *
-	 * @param action Action to be performed
-	 */
-	public static void safe(Action action) {
-		new Safe(action, null).perform();
-	}
+  /**
+   * Executes action in try/catch block ignoring any errors
+   *
+   * @param action Action to be performed
+   */
+  public static void safe(Action action) {
+    new Safe(action, null).perform();
+  }
 
-	/**
-	 * Executes action in try/catch block and performs callback in case of any error
-	 *
-	 * @param action        Action to be executed
-	 * @param errorCallback Error callback
-	 */
-	public static void safe(Action action, Consumer<Exception> errorCallback) {
-		new Safe(action, errorCallback).perform();
-	}
+  /**
+   * Executes action in try/catch block and performs callback in case of any error
+   *
+   * @param action        Action to be executed
+   * @param errorCallback Error callback
+   */
+  public static void safe(Action action, Consumer<Exception> errorCallback) {
+    new Safe(action, errorCallback).perform();
+  }
 
-	/**
-	 * Performs action
-	 */
-	private void perform() {
-		try {
-			work.perform();
-		} catch (Exception e) {
-			if (null != errorCallback) {
-				errorCallback.accept(e);
-			} else {
-				LOGGER.error("Exception appears in safe block, but not handled. Ignoring...", e);
-			}
+  /**
+   * Performs action
+   */
+  private void perform() {
+    try {
+      work.perform();
+    } catch (Exception e) {
+      if (null != errorCallback) {
+        errorCallback.accept(e);
+      } else {
+        LOGGER.error("Exception appears in safe block, but not handled. Ignoring...", e);
+      }
 
-		}
+    }
 
-	}
+  }
 
-	@FunctionalInterface
-	public interface Action {
-		void perform() throws Exception;
-	}
+  @FunctionalInterface
+  public interface Action {
+
+    void perform() throws Exception;
+  }
 }

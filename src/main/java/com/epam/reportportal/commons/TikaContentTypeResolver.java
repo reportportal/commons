@@ -21,6 +21,10 @@
 
 package com.epam.reportportal.commons;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Path;
 import org.apache.tika.detect.Detector;
 import org.apache.tika.io.TikaInputStream;
 import org.apache.tika.metadata.Metadata;
@@ -29,45 +33,40 @@ import org.apache.tika.parser.AutoDetectParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Path;
-
 public class TikaContentTypeResolver implements ContentTypeResolver {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(TikaContentTypeResolver.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(TikaContentTypeResolver.class);
 
-	@Override
-	public String detectContentType(byte[] data) {
-		return detectContentType(new ByteArrayInputStream(data));
-	}
+  @Override
+  public String detectContentType(byte[] data) {
+    return detectContentType(new ByteArrayInputStream(data));
+  }
 
-	@Override
-	public String detectContentType(InputStream data) {
-		return detectContentType(TikaInputStream.get(data));
-	}
+  @Override
+  public String detectContentType(InputStream data) {
+    return detectContentType(TikaInputStream.get(data));
+  }
 
-	@Override
-	public String detectContentType(Path data) {
-		try {
-			return detectContentType(TikaInputStream.get(data));
-		} catch (IOException e) {
-			LOGGER.error("Cannot read data stream", e);
-			return MediaType.OCTET_STREAM.toString();
-		}
-	}
+  @Override
+  public String detectContentType(Path data) {
+    try {
+      return detectContentType(TikaInputStream.get(data));
+    } catch (IOException e) {
+      LOGGER.error("Cannot read data stream", e);
+      return MediaType.OCTET_STREAM.toString();
+    }
+  }
 
-	private String detectContentType(TikaInputStream is) {
-		try {
-			AutoDetectParser parser = new AutoDetectParser();
-			Detector detector = parser.getDetector();
-			MediaType mediaType = detector.detect(is, new Metadata());
-			return mediaType.toString();
-		} catch (IOException e) {
-			LOGGER.error("Cannot read data stream", e);
-			return MediaType.OCTET_STREAM.toString();
-		}
-	}
+  private String detectContentType(TikaInputStream is) {
+    try {
+      AutoDetectParser parser = new AutoDetectParser();
+      Detector detector = parser.getDetector();
+      MediaType mediaType = detector.detect(is, new Metadata());
+      return mediaType.toString();
+    } catch (IOException e) {
+      LOGGER.error("Cannot read data stream", e);
+      return MediaType.OCTET_STREAM.toString();
+    }
+  }
 
 }

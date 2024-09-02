@@ -20,12 +20,11 @@
  */
 package com.epam.reportportal.commons;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static com.epam.reportportal.commons.Safe.safe;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-
-import static com.epam.reportportal.commons.Safe.safe;
+import org.junit.Assert;
+import org.junit.Test;
 
 /**
  * Tests for {@link Safe}
@@ -34,51 +33,51 @@ import static com.epam.reportportal.commons.Safe.safe;
  */
 public class SafeTest {
 
-	@Test
-	public void testHappy() {
-		AtomicBoolean result = new AtomicBoolean(false);
-		safe(() -> result.set(true));
-		Assert.assertTrue("Action is not executed", result.get());
-	}
+  @Test
+  public void testHappy() {
+    AtomicBoolean result = new AtomicBoolean(false);
+    safe(() -> result.set(true));
+    Assert.assertTrue("Action is not executed", result.get());
+  }
 
-	@Test
-	public void testNoCallback() {
-		safe(() -> {
-			throw new Exception("hello");
-		});
-		//no errors should be here
-	}
+  @Test
+  public void testNoCallback() {
+    safe(() -> {
+      throw new Exception("hello");
+    });
+    //no errors should be here
+  }
 
-	@Test
-	public void testWithCallback() {
-		AtomicBoolean result = new AtomicBoolean(false);
+  @Test
+  public void testWithCallback() {
+    AtomicBoolean result = new AtomicBoolean(false);
 
-		safe(() -> {
-			throw new Exception("hello");
-		}, e -> result.set(true));
+    safe(() -> {
+      throw new Exception("hello");
+    }, e -> result.set(true));
 
-		Assert.assertTrue("Callback is not executed", result.get());
+    Assert.assertTrue("Callback is not executed", result.get());
 
-	}
+  }
 
-	@Test
-	public void testWithCallbackAndError() {
-		AtomicBoolean result = new AtomicBoolean(false);
+  @Test
+  public void testWithCallbackAndError() {
+    AtomicBoolean result = new AtomicBoolean(false);
 
-		try {
-			safe(() -> {
-				throw new Exception("hello");
-			}, e -> {
-				throw new RuntimeException("wraps error", e);
-			});
-		} catch (RuntimeException e) {
-			Assert.assertEquals("Incorrect message", "wraps error", e.getMessage());
-			return;
-		}
-		Assert.fail("Exception hasn't been thrown");
+    try {
+      safe(() -> {
+        throw new Exception("hello");
+      }, e -> {
+        throw new RuntimeException("wraps error", e);
+      });
+    } catch (RuntimeException e) {
+      Assert.assertEquals("Incorrect message", "wraps error", e.getMessage());
+      return;
+    }
+    Assert.fail("Exception hasn't been thrown");
 
-		Assert.assertTrue("Callback is not executed", result.get());
+    Assert.assertTrue("Callback is not executed", result.get());
 
-	}
+  }
 
 }
