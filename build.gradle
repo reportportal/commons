@@ -23,9 +23,7 @@ targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral { url "https://repo1.maven.org/maven2" }
-    if (!releaseMode) {
-        maven { url 'https://jitpack.io' }
-    }
+    maven { url 'https://jitpack.io' }
 }
 
 dependencyManagement {
