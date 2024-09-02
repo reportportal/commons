@@ -17,18 +17,18 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class OrganizationUserInfo extends UserAccountInfo  {
+public class OrganizationUserAccount extends UserAccount  {
   /**
    * Organization user role.
    */
-  public enum OrganizationRoleEnum {
+  public enum OrgRoleEnum {
     MEMBER("MEMBER"),
     
     MANAGER("MANAGER");
 
     private String value;
 
-    OrganizationRoleEnum(String value) {
+    OrgRoleEnum(String value) {
       this.value = value;
     }
 
@@ -39,8 +39,8 @@ public class OrganizationUserInfo extends UserAccountInfo  {
     }
 
     @JsonCreator
-    public static OrganizationRoleEnum fromValue(String text) {
-      for (OrganizationRoleEnum b : OrganizationRoleEnum.values()) {
+    public static OrgRoleEnum fromValue(String text) {
+      for (OrgRoleEnum b : OrgRoleEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -48,33 +48,33 @@ public class OrganizationUserInfo extends UserAccountInfo  {
       return null;
     }
   }
-  @JsonProperty("organization_role")
-  private OrganizationRoleEnum organizationRole = null;
+  @JsonProperty("org_role")
+  private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
 
   @JsonProperty("relationships")
   private OrganizationUserRelationRelationships relationships = null;
 
-  public OrganizationUserInfo organizationRole(OrganizationRoleEnum organizationRole) {
-    this.organizationRole = organizationRole;
+  public OrganizationUserAccount orgRole(OrgRoleEnum orgRole) {
+    this.orgRole = orgRole;
     return this;
   }
 
   /**
    * Organization user role.
-   * @return organizationRole
+   * @return orgRole
    **/
-  @Schema(required = true, description = "Organization user role.")
+  @Schema(description = "Organization user role.")
       @NotNull
 
-    public OrganizationRoleEnum getOrganizationRole() {
-    return organizationRole;
+    public OrgRoleEnum getOrgRole() {
+    return orgRole;
   }
 
-  public void setOrganizationRole(OrganizationRoleEnum organizationRole) {
-    this.organizationRole = organizationRole;
+  public void setOrgRole(OrgRoleEnum orgRole) {
+    this.orgRole = orgRole;
   }
 
-  public OrganizationUserInfo relationships(OrganizationUserRelationRelationships relationships) {
+  public OrganizationUserAccount relationships(OrganizationUserRelationRelationships relationships) {
     this.relationships = relationships;
     return this;
   }
@@ -104,23 +104,23 @@ public class OrganizationUserInfo extends UserAccountInfo  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserInfo organizationUserInfo = (OrganizationUserInfo) o;
-    return Objects.equals(this.organizationRole, organizationUserInfo.organizationRole) &&
-        Objects.equals(this.relationships, organizationUserInfo.relationships) &&
+    OrganizationUserAccount organizationUserAccount = (OrganizationUserAccount) o;
+    return Objects.equals(this.orgRole, organizationUserAccount.orgRole) &&
+        Objects.equals(this.relationships, organizationUserAccount.relationships) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(organizationRole, relationships, super.hashCode());
+    return Objects.hash(orgRole, relationships, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserInfo {\n");
+    sb.append("class OrganizationUserAccount {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    organizationRole: ").append(toIndentedString(organizationRole)).append("\n");
+    sb.append("    orgRole: ").append(toIndentedString(orgRole)).append("\n");
     sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");
     return sb.toString();

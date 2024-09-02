@@ -9,25 +9,25 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Basic information about a user in the organization.
+ * Information about user&#x27;s project role.
  */
-@Schema(description = "Basic information about a user in the organization.")
+@Schema(description = "Information about user's project role.")
 @Validated
 
 
 
-public class OrganizationUserAttributes   {
+public class UserProjectRole   {
   /**
-   * Organization user role.
+   * User role in the project.
    */
-  public enum OrganizationRoleEnum {
-    MEMBER("MEMBER"),
+  public enum ProjectRoleEnum {
+    EDITOR("EDITOR"),
     
-    MANAGER("MANAGER");
+    VIEWER("VIEWER");
 
     private String value;
 
-    OrganizationRoleEnum(String value) {
+    ProjectRoleEnum(String value) {
       this.value = value;
     }
 
@@ -38,8 +38,8 @@ public class OrganizationUserAttributes   {
     }
 
     @JsonCreator
-    public static OrganizationRoleEnum fromValue(String text) {
-      for (OrganizationRoleEnum b : OrganizationRoleEnum.values()) {
+    public static ProjectRoleEnum fromValue(String text) {
+      for (ProjectRoleEnum b : ProjectRoleEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -47,27 +47,27 @@ public class OrganizationUserAttributes   {
       return null;
     }
   }
-  @JsonProperty("organization_role")
-  private OrganizationRoleEnum organizationRole = null;
+  @JsonProperty("project_role")
+  private ProjectRoleEnum projectRole = ProjectRoleEnum.VIEWER;
 
-  public OrganizationUserAttributes organizationRole(OrganizationRoleEnum organizationRole) {
-    this.organizationRole = organizationRole;
+  public UserProjectRole projectRole(ProjectRoleEnum projectRole) {
+    this.projectRole = projectRole;
     return this;
   }
 
   /**
-   * Organization user role.
-   * @return organizationRole
+   * User role in the project.
+   * @return projectRole
    **/
-  @Schema(required = true, description = "Organization user role.")
+  @Schema(description = "User role in the project.")
       @NotNull
 
-    public OrganizationRoleEnum getOrganizationRole() {
-    return organizationRole;
+    public ProjectRoleEnum getProjectRole() {
+    return projectRole;
   }
 
-  public void setOrganizationRole(OrganizationRoleEnum organizationRole) {
-    this.organizationRole = organizationRole;
+  public void setProjectRole(ProjectRoleEnum projectRole) {
+    this.projectRole = projectRole;
   }
 
 
@@ -79,21 +79,21 @@ public class OrganizationUserAttributes   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserAttributes organizationUserAttributes = (OrganizationUserAttributes) o;
-    return Objects.equals(this.organizationRole, organizationUserAttributes.organizationRole);
+    UserProjectRole userProjectRole = (UserProjectRole) o;
+    return Objects.equals(this.projectRole, userProjectRole.projectRole);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(organizationRole);
+    return Objects.hash(projectRole);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserAttributes {\n");
+    sb.append("class UserProjectRole {\n");
     
-    sb.append("    organizationRole: ").append(toIndentedString(organizationRole)).append("\n");
+    sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("}");
     return sb.toString();
   }

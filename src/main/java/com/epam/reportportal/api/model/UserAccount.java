@@ -13,13 +13,13 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * UserAccountInfo
+ * UserAccount
  */
 @Validated
 
 
 
-public class UserAccountInfo extends UserDetails  {
+public class UserAccount extends UserDetails  {
   @JsonProperty("id")
   private Long id = null;
 
@@ -76,7 +76,7 @@ public class UserAccountInfo extends UserDetails  {
   @JsonProperty("auth_provider")
   private AuthProviderEnum authProvider = AuthProviderEnum.INTERNAL;
 
-  public UserAccountInfo id(Long id) {
+  public UserAccount id(Long id) {
     this.id = id;
     return this;
   }
@@ -97,7 +97,7 @@ public class UserAccountInfo extends UserDetails  {
     this.id = id;
   }
 
-  public UserAccountInfo uuid(UUID uuid) {
+  public UserAccount uuid(UUID uuid) {
     this.uuid = uuid;
     return this;
   }
@@ -118,7 +118,7 @@ public class UserAccountInfo extends UserDetails  {
     this.uuid = uuid;
   }
 
-  public UserAccountInfo createdAt(Instant createdAt) {
+  public UserAccount createdAt(Instant createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -139,7 +139,7 @@ public class UserAccountInfo extends UserDetails  {
     this.createdAt = createdAt;
   }
 
-  public UserAccountInfo updatedAt(Instant updatedAt) {
+  public UserAccount updatedAt(Instant updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -160,7 +160,7 @@ public class UserAccountInfo extends UserDetails  {
     this.updatedAt = updatedAt;
   }
 
-  public UserAccountInfo lastLoginAt(Instant lastLoginAt) {
+  public UserAccount lastLoginAt(Instant lastLoginAt) {
     this.lastLoginAt = lastLoginAt;
     return this;
   }
@@ -181,7 +181,7 @@ public class UserAccountInfo extends UserDetails  {
     this.lastLoginAt = lastLoginAt;
   }
 
-  public UserAccountInfo authProvider(AuthProviderEnum authProvider) {
+  public UserAccount authProvider(AuthProviderEnum authProvider) {
     this.authProvider = authProvider;
     return this;
   }
@@ -210,13 +210,13 @@ public class UserAccountInfo extends UserDetails  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserAccountInfo userAccountInfo = (UserAccountInfo) o;
-    return Objects.equals(this.id, userAccountInfo.id) &&
-        Objects.equals(this.uuid, userAccountInfo.uuid) &&
-        Objects.equals(this.createdAt, userAccountInfo.createdAt) &&
-        Objects.equals(this.updatedAt, userAccountInfo.updatedAt) &&
-        Objects.equals(this.lastLoginAt, userAccountInfo.lastLoginAt) &&
-        Objects.equals(this.authProvider, userAccountInfo.authProvider) &&
+    UserAccount userAccount = (UserAccount) o;
+    return Objects.equals(this.id, userAccount.id) &&
+        Objects.equals(this.uuid, userAccount.uuid) &&
+        Objects.equals(this.createdAt, userAccount.createdAt) &&
+        Objects.equals(this.updatedAt, userAccount.updatedAt) &&
+        Objects.equals(this.lastLoginAt, userAccount.lastLoginAt) &&
+        Objects.equals(this.authProvider, userAccount.authProvider) &&
         super.equals(o);
   }
 
@@ -228,7 +228,7 @@ public class UserAccountInfo extends UserDetails  {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserAccountInfo {\n");
+    sb.append("class UserAccount {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");

@@ -1,13 +1,12 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
@@ -18,90 +17,61 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class OrgIdUsersBody extends OrganizationUserDefinition  {
-  /**
-   * Organization user role.
-   */
-  public enum OrganizationRoleEnum {
-    MEMBER("MEMBER"),
-    
-    MANAGER("MANAGER");
+public class OrgIdUsersBody extends OrganizationUserBase  {
+  @JsonProperty("id")
+  private Long id = null;
 
-    private String value;
-
-    OrganizationRoleEnum(String value) {
-      this.value = value;
-    }
-
-    @Override
-    @JsonValue
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OrganizationRoleEnum fromValue(String text) {
-      for (OrganizationRoleEnum b : OrganizationRoleEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
-          return b;
-        }
-      }
-      return null;
-    }
-  }
-  @JsonProperty("organization_role")
-  private OrganizationRoleEnum organizationRole = null;
-
-  @JsonProperty("items")
+  @JsonProperty("projects")
   @Valid
-  private List<UserProjectInfo> items = null;
+  private List<UserProjectInfo> projects = null;
 
-  public OrgIdUsersBody organizationRole(OrganizationRoleEnum organizationRole) {
-    this.organizationRole = organizationRole;
+  public OrgIdUsersBody id(Long id) {
+    this.id = id;
     return this;
   }
 
   /**
-   * Organization user role.
-   * @return organizationRole
+   * User's internal identifier.
+   * minimum: 0
+   * @return id
    **/
-  @Schema(required = true, description = "Organization user role.")
+  @Schema(required = true, description = "User's internal identifier.")
       @NotNull
 
-    public OrganizationRoleEnum getOrganizationRole() {
-    return organizationRole;
+  @Min(0L)  public Long getId() {
+    return id;
   }
 
-  public void setOrganizationRole(OrganizationRoleEnum organizationRole) {
-    this.organizationRole = organizationRole;
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public OrgIdUsersBody items(List<UserProjectInfo> items) {
-    this.items = items;
+  public OrgIdUsersBody projects(List<UserProjectInfo> projects) {
+    this.projects = projects;
     return this;
   }
 
-  public OrgIdUsersBody addItemsItem(UserProjectInfo itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
+  public OrgIdUsersBody addProjectsItem(UserProjectInfo projectsItem) {
+    if (this.projects == null) {
+      this.projects = new ArrayList<>();
     }
-    this.items.add(itemsItem);
+    this.projects.add(projectsItem);
     return this;
   }
 
   /**
-   * Get items
-   * @return items
+   * Get projects
+   * @return projects
    **/
   @Schema(description = "")
       @NotNull
     @Valid
-    public List<UserProjectInfo> getItems() {
-    return items;
+    public List<UserProjectInfo> getProjects() {
+    return projects;
   }
 
-  public void setItems(List<UserProjectInfo> items) {
-    this.items = items;
+  public void setProjects(List<UserProjectInfo> projects) {
+    this.projects = projects;
   }
 
 
@@ -114,14 +84,14 @@ public class OrgIdUsersBody extends OrganizationUserDefinition  {
       return false;
     }
     OrgIdUsersBody orgIdUsersBody = (OrgIdUsersBody) o;
-    return Objects.equals(this.organizationRole, orgIdUsersBody.organizationRole) &&
-        Objects.equals(this.items, orgIdUsersBody.items) &&
+    return Objects.equals(this.id, orgIdUsersBody.id) &&
+        Objects.equals(this.projects, orgIdUsersBody.projects) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(organizationRole, items, super.hashCode());
+    return Objects.hash(id, projects, super.hashCode());
   }
 
   @Override
@@ -129,8 +99,8 @@ public class OrgIdUsersBody extends OrganizationUserDefinition  {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrgIdUsersBody {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    organizationRole: ").append(toIndentedString(organizationRole)).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
     return sb.toString();
   }

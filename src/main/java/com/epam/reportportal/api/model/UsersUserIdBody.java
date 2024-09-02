@@ -16,37 +16,37 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class UsersUserIdBody extends OrganizationUserAttributes  {
-  @JsonProperty("items")
+public class UsersUserIdBody extends OrganizationUserBase  {
+  @JsonProperty("projects")
   @Valid
-  private List<UserProjectInfo> items = null;
+  private List<UserProjectInfo> projects = null;
 
-  public UsersUserIdBody items(List<UserProjectInfo> items) {
-    this.items = items;
+  public UsersUserIdBody projects(List<UserProjectInfo> projects) {
+    this.projects = projects;
     return this;
   }
 
-  public UsersUserIdBody addItemsItem(UserProjectInfo itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
+  public UsersUserIdBody addProjectsItem(UserProjectInfo projectsItem) {
+    if (this.projects == null) {
+      this.projects = new ArrayList<>();
     }
-    this.items.add(itemsItem);
+    this.projects.add(projectsItem);
     return this;
   }
 
   /**
-   * Get items
-   * @return items
+   * Get projects
+   * @return projects
    **/
   @Schema(description = "")
       @NotNull
     @Valid
-    public List<UserProjectInfo> getItems() {
-    return items;
+    public List<UserProjectInfo> getProjects() {
+    return projects;
   }
 
-  public void setItems(List<UserProjectInfo> items) {
-    this.items = items;
+  public void setProjects(List<UserProjectInfo> projects) {
+    this.projects = projects;
   }
 
 
@@ -59,13 +59,13 @@ public class UsersUserIdBody extends OrganizationUserAttributes  {
       return false;
     }
     UsersUserIdBody usersUserIdBody = (UsersUserIdBody) o;
-    return Objects.equals(this.items, usersUserIdBody.items) &&
+    return Objects.equals(this.projects, usersUserIdBody.projects) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, super.hashCode());
+    return Objects.hash(projects, super.hashCode());
   }
 
   @Override
@@ -73,7 +73,7 @@ public class UsersUserIdBody extends OrganizationUserAttributes  {
     StringBuilder sb = new StringBuilder();
     sb.append("class UsersUserIdBody {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
     return sb.toString();
   }

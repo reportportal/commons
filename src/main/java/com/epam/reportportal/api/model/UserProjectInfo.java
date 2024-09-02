@@ -7,7 +7,6 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import org.springframework.validation.annotation.Validated;
 
 /**
@@ -22,20 +21,17 @@ public class UserProjectInfo   {
   @JsonProperty("id")
   private Long id = null;
 
-  @JsonProperty("slug")
-  private String slug = null;
-
   /**
-   * User role in the project. 
+   * User role in the project.
    */
-  public enum RoleEnum {
+  public enum ProjectRoleEnum {
     EDITOR("EDITOR"),
     
     VIEWER("VIEWER");
 
     private String value;
 
-    RoleEnum(String value) {
+    ProjectRoleEnum(String value) {
       this.value = value;
     }
 
@@ -46,8 +42,8 @@ public class UserProjectInfo   {
     }
 
     @JsonCreator
-    public static RoleEnum fromValue(String text) {
-      for (RoleEnum b : RoleEnum.values()) {
+    public static ProjectRoleEnum fromValue(String text) {
+      for (ProjectRoleEnum b : ProjectRoleEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -55,8 +51,8 @@ public class UserProjectInfo   {
       return null;
     }
   }
-  @JsonProperty("role")
-  private RoleEnum role = null;
+  @JsonProperty("project_role")
+  private ProjectRoleEnum projectRole = ProjectRoleEnum.VIEWER;
 
   public UserProjectInfo id(Long id) {
     this.id = id;
@@ -64,11 +60,11 @@ public class UserProjectInfo   {
   }
 
   /**
-   * Project internal identifier.
+   * Project's internal identifier.
    * minimum: 0
    * @return id
    **/
-  @Schema(description = "Project internal identifier.")
+  @Schema(description = "Project's internal identifier.")
       @NotNull
 
   @Min(0L)  public Long getId() {
@@ -79,44 +75,24 @@ public class UserProjectInfo   {
     this.id = id;
   }
 
-  public UserProjectInfo slug(String slug) {
-    this.slug = slug;
+  public UserProjectInfo projectRole(ProjectRoleEnum projectRole) {
+    this.projectRole = projectRole;
     return this;
   }
 
   /**
-   * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen. 
-   * @return slug
+   * User role in the project.
+   * @return projectRole
    **/
-  @Schema(description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen. ")
+  @Schema(description = "User role in the project.")
       @NotNull
 
-  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$")   public String getSlug() {
-    return slug;
+    public ProjectRoleEnum getProjectRole() {
+    return projectRole;
   }
 
-  public void setSlug(String slug) {
-    this.slug = slug;
-  }
-
-  public UserProjectInfo role(RoleEnum role) {
-    this.role = role;
-    return this;
-  }
-
-  /**
-   * User role in the project. 
-   * @return role
-   **/
-  @Schema(description = "User role in the project. ")
-      @NotNull
-
-    public RoleEnum getRole() {
-    return role;
-  }
-
-  public void setRole(RoleEnum role) {
-    this.role = role;
+  public void setProjectRole(ProjectRoleEnum projectRole) {
+    this.projectRole = projectRole;
   }
 
 
@@ -130,13 +106,12 @@ public class UserProjectInfo   {
     }
     UserProjectInfo userProjectInfo = (UserProjectInfo) o;
     return Objects.equals(this.id, userProjectInfo.id) &&
-        Objects.equals(this.slug, userProjectInfo.slug) &&
-        Objects.equals(this.role, userProjectInfo.role);
+        Objects.equals(this.projectRole, userProjectInfo.projectRole);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, slug, role);
+    return Objects.hash(id, projectRole);
   }
 
   @Override
@@ -145,8 +120,7 @@ public class UserProjectInfo   {
     sb.append("class UserProjectInfo {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("}");
     return sb.toString();
   }

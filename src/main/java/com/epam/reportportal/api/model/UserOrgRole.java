@@ -9,38 +9,25 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationSearchCriteriaSearchCriteria
+ * Basic information about a user in the organization.
  */
+@Schema(description = "Basic information about a user in the organization.")
 @Validated
 
 
 
-public class OrganizationSearchCriteriaSearchCriteria   {
+public class UserOrgRole   {
   /**
-   * Gets or Sets filterKey
+   * Organization user role.
    */
-  public enum FilterKeyEnum {
-    NAME("name"),
+  public enum OrgRoleEnum {
+    MEMBER("MEMBER"),
     
-    SLUG("slug"),
-    
-    TYPE("type"),
-    
-    CREATED_AT("created_at"),
-    
-    UPDATED_AT("updated_at"),
-    
-    USERS("users"),
-    
-    PROJECTS("projects"),
-    
-    LAUNCHES("launches"),
-    
-    LAST_LAUNCH_OCCURRED("last_launch_occurred");
+    MANAGER("MANAGER");
 
     private String value;
 
-    FilterKeyEnum(String value) {
+    OrgRoleEnum(String value) {
       this.value = value;
     }
 
@@ -51,8 +38,8 @@ public class OrganizationSearchCriteriaSearchCriteria   {
     }
 
     @JsonCreator
-    public static FilterKeyEnum fromValue(String text) {
-      for (FilterKeyEnum b : FilterKeyEnum.values()) {
+    public static OrgRoleEnum fromValue(String text) {
+      for (OrgRoleEnum b : OrgRoleEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -60,27 +47,27 @@ public class OrganizationSearchCriteriaSearchCriteria   {
       return null;
     }
   }
-  @JsonProperty("filter_key")
-  private FilterKeyEnum filterKey = null;
+  @JsonProperty("org_role")
+  private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
 
-  public OrganizationSearchCriteriaSearchCriteria filterKey(FilterKeyEnum filterKey) {
-    this.filterKey = filterKey;
+  public UserOrgRole orgRole(OrgRoleEnum orgRole) {
+    this.orgRole = orgRole;
     return this;
   }
 
   /**
-   * Get filterKey
-   * @return filterKey
+   * Organization user role.
+   * @return orgRole
    **/
-  @Schema(description = "")
+  @Schema(description = "Organization user role.")
       @NotNull
 
-    public FilterKeyEnum getFilterKey() {
-    return filterKey;
+    public OrgRoleEnum getOrgRole() {
+    return orgRole;
   }
 
-  public void setFilterKey(FilterKeyEnum filterKey) {
-    this.filterKey = filterKey;
+  public void setOrgRole(OrgRoleEnum orgRole) {
+    this.orgRole = orgRole;
   }
 
 
@@ -92,21 +79,21 @@ public class OrganizationSearchCriteriaSearchCriteria   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationSearchCriteriaSearchCriteria organizationSearchCriteriaSearchCriteria = (OrganizationSearchCriteriaSearchCriteria) o;
-    return Objects.equals(this.filterKey, organizationSearchCriteriaSearchCriteria.filterKey);
+    UserOrgRole userOrgRole = (UserOrgRole) o;
+    return Objects.equals(this.orgRole, userOrgRole.orgRole);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(filterKey);
+    return Objects.hash(orgRole);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationSearchCriteriaSearchCriteria {\n");
+    sb.append("class UserOrgRole {\n");
     
-    sb.append("    filterKey: ").append(toIndentedString(filterKey)).append("\n");
+    sb.append("    orgRole: ").append(toIndentedString(orgRole)).append("\n");
     sb.append("}");
     return sb.toString();
   }

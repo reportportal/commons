@@ -22,7 +22,7 @@ public class Offset   {
   private Integer offset = 0;
 
   @JsonProperty("limit")
-  private Integer limit = 10;
+  private Integer limit = 300;
 
   @JsonProperty("total_count")
   private Integer totalCount = null;
