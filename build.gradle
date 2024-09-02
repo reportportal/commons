@@ -31,12 +31,12 @@ repositories {
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE'
-        mavenBom('com.epam.reportportal:commons-bom:5.11.6')
+        mavenBom('com.epam.reportportal:commons-bom:5.12.0')
     }
 }
 
 dependencies {
-    api 'com.github.reportportal:commons-reporting:4ada762'
+    api 'com.github.reportportal:commons-reporting:ad1f69b'
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
