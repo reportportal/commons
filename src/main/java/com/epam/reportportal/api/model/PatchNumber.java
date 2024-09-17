@@ -26,7 +26,7 @@ public class PatchNumber  implements PatchOperation {
     
     REPLACE("replace"),
     
-    DELETE("delete");
+    REMOVE("remove");
 
     private String value;
 

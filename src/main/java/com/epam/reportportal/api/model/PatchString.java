@@ -24,7 +24,7 @@ public class PatchString  implements PatchOperation {
     
     REPLACE("replace"),
     
-    DELETE("delete");
+    REMOVE("remove");
 
     private String value;
 

@@ -2,41 +2,51 @@ package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Multistatus
+ * Invitations
  */
 @Validated
 
 
 
-public class Multistatus   {
-  @JsonProperty("multistatus")
-  private MultistatusMultistatus multistatus = null;
+public class Invitations   {
+  @JsonProperty("items")
+  @Valid
+  private List<Invitation> items = null;
 
-  public Multistatus multistatus(MultistatusMultistatus multistatus) {
-    this.multistatus = multistatus;
+  public Invitations items(List<Invitation> items) {
+    this.items = items;
+    return this;
+  }
+
+  public Invitations addItemsItem(Invitation itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
+    this.items.add(itemsItem);
     return this;
   }
 
   /**
-   * Get multistatus
-   * @return multistatus
+   * Get items
+   * @return items
    **/
   @Schema(description = "")
       @NotNull
-
     @Valid
-    public MultistatusMultistatus getMultistatus() {
-    return multistatus;
+    public List<Invitation> getItems() {
+    return items;
   }
 
-  public void setMultistatus(MultistatusMultistatus multistatus) {
-    this.multistatus = multistatus;
+  public void setItems(List<Invitation> items) {
+    this.items = items;
   }
 
 
@@ -48,21 +58,21 @@ public class Multistatus   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Multistatus multistatus = (Multistatus) o;
-    return Objects.equals(this.multistatus, multistatus.multistatus);
+    Invitations invitations = (Invitations) o;
+    return Objects.equals(this.items, invitations.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(multistatus);
+    return Objects.hash(items);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Multistatus {\n");
+    sb.append("class Invitations {\n");
     
-    sb.append("    multistatus: ").append(toIndentedString(multistatus)).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }

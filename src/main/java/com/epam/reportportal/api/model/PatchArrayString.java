@@ -27,7 +27,7 @@ public class PatchArrayString  implements PatchOperation {
     
     REPLACE("replace"),
     
-    DELETE("delete");
+    REMOVE("remove");
 
     private String value;
 

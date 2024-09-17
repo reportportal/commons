@@ -15,7 +15,7 @@ import org.springframework.validation.annotation.Validated;
 
 public class InlineResponse2003   {
   @JsonProperty("message")
-  private String message = null;
+  private String message = "The project update was completed successfully.";
 
   public InlineResponse2003 message(String message) {
     this.message = message;

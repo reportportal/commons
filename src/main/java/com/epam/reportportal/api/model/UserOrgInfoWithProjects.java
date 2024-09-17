@@ -10,43 +10,43 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * MultistatusMultistatus
+ * UserOrgInfoWithProjects
  */
 @Validated
 
 
 
-public class MultistatusMultistatus   {
-  @JsonProperty("responses")
+public class UserOrgInfoWithProjects extends UserOrgInfo  {
+  @JsonProperty("projects")
   @Valid
-  private List<EventStatus> responses = null;
+  private List<UserProjectInfo> projects = null;
 
-  public MultistatusMultistatus responses(List<EventStatus> responses) {
-    this.responses = responses;
+  public UserOrgInfoWithProjects projects(List<UserProjectInfo> projects) {
+    this.projects = projects;
     return this;
   }
 
-  public MultistatusMultistatus addResponsesItem(EventStatus responsesItem) {
-    if (this.responses == null) {
-      this.responses = new ArrayList<>();
+  public UserOrgInfoWithProjects addProjectsItem(UserProjectInfo projectsItem) {
+    if (this.projects == null) {
+      this.projects = new ArrayList<>();
     }
-    this.responses.add(responsesItem);
+    this.projects.add(projectsItem);
     return this;
   }
 
   /**
-   * Get responses
-   * @return responses
+   * Get projects
+   * @return projects
    **/
   @Schema(description = "")
       @NotNull
     @Valid
-    public List<EventStatus> getResponses() {
-    return responses;
+    public List<UserProjectInfo> getProjects() {
+    return projects;
   }
 
-  public void setResponses(List<EventStatus> responses) {
-    this.responses = responses;
+  public void setProjects(List<UserProjectInfo> projects) {
+    this.projects = projects;
   }
 
 
@@ -58,21 +58,22 @@ public class MultistatusMultistatus   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MultistatusMultistatus multistatusMultistatus = (MultistatusMultistatus) o;
-    return Objects.equals(this.responses, multistatusMultistatus.responses);
+    UserOrgInfoWithProjects userOrgInfoWithProjects = (UserOrgInfoWithProjects) o;
+    return Objects.equals(this.projects, userOrgInfoWithProjects.projects) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(responses);
+    return Objects.hash(projects, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MultistatusMultistatus {\n");
-    
-    sb.append("    responses: ").append(toIndentedString(responses)).append("\n");
+    sb.append("class UserOrgInfoWithProjects {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
     return sb.toString();
   }
