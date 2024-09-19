@@ -22,6 +22,9 @@ public class Invitation   {
   @JsonProperty("id")
   private UUID id = null;
 
+  @JsonProperty("user_id")
+  private Long userId = null;
+
   @JsonProperty("email")
   private String email = null;
 
@@ -73,10 +76,10 @@ public class Invitation   {
   }
 
   /**
-   * Invitation ID.
+   * Invitation identifier.
    * @return id
    **/
-  @Schema(description = "Invitation ID.")
+  @Schema(description = "Invitation identifier.")
       @NotNull
 
     @Valid
@@ -86,6 +89,26 @@ public class Invitation   {
 
   public void setId(UUID id) {
     this.id = id;
+  }
+
+  public Invitation userId(Long userId) {
+    this.userId = userId;
+    return this;
+  }
+
+  /**
+   * User identifier. For activated users only.
+   * @return userId
+   **/
+  @Schema(description = "User identifier. For activated users only.")
+      @NotNull
+
+    public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
   public Invitation email(String email) {
@@ -201,6 +224,7 @@ public class Invitation   {
     }
     Invitation invitation = (Invitation) o;
     return Objects.equals(this.id, invitation.id) &&
+        Objects.equals(this.userId, invitation.userId) &&
         Objects.equals(this.email, invitation.email) &&
         Objects.equals(this.status, invitation.status) &&
         Objects.equals(this.link, invitation.link) &&
@@ -210,7 +234,7 @@ public class Invitation   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, email, status, link, createdAt, expiresAt);
+    return Objects.hash(id, userId, email, status, link, createdAt, expiresAt);
   }
 
   @Override
@@ -219,6 +243,7 @@ public class Invitation   {
     sb.append("class Invitation {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    link: ").append(toIndentedString(link)).append("\n");

@@ -7,17 +7,17 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * InlineResponse2001
+ * UserAssignmentResponse
  */
 @Validated
 
 
 
-public class InlineResponse2001   {
+public class UserAssignmentResponse   {
   @JsonProperty("message")
   private String message = "The user was added to the organization.";
 
-  public InlineResponse2001 message(String message) {
+  public UserAssignmentResponse message(String message) {
     this.message = message;
     return this;
   }
@@ -46,8 +46,8 @@ public class InlineResponse2001   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2001 inlineResponse2001 = (InlineResponse2001) o;
-    return Objects.equals(this.message, inlineResponse2001.message);
+    UserAssignmentResponse userAssignmentResponse = (UserAssignmentResponse) o;
+    return Objects.equals(this.message, userAssignmentResponse.message);
   }
 
   @Override
@@ -58,7 +58,7 @@ public class InlineResponse2001   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2001 {\n");
+    sb.append("class UserAssignmentResponse {\n");
     
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");

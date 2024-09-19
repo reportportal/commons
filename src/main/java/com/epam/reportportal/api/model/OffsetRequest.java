@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
@@ -89,12 +90,13 @@ public class OffsetRequest   {
   /**
    * The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.
    * minimum: 0
+   * maximum: 1000
    * @return limit
    **/
   @Schema(description = "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.")
       @NotNull
 
-  @Min(0)  public Integer getLimit() {
+  @Min(0) @Max(1000)   public Integer getLimit() {
     return limit;
   }
 

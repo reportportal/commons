@@ -10,23 +10,23 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationNotifyRulesList
+ * InvitationPage
  */
 @Validated
 
 
 
-public class OrganizationNotifyRulesList extends Offset  {
+public class InvitationPage extends Offset  {
   @JsonProperty("items")
   @Valid
-  private List<OrganizationNotifyRule> items = null;
+  private List<Invitation> items = null;
 
-  public OrganizationNotifyRulesList items(List<OrganizationNotifyRule> items) {
+  public InvitationPage items(List<Invitation> items) {
     this.items = items;
     return this;
   }
 
-  public OrganizationNotifyRulesList addItemsItem(OrganizationNotifyRule itemsItem) {
+  public InvitationPage addItemsItem(Invitation itemsItem) {
     if (this.items == null) {
       this.items = new ArrayList<>();
     }
@@ -41,11 +41,11 @@ public class OrganizationNotifyRulesList extends Offset  {
   @Schema(description = "")
       @NotNull
     @Valid
-    public List<OrganizationNotifyRule> getItems() {
+    public List<Invitation> getItems() {
     return items;
   }
 
-  public void setItems(List<OrganizationNotifyRule> items) {
+  public void setItems(List<Invitation> items) {
     this.items = items;
   }
 
@@ -58,8 +58,8 @@ public class OrganizationNotifyRulesList extends Offset  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationNotifyRulesList organizationNotifyRulesList = (OrganizationNotifyRulesList) o;
-    return Objects.equals(this.items, organizationNotifyRulesList.items) &&
+    InvitationPage invitationPage = (InvitationPage) o;
+    return Objects.equals(this.items, invitationPage.items) &&
         super.equals(o);
   }
 
@@ -71,7 +71,7 @@ public class OrganizationNotifyRulesList extends Offset  {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationNotifyRulesList {\n");
+    sb.append("class InvitationPage {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");

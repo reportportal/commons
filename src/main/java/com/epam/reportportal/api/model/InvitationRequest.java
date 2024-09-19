@@ -10,13 +10,13 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * CreateInvitationRequest
+ * InvitationRequest
  */
 @Validated
 
 
 
-public class CreateInvitationRequest   {
+public class InvitationRequest   {
   @JsonProperty("email")
   private String email = null;
 
@@ -24,7 +24,7 @@ public class CreateInvitationRequest   {
   @Valid
   private List<UserOrgInfoWithProjects> organizations = null;
 
-  public CreateInvitationRequest email(String email) {
+  public InvitationRequest email(String email) {
     this.email = email;
     return this;
   }
@@ -44,12 +44,12 @@ public class CreateInvitationRequest   {
     this.email = email;
   }
 
-  public CreateInvitationRequest organizations(List<UserOrgInfoWithProjects> organizations) {
+  public InvitationRequest organizations(List<UserOrgInfoWithProjects> organizations) {
     this.organizations = organizations;
     return this;
   }
 
-  public CreateInvitationRequest addOrganizationsItem(UserOrgInfoWithProjects organizationsItem) {
+  public InvitationRequest addOrganizationsItem(UserOrgInfoWithProjects organizationsItem) {
     if (this.organizations == null) {
       this.organizations = new ArrayList<>();
     }
@@ -81,9 +81,9 @@ public class CreateInvitationRequest   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateInvitationRequest createInvitationRequest = (CreateInvitationRequest) o;
-    return Objects.equals(this.email, createInvitationRequest.email) &&
-        Objects.equals(this.organizations, createInvitationRequest.organizations);
+    InvitationRequest invitationRequest = (InvitationRequest) o;
+    return Objects.equals(this.email, invitationRequest.email) &&
+        Objects.equals(this.organizations, invitationRequest.organizations);
   }
 
   @Override
@@ -94,7 +94,7 @@ public class CreateInvitationRequest   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateInvitationRequest {\n");
+    sb.append("class InvitationRequest {\n");
     
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    organizations: ").append(toIndentedString(organizations)).append("\n");

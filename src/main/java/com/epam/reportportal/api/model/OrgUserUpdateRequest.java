@@ -10,23 +10,23 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * UsersUserIdBody
+ * OrgUserUpdateRequest
  */
 @Validated
 
 
 
-public class UsersUserIdBody extends OrganizationUserBase  {
+public class OrgUserUpdateRequest extends OrganizationUserBase  {
   @JsonProperty("projects")
   @Valid
   private List<UserProjectInfo> projects = null;
 
-  public UsersUserIdBody projects(List<UserProjectInfo> projects) {
+  public OrgUserUpdateRequest projects(List<UserProjectInfo> projects) {
     this.projects = projects;
     return this;
   }
 
-  public UsersUserIdBody addProjectsItem(UserProjectInfo projectsItem) {
+  public OrgUserUpdateRequest addProjectsItem(UserProjectInfo projectsItem) {
     if (this.projects == null) {
       this.projects = new ArrayList<>();
     }
@@ -58,8 +58,8 @@ public class UsersUserIdBody extends OrganizationUserBase  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UsersUserIdBody usersUserIdBody = (UsersUserIdBody) o;
-    return Objects.equals(this.projects, usersUserIdBody.projects) &&
+    OrgUserUpdateRequest orgUserUpdateRequest = (OrgUserUpdateRequest) o;
+    return Objects.equals(this.projects, orgUserUpdateRequest.projects) &&
         super.equals(o);
   }
 
@@ -71,7 +71,7 @@ public class UsersUserIdBody extends OrganizationUserBase  {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UsersUserIdBody {\n");
+    sb.append("class OrgUserUpdateRequest {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");

@@ -11,13 +11,13 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrgIdUsersBody
+ * UserAssignmentRequest
  */
 @Validated
 
 
 
-public class OrgIdUsersBody extends OrganizationUserBase  {
+public class UserAssignmentRequest extends OrganizationUserBase  {
   @JsonProperty("id")
   private Long id = null;
 
@@ -25,7 +25,7 @@ public class OrgIdUsersBody extends OrganizationUserBase  {
   @Valid
   private List<UserProjectInfo> projects = null;
 
-  public OrgIdUsersBody id(Long id) {
+  public UserAssignmentRequest id(Long id) {
     this.id = id;
     return this;
   }
@@ -46,12 +46,12 @@ public class OrgIdUsersBody extends OrganizationUserBase  {
     this.id = id;
   }
 
-  public OrgIdUsersBody projects(List<UserProjectInfo> projects) {
+  public UserAssignmentRequest projects(List<UserProjectInfo> projects) {
     this.projects = projects;
     return this;
   }
 
-  public OrgIdUsersBody addProjectsItem(UserProjectInfo projectsItem) {
+  public UserAssignmentRequest addProjectsItem(UserProjectInfo projectsItem) {
     if (this.projects == null) {
       this.projects = new ArrayList<>();
     }
@@ -83,9 +83,9 @@ public class OrgIdUsersBody extends OrganizationUserBase  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrgIdUsersBody orgIdUsersBody = (OrgIdUsersBody) o;
-    return Objects.equals(this.id, orgIdUsersBody.id) &&
-        Objects.equals(this.projects, orgIdUsersBody.projects) &&
+    UserAssignmentRequest userAssignmentRequest = (UserAssignmentRequest) o;
+    return Objects.equals(this.id, userAssignmentRequest.id) &&
+        Objects.equals(this.projects, userAssignmentRequest.projects) &&
         super.equals(o);
   }
 
@@ -97,7 +97,7 @@ public class OrgIdUsersBody extends OrganizationUserBase  {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrgIdUsersBody {\n");
+    sb.append("class UserAssignmentRequest {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");

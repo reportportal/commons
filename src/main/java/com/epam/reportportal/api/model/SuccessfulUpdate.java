@@ -7,17 +7,17 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * InlineResponse2006
+ * SuccessfulUpdate
  */
 @Validated
 
 
 
-public class InlineResponse2006   {
+public class SuccessfulUpdate   {
   @JsonProperty("message")
   private String message = null;
 
-  public InlineResponse2006 message(String message) {
+  public SuccessfulUpdate message(String message) {
     this.message = message;
     return this;
   }
@@ -26,7 +26,7 @@ public class InlineResponse2006   {
    * Get message
    * @return message
    **/
-  @Schema(description = "")
+  @Schema(example = "The update was completed successfully.", description = "")
       @NotNull
 
     public String getMessage() {
@@ -46,8 +46,8 @@ public class InlineResponse2006   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InlineResponse2006 inlineResponse2006 = (InlineResponse2006) o;
-    return Objects.equals(this.message, inlineResponse2006.message);
+    SuccessfulUpdate successfulUpdate = (SuccessfulUpdate) o;
+    return Objects.equals(this.message, successfulUpdate.message);
   }
 
   @Override
@@ -58,7 +58,7 @@ public class InlineResponse2006   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InlineResponse2006 {\n");
+    sb.append("class SuccessfulUpdate {\n");
     
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");

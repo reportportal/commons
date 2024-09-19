@@ -10,20 +10,18 @@ import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ActivateInvitationRequest
+ * InvitationActivation
  */
 @Validated
 
 
 
-public class ActivateInvitationRequest   {
+public class InvitationActivation   {
   /**
    * Change status to ACTIVATED to create a user.
    */
   public enum StatusEnum {
-    ACTIVATED("ACTIVATED"),
-    
-    PENDING("PENDING");
+    ACTIVATED("ACTIVATED");
 
     private String value;
 
@@ -48,7 +46,7 @@ public class ActivateInvitationRequest   {
     }
   }
   @JsonProperty("status")
-  private StatusEnum status = StatusEnum.PENDING;
+  private StatusEnum status = StatusEnum.ACTIVATED;
 
   @JsonProperty("email")
   private String email = null;
@@ -59,7 +57,7 @@ public class ActivateInvitationRequest   {
   @JsonProperty("password")
   private String password = null;
 
-  public ActivateInvitationRequest status(StatusEnum status) {
+  public InvitationActivation status(StatusEnum status) {
     this.status = status;
     return this;
   }
@@ -79,7 +77,7 @@ public class ActivateInvitationRequest   {
     this.status = status;
   }
 
-  public ActivateInvitationRequest email(String email) {
+  public InvitationActivation email(String email) {
     this.email = email;
     return this;
   }
@@ -99,7 +97,7 @@ public class ActivateInvitationRequest   {
     this.email = email;
   }
 
-  public ActivateInvitationRequest fullName(String fullName) {
+  public InvitationActivation fullName(String fullName) {
     this.fullName = fullName;
     return this;
   }
@@ -119,7 +117,7 @@ public class ActivateInvitationRequest   {
     this.fullName = fullName;
   }
 
-  public ActivateInvitationRequest password(String password) {
+  public InvitationActivation password(String password) {
     this.password = password;
     return this;
   }
@@ -148,11 +146,11 @@ public class ActivateInvitationRequest   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ActivateInvitationRequest activateInvitationRequest = (ActivateInvitationRequest) o;
-    return Objects.equals(this.status, activateInvitationRequest.status) &&
-        Objects.equals(this.email, activateInvitationRequest.email) &&
-        Objects.equals(this.fullName, activateInvitationRequest.fullName) &&
-        Objects.equals(this.password, activateInvitationRequest.password);
+    InvitationActivation invitationActivation = (InvitationActivation) o;
+    return Objects.equals(this.status, invitationActivation.status) &&
+        Objects.equals(this.email, invitationActivation.email) &&
+        Objects.equals(this.fullName, invitationActivation.fullName) &&
+        Objects.equals(this.password, invitationActivation.password);
   }
 
   @Override
@@ -163,7 +161,7 @@ public class ActivateInvitationRequest   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ActivateInvitationRequest {\n");
+    sb.append("class InvitationActivation {\n");
     
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");

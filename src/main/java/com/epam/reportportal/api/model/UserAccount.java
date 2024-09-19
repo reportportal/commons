@@ -4,11 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.time.Instant;
 import java.util.Objects;
-import java.util.UUID;
-import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
@@ -19,41 +15,24 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class UserAccount extends UserDetails  {
-  @JsonProperty("id")
-  private Long id = null;
+public class UserAccount extends UserMetadata  {
+  @JsonProperty("email")
+  private String email = null;
 
-  @JsonProperty("uuid")
-  private UUID uuid = null;
-
-  @JsonProperty("created_at")
-  private Instant createdAt = null;
-
-  @JsonProperty("updated_at")
-  private Instant updatedAt = null;
-
-  @JsonProperty("last_login_at")
-  private Instant lastLoginAt = null;
+  @JsonProperty("full_name")
+  private String fullName = null;
 
   /**
-   * Indicates through which service or authentication method the user account was created.
+   * Instance account role.
    */
-  public enum AuthProviderEnum {
-    INTERNAL("INTERNAL"),
+  public enum InstanceRoleEnum {
+    ADMINISTRATOR("ADMINISTRATOR"),
     
-    UPSA("UPSA"),
-    
-    GITHUB("GITHUB"),
-    
-    LDAP("LDAP"),
-    
-    SAML("SAML"),
-    
-    SCIM("SCIM");
+    USER("USER");
 
     private String value;
 
-    AuthProviderEnum(String value) {
+    InstanceRoleEnum(String value) {
       this.value = value;
     }
 
@@ -64,8 +43,8 @@ public class UserAccount extends UserDetails  {
     }
 
     @JsonCreator
-    public static AuthProviderEnum fromValue(String text) {
-      for (AuthProviderEnum b : AuthProviderEnum.values()) {
+    public static InstanceRoleEnum fromValue(String text) {
+      for (InstanceRoleEnum b : InstanceRoleEnum.values()) {
         if (String.valueOf(b.value).equals(text)) {
           return b;
         }
@@ -73,132 +52,90 @@ public class UserAccount extends UserDetails  {
       return null;
     }
   }
-  @JsonProperty("auth_provider")
-  private AuthProviderEnum authProvider = AuthProviderEnum.INTERNAL;
+  @JsonProperty("instance_role")
+  private InstanceRoleEnum instanceRole = null;
 
-  public UserAccount id(Long id) {
-    this.id = id;
+  @JsonProperty("external_id")
+  private String externalId = null;
+
+  public UserAccount email(String email) {
+    this.email = email;
     return this;
   }
 
   /**
-   * User internal identifier.
-   * minimum: 0
-   * @return id
+   * User email.
+   * @return email
    **/
-  @Schema(description = "User internal identifier.")
+  @Schema(description = "User email.")
       @NotNull
 
-  @Min(0L)  public Long getId() {
-    return id;
+    public String getEmail() {
+    return email;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
-  public UserAccount uuid(UUID uuid) {
-    this.uuid = uuid;
+  public UserAccount fullName(String fullName) {
+    this.fullName = fullName;
     return this;
   }
 
   /**
-   * User ID for external systems.
-   * @return uuid
+   * User full name.
+   * @return fullName
    **/
-  @Schema(description = "User ID for external systems.")
+  @Schema(description = "User full name.")
       @NotNull
 
-    @Valid
-    public UUID getUuid() {
-    return uuid;
+    public String getFullName() {
+    return fullName;
   }
 
-  public void setUuid(UUID uuid) {
-    this.uuid = uuid;
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
   }
 
-  public UserAccount createdAt(Instant createdAt) {
-    this.createdAt = createdAt;
+  public UserAccount instanceRole(InstanceRoleEnum instanceRole) {
+    this.instanceRole = instanceRole;
     return this;
   }
 
   /**
-   * When user's account was created.
-   * @return createdAt
+   * Instance account role.
+   * @return instanceRole
    **/
-  @Schema(description = "When user's account was created.")
+  @Schema(description = "Instance account role.")
       @NotNull
 
-    @Valid
-    public Instant getCreatedAt() {
-    return createdAt;
+    public InstanceRoleEnum getInstanceRole() {
+    return instanceRole;
   }
 
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
+  public void setInstanceRole(InstanceRoleEnum instanceRole) {
+    this.instanceRole = instanceRole;
   }
 
-  public UserAccount updatedAt(Instant updatedAt) {
-    this.updatedAt = updatedAt;
+  public UserAccount externalId(String externalId) {
+    this.externalId = externalId;
     return this;
   }
 
   /**
-   * When user's data was modifed.
-   * @return updatedAt
+   * User external identifier. Provided by external systems.
+   * @return externalId
    **/
-  @Schema(description = "When user's data was modifed.")
+  @Schema(description = "User external identifier. Provided by external systems.")
       @NotNull
 
-    @Valid
-    public Instant getUpdatedAt() {
-    return updatedAt;
+    public String getExternalId() {
+    return externalId;
   }
 
-  public void setUpdatedAt(Instant updatedAt) {
-    this.updatedAt = updatedAt;
-  }
-
-  public UserAccount lastLoginAt(Instant lastLoginAt) {
-    this.lastLoginAt = lastLoginAt;
-    return this;
-  }
-
-  /**
-   * When user last logged in.
-   * @return lastLoginAt
-   **/
-  @Schema(description = "When user last logged in.")
-      @NotNull
-
-    @Valid
-    public Instant getLastLoginAt() {
-    return lastLoginAt;
-  }
-
-  public void setLastLoginAt(Instant lastLoginAt) {
-    this.lastLoginAt = lastLoginAt;
-  }
-
-  public UserAccount authProvider(AuthProviderEnum authProvider) {
-    this.authProvider = authProvider;
-    return this;
-  }
-
-  /**
-   * Indicates through which service or authentication method the user account was created.
-   * @return authProvider
-   **/
-  @Schema(description = "Indicates through which service or authentication method the user account was created.")
-      @NotNull
-
-    public AuthProviderEnum getAuthProvider() {
-    return authProvider;
-  }
-
-  public void setAuthProvider(AuthProviderEnum authProvider) {
-    this.authProvider = authProvider;
+  public void setExternalId(String externalId) {
+    this.externalId = externalId;
   }
 
 
@@ -211,18 +148,16 @@ public class UserAccount extends UserDetails  {
       return false;
     }
     UserAccount userAccount = (UserAccount) o;
-    return Objects.equals(this.id, userAccount.id) &&
-        Objects.equals(this.uuid, userAccount.uuid) &&
-        Objects.equals(this.createdAt, userAccount.createdAt) &&
-        Objects.equals(this.updatedAt, userAccount.updatedAt) &&
-        Objects.equals(this.lastLoginAt, userAccount.lastLoginAt) &&
-        Objects.equals(this.authProvider, userAccount.authProvider) &&
+    return Objects.equals(this.email, userAccount.email) &&
+        Objects.equals(this.fullName, userAccount.fullName) &&
+        Objects.equals(this.instanceRole, userAccount.instanceRole) &&
+        Objects.equals(this.externalId, userAccount.externalId) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, uuid, createdAt, updatedAt, lastLoginAt, authProvider, super.hashCode());
+    return Objects.hash(email, fullName, instanceRole, externalId, super.hashCode());
   }
 
   @Override
@@ -230,12 +165,10 @@ public class UserAccount extends UserDetails  {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserAccount {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
-    sb.append("    lastLoginAt: ").append(toIndentedString(lastLoginAt)).append("\n");
-    sb.append("    authProvider: ").append(toIndentedString(authProvider)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
+    sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
+    sb.append("    instanceRole: ").append(toIndentedString(instanceRole)).append("\n");
+    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
     sb.append("}");
     return sb.toString();
   }
