@@ -8,36 +8,36 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * User&#x27;s projects relation metadata.
+ * Statistics related to the user&#x27;s projects.
  */
-@Schema(description = "User's projects relation metadata.")
+@Schema(description = "Statistics related to the user's projects.")
 @Validated
 
 
 
-public class OrganizationUserRelationRelationshipsProjectsMeta   {
-  @JsonProperty("count")
-  private Integer count = null;
+public class OrganizationUserStatsProjectStats   {
+  @JsonProperty("total_count")
+  private Integer totalCount = null;
 
-  public OrganizationUserRelationRelationshipsProjectsMeta count(Integer count) {
-    this.count = count;
+  public OrganizationUserStatsProjectStats totalCount(Integer totalCount) {
+    this.totalCount = totalCount;
     return this;
   }
 
   /**
-   * Total number of user's projects in organization.
+   * Total number of user's projects in the organization.
    * minimum: 0
-   * @return count
+   * @return totalCount
    **/
-  @Schema(description = "Total number of user's projects in organization.")
+  @Schema(description = "Total number of user's projects in the organization.")
       @NotNull
 
-  @Min(0)  public Integer getCount() {
-    return count;
+  @Min(0)  public Integer getTotalCount() {
+    return totalCount;
   }
 
-  public void setCount(Integer count) {
-    this.count = count;
+  public void setTotalCount(Integer totalCount) {
+    this.totalCount = totalCount;
   }
 
 
@@ -49,21 +49,21 @@ public class OrganizationUserRelationRelationshipsProjectsMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserRelationRelationshipsProjectsMeta organizationUserRelationRelationshipsProjectsMeta = (OrganizationUserRelationRelationshipsProjectsMeta) o;
-    return Objects.equals(this.count, organizationUserRelationRelationshipsProjectsMeta.count);
+    OrganizationUserStatsProjectStats organizationUserStatsProjectStats = (OrganizationUserStatsProjectStats) o;
+    return Objects.equals(this.totalCount, organizationUserStatsProjectStats.totalCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(count);
+    return Objects.hash(totalCount);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserRelationRelationshipsProjectsMeta {\n");
+    sb.append("class OrganizationUserStatsProjectStats {\n");
     
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

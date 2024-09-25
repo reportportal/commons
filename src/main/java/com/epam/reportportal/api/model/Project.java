@@ -7,16 +7,19 @@ import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ProjectMetadata
+ * General information about a project.
  */
+@Schema(description = "General information about a project.")
 @Validated
 
 
 
-public class ProjectMetadata   {
+public class Project   {
   @JsonProperty("id")
   private Long id = null;
 
@@ -32,7 +35,16 @@ public class ProjectMetadata   {
   @JsonProperty("updated_at")
   private Instant updatedAt = null;
 
-  public ProjectMetadata id(Long id) {
+  @JsonProperty("stats")
+  private ProjectStats stats = null;
+
+  @JsonProperty("name")
+  private String name = null;
+
+  @JsonProperty("slug")
+  private String slug = null;
+
+  public Project id(Long id) {
     this.id = id;
     return this;
   }
@@ -53,7 +65,7 @@ public class ProjectMetadata   {
     this.id = id;
   }
 
-  public ProjectMetadata key(String key) {
+  public Project key(String key) {
     this.key = key;
     return this;
   }
@@ -73,7 +85,7 @@ public class ProjectMetadata   {
     this.key = key;
   }
 
-  public ProjectMetadata organizationId(Long organizationId) {
+  public Project organizationId(Long organizationId) {
     this.organizationId = organizationId;
     return this;
   }
@@ -94,7 +106,7 @@ public class ProjectMetadata   {
     this.organizationId = organizationId;
   }
 
-  public ProjectMetadata createdAt(Instant createdAt) {
+  public Project createdAt(Instant createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -115,7 +127,7 @@ public class ProjectMetadata   {
     this.createdAt = createdAt;
   }
 
-  public ProjectMetadata updatedAt(Instant updatedAt) {
+  public Project updatedAt(Instant updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -136,6 +148,66 @@ public class ProjectMetadata   {
     this.updatedAt = updatedAt;
   }
 
+  public Project stats(ProjectStats stats) {
+    this.stats = stats;
+    return this;
+  }
+
+  /**
+   * Get stats
+   * @return stats
+   **/
+  @Schema(description = "")
+      @NotNull
+
+    @Valid
+    public ProjectStats getStats() {
+    return stats;
+  }
+
+  public void setStats(ProjectStats stats) {
+    this.stats = stats;
+  }
+
+  public Project name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Display project name.
+   * @return name
+   **/
+  @Schema(required = true, description = "Display project name.")
+      @NotNull
+
+  @Pattern(regexp="^[A-Za-z0-9._\\- ]+$") @Size(min=3,max=60)   public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Project slug(String slug) {
+    this.slug = slug;
+    return this;
+  }
+
+  /**
+   * Get slug
+   * @return slug
+   **/
+  @Schema(description = "")
+  
+  @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min=3,max=60)   public String getSlug() {
+    return slug;
+  }
+
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
+
 
   @Override
   public boolean equals(Object o) {
@@ -145,29 +217,35 @@ public class ProjectMetadata   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectMetadata projectMetadata = (ProjectMetadata) o;
-    return Objects.equals(this.id, projectMetadata.id) &&
-        Objects.equals(this.key, projectMetadata.key) &&
-        Objects.equals(this.organizationId, projectMetadata.organizationId) &&
-        Objects.equals(this.createdAt, projectMetadata.createdAt) &&
-        Objects.equals(this.updatedAt, projectMetadata.updatedAt);
+    Project project = (Project) o;
+    return Objects.equals(this.id, project.id) &&
+        Objects.equals(this.key, project.key) &&
+        Objects.equals(this.organizationId, project.organizationId) &&
+        Objects.equals(this.createdAt, project.createdAt) &&
+        Objects.equals(this.updatedAt, project.updatedAt) &&
+        Objects.equals(this.stats, project.stats) &&
+        Objects.equals(this.name, project.name) &&
+        Objects.equals(this.slug, project.slug);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, key, organizationId, createdAt, updatedAt);
+    return Objects.hash(id, key, organizationId, createdAt, updatedAt, stats, name, slug);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectMetadata {\n");
+    sb.append("class Project {\n");
     
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
     sb.append("}");
     return sb.toString();
   }

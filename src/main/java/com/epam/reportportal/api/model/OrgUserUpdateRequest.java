@@ -16,7 +16,7 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class OrgUserUpdateRequest extends OrganizationUserBase  {
+public class OrgUserUpdateRequest extends UserOrgRole  {
   @JsonProperty("projects")
   @Valid
   private List<UserProjectInfo> projects = null;

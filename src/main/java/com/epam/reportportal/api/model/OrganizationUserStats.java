@@ -8,36 +8,35 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Launches associated with the project.
+ * OrganizationUserStats
  */
-@Schema(description = "Launches associated with the project.")
 @Validated
 
 
 
-public class ProjectRelationshipsRelationshipsLaunches   {
-  @JsonProperty("meta")
-  private ProjectRelationshipsRelationshipsLaunchesMeta meta = null;
+public class OrganizationUserStats   {
+  @JsonProperty("project_stats")
+  private OrganizationUserStatsProjectStats projectStats = null;
 
-  public ProjectRelationshipsRelationshipsLaunches meta(ProjectRelationshipsRelationshipsLaunchesMeta meta) {
-    this.meta = meta;
+  public OrganizationUserStats projectStats(OrganizationUserStatsProjectStats projectStats) {
+    this.projectStats = projectStats;
     return this;
   }
 
   /**
-   * Get meta
-   * @return meta
+   * Get projectStats
+   * @return projectStats
    **/
   @Schema(description = "")
       @NotNull
 
     @Valid
-    public ProjectRelationshipsRelationshipsLaunchesMeta getMeta() {
-    return meta;
+    public OrganizationUserStatsProjectStats getProjectStats() {
+    return projectStats;
   }
 
-  public void setMeta(ProjectRelationshipsRelationshipsLaunchesMeta meta) {
-    this.meta = meta;
+  public void setProjectStats(OrganizationUserStatsProjectStats projectStats) {
+    this.projectStats = projectStats;
   }
 
 
@@ -49,21 +48,21 @@ public class ProjectRelationshipsRelationshipsLaunches   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationshipsRelationshipsLaunches projectRelationshipsRelationshipsLaunches = (ProjectRelationshipsRelationshipsLaunches) o;
-    return Objects.equals(this.meta, projectRelationshipsRelationshipsLaunches.meta);
+    OrganizationUserStats organizationUserStats = (OrganizationUserStats) o;
+    return Objects.equals(this.projectStats, organizationUserStats.projectStats);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(meta);
+    return Objects.hash(projectStats);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationshipsRelationshipsLaunches {\n");
+    sb.append("class OrganizationUserStats {\n");
     
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("    projectStats: ").append(toIndentedString(projectStats)).append("\n");
     sb.append("}");
     return sb.toString();
   }

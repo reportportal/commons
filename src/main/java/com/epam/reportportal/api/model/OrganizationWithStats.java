@@ -2,51 +2,42 @@ package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * UserOrgInfoWithProjects
+ * A comprehensive set of organization information.
  */
+@Schema(description = "A comprehensive set of organization information.")
 @Validated
 
 
 
-public class UserOrgInfoWithProjects extends UserOrgInfo  {
-  @JsonProperty("projects")
-  @Valid
-  private List<UserProjectInfo> projects = null;
+public class OrganizationWithStats extends Organization  {
+  @JsonProperty("relationships")
+  private OrganizationRelationRelationships relationships = null;
 
-  public UserOrgInfoWithProjects projects(List<UserProjectInfo> projects) {
-    this.projects = projects;
-    return this;
-  }
-
-  public UserOrgInfoWithProjects addProjectsItem(UserProjectInfo projectsItem) {
-    if (this.projects == null) {
-      this.projects = new ArrayList<>();
-    }
-    this.projects.add(projectsItem);
+  public OrganizationWithStats relationships(OrganizationRelationRelationships relationships) {
+    this.relationships = relationships;
     return this;
   }
 
   /**
-   * Get projects
-   * @return projects
+   * Get relationships
+   * @return relationships
    **/
   @Schema(description = "")
       @NotNull
+
     @Valid
-    public List<UserProjectInfo> getProjects() {
-    return projects;
+    public OrganizationRelationRelationships getRelationships() {
+    return relationships;
   }
 
-  public void setProjects(List<UserProjectInfo> projects) {
-    this.projects = projects;
+  public void setRelationships(OrganizationRelationRelationships relationships) {
+    this.relationships = relationships;
   }
 
 
@@ -58,22 +49,22 @@ public class UserOrgInfoWithProjects extends UserOrgInfo  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserOrgInfoWithProjects userOrgInfoWithProjects = (UserOrgInfoWithProjects) o;
-    return Objects.equals(this.projects, userOrgInfoWithProjects.projects) &&
+    OrganizationWithStats organizationWithStats = (OrganizationWithStats) o;
+    return Objects.equals(this.relationships, organizationWithStats.relationships) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(projects, super.hashCode());
+    return Objects.hash(relationships, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserOrgInfoWithProjects {\n");
+    sb.append("class OrganizationWithStats {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
+    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("}");
     return sb.toString();
   }

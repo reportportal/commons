@@ -198,10 +198,10 @@ public class Invitation   {
   }
 
   /**
-   * Experation date.
+   * Expiration date.
    * @return expiresAt
    **/
-  @Schema(description = "Experation date.")
+  @Schema(description = "Expiration date.")
       @NotNull
 
     @Valid

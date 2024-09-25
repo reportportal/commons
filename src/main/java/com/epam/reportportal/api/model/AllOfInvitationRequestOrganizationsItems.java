@@ -10,43 +10,43 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationProfilesPage
+ * AllOfInvitationRequestOrganizationsItems
  */
 @Validated
 
 
 
-public class OrganizationProfilesPage extends Offset  {
-  @JsonProperty("items")
+public class AllOfInvitationRequestOrganizationsItems extends UserOrgInfo  {
+  @JsonProperty("projects")
   @Valid
-  private List<OrganizationProfile> items = null;
+  private List<UserProjectInfo> projects = null;
 
-  public OrganizationProfilesPage items(List<OrganizationProfile> items) {
-    this.items = items;
+  public AllOfInvitationRequestOrganizationsItems projects(List<UserProjectInfo> projects) {
+    this.projects = projects;
     return this;
   }
 
-  public OrganizationProfilesPage addItemsItem(OrganizationProfile itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
+  public AllOfInvitationRequestOrganizationsItems addProjectsItem(UserProjectInfo projectsItem) {
+    if (this.projects == null) {
+      this.projects = new ArrayList<>();
     }
-    this.items.add(itemsItem);
+    this.projects.add(projectsItem);
     return this;
   }
 
   /**
-   * Get items
-   * @return items
+   * Get projects
+   * @return projects
    **/
   @Schema(description = "")
       @NotNull
     @Valid
-    public List<OrganizationProfile> getItems() {
-    return items;
+    public List<UserProjectInfo> getProjects() {
+    return projects;
   }
 
-  public void setItems(List<OrganizationProfile> items) {
-    this.items = items;
+  public void setProjects(List<UserProjectInfo> projects) {
+    this.projects = projects;
   }
 
 
@@ -58,22 +58,22 @@ public class OrganizationProfilesPage extends Offset  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationProfilesPage organizationProfilesPage = (OrganizationProfilesPage) o;
-    return Objects.equals(this.items, organizationProfilesPage.items) &&
+    AllOfInvitationRequestOrganizationsItems allOfInvitationRequestOrganizationsItems = (AllOfInvitationRequestOrganizationsItems) o;
+    return Objects.equals(this.projects, allOfInvitationRequestOrganizationsItems.projects) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, super.hashCode());
+    return Objects.hash(projects, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationProfilesPage {\n");
+    sb.append("class AllOfInvitationRequestOrganizationsItems {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -9,30 +9,29 @@ import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Basic information provided by the client.  A &#x60;slug&#x60; is a unique identifying part of an organization. Generated according to the organization name if not specified by the user. 
+ * ProjectBase
  */
-@Schema(description = "Basic information provided by the client.  A `slug` is a unique identifying part of an organization. Generated according to the organization name if not specified by the user. ")
 @Validated
 
 
 
-public class OrganizationDetails   {
+public class ProjectBase   {
   @JsonProperty("name")
   private String name = null;
 
   @JsonProperty("slug")
   private String slug = null;
 
-  public OrganizationDetails name(String name) {
+  public ProjectBase name(String name) {
     this.name = name;
     return this;
   }
 
   /**
-   * Organization display name.
+   * Display project name.
    * @return name
    **/
-  @Schema(required = true, description = "Organization display name.")
+  @Schema(required = true, description = "Display project name.")
       @NotNull
 
   @Pattern(regexp="^[A-Za-z0-9._\\- ]+$") @Size(min=3,max=60)   public String getName() {
@@ -43,16 +42,16 @@ public class OrganizationDetails   {
     this.name = name;
   }
 
-  public OrganizationDetails slug(String slug) {
+  public ProjectBase slug(String slug) {
     this.slug = slug;
     return this;
   }
 
   /**
-   * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.
+   * Get slug
    * @return slug
    **/
-  @Schema(description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.")
+  @Schema(description = "")
   
   @Pattern(regexp="^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min=3,max=60)   public String getSlug() {
     return slug;
@@ -71,9 +70,9 @@ public class OrganizationDetails   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationDetails organizationDetails = (OrganizationDetails) o;
-    return Objects.equals(this.name, organizationDetails.name) &&
-        Objects.equals(this.slug, organizationDetails.slug);
+    ProjectBase projectBase = (ProjectBase) o;
+    return Objects.equals(this.name, projectBase.name) &&
+        Objects.equals(this.slug, projectBase.slug);
   }
 
   @Override
@@ -84,7 +83,7 @@ public class OrganizationDetails   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationDetails {\n");
+    sb.append("class ProjectBase {\n");
     
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    slug: ").append(toIndentedString(slug)).append("\n");

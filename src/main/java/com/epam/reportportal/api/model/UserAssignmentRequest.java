@@ -17,7 +17,7 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class UserAssignmentRequest extends OrganizationUserBase  {
+public class UserAssignmentRequest extends UserOrgRole  {
   @JsonProperty("id")
   private Long id = null;
 

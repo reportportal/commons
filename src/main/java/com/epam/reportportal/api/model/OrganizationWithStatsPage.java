@@ -10,23 +10,26 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationUsersList
+ * OrganizationWithStatsPage
  */
 @Validated
 
 
 
-public class OrganizationUsersList   {
+public class OrganizationWithStatsPage extends Offset  {
   @JsonProperty("items")
   @Valid
-  private List<OrganizationUserAccount> items = new ArrayList<>();
+  private List<OrganizationWithStats> items = null;
 
-  public OrganizationUsersList items(List<OrganizationUserAccount> items) {
+  public OrganizationWithStatsPage items(List<OrganizationWithStats> items) {
     this.items = items;
     return this;
   }
 
-  public OrganizationUsersList addItemsItem(OrganizationUserAccount itemsItem) {
+  public OrganizationWithStatsPage addItemsItem(OrganizationWithStats itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
     this.items.add(itemsItem);
     return this;
   }
@@ -35,14 +38,14 @@ public class OrganizationUsersList   {
    * Get items
    * @return items
    **/
-  @Schema(required = true, description = "")
+  @Schema(description = "")
       @NotNull
     @Valid
-    public List<OrganizationUserAccount> getItems() {
+    public List<OrganizationWithStats> getItems() {
     return items;
   }
 
-  public void setItems(List<OrganizationUserAccount> items) {
+  public void setItems(List<OrganizationWithStats> items) {
     this.items = items;
   }
 
@@ -55,20 +58,21 @@ public class OrganizationUsersList   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUsersList organizationUsersList = (OrganizationUsersList) o;
-    return Objects.equals(this.items, organizationUsersList.items);
+    OrganizationWithStatsPage organizationWithStatsPage = (OrganizationWithStatsPage) o;
+    return Objects.equals(this.items, organizationWithStatsPage.items) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(items, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUsersList {\n");
-    
+    sb.append("class OrganizationWithStatsPage {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();

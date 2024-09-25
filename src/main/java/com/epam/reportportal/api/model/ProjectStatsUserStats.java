@@ -8,35 +8,36 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ProjectRelationshipsRelationshipsUsersMeta
+ * Statistics about users assigned to the project.
  */
+@Schema(description = "Statistics about users assigned to the project.")
 @Validated
 
 
 
-public class ProjectRelationshipsRelationshipsUsersMeta   {
-  @JsonProperty("count")
-  private Integer count = null;
+public class ProjectStatsUserStats   {
+  @JsonProperty("total_count")
+  private Integer totalCount = null;
 
-  public ProjectRelationshipsRelationshipsUsersMeta count(Integer count) {
-    this.count = count;
+  public ProjectStatsUserStats totalCount(Integer totalCount) {
+    this.totalCount = totalCount;
     return this;
   }
 
   /**
    * Total number of users assigned to the project.
    * minimum: 0
-   * @return count
+   * @return totalCount
    **/
   @Schema(description = "Total number of users assigned to the project.")
       @NotNull
 
-  @Min(0)  public Integer getCount() {
-    return count;
+  @Min(0)  public Integer getTotalCount() {
+    return totalCount;
   }
 
-  public void setCount(Integer count) {
-    this.count = count;
+  public void setTotalCount(Integer totalCount) {
+    this.totalCount = totalCount;
   }
 
 
@@ -48,21 +49,21 @@ public class ProjectRelationshipsRelationshipsUsersMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationshipsRelationshipsUsersMeta projectRelationshipsRelationshipsUsersMeta = (ProjectRelationshipsRelationshipsUsersMeta) o;
-    return Objects.equals(this.count, projectRelationshipsRelationshipsUsersMeta.count);
+    ProjectStatsUserStats projectStatsUserStats = (ProjectStatsUserStats) o;
+    return Objects.equals(this.totalCount, projectStatsUserStats.totalCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(count);
+    return Objects.hash(totalCount);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationshipsRelationshipsUsersMeta {\n");
+    sb.append("class ProjectStatsUserStats {\n");
     
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

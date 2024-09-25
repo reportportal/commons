@@ -3,41 +3,41 @@ package com.epam.reportportal.api.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * A comprehensive set of organization information.
+ * New user creation
  */
-@Schema(description = "A comprehensive set of organization information.")
+@Schema(description = "New user creation")
 @Validated
 
 
 
-public class OrganizationProfile extends OrganizationInfo  {
-  @JsonProperty("relationships")
-  private OrganizationRelationRelationships relationships = null;
+public class NewUserRequest extends UserBase  {
+  @JsonProperty("password")
+  private String password = null;
 
-  public OrganizationProfile relationships(OrganizationRelationRelationships relationships) {
-    this.relationships = relationships;
+  public NewUserRequest password(String password) {
+    this.password = password;
     return this;
   }
 
   /**
-   * Get relationships
-   * @return relationships
+   * Get password
+   * @return password
    **/
   @Schema(description = "")
       @NotNull
 
-    @Valid
-    public OrganizationRelationRelationships getRelationships() {
-    return relationships;
+  @Pattern(regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$") @Size(min=8,max=256)   public String getPassword() {
+    return password;
   }
 
-  public void setRelationships(OrganizationRelationRelationships relationships) {
-    this.relationships = relationships;
+  public void setPassword(String password) {
+    this.password = password;
   }
 
 
@@ -49,22 +49,22 @@ public class OrganizationProfile extends OrganizationInfo  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationProfile organizationProfile = (OrganizationProfile) o;
-    return Objects.equals(this.relationships, organizationProfile.relationships) &&
+    NewUserRequest newUserRequest = (NewUserRequest) o;
+    return Objects.equals(this.password, newUserRequest.password) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(relationships, super.hashCode());
+    return Objects.hash(password, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationProfile {\n");
+    sb.append("class NewUserRequest {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
+    sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -8,36 +8,35 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Users assigned to the project.
+ * InstanceUser
  */
-@Schema(description = "Users assigned to the project.")
 @Validated
 
 
 
-public class ProjectRelationshipsRelationshipsUsers   {
-  @JsonProperty("meta")
-  private ProjectRelationshipsRelationshipsUsersMeta meta = null;
+public class InstanceUser extends User  {
+  @JsonProperty("stats")
+  private InstanceUserStats stats = null;
 
-  public ProjectRelationshipsRelationshipsUsers meta(ProjectRelationshipsRelationshipsUsersMeta meta) {
-    this.meta = meta;
+  public InstanceUser stats(InstanceUserStats stats) {
+    this.stats = stats;
     return this;
   }
 
   /**
-   * Get meta
-   * @return meta
+   * Get stats
+   * @return stats
    **/
   @Schema(description = "")
       @NotNull
 
     @Valid
-    public ProjectRelationshipsRelationshipsUsersMeta getMeta() {
-    return meta;
+    public InstanceUserStats getStats() {
+    return stats;
   }
 
-  public void setMeta(ProjectRelationshipsRelationshipsUsersMeta meta) {
-    this.meta = meta;
+  public void setStats(InstanceUserStats stats) {
+    this.stats = stats;
   }
 
 
@@ -49,21 +48,22 @@ public class ProjectRelationshipsRelationshipsUsers   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationshipsRelationshipsUsers projectRelationshipsRelationshipsUsers = (ProjectRelationshipsRelationshipsUsers) o;
-    return Objects.equals(this.meta, projectRelationshipsRelationshipsUsers.meta);
+    InstanceUser instanceUser = (InstanceUser) o;
+    return Objects.equals(this.stats, instanceUser.stats) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(meta);
+    return Objects.hash(stats, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationshipsRelationshipsUsers {\n");
-    
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("class InstanceUser {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("}");
     return sb.toString();
   }

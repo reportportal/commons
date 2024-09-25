@@ -22,7 +22,7 @@ public class InvitationRequest   {
 
   @JsonProperty("organizations")
   @Valid
-  private List<UserOrgInfoWithProjects> organizations = null;
+  private List<AllOfInvitationRequestOrganizationsItems> organizations = null;
 
   public InvitationRequest email(String email) {
     this.email = email;
@@ -44,12 +44,12 @@ public class InvitationRequest   {
     this.email = email;
   }
 
-  public InvitationRequest organizations(List<UserOrgInfoWithProjects> organizations) {
+  public InvitationRequest organizations(List<AllOfInvitationRequestOrganizationsItems> organizations) {
     this.organizations = organizations;
     return this;
   }
 
-  public InvitationRequest addOrganizationsItem(UserOrgInfoWithProjects organizationsItem) {
+  public InvitationRequest addOrganizationsItem(AllOfInvitationRequestOrganizationsItems organizationsItem) {
     if (this.organizations == null) {
       this.organizations = new ArrayList<>();
     }
@@ -63,12 +63,12 @@ public class InvitationRequest   {
    **/
   @Schema(description = "Organizations to assign a user.")
       @NotNull
-    @Valid
-    public List<UserOrgInfoWithProjects> getOrganizations() {
+
+    public List<AllOfInvitationRequestOrganizationsItems> getOrganizations() {
     return organizations;
   }
 
-  public void setOrganizations(List<UserOrgInfoWithProjects> organizations) {
+  public void setOrganizations(List<AllOfInvitationRequestOrganizationsItems> organizations) {
     this.organizations = organizations;
   }
 

@@ -2,42 +2,51 @@ package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * User&#x27;s projects relations.
+ * ApiKeyPage
  */
-@Schema(description = "User's projects relations.")
 @Validated
 
 
 
-public class OrganizationUserRelationRelationshipsProjects   {
-  @JsonProperty("meta")
-  private OrganizationUserRelationRelationshipsProjectsMeta meta = null;
+public class ApiKeyPage extends Offset  {
+  @JsonProperty("items")
+  @Valid
+  private List<ApiKey> items = null;
 
-  public OrganizationUserRelationRelationshipsProjects meta(OrganizationUserRelationRelationshipsProjectsMeta meta) {
-    this.meta = meta;
+  public ApiKeyPage items(List<ApiKey> items) {
+    this.items = items;
+    return this;
+  }
+
+  public ApiKeyPage addItemsItem(ApiKey itemsItem) {
+    if (this.items == null) {
+      this.items = new ArrayList<>();
+    }
+    this.items.add(itemsItem);
     return this;
   }
 
   /**
-   * Get meta
-   * @return meta
+   * Get items
+   * @return items
    **/
   @Schema(description = "")
       @NotNull
-
     @Valid
-    public OrganizationUserRelationRelationshipsProjectsMeta getMeta() {
-    return meta;
+    public List<ApiKey> getItems() {
+    return items;
   }
 
-  public void setMeta(OrganizationUserRelationRelationshipsProjectsMeta meta) {
-    this.meta = meta;
+  public void setItems(List<ApiKey> items) {
+    this.items = items;
   }
 
 
@@ -49,21 +58,22 @@ public class OrganizationUserRelationRelationshipsProjects   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserRelationRelationshipsProjects organizationUserRelationRelationshipsProjects = (OrganizationUserRelationRelationshipsProjects) o;
-    return Objects.equals(this.meta, organizationUserRelationRelationshipsProjects.meta);
+    ApiKeyPage apiKeyPage = (ApiKeyPage) o;
+    return Objects.equals(this.items, apiKeyPage.items) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(meta);
+    return Objects.hash(items, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserRelationRelationshipsProjects {\n");
-    
-    sb.append("    meta: ").append(toIndentedString(meta)).append("\n");
+    sb.append("class ApiKeyPage {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
   }

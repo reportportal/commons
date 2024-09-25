@@ -12,14 +12,14 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Organization metadata. Represent generated fields.
+ * Various information about the organization information.
  */
-@Schema(description = "Organization metadata. Represent generated fields.")
+@Schema(description = "Various information about the organization information.")
 @Validated
 
 
 
-public class OrganizationMetadata   {
+public class Organization extends OrganizationBase  {
   @JsonProperty("id")
   private Long id = null;
 
@@ -67,7 +67,7 @@ public class OrganizationMetadata   {
   @JsonProperty("updated_at")
   private Instant updatedAt = null;
 
-  public OrganizationMetadata id(Long id) {
+  public Organization id(Long id) {
     this.id = id;
     return this;
   }
@@ -88,7 +88,7 @@ public class OrganizationMetadata   {
     this.id = id;
   }
 
-  public OrganizationMetadata type(TypeEnum type) {
+  public Organization type(TypeEnum type) {
     this.type = type;
     return this;
   }
@@ -108,7 +108,7 @@ public class OrganizationMetadata   {
     this.type = type;
   }
 
-  public OrganizationMetadata externalId(String externalId) {
+  public Organization externalId(String externalId) {
     this.externalId = externalId;
     return this;
   }
@@ -128,7 +128,7 @@ public class OrganizationMetadata   {
     this.externalId = externalId;
   }
 
-  public OrganizationMetadata createdAt(Instant createdAt) {
+  public Organization createdAt(Instant createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -149,7 +149,7 @@ public class OrganizationMetadata   {
     this.createdAt = createdAt;
   }
 
-  public OrganizationMetadata updatedAt(Instant updatedAt) {
+  public Organization updatedAt(Instant updatedAt) {
     this.updatedAt = updatedAt;
     return this;
   }
@@ -179,24 +179,25 @@ public class OrganizationMetadata   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationMetadata organizationMetadata = (OrganizationMetadata) o;
-    return Objects.equals(this.id, organizationMetadata.id) &&
-        Objects.equals(this.type, organizationMetadata.type) &&
-        Objects.equals(this.externalId, organizationMetadata.externalId) &&
-        Objects.equals(this.createdAt, organizationMetadata.createdAt) &&
-        Objects.equals(this.updatedAt, organizationMetadata.updatedAt);
+    Organization organization = (Organization) o;
+    return Objects.equals(this.id, organization.id) &&
+        Objects.equals(this.type, organization.type) &&
+        Objects.equals(this.externalId, organization.externalId) &&
+        Objects.equals(this.createdAt, organization.createdAt) &&
+        Objects.equals(this.updatedAt, organization.updatedAt) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, externalId, createdAt, updatedAt);
+    return Objects.hash(id, type, externalId, createdAt, updatedAt, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationMetadata {\n");
-    
+    sb.append("class Organization {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");

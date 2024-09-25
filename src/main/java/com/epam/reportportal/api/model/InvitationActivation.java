@@ -6,12 +6,14 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * InvitationActivation
+ * Password will be ignored for &#x60;PENDING&#x60; status. Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
  */
+@Schema(description = "Password will be ignored for `PENDING` status. Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.")
 @Validated
 
 
@@ -123,13 +125,13 @@ public class InvitationActivation   {
   }
 
   /**
-   * User password. Will be ignored for `PENDING` status. Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
+   * Get password
    * @return password
    **/
-  @Schema(required = true, description = "User password. Will be ignored for `PENDING` status. Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.")
+  @Schema(required = true, description = "")
       @NotNull
 
-    public String getPassword() {
+  @Pattern(regexp="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$") @Size(min=8,max=256)   public String getPassword() {
     return password;
   }
 

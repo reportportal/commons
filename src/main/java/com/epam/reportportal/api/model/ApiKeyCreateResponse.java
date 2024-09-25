@@ -2,48 +2,39 @@ package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * OrganizationProjectsPage
+ * ApiKeyCreateResponse
  */
 @Validated
 
 
 
-public class OrganizationProjectsPage extends Offset  {
-  @JsonProperty("items")
-  @Valid
-  private List<Project> items = new ArrayList<>();
+public class ApiKeyCreateResponse extends ApiKey  {
+  @JsonProperty("api_key")
+  private String apiKey = null;
 
-  public OrganizationProjectsPage items(List<Project> items) {
-    this.items = items;
-    return this;
-  }
-
-  public OrganizationProjectsPage addItemsItem(Project itemsItem) {
-    this.items.add(itemsItem);
+  public ApiKeyCreateResponse apiKey(String apiKey) {
+    this.apiKey = apiKey;
     return this;
   }
 
   /**
-   * Get items
-   * @return items
+   * The generated API key
+   * @return apiKey
    **/
-  @Schema(required = true, description = "")
+  @Schema(required = true, description = "The generated API key")
       @NotNull
-    @Valid
-    public List<Project> getItems() {
-    return items;
+
+    public String getApiKey() {
+    return apiKey;
   }
 
-  public void setItems(List<Project> items) {
-    this.items = items;
+  public void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
   }
 
 
@@ -55,22 +46,22 @@ public class OrganizationProjectsPage extends Offset  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationProjectsPage organizationProjectsPage = (OrganizationProjectsPage) o;
-    return Objects.equals(this.items, organizationProjectsPage.items) &&
+    ApiKeyCreateResponse apiKeyCreateResponse = (ApiKeyCreateResponse) o;
+    return Objects.equals(this.apiKey, apiKeyCreateResponse.apiKey) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, super.hashCode());
+    return Objects.hash(apiKey, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationProjectsPage {\n");
+    sb.append("class ApiKeyCreateResponse {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("}");
     return sb.toString();
   }

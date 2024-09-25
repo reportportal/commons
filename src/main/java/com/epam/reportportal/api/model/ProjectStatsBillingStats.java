@@ -9,17 +9,18 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ProjectRelationshipsRelationshipsBillingMeta
+ * Statistics about the project&#x27;s billing information. Available only if the billing plugin is enabled.
  */
+@Schema(description = "Statistics about the project's billing information. Available only if the billing plugin is enabled.")
 @Validated
 
 
 
-public class ProjectRelationshipsRelationshipsBillingMeta   {
+public class ProjectStatsBillingStats   {
   @JsonProperty("storage_usage")
   private Integer storageUsage = null;
 
-  public ProjectRelationshipsRelationshipsBillingMeta storageUsage(Integer storageUsage) {
+  public ProjectStatsBillingStats storageUsage(Integer storageUsage) {
     this.storageUsage = storageUsage;
     return this;
   }
@@ -50,8 +51,8 @@ public class ProjectRelationshipsRelationshipsBillingMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationshipsRelationshipsBillingMeta projectRelationshipsRelationshipsBillingMeta = (ProjectRelationshipsRelationshipsBillingMeta) o;
-    return Objects.equals(this.storageUsage, projectRelationshipsRelationshipsBillingMeta.storageUsage);
+    ProjectStatsBillingStats projectStatsBillingStats = (ProjectStatsBillingStats) o;
+    return Objects.equals(this.storageUsage, projectStatsBillingStats.storageUsage);
   }
 
   @Override
@@ -62,7 +63,7 @@ public class ProjectRelationshipsRelationshipsBillingMeta   {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationshipsRelationshipsBillingMeta {\n");
+    sb.append("class ProjectStatsBillingStats {\n");
     
     sb.append("    storageUsage: ").append(toIndentedString(storageUsage)).append("\n");
     sb.append("}");

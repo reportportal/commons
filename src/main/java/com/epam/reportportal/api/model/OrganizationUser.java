@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.time.Instant;
 import java.util.Objects;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -17,7 +18,7 @@ import org.springframework.validation.annotation.Validated;
 
 
 
-public class OrganizationUserAccount extends UserAccount  {
+public class OrganizationUser extends User  {
   /**
    * Organization user role.
    */
@@ -51,10 +52,13 @@ public class OrganizationUserAccount extends UserAccount  {
   @JsonProperty("org_role")
   private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
 
-  @JsonProperty("relationships")
-  private OrganizationUserRelationRelationships relationships = null;
+  @JsonProperty("assigned_at")
+  private Instant assignedAt = null;
 
-  public OrganizationUserAccount orgRole(OrgRoleEnum orgRole) {
+  @JsonProperty("stats")
+  private OrganizationUserStats stats = null;
+
+  public OrganizationUser orgRole(OrgRoleEnum orgRole) {
     this.orgRole = orgRole;
     return this;
   }
@@ -74,25 +78,46 @@ public class OrganizationUserAccount extends UserAccount  {
     this.orgRole = orgRole;
   }
 
-  public OrganizationUserAccount relationships(OrganizationUserRelationRelationships relationships) {
-    this.relationships = relationships;
+  public OrganizationUser assignedAt(Instant assignedAt) {
+    this.assignedAt = assignedAt;
     return this;
   }
 
   /**
-   * Get relationships
-   * @return relationships
+   * A time when a user was assigned to the organization.
+   * @return assignedAt
+   **/
+  @Schema(description = "A time when a user was assigned to the organization.")
+      @NotNull
+
+    @Valid
+    public Instant getAssignedAt() {
+    return assignedAt;
+  }
+
+  public void setAssignedAt(Instant assignedAt) {
+    this.assignedAt = assignedAt;
+  }
+
+  public OrganizationUser stats(OrganizationUserStats stats) {
+    this.stats = stats;
+    return this;
+  }
+
+  /**
+   * Get stats
+   * @return stats
    **/
   @Schema(description = "")
       @NotNull
 
     @Valid
-    public OrganizationUserRelationRelationships getRelationships() {
-    return relationships;
+    public OrganizationUserStats getStats() {
+    return stats;
   }
 
-  public void setRelationships(OrganizationUserRelationRelationships relationships) {
-    this.relationships = relationships;
+  public void setStats(OrganizationUserStats stats) {
+    this.stats = stats;
   }
 
 
@@ -104,24 +129,26 @@ public class OrganizationUserAccount extends UserAccount  {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    OrganizationUserAccount organizationUserAccount = (OrganizationUserAccount) o;
-    return Objects.equals(this.orgRole, organizationUserAccount.orgRole) &&
-        Objects.equals(this.relationships, organizationUserAccount.relationships) &&
+    OrganizationUser organizationUser = (OrganizationUser) o;
+    return Objects.equals(this.orgRole, organizationUser.orgRole) &&
+        Objects.equals(this.assignedAt, organizationUser.assignedAt) &&
+        Objects.equals(this.stats, organizationUser.stats) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orgRole, relationships, super.hashCode());
+    return Objects.hash(orgRole, assignedAt, stats, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class OrganizationUserAccount {\n");
+    sb.append("class OrganizationUser {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    orgRole: ").append(toIndentedString(orgRole)).append("\n");
-    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
+    sb.append("    assignedAt: ").append(toIndentedString(assignedAt)).append("\n");
+    sb.append("    stats: ").append(toIndentedString(stats)).append("\n");
     sb.append("}");
     return sb.toString();
   }

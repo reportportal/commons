@@ -10,20 +10,21 @@ import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * ProjectRelationshipsRelationshipsLaunchesMeta
+ * Statistics about launches associated with the project.
  */
+@Schema(description = "Statistics about launches associated with the project.")
 @Validated
 
 
 
-public class ProjectRelationshipsRelationshipsLaunchesMeta   {
+public class ProjectStatsLaunchStats   {
   @JsonProperty("last_occurred_at")
   private Instant lastOccurredAt = null;
 
-  @JsonProperty("count")
-  private Integer count = null;
+  @JsonProperty("total_count")
+  private Integer totalCount = null;
 
-  public ProjectRelationshipsRelationshipsLaunchesMeta lastOccurredAt(Instant lastOccurredAt) {
+  public ProjectStatsLaunchStats lastOccurredAt(Instant lastOccurredAt) {
     this.lastOccurredAt = lastOccurredAt;
     return this;
   }
@@ -44,25 +45,25 @@ public class ProjectRelationshipsRelationshipsLaunchesMeta   {
     this.lastOccurredAt = lastOccurredAt;
   }
 
-  public ProjectRelationshipsRelationshipsLaunchesMeta count(Integer count) {
-    this.count = count;
+  public ProjectStatsLaunchStats totalCount(Integer totalCount) {
+    this.totalCount = totalCount;
     return this;
   }
 
   /**
    * Total number of launches in the project.
    * minimum: 0
-   * @return count
+   * @return totalCount
    **/
   @Schema(description = "Total number of launches in the project.")
       @NotNull
 
-  @Min(0)  public Integer getCount() {
-    return count;
+  @Min(0)  public Integer getTotalCount() {
+    return totalCount;
   }
 
-  public void setCount(Integer count) {
-    this.count = count;
+  public void setTotalCount(Integer totalCount) {
+    this.totalCount = totalCount;
   }
 
 
@@ -74,23 +75,23 @@ public class ProjectRelationshipsRelationshipsLaunchesMeta   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ProjectRelationshipsRelationshipsLaunchesMeta projectRelationshipsRelationshipsLaunchesMeta = (ProjectRelationshipsRelationshipsLaunchesMeta) o;
-    return Objects.equals(this.lastOccurredAt, projectRelationshipsRelationshipsLaunchesMeta.lastOccurredAt) &&
-        Objects.equals(this.count, projectRelationshipsRelationshipsLaunchesMeta.count);
+    ProjectStatsLaunchStats projectStatsLaunchStats = (ProjectStatsLaunchStats) o;
+    return Objects.equals(this.lastOccurredAt, projectStatsLaunchStats.lastOccurredAt) &&
+        Objects.equals(this.totalCount, projectStatsLaunchStats.totalCount);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lastOccurredAt, count);
+    return Objects.hash(lastOccurredAt, totalCount);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ProjectRelationshipsRelationshipsLaunchesMeta {\n");
+    sb.append("class ProjectStatsLaunchStats {\n");
     
     sb.append("    lastOccurredAt: ").append(toIndentedString(lastOccurredAt)).append("\n");
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
     sb.append("}");
     return sb.toString();
   }

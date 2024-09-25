@@ -2,51 +2,39 @@ package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
 
 /**
- * Invitations
+ * RestorePasswordRequest
  */
 @Validated
 
 
 
-public class Invitations   {
-  @JsonProperty("items")
-  @Valid
-  private List<Invitation> items = null;
+public class RestorePasswordRequest   {
+  @JsonProperty("email")
+  private String email = null;
 
-  public Invitations items(List<Invitation> items) {
-    this.items = items;
-    return this;
-  }
-
-  public Invitations addItemsItem(Invitation itemsItem) {
-    if (this.items == null) {
-      this.items = new ArrayList<>();
-    }
-    this.items.add(itemsItem);
+  public RestorePasswordRequest email(String email) {
+    this.email = email;
     return this;
   }
 
   /**
-   * Get items
-   * @return items
+   * User email for password recovery.
+   * @return email
    **/
-  @Schema(description = "")
+  @Schema(required = true, description = "User email for password recovery.")
       @NotNull
-    @Valid
-    public List<Invitation> getItems() {
-    return items;
+
+    public String getEmail() {
+    return email;
   }
 
-  public void setItems(List<Invitation> items) {
-    this.items = items;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
 
@@ -58,21 +46,21 @@ public class Invitations   {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Invitations invitations = (Invitations) o;
-    return Objects.equals(this.items, invitations.items);
+    RestorePasswordRequest restorePasswordRequest = (RestorePasswordRequest) o;
+    return Objects.equals(this.email, restorePasswordRequest.email);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items);
+    return Objects.hash(email);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Invitations {\n");
+    sb.append("class RestorePasswordRequest {\n");
     
-    sb.append("    items: ").append(toIndentedString(items)).append("\n");
+    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("}");
     return sb.toString();
   }
