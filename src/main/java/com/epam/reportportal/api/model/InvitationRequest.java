@@ -14,13 +14,13 @@ import javax.validation.constraints.NotNull;
  * InvitationRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class InvitationRequest {
 
   private String email;
 
   @Valid
-  private List<InvitationRequestOrganizationsInner> organizations;
+  private List<InvitationRequestOrganizationsInner> organizations = new ArrayList<>();
 
   public InvitationRequest() {
     super();
@@ -33,6 +33,14 @@ public class InvitationRequest {
     this.email = email;
   }
 
+  /**
+   * Constructor with all args parameters
+   */
+  public InvitationRequest(String email, List<InvitationRequestOrganizationsInner> organizations) {
+      this.email = email;
+      this.organizations = organizations;
+  }
+
   public InvitationRequest email(String email) {
     this.email = email;
     return this;
@@ -41,7 +49,7 @@ public class InvitationRequest {
   /**
    * Email for invitation.
    * @return email
-  */
+   */
   @NotNull @Email
   @Schema(name = "email", description = "Email for invitation.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("email")
@@ -69,7 +77,7 @@ public class InvitationRequest {
   /**
    * Organizations to assign a user.
    * @return organizations
-  */
+   */
   @Valid 
   @Schema(name = "organizations", description = "Organizations to assign a user.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organizations")
@@ -119,5 +127,69 @@ public class InvitationRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private InvitationRequest instance;
+
+    public Builder() {
+      this(new InvitationRequest());
+    }
+
+    protected Builder(InvitationRequest instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(InvitationRequest value) { 
+      this.instance.setEmail(value.email);
+      this.instance.setOrganizations(value.organizations);
+      return this;
+    }
+
+    public Builder email(String email) {
+      this.instance.email(email);
+      return this;
+    }
+    
+    public Builder organizations(List<InvitationRequestOrganizationsInner> organizations) {
+      this.instance.organizations(organizations);
+      return this;
+    }
+    
+    /**
+    * returns a built InvitationRequest instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public InvitationRequest build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

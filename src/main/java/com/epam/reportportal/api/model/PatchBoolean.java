@@ -11,7 +11,7 @@ import javax.annotation.Generated;
  * PatchBoolean
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class PatchBoolean implements PatchOperation {
 
   /**
@@ -57,6 +57,19 @@ public class PatchBoolean implements PatchOperation {
 
   private Boolean value;
 
+  public PatchBoolean() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public PatchBoolean(OpEnum op, String path, Boolean value) {
+      this.op = op;
+      this.path = path;
+      this.value = value;
+  }
+
   public PatchBoolean op(OpEnum op) {
     this.op = op;
     return this;
@@ -65,7 +78,7 @@ public class PatchBoolean implements PatchOperation {
   /**
    * Get op
    * @return op
-  */
+   */
   
   @Schema(name = "op", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("op")
@@ -85,7 +98,7 @@ public class PatchBoolean implements PatchOperation {
   /**
    * Get path
    * @return path
-  */
+   */
   
   @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("path")
@@ -105,7 +118,7 @@ public class PatchBoolean implements PatchOperation {
   /**
    * Get value
    * @return value
-  */
+   */
   
   @Schema(name = "value", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("value")
@@ -157,5 +170,75 @@ public class PatchBoolean implements PatchOperation {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private PatchBoolean instance;
+
+    public Builder() {
+      this(new PatchBoolean());
+    }
+
+    protected Builder(PatchBoolean instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(PatchBoolean value) { 
+      this.instance.setOp(value.op);
+      this.instance.setPath(value.path);
+      this.instance.setValue(value.value);
+      return this;
+    }
+
+    public Builder op(OpEnum op) {
+      this.instance.op(op);
+      return this;
+    }
+    
+    public Builder path(String path) {
+      this.instance.path(path);
+      return this;
+    }
+    
+    public Builder value(Boolean value) {
+      this.instance.value(value);
+      return this;
+    }
+    
+    /**
+    * returns a built PatchBoolean instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public PatchBoolean build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

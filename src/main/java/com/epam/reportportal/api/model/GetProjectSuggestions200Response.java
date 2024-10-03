@@ -8,63 +8,28 @@ import java.util.List;
 import java.util.Objects;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 
 /**
  * GetProjectSuggestions200Response
  */
 
 @JsonTypeName("get_project_suggestions_200_response")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class GetProjectSuggestions200Response {
-
-  private Integer limit;
-
-  private Integer count;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class GetProjectSuggestions200Response extends Limit {
 
   @Valid
-  private List<String> suggestions;
+  private List<String> suggestions = new ArrayList<>();
 
-  public GetProjectSuggestions200Response limit(Integer limit) {
-    this.limit = limit;
-    return this;
+  public GetProjectSuggestions200Response() {
+    super();
   }
 
   /**
-   * The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.
-   * minimum: 0
-   * @return limit
-  */
-  @Min(0) 
-  @Schema(name = "limit", description = "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("limit")
-  public Integer getLimit() {
-    return limit;
-  }
-
-  public void setLimit(Integer limit) {
-    this.limit = limit;
-  }
-
-  public GetProjectSuggestions200Response count(Integer count) {
-    this.count = count;
-    return this;
-  }
-
-  /**
-   * The number of results returned in this page of results.
-   * minimum: 0
-   * @return count
-  */
-  @Min(0) 
-  @Schema(name = "count", description = "The number of results returned in this page of results.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("count")
-  public Integer getCount() {
-    return count;
-  }
-
-  public void setCount(Integer count) {
-    this.count = count;
+   * Constructor with all args parameters
+   */
+  public GetProjectSuggestions200Response(List<String> suggestions, Integer limit, Integer count) {
+      super(limit, count);
+      this.suggestions = suggestions;
   }
 
   public GetProjectSuggestions200Response suggestions(List<String> suggestions) {
@@ -83,7 +48,7 @@ public class GetProjectSuggestions200Response {
   /**
    * List of activities suggestions for the project by type.
    * @return suggestions
-  */
+   */
   
   @Schema(name = "suggestions", description = "List of activities suggestions for the project by type.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("suggestions")
@@ -95,6 +60,16 @@ public class GetProjectSuggestions200Response {
     this.suggestions = suggestions;
   }
 
+
+  public GetProjectSuggestions200Response limit(Integer limit) {
+    super.limit(limit);
+    return this;
+  }
+
+  public GetProjectSuggestions200Response count(Integer count) {
+    super.count(count);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -104,22 +79,20 @@ public class GetProjectSuggestions200Response {
       return false;
     }
     GetProjectSuggestions200Response getProjectSuggestions200Response = (GetProjectSuggestions200Response) o;
-    return Objects.equals(this.limit, getProjectSuggestions200Response.limit) &&
-        Objects.equals(this.count, getProjectSuggestions200Response.count) &&
-        Objects.equals(this.suggestions, getProjectSuggestions200Response.suggestions);
+    return Objects.equals(this.suggestions, getProjectSuggestions200Response.suggestions) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(limit, count, suggestions);
+    return Objects.hash(suggestions, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GetProjectSuggestions200Response {\n");
-    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
-    sb.append("    count: ").append(toIndentedString(count)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    suggestions: ").append(toIndentedString(suggestions)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -135,5 +108,78 @@ public class GetProjectSuggestions200Response {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends Limit.Builder {
+
+    private GetProjectSuggestions200Response instance;
+
+    public Builder() {
+      this(new GetProjectSuggestions200Response());
+    }
+
+    protected Builder(GetProjectSuggestions200Response instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(GetProjectSuggestions200Response value) { 
+      super.copyOf(instance);
+      this.instance.setSuggestions(value.suggestions);
+      return this;
+    }
+
+    public Builder suggestions(List<String> suggestions) {
+      this.instance.suggestions(suggestions);
+      return this;
+    }
+    
+    @Override
+    public Builder limit(Integer limit) {
+      this.instance.limit(limit);
+      return this;
+    }
+    
+    @Override
+    public Builder count(Integer count) {
+      this.instance.count(count);
+      return this;
+    }
+    
+    /**
+    * returns a built GetProjectSuggestions200Response instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public GetProjectSuggestions200Response build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

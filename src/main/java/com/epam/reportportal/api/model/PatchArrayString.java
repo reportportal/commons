@@ -14,7 +14,7 @@ import javax.validation.Valid;
  * PatchArrayString
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class PatchArrayString implements PatchOperation {
 
   /**
@@ -59,7 +59,20 @@ public class PatchArrayString implements PatchOperation {
   private String path;
 
   @Valid
-  private List<String> value;
+  private List<String> value = new ArrayList<>();
+
+  public PatchArrayString() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public PatchArrayString(OpEnum op, String path, List<String> value) {
+      this.op = op;
+      this.path = path;
+      this.value = value;
+  }
 
   public PatchArrayString op(OpEnum op) {
     this.op = op;
@@ -69,7 +82,7 @@ public class PatchArrayString implements PatchOperation {
   /**
    * Get op
    * @return op
-  */
+   */
   
   @Schema(name = "op", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("op")
@@ -89,7 +102,7 @@ public class PatchArrayString implements PatchOperation {
   /**
    * Get path
    * @return path
-  */
+   */
   
   @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("path")
@@ -117,7 +130,7 @@ public class PatchArrayString implements PatchOperation {
   /**
    * Get value
    * @return value
-  */
+   */
   
   @Schema(name = "value", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("value")
@@ -169,5 +182,75 @@ public class PatchArrayString implements PatchOperation {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private PatchArrayString instance;
+
+    public Builder() {
+      this(new PatchArrayString());
+    }
+
+    protected Builder(PatchArrayString instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(PatchArrayString value) { 
+      this.instance.setOp(value.op);
+      this.instance.setPath(value.path);
+      this.instance.setValue(value.value);
+      return this;
+    }
+
+    public Builder op(OpEnum op) {
+      this.instance.op(op);
+      return this;
+    }
+    
+    public Builder path(String path) {
+      this.instance.path(path);
+      return this;
+    }
+    
+    public Builder value(List<String> value) {
+      this.instance.value(value);
+      return this;
+    }
+    
+    /**
+    * returns a built PatchArrayString instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public PatchArrayString build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

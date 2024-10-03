@@ -1,106 +1,35 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 
 /**
  * InvitationRequestOrganizationsInner
  */
 
 @JsonTypeName("InvitationRequest_organizations_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class InvitationRequestOrganizationsInner {
-
-  private Long id;
-
-  /**
-   * Organization user role.
-   */
-  public enum OrgRoleEnum {
-    MEMBER("MEMBER"),
-    
-    MANAGER("MANAGER");
-
-    private String value;
-
-    OrgRoleEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OrgRoleEnum fromValue(String value) {
-      for (OrgRoleEnum b : OrgRoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class InvitationRequestOrganizationsInner extends UserOrgInfo {
 
   @Valid
-  private List<UserProjectInfo> projects;
+  private List<UserProjectInfo> projects = new ArrayList<>();
 
-  public InvitationRequestOrganizationsInner id(Long id) {
-    this.id = id;
-    return this;
+  public InvitationRequestOrganizationsInner() {
+    super();
   }
 
   /**
-   * Organization internal identifier.
-   * minimum: 0
-   * @return id
-  */
-  @Min(0L) 
-  @Schema(name = "id", description = "Organization internal identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("id")
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public InvitationRequestOrganizationsInner orgRole(OrgRoleEnum orgRole) {
-    this.orgRole = orgRole;
-    return this;
-  }
-
-  /**
-   * Organization user role.
-   * @return orgRole
-  */
-  
-  @Schema(name = "org_role", description = "Organization user role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("org_role")
-  public OrgRoleEnum getOrgRole() {
-    return orgRole;
-  }
-
-  public void setOrgRole(OrgRoleEnum orgRole) {
-    this.orgRole = orgRole;
+   * Constructor with all args parameters
+   */
+  public InvitationRequestOrganizationsInner(List<UserProjectInfo> projects, Long id, OrgRoleEnum orgRole) {
+      super(id, orgRole);
+      this.projects = projects;
   }
 
   public InvitationRequestOrganizationsInner projects(List<UserProjectInfo> projects) {
@@ -119,7 +48,7 @@ public class InvitationRequestOrganizationsInner {
   /**
    * Get projects
    * @return projects
-  */
+   */
   @Valid 
   @Schema(name = "projects", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("projects")
@@ -131,6 +60,16 @@ public class InvitationRequestOrganizationsInner {
     this.projects = projects;
   }
 
+
+  public InvitationRequestOrganizationsInner id(Long id) {
+    super.id(id);
+    return this;
+  }
+
+  public InvitationRequestOrganizationsInner orgRole(OrgRoleEnum orgRole) {
+    super.orgRole(orgRole);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -140,22 +79,20 @@ public class InvitationRequestOrganizationsInner {
       return false;
     }
     InvitationRequestOrganizationsInner invitationRequestOrganizationsInner = (InvitationRequestOrganizationsInner) o;
-    return Objects.equals(this.id, invitationRequestOrganizationsInner.id) &&
-        Objects.equals(this.orgRole, invitationRequestOrganizationsInner.orgRole) &&
-        Objects.equals(this.projects, invitationRequestOrganizationsInner.projects);
+    return Objects.equals(this.projects, invitationRequestOrganizationsInner.projects) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, orgRole, projects);
+    return Objects.hash(projects, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvitationRequestOrganizationsInner {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    orgRole: ").append(toIndentedString(orgRole)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -171,5 +108,78 @@ public class InvitationRequestOrganizationsInner {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends UserOrgInfo.Builder {
+
+    private InvitationRequestOrganizationsInner instance;
+
+    public Builder() {
+      this(new InvitationRequestOrganizationsInner());
+    }
+
+    protected Builder(InvitationRequestOrganizationsInner instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(InvitationRequestOrganizationsInner value) { 
+      super.copyOf(instance);
+      this.instance.setProjects(value.projects);
+      return this;
+    }
+
+    public Builder projects(List<UserProjectInfo> projects) {
+      this.instance.projects(projects);
+      return this;
+    }
+    
+    @Override
+    public Builder id(Long id) {
+      this.instance.id(id);
+      return this;
+    }
+    
+    @Override
+    public Builder orgRole(OrgRoleEnum orgRole) {
+      this.instance.orgRole(orgRole);
+      return this;
+    }
+    
+    /**
+    * returns a built InvitationRequestOrganizationsInner instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public InvitationRequestOrganizationsInner build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

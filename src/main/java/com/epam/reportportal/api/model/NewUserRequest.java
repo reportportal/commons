@@ -1,13 +1,9 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 import javax.annotation.Generated;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
@@ -16,98 +12,8 @@ import javax.validation.constraints.Size;
  */
 
 @Schema(name = "NewUserRequest", description = "New user creation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class NewUserRequest {
-
-  private String email;
-
-  private String fullName;
-
-  /**
-   * Instance account role.
-   */
-  public enum InstanceRoleEnum {
-    ADMINISTRATOR("ADMINISTRATOR"),
-    
-    USER("USER");
-
-    private String value;
-
-    InstanceRoleEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static InstanceRoleEnum fromValue(String value) {
-      for (InstanceRoleEnum b : InstanceRoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  private InstanceRoleEnum instanceRole = InstanceRoleEnum.USER;
-
-  /**
-   * Indicates through which service or authentication method the user account was created.
-   */
-  public enum AccountTypeEnum {
-    INTERNAL("INTERNAL"),
-    
-    UPSA("UPSA"),
-    
-    GITHUB("GITHUB"),
-    
-    LDAP("LDAP"),
-    
-    SAML("SAML"),
-    
-    SCIM("SCIM");
-
-    private String value;
-
-    AccountTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AccountTypeEnum fromValue(String value) {
-      for (AccountTypeEnum b : AccountTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  private AccountTypeEnum accountType = AccountTypeEnum.INTERNAL;
-
-  private String externalId;
-
-  private Boolean active = true;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class NewUserRequest extends UserBase {
 
   private String password;
 
@@ -119,128 +25,15 @@ public class NewUserRequest {
    * Constructor with only required parameters
    */
   public NewUserRequest(String email, String fullName) {
-    this.email = email;
-    this.fullName = fullName;
-  }
-
-  public NewUserRequest email(String email) {
-    this.email = email;
-    return this;
+    super(email, fullName);
   }
 
   /**
-   * User email.
-   * @return email
-  */
-  @NotNull @Email
-  @Schema(name = "email", description = "User email.", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("email")
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public NewUserRequest fullName(String fullName) {
-    this.fullName = fullName;
-    return this;
-  }
-
-  /**
-   * Display name.
-   * @return fullName
-  */
-  @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
-  @Schema(name = "full_name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("full_name")
-  public String getFullName() {
-    return fullName;
-  }
-
-  public void setFullName(String fullName) {
-    this.fullName = fullName;
-  }
-
-  public NewUserRequest instanceRole(InstanceRoleEnum instanceRole) {
-    this.instanceRole = instanceRole;
-    return this;
-  }
-
-  /**
-   * Instance account role.
-   * @return instanceRole
-  */
-  
-  @Schema(name = "instance_role", description = "Instance account role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("instance_role")
-  public InstanceRoleEnum getInstanceRole() {
-    return instanceRole;
-  }
-
-  public void setInstanceRole(InstanceRoleEnum instanceRole) {
-    this.instanceRole = instanceRole;
-  }
-
-  public NewUserRequest accountType(AccountTypeEnum accountType) {
-    this.accountType = accountType;
-    return this;
-  }
-
-  /**
-   * Indicates through which service or authentication method the user account was created.
-   * @return accountType
-  */
-  
-  @Schema(name = "account_type", description = "Indicates through which service or authentication method the user account was created.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("account_type")
-  public AccountTypeEnum getAccountType() {
-    return accountType;
-  }
-
-  public void setAccountType(AccountTypeEnum accountType) {
-    this.accountType = accountType;
-  }
-
-  public NewUserRequest externalId(String externalId) {
-    this.externalId = externalId;
-    return this;
-  }
-
-  /**
-   * User external identifier. Provided by external systems.
-   * @return externalId
-  */
-  
-  @Schema(name = "external_id", description = "User external identifier. Provided by external systems.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("external_id")
-  public String getExternalId() {
-    return externalId;
-  }
-
-  public void setExternalId(String externalId) {
-    this.externalId = externalId;
-  }
-
-  public NewUserRequest active(Boolean active) {
-    this.active = active;
-    return this;
-  }
-
-  /**
-   * Soft delete user attribute.
-   * @return active
-  */
-  
-  @Schema(name = "active", description = "Soft delete user attribute.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("active")
-  public Boolean getActive() {
-    return active;
-  }
-
-  public void setActive(Boolean active) {
-    this.active = active;
+   * Constructor with all args parameters
+   */
+  public NewUserRequest(String password, String email, String fullName, InstanceRoleEnum instanceRole, AccountTypeEnum accountType, String externalId, Boolean active) {
+      super(email, fullName, instanceRole, accountType, externalId, active);
+      this.password = password;
   }
 
   public NewUserRequest password(String password) {
@@ -251,7 +44,7 @@ public class NewUserRequest {
   /**
    * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
    * @return password
-  */
+   */
   @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$") @Size(min = 8, max = 256) 
   @Schema(name = "password", description = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("password")
@@ -263,6 +56,36 @@ public class NewUserRequest {
     this.password = password;
   }
 
+
+  public NewUserRequest email(String email) {
+    super.email(email);
+    return this;
+  }
+
+  public NewUserRequest fullName(String fullName) {
+    super.fullName(fullName);
+    return this;
+  }
+
+  public NewUserRequest instanceRole(InstanceRoleEnum instanceRole) {
+    super.instanceRole(instanceRole);
+    return this;
+  }
+
+  public NewUserRequest accountType(AccountTypeEnum accountType) {
+    super.accountType(accountType);
+    return this;
+  }
+
+  public NewUserRequest externalId(String externalId) {
+    super.externalId(externalId);
+    return this;
+  }
+
+  public NewUserRequest active(Boolean active) {
+    super.active(active);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -272,30 +95,20 @@ public class NewUserRequest {
       return false;
     }
     NewUserRequest newUserRequest = (NewUserRequest) o;
-    return Objects.equals(this.email, newUserRequest.email) &&
-        Objects.equals(this.fullName, newUserRequest.fullName) &&
-        Objects.equals(this.instanceRole, newUserRequest.instanceRole) &&
-        Objects.equals(this.accountType, newUserRequest.accountType) &&
-        Objects.equals(this.externalId, newUserRequest.externalId) &&
-        Objects.equals(this.active, newUserRequest.active) &&
-        Objects.equals(this.password, newUserRequest.password);
+    return Objects.equals(this.password, newUserRequest.password) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, fullName, instanceRole, accountType, externalId, active, password);
+    return Objects.hash(password, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class NewUserRequest {\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
-    sb.append("    instanceRole: ").append(toIndentedString(instanceRole)).append("\n");
-    sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
-    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
-    sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -311,5 +124,102 @@ public class NewUserRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends UserBase.Builder {
+
+    private NewUserRequest instance;
+
+    public Builder() {
+      this(new NewUserRequest());
+    }
+
+    protected Builder(NewUserRequest instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(NewUserRequest value) { 
+      super.copyOf(instance);
+      this.instance.setPassword(value.password);
+      return this;
+    }
+
+    public Builder password(String password) {
+      this.instance.password(password);
+      return this;
+    }
+    
+    @Override
+    public Builder email(String email) {
+      this.instance.email(email);
+      return this;
+    }
+    
+    @Override
+    public Builder fullName(String fullName) {
+      this.instance.fullName(fullName);
+      return this;
+    }
+    
+    @Override
+    public Builder instanceRole(InstanceRoleEnum instanceRole) {
+      this.instance.instanceRole(instanceRole);
+      return this;
+    }
+    
+    @Override
+    public Builder accountType(AccountTypeEnum accountType) {
+      this.instance.accountType(accountType);
+      return this;
+    }
+    
+    @Override
+    public Builder externalId(String externalId) {
+      this.instance.externalId(externalId);
+      return this;
+    }
+    
+    @Override
+    public Builder active(Boolean active) {
+      this.instance.active(active);
+      return this;
+    }
+    
+    /**
+    * returns a built NewUserRequest instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public NewUserRequest build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

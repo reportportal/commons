@@ -12,7 +12,7 @@ import javax.validation.constraints.Size;
  * ProjectBase
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class ProjectBase {
 
   private String name;
@@ -30,6 +30,14 @@ public class ProjectBase {
     this.name = name;
   }
 
+  /**
+   * Constructor with all args parameters
+   */
+  public ProjectBase(String name, String slug) {
+      this.name = name;
+      this.slug = slug;
+  }
+
   public ProjectBase name(String name) {
     this.name = name;
     return this;
@@ -38,7 +46,7 @@ public class ProjectBase {
   /**
    * Display name.
    * @return name
-  */
+   */
   @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
   @Schema(name = "name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("name")
@@ -58,7 +66,7 @@ public class ProjectBase {
   /**
    * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.
    * @return slug
-  */
+   */
   @Pattern(regexp = "^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min = 3, max = 60) 
   @Schema(name = "slug", description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("slug")
@@ -108,5 +116,69 @@ public class ProjectBase {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private ProjectBase instance;
+
+    public Builder() {
+      this(new ProjectBase());
+    }
+
+    protected Builder(ProjectBase instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(ProjectBase value) { 
+      this.instance.setName(value.name);
+      this.instance.setSlug(value.slug);
+      return this;
+    }
+
+    public Builder name(String name) {
+      this.instance.name(name);
+      return this;
+    }
+    
+    public Builder slug(String slug) {
+      this.instance.slug(slug);
+      return this;
+    }
+    
+    /**
+    * returns a built ProjectBase instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public ProjectBase build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

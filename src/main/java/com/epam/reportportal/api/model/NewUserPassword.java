@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
  */
 
 @Schema(name = "NewUserPassword", description = "Change user password.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class NewUserPassword {
 
   private String oldPassword;
@@ -25,7 +25,7 @@ public class NewUserPassword {
   }
 
   /**
-   * Constructor with only required parameters
+   * Constructor with only required parameters and all parameters
    */
   public NewUserPassword(String oldPassword, String newPassword) {
     this.oldPassword = oldPassword;
@@ -40,7 +40,7 @@ public class NewUserPassword {
   /**
    * Old user password.
    * @return oldPassword
-  */
+   */
   @NotNull 
   @Schema(name = "old_password", description = "Old user password.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("old_password")
@@ -60,7 +60,7 @@ public class NewUserPassword {
   /**
    * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
    * @return newPassword
-  */
+   */
   @NotNull @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$") @Size(min = 8, max = 256) 
   @Schema(name = "new_password", description = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("new_password")
@@ -110,5 +110,69 @@ public class NewUserPassword {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private NewUserPassword instance;
+
+    public Builder() {
+      this(new NewUserPassword());
+    }
+
+    protected Builder(NewUserPassword instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(NewUserPassword value) { 
+      this.instance.setOldPassword(value.oldPassword);
+      this.instance.setNewPassword(value.newPassword);
+      return this;
+    }
+
+    public Builder oldPassword(String oldPassword) {
+      this.instance.oldPassword(oldPassword);
+      return this;
+    }
+    
+    public Builder newPassword(String newPassword) {
+      this.instance.newPassword(newPassword);
+      return this;
+    }
+    
+    /**
+    * returns a built NewUserPassword instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public NewUserPassword build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

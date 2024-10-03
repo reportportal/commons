@@ -13,12 +13,24 @@ import javax.validation.constraints.Min;
  */
 
 @JsonTypeName("OrganizationStats_relationships_billing_meta")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class OrganizationStatsRelationshipsBillingMeta {
 
   private String planName;
 
   private Integer storageUsage;
+
+  public OrganizationStatsRelationshipsBillingMeta() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public OrganizationStatsRelationshipsBillingMeta(String planName, Integer storageUsage) {
+      this.planName = planName;
+      this.storageUsage = storageUsage;
+  }
 
   public OrganizationStatsRelationshipsBillingMeta planName(String planName) {
     this.planName = planName;
@@ -28,7 +40,7 @@ public class OrganizationStatsRelationshipsBillingMeta {
   /**
    * Plan name.
    * @return planName
-  */
+   */
   
   @Schema(name = "plan_name", description = "Plan name.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("plan_name")
@@ -50,7 +62,7 @@ public class OrganizationStatsRelationshipsBillingMeta {
    * minimum: 0
    * maximum: 100
    * @return storageUsage
-  */
+   */
   @Min(0) @Max(100) 
   @Schema(name = "storage_usage", description = "Storage usage in percents.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("storage_usage")
@@ -100,5 +112,69 @@ public class OrganizationStatsRelationshipsBillingMeta {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private OrganizationStatsRelationshipsBillingMeta instance;
+
+    public Builder() {
+      this(new OrganizationStatsRelationshipsBillingMeta());
+    }
+
+    protected Builder(OrganizationStatsRelationshipsBillingMeta instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(OrganizationStatsRelationshipsBillingMeta value) { 
+      this.instance.setPlanName(value.planName);
+      this.instance.setStorageUsage(value.storageUsage);
+      return this;
+    }
+
+    public Builder planName(String planName) {
+      this.instance.planName(planName);
+      return this;
+    }
+    
+    public Builder storageUsage(Integer storageUsage) {
+      this.instance.storageUsage(storageUsage);
+      return this;
+    }
+    
+    /**
+    * returns a built OrganizationStatsRelationshipsBillingMeta instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public OrganizationStatsRelationshipsBillingMeta build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

@@ -11,10 +11,21 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("Successful_update")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class SuccessfulUpdate {
 
   private String message;
+
+  public SuccessfulUpdate() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public SuccessfulUpdate(String message) {
+      this.message = message;
+  }
 
   public SuccessfulUpdate message(String message) {
     this.message = message;
@@ -24,7 +35,7 @@ public class SuccessfulUpdate {
   /**
    * Get message
    * @return message
-  */
+   */
   
   @Schema(name = "message", example = "The update was completed successfully.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("message")
@@ -72,5 +83,63 @@ public class SuccessfulUpdate {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private SuccessfulUpdate instance;
+
+    public Builder() {
+      this(new SuccessfulUpdate());
+    }
+
+    protected Builder(SuccessfulUpdate instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(SuccessfulUpdate value) { 
+      this.instance.setMessage(value.message);
+      return this;
+    }
+
+    public Builder message(String message) {
+      this.instance.message(message);
+      return this;
+    }
+    
+    /**
+    * returns a built SuccessfulUpdate instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public SuccessfulUpdate build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

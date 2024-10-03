@@ -12,11 +12,22 @@ import javax.validation.Valid;
  * SearchCriteria
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class SearchCriteria {
 
   @Valid
-  private List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria;
+  private List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria = new ArrayList<>();
+
+  public SearchCriteria() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public SearchCriteria(List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria) {
+      this.searchCriteria = searchCriteria;
+  }
 
   public SearchCriteria searchCriteria(List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria) {
     this.searchCriteria = searchCriteria;
@@ -34,7 +45,7 @@ public class SearchCriteria {
   /**
    * Get searchCriteria
    * @return searchCriteria
-  */
+   */
   @Valid 
   @Schema(name = "search_criteria", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("search_criteria")
@@ -82,5 +93,63 @@ public class SearchCriteria {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private SearchCriteria instance;
+
+    public Builder() {
+      this(new SearchCriteria());
+    }
+
+    protected Builder(SearchCriteria instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(SearchCriteria value) { 
+      this.instance.setSearchCriteria(value.searchCriteria);
+      return this;
+    }
+
+    public Builder searchCriteria(List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria) {
+      this.instance.searchCriteria(searchCriteria);
+      return this;
+    }
+    
+    /**
+    * returns a built SearchCriteria instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public SearchCriteria build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

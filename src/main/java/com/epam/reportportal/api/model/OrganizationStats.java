@@ -11,10 +11,21 @@ import javax.validation.Valid;
  */
 
 @Schema(name = "OrganizationStats", description = "General information about the organization.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class OrganizationStats {
 
   private OrganizationStatsRelationships relationships;
+
+  public OrganizationStats() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public OrganizationStats(OrganizationStatsRelationships relationships) {
+      this.relationships = relationships;
+  }
 
   public OrganizationStats relationships(OrganizationStatsRelationships relationships) {
     this.relationships = relationships;
@@ -24,7 +35,7 @@ public class OrganizationStats {
   /**
    * Get relationships
    * @return relationships
-  */
+   */
   @Valid 
   @Schema(name = "relationships", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("relationships")
@@ -72,5 +83,63 @@ public class OrganizationStats {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private OrganizationStats instance;
+
+    public Builder() {
+      this(new OrganizationStats());
+    }
+
+    protected Builder(OrganizationStats instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(OrganizationStats value) { 
+      this.instance.setRelationships(value.relationships);
+      return this;
+    }
+
+    public Builder relationships(OrganizationStatsRelationships relationships) {
+      this.instance.relationships(relationships);
+      return this;
+    }
+    
+    /**
+    * returns a built OrganizationStats instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public OrganizationStats build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

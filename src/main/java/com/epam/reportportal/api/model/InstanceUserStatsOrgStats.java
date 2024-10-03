@@ -11,10 +11,21 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("InstanceUserStats_org_stats")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class InstanceUserStatsOrgStats {
 
   private Integer totalCount;
+
+  public InstanceUserStatsOrgStats() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public InstanceUserStatsOrgStats(Integer totalCount) {
+      this.totalCount = totalCount;
+  }
 
   public InstanceUserStatsOrgStats totalCount(Integer totalCount) {
     this.totalCount = totalCount;
@@ -24,7 +35,7 @@ public class InstanceUserStatsOrgStats {
   /**
    * Total number of user's organisations
    * @return totalCount
-  */
+   */
   
   @Schema(name = "total_count", description = "Total number of user's organisations", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("total_count")
@@ -72,5 +83,63 @@ public class InstanceUserStatsOrgStats {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private InstanceUserStatsOrgStats instance;
+
+    public Builder() {
+      this(new InstanceUserStatsOrgStats());
+    }
+
+    protected Builder(InstanceUserStatsOrgStats instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(InstanceUserStatsOrgStats value) { 
+      this.instance.setTotalCount(value.totalCount);
+      return this;
+    }
+
+    public Builder totalCount(Integer totalCount) {
+      this.instance.totalCount(totalCount);
+      return this;
+    }
+    
+    /**
+    * returns a built InstanceUserStatsOrgStats instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public InstanceUserStatsOrgStats build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

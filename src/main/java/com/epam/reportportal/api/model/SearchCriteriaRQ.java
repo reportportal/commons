@@ -1,151 +1,33 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 /**
  * SearchCriteriaRQ
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class SearchCriteriaRQ {
-
-  private Integer offset = 0;
-
-  private Integer limit = 300;
-
-  private String sort;
-
-  /**
-   * To indicate sorting direction. Ascending or Descending.
-   */
-  public enum OrderEnum {
-    ASC("ASC"),
-    
-    DESC("DESC");
-
-    private String value;
-
-    OrderEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OrderEnum fromValue(String value) {
-      for (OrderEnum b : OrderEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  private OrderEnum order = OrderEnum.ASC;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class SearchCriteriaRQ extends OffsetRequest {
 
   @Valid
-  private List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria;
+  private List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria = new ArrayList<>();
 
-  public SearchCriteriaRQ offset(Integer offset) {
-    this.offset = offset;
-    return this;
+  public SearchCriteriaRQ() {
+    super();
   }
 
   /**
-   * The offset used for this page of results.
-   * minimum: 0
-   * @return offset
-  */
-  @Min(0) 
-  @Schema(name = "offset", description = "The offset used for this page of results.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("offset")
-  public Integer getOffset() {
-    return offset;
-  }
-
-  public void setOffset(Integer offset) {
-    this.offset = offset;
-  }
-
-  public SearchCriteriaRQ limit(Integer limit) {
-    this.limit = limit;
-    return this;
-  }
-
-  /**
-   * The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.
-   * minimum: 0
-   * maximum: 1000
-   * @return limit
-  */
-  @Min(0) @Max(1000) 
-  @Schema(name = "limit", description = "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("limit")
-  public Integer getLimit() {
-    return limit;
-  }
-
-  public void setLimit(Integer limit) {
-    this.limit = limit;
-  }
-
-  public SearchCriteriaRQ sort(String sort) {
-    this.sort = sort;
-    return this;
-  }
-
-  /**
-   * Field to define the sort field.
-   * @return sort
-  */
-  
-  @Schema(name = "sort", description = "Field to define the sort field.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("sort")
-  public String getSort() {
-    return sort;
-  }
-
-  public void setSort(String sort) {
-    this.sort = sort;
-  }
-
-  public SearchCriteriaRQ order(OrderEnum order) {
-    this.order = order;
-    return this;
-  }
-
-  /**
-   * To indicate sorting direction. Ascending or Descending.
-   * @return order
-  */
-  
-  @Schema(name = "order", description = "To indicate sorting direction. Ascending or Descending.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("order")
-  public OrderEnum getOrder() {
-    return order;
-  }
-
-  public void setOrder(OrderEnum order) {
-    this.order = order;
+   * Constructor with all args parameters
+   */
+  public SearchCriteriaRQ(List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria, Integer offset, Integer limit, String sort, OrderEnum order) {
+      super(offset, limit, sort, order);
+      this.searchCriteria = searchCriteria;
   }
 
   public SearchCriteriaRQ searchCriteria(List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria) {
@@ -164,7 +46,7 @@ public class SearchCriteriaRQ {
   /**
    * Get searchCriteria
    * @return searchCriteria
-  */
+   */
   @Valid 
   @Schema(name = "search_criteria", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("search_criteria")
@@ -176,6 +58,26 @@ public class SearchCriteriaRQ {
     this.searchCriteria = searchCriteria;
   }
 
+
+  public SearchCriteriaRQ offset(Integer offset) {
+    super.offset(offset);
+    return this;
+  }
+
+  public SearchCriteriaRQ limit(Integer limit) {
+    super.limit(limit);
+    return this;
+  }
+
+  public SearchCriteriaRQ sort(String sort) {
+    super.sort(sort);
+    return this;
+  }
+
+  public SearchCriteriaRQ order(OrderEnum order) {
+    super.order(order);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -185,26 +87,20 @@ public class SearchCriteriaRQ {
       return false;
     }
     SearchCriteriaRQ searchCriteriaRQ = (SearchCriteriaRQ) o;
-    return Objects.equals(this.offset, searchCriteriaRQ.offset) &&
-        Objects.equals(this.limit, searchCriteriaRQ.limit) &&
-        Objects.equals(this.sort, searchCriteriaRQ.sort) &&
-        Objects.equals(this.order, searchCriteriaRQ.order) &&
-        Objects.equals(this.searchCriteria, searchCriteriaRQ.searchCriteria);
+    return Objects.equals(this.searchCriteria, searchCriteriaRQ.searchCriteria) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(offset, limit, sort, order, searchCriteria);
+    return Objects.hash(searchCriteria, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchCriteriaRQ {\n");
-    sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
-    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
-    sb.append("    sort: ").append(toIndentedString(sort)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    searchCriteria: ").append(toIndentedString(searchCriteria)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -220,5 +116,90 @@ public class SearchCriteriaRQ {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends OffsetRequest.Builder {
+
+    private SearchCriteriaRQ instance;
+
+    public Builder() {
+      this(new SearchCriteriaRQ());
+    }
+
+    protected Builder(SearchCriteriaRQ instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(SearchCriteriaRQ value) { 
+      super.copyOf(instance);
+      this.instance.setSearchCriteria(value.searchCriteria);
+      return this;
+    }
+
+    public Builder searchCriteria(List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria) {
+      this.instance.searchCriteria(searchCriteria);
+      return this;
+    }
+    
+    @Override
+    public Builder offset(Integer offset) {
+      this.instance.offset(offset);
+      return this;
+    }
+    
+    @Override
+    public Builder limit(Integer limit) {
+      this.instance.limit(limit);
+      return this;
+    }
+    
+    @Override
+    public Builder sort(String sort) {
+      this.instance.sort(sort);
+      return this;
+    }
+    
+    @Override
+    public Builder order(OrderEnum order) {
+      this.instance.order(order);
+      return this;
+    }
+    
+    /**
+    * returns a built SearchCriteriaRQ instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public SearchCriteriaRQ build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

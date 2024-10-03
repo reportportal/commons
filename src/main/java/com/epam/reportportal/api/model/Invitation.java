@@ -22,7 +22,7 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 
 @Schema(name = "Invitation", description = "Invitation information.  Invitation status can be `PENDING` or `ACTIVATED`.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class Invitation {
 
   private UUID id;
@@ -91,6 +91,20 @@ public class Invitation {
     this.status = status;
   }
 
+  /**
+   * Constructor with all args parameters
+   */
+  public Invitation(UUID id, Long userId, String fullName, String email, StatusEnum status, URI link, Instant createdAt, Instant expiresAt) {
+      this.id = id;
+      this.userId = userId;
+      this.fullName = fullName;
+      this.email = email;
+      this.status = status;
+      this.link = link;
+      this.createdAt = createdAt;
+      this.expiresAt = expiresAt;
+  }
+
   public Invitation id(UUID id) {
     this.id = id;
     return this;
@@ -99,7 +113,7 @@ public class Invitation {
   /**
    * Invitation identifier.
    * @return id
-  */
+   */
   @NotNull @Valid 
   @Schema(name = "id", description = "Invitation identifier.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("id")
@@ -120,7 +134,7 @@ public class Invitation {
    * User identifier.
    * minimum: 0
    * @return userId
-  */
+   */
   @Min(0L) 
   @Schema(name = "user_id", description = "User identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("user_id")
@@ -140,7 +154,7 @@ public class Invitation {
   /**
    * Display name.
    * @return fullName
-  */
+   */
   @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
   @Schema(name = "full_name", description = "Display name.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("full_name")
@@ -160,7 +174,7 @@ public class Invitation {
   /**
    * User's email.
    * @return email
-  */
+   */
   @NotNull @Email
   @Schema(name = "email", description = "User's email.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("email")
@@ -180,7 +194,7 @@ public class Invitation {
   /**
    * User invitations status.
    * @return status
-  */
+   */
   @NotNull 
   @Schema(name = "status", description = "User invitations status.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("status")
@@ -200,7 +214,7 @@ public class Invitation {
   /**
    * Link to invitation form.
    * @return link
-  */
+   */
   @Valid 
   @Schema(name = "link", description = "Link to invitation form.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("link")
@@ -220,7 +234,7 @@ public class Invitation {
   /**
    * Creation date.
    * @return createdAt
-  */
+   */
   @Valid 
   @Schema(name = "created_at", description = "Creation date.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("created_at")
@@ -240,7 +254,7 @@ public class Invitation {
   /**
    * Expiration date.
    * @return expiresAt
-  */
+   */
   @Valid 
   @Schema(name = "expires_at", description = "Expiration date.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("expires_at")
@@ -302,5 +316,105 @@ public class Invitation {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private Invitation instance;
+
+    public Builder() {
+      this(new Invitation());
+    }
+
+    protected Builder(Invitation instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(Invitation value) { 
+      this.instance.setId(value.id);
+      this.instance.setUserId(value.userId);
+      this.instance.setFullName(value.fullName);
+      this.instance.setEmail(value.email);
+      this.instance.setStatus(value.status);
+      this.instance.setLink(value.link);
+      this.instance.setCreatedAt(value.createdAt);
+      this.instance.setExpiresAt(value.expiresAt);
+      return this;
+    }
+
+    public Builder id(UUID id) {
+      this.instance.id(id);
+      return this;
+    }
+    
+    public Builder userId(Long userId) {
+      this.instance.userId(userId);
+      return this;
+    }
+    
+    public Builder fullName(String fullName) {
+      this.instance.fullName(fullName);
+      return this;
+    }
+    
+    public Builder email(String email) {
+      this.instance.email(email);
+      return this;
+    }
+    
+    public Builder status(StatusEnum status) {
+      this.instance.status(status);
+      return this;
+    }
+    
+    public Builder link(URI link) {
+      this.instance.link(link);
+      return this;
+    }
+    
+    public Builder createdAt(Instant createdAt) {
+      this.instance.createdAt(createdAt);
+      return this;
+    }
+    
+    public Builder expiresAt(Instant expiresAt) {
+      this.instance.expiresAt(expiresAt);
+      return this;
+    }
+    
+    /**
+    * returns a built Invitation instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public Invitation build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

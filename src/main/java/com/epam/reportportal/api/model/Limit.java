@@ -11,12 +11,24 @@ import javax.validation.constraints.Min;
  */
 
 @Schema(name = "Limit", description = "")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class Limit {
 
   private Integer limit;
 
   private Integer count;
+
+  public Limit() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public Limit(Integer limit, Integer count) {
+      this.limit = limit;
+      this.count = count;
+  }
 
   public Limit limit(Integer limit) {
     this.limit = limit;
@@ -27,7 +39,7 @@ public class Limit {
    * The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.
    * minimum: 0
    * @return limit
-  */
+   */
   @Min(0) 
   @Schema(name = "limit", description = "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("limit")
@@ -48,7 +60,7 @@ public class Limit {
    * The number of results returned in this page of results.
    * minimum: 0
    * @return count
-  */
+   */
   @Min(0) 
   @Schema(name = "count", description = "The number of results returned in this page of results.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("count")
@@ -98,5 +110,69 @@ public class Limit {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private Limit instance;
+
+    public Builder() {
+      this(new Limit());
+    }
+
+    protected Builder(Limit instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(Limit value) { 
+      this.instance.setLimit(value.limit);
+      this.instance.setCount(value.count);
+      return this;
+    }
+
+    public Builder limit(Integer limit) {
+      this.instance.limit(limit);
+      return this;
+    }
+    
+    public Builder count(Integer count) {
+      this.instance.count(count);
+      return this;
+    }
+    
+    /**
+    * returns a built Limit instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public Limit build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

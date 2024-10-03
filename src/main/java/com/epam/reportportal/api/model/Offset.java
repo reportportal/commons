@@ -1,19 +1,19 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 import javax.annotation.Generated;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import org.springframework.data.domain.Sort;
 
 /**
  * Offset-based pagination
  */
 
 @Schema(name = "Offset", description = "Offset-based pagination")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class Offset {
 
   private Integer offset = 0;
@@ -24,42 +24,22 @@ public class Offset {
 
   private String sort;
 
-  /**
-   * To indicate sorting direction. Ascending or Descending.
-   */
-  public enum OrderEnum {
-    ASC("ASC"),
-    
-    DESC("DESC");
+  private Sort.Direction order;
 
-    private String value;
-
-    OrderEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OrderEnum fromValue(String value) {
-      for (OrderEnum b : OrderEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
+  public Offset() {
+    super();
   }
 
-  private OrderEnum order;
+  /**
+   * Constructor with all args parameters
+   */
+  public Offset(Integer offset, Integer limit, Integer totalCount, String sort, Sort.Direction order) {
+      this.offset = offset;
+      this.limit = limit;
+      this.totalCount = totalCount;
+      this.sort = sort;
+      this.order = order;
+  }
 
   public Offset offset(Integer offset) {
     this.offset = offset;
@@ -70,7 +50,7 @@ public class Offset {
    * The offset used for this page of results.
    * minimum: 0
    * @return offset
-  */
+   */
   @Min(0) 
   @Schema(name = "offset", description = "The offset used for this page of results.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("offset")
@@ -91,7 +71,7 @@ public class Offset {
    * The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.
    * minimum: 0
    * @return limit
-  */
+   */
   @Min(0) 
   @Schema(name = "limit", description = "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("limit")
@@ -112,7 +92,7 @@ public class Offset {
    * One greater than the offset of the last item in the entire collection. The total number of items in the collection may be less than total_count.
    * minimum: 0
    * @return totalCount
-  */
+   */
   @Min(0) 
   @Schema(name = "total_count", description = "One greater than the offset of the last item in the entire collection. The total number of items in the collection may be less than total_count.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("total_count")
@@ -132,7 +112,7 @@ public class Offset {
   /**
    * Field to define the sort field.
    * @return sort
-  */
+   */
   
   @Schema(name = "sort", description = "Field to define the sort field.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("sort")
@@ -144,23 +124,23 @@ public class Offset {
     this.sort = sort;
   }
 
-  public Offset order(OrderEnum order) {
+  public Offset order(Sort.Direction order) {
     this.order = order;
     return this;
   }
 
   /**
-   * To indicate sorting direction. Ascending or Descending.
+   * Get order
    * @return order
-  */
-  
-  @Schema(name = "order", description = "To indicate sorting direction. Ascending or Descending.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+   */
+  @Valid 
+  @Schema(name = "order", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("order")
-  public OrderEnum getOrder() {
+  public Sort.Direction getOrder() {
     return order;
   }
 
-  public void setOrder(OrderEnum order) {
+  public void setOrder(Sort.Direction order) {
     this.order = order;
   }
 
@@ -208,5 +188,87 @@ public class Offset {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private Offset instance;
+
+    public Builder() {
+      this(new Offset());
+    }
+
+    protected Builder(Offset instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(Offset value) { 
+      this.instance.setOffset(value.offset);
+      this.instance.setLimit(value.limit);
+      this.instance.setTotalCount(value.totalCount);
+      this.instance.setSort(value.sort);
+      this.instance.setOrder(value.order);
+      return this;
+    }
+
+    public Builder offset(Integer offset) {
+      this.instance.offset(offset);
+      return this;
+    }
+    
+    public Builder limit(Integer limit) {
+      this.instance.limit(limit);
+      return this;
+    }
+    
+    public Builder totalCount(Integer totalCount) {
+      this.instance.totalCount(totalCount);
+      return this;
+    }
+    
+    public Builder sort(String sort) {
+      this.instance.sort(sort);
+      return this;
+    }
+    
+    public Builder order(Sort.Direction order) {
+      this.instance.order(order);
+      return this;
+    }
+    
+    /**
+    * returns a built Offset instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public Offset build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

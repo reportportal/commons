@@ -13,7 +13,7 @@ import javax.validation.constraints.Size;
  */
 
 @Schema(name = "OrganizationBase", description = "Basic information provided by the client.  A `slug` is a unique identifying part of an organization. Generated according to the organization name if not specified by the user. ")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class OrganizationBase {
 
   private String name;
@@ -31,6 +31,14 @@ public class OrganizationBase {
     this.name = name;
   }
 
+  /**
+   * Constructor with all args parameters
+   */
+  public OrganizationBase(String name, String slug) {
+      this.name = name;
+      this.slug = slug;
+  }
+
   public OrganizationBase name(String name) {
     this.name = name;
     return this;
@@ -39,7 +47,7 @@ public class OrganizationBase {
   /**
    * Display name.
    * @return name
-  */
+   */
   @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
   @Schema(name = "name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("name")
@@ -59,7 +67,7 @@ public class OrganizationBase {
   /**
    * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.
    * @return slug
-  */
+   */
   @Pattern(regexp = "^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min = 3, max = 60) 
   @Schema(name = "slug", description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("slug")
@@ -109,5 +117,69 @@ public class OrganizationBase {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private OrganizationBase instance;
+
+    public Builder() {
+      this(new OrganizationBase());
+    }
+
+    protected Builder(OrganizationBase instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(OrganizationBase value) { 
+      this.instance.setName(value.name);
+      this.instance.setSlug(value.slug);
+      return this;
+    }
+
+    public Builder name(String name) {
+      this.instance.name(name);
+      return this;
+    }
+    
+    public Builder slug(String slug) {
+      this.instance.slug(slug);
+      return this;
+    }
+    
+    /**
+    * returns a built OrganizationBase instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public OrganizationBase build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

@@ -9,9 +9,6 @@ import java.util.Objects;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -19,12 +16,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 
 @Schema(name = "OrganizationInfo", description = "Various information about an organization.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class OrganizationInfo {
-
-  private String name;
-
-  private String slug;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class OrganizationInfo extends OrganizationBase {
 
   private OrganizationStatsRelationships relationships;
 
@@ -85,47 +78,20 @@ public class OrganizationInfo {
    * Constructor with only required parameters
    */
   public OrganizationInfo(String name) {
-    this.name = name;
-  }
-
-  public OrganizationInfo name(String name) {
-    this.name = name;
-    return this;
+    super(name);
   }
 
   /**
-   * Display name.
-   * @return name
-  */
-  @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
-  @Schema(name = "name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("name")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public OrganizationInfo slug(String slug) {
-    this.slug = slug;
-    return this;
-  }
-
-  /**
-   * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.
-   * @return slug
-  */
-  @Pattern(regexp = "^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min = 3, max = 60) 
-  @Schema(name = "slug", description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("slug")
-  public String getSlug() {
-    return slug;
-  }
-
-  public void setSlug(String slug) {
-    this.slug = slug;
+   * Constructor with all args parameters
+   */
+  public OrganizationInfo(OrganizationStatsRelationships relationships, Long id, TypeEnum type, String externalId, Instant createdAt, Instant updatedAt, String name, String slug) {
+      super(name, slug);
+      this.relationships = relationships;
+      this.id = id;
+      this.type = type;
+      this.externalId = externalId;
+      this.createdAt = createdAt;
+      this.updatedAt = updatedAt;
   }
 
   public OrganizationInfo relationships(OrganizationStatsRelationships relationships) {
@@ -136,7 +102,7 @@ public class OrganizationInfo {
   /**
    * Get relationships
    * @return relationships
-  */
+   */
   @Valid 
   @Schema(name = "relationships", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("relationships")
@@ -157,7 +123,7 @@ public class OrganizationInfo {
    * Organization ReportPortal identifier.
    * minimum: 0
    * @return id
-  */
+   */
   @Min(0L) 
   @Schema(name = "id", description = "Organization ReportPortal identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -177,7 +143,7 @@ public class OrganizationInfo {
   /**
    * Type for automatization purposes.  There are three types: - INTERNAL: created by API request. - PERSONAL: created for a user after the user creating. Only Enterprise edition feature. - EXTERNAL: created for external integrations.
    * @return type
-  */
+   */
   
   @Schema(name = "type", description = "Type for automatization purposes.  There are three types: - INTERNAL: created by API request. - PERSONAL: created for a user after the user creating. Only Enterprise edition feature. - EXTERNAL: created for external integrations.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("type")
@@ -197,7 +163,7 @@ public class OrganizationInfo {
   /**
    * External organization identifier. It is created for integration.
    * @return externalId
-  */
+   */
   
   @Schema(name = "external_id", description = "External organization identifier. It is created for integration.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("external_id")
@@ -217,7 +183,7 @@ public class OrganizationInfo {
   /**
    * Creation date.
    * @return createdAt
-  */
+   */
   @Valid 
   @Schema(name = "created_at", description = "Creation date.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("created_at")
@@ -237,7 +203,7 @@ public class OrganizationInfo {
   /**
    * Last update date.
    * @return updatedAt
-  */
+   */
   @Valid 
   @Schema(name = "updated_at", description = "Last update date.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("updated_at")
@@ -249,6 +215,16 @@ public class OrganizationInfo {
     this.updatedAt = updatedAt;
   }
 
+
+  public OrganizationInfo name(String name) {
+    super.name(name);
+    return this;
+  }
+
+  public OrganizationInfo slug(String slug) {
+    super.slug(slug);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -258,27 +234,25 @@ public class OrganizationInfo {
       return false;
     }
     OrganizationInfo organizationInfo = (OrganizationInfo) o;
-    return Objects.equals(this.name, organizationInfo.name) &&
-        Objects.equals(this.slug, organizationInfo.slug) &&
-        Objects.equals(this.relationships, organizationInfo.relationships) &&
+    return Objects.equals(this.relationships, organizationInfo.relationships) &&
         Objects.equals(this.id, organizationInfo.id) &&
         Objects.equals(this.type, organizationInfo.type) &&
         Objects.equals(this.externalId, organizationInfo.externalId) &&
         Objects.equals(this.createdAt, organizationInfo.createdAt) &&
-        Objects.equals(this.updatedAt, organizationInfo.updatedAt);
+        Objects.equals(this.updatedAt, organizationInfo.updatedAt) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, slug, relationships, id, type, externalId, createdAt, updatedAt);
+    return Objects.hash(relationships, id, type, externalId, createdAt, updatedAt, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrganizationInfo {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
@@ -299,5 +273,108 @@ public class OrganizationInfo {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends OrganizationBase.Builder {
+
+    private OrganizationInfo instance;
+
+    public Builder() {
+      this(new OrganizationInfo());
+    }
+
+    protected Builder(OrganizationInfo instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(OrganizationInfo value) { 
+      super.copyOf(instance);
+      this.instance.setRelationships(value.relationships);
+      this.instance.setId(value.id);
+      this.instance.setType(value.type);
+      this.instance.setExternalId(value.externalId);
+      this.instance.setCreatedAt(value.createdAt);
+      this.instance.setUpdatedAt(value.updatedAt);
+      return this;
+    }
+
+    public Builder relationships(OrganizationStatsRelationships relationships) {
+      this.instance.relationships(relationships);
+      return this;
+    }
+    
+    public Builder id(Long id) {
+      this.instance.id(id);
+      return this;
+    }
+    
+    public Builder type(TypeEnum type) {
+      this.instance.type(type);
+      return this;
+    }
+    
+    public Builder externalId(String externalId) {
+      this.instance.externalId(externalId);
+      return this;
+    }
+    
+    public Builder createdAt(Instant createdAt) {
+      this.instance.createdAt(createdAt);
+      return this;
+    }
+    
+    public Builder updatedAt(Instant updatedAt) {
+      this.instance.updatedAt(updatedAt);
+      return this;
+    }
+    
+    @Override
+    public Builder name(String name) {
+      this.instance.name(name);
+      return this;
+    }
+    
+    @Override
+    public Builder slug(String slug) {
+      this.instance.slug(slug);
+      return this;
+    }
+    
+    /**
+    * returns a built OrganizationInfo instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public OrganizationInfo build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

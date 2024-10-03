@@ -1,19 +1,13 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
 import javax.annotation.Generated;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -21,98 +15,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 
 @Schema(name = "UserInfo", description = "Contains general information associated with a user account.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class UserInfo {
-
-  private String email;
-
-  private String fullName;
-
-  /**
-   * Instance account role.
-   */
-  public enum InstanceRoleEnum {
-    ADMINISTRATOR("ADMINISTRATOR"),
-    
-    USER("USER");
-
-    private String value;
-
-    InstanceRoleEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static InstanceRoleEnum fromValue(String value) {
-      for (InstanceRoleEnum b : InstanceRoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  private InstanceRoleEnum instanceRole = InstanceRoleEnum.USER;
-
-  /**
-   * Indicates through which service or authentication method the user account was created.
-   */
-  public enum AccountTypeEnum {
-    INTERNAL("INTERNAL"),
-    
-    UPSA("UPSA"),
-    
-    GITHUB("GITHUB"),
-    
-    LDAP("LDAP"),
-    
-    SAML("SAML"),
-    
-    SCIM("SCIM");
-
-    private String value;
-
-    AccountTypeEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AccountTypeEnum fromValue(String value) {
-      for (AccountTypeEnum b : AccountTypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  private AccountTypeEnum accountType = AccountTypeEnum.INTERNAL;
-
-  private String externalId;
-
-  private Boolean active = true;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class UserInfo extends UserBase {
 
   private UserLinksLinks links;
 
@@ -137,128 +41,20 @@ public class UserInfo {
    * Constructor with only required parameters
    */
   public UserInfo(String email, String fullName) {
-    this.email = email;
-    this.fullName = fullName;
-  }
-
-  public UserInfo email(String email) {
-    this.email = email;
-    return this;
+    super(email, fullName);
   }
 
   /**
-   * User email.
-   * @return email
-  */
-  @NotNull @Email
-  @Schema(name = "email", description = "User email.", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("email")
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public UserInfo fullName(String fullName) {
-    this.fullName = fullName;
-    return this;
-  }
-
-  /**
-   * Display name.
-   * @return fullName
-  */
-  @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
-  @Schema(name = "full_name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("full_name")
-  public String getFullName() {
-    return fullName;
-  }
-
-  public void setFullName(String fullName) {
-    this.fullName = fullName;
-  }
-
-  public UserInfo instanceRole(InstanceRoleEnum instanceRole) {
-    this.instanceRole = instanceRole;
-    return this;
-  }
-
-  /**
-   * Instance account role.
-   * @return instanceRole
-  */
-  
-  @Schema(name = "instance_role", description = "Instance account role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("instance_role")
-  public InstanceRoleEnum getInstanceRole() {
-    return instanceRole;
-  }
-
-  public void setInstanceRole(InstanceRoleEnum instanceRole) {
-    this.instanceRole = instanceRole;
-  }
-
-  public UserInfo accountType(AccountTypeEnum accountType) {
-    this.accountType = accountType;
-    return this;
-  }
-
-  /**
-   * Indicates through which service or authentication method the user account was created.
-   * @return accountType
-  */
-  
-  @Schema(name = "account_type", description = "Indicates through which service or authentication method the user account was created.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("account_type")
-  public AccountTypeEnum getAccountType() {
-    return accountType;
-  }
-
-  public void setAccountType(AccountTypeEnum accountType) {
-    this.accountType = accountType;
-  }
-
-  public UserInfo externalId(String externalId) {
-    this.externalId = externalId;
-    return this;
-  }
-
-  /**
-   * User external identifier. Provided by external systems.
-   * @return externalId
-  */
-  
-  @Schema(name = "external_id", description = "User external identifier. Provided by external systems.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("external_id")
-  public String getExternalId() {
-    return externalId;
-  }
-
-  public void setExternalId(String externalId) {
-    this.externalId = externalId;
-  }
-
-  public UserInfo active(Boolean active) {
-    this.active = active;
-    return this;
-  }
-
-  /**
-   * Soft delete user attribute.
-   * @return active
-  */
-  
-  @Schema(name = "active", description = "Soft delete user attribute.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("active")
-  public Boolean getActive() {
-    return active;
-  }
-
-  public void setActive(Boolean active) {
-    this.active = active;
+   * Constructor with all args parameters
+   */
+  public UserInfo(UserLinksLinks links, Long id, UUID uuid, Instant createdAt, Instant updatedAt, Instant lastLoginAt, String email, String fullName, InstanceRoleEnum instanceRole, AccountTypeEnum accountType, String externalId, Boolean active) {
+      super(email, fullName, instanceRole, accountType, externalId, active);
+      this.links = links;
+      this.id = id;
+      this.uuid = uuid;
+      this.createdAt = createdAt;
+      this.updatedAt = updatedAt;
+      this.lastLoginAt = lastLoginAt;
   }
 
   public UserInfo links(UserLinksLinks links) {
@@ -269,7 +65,7 @@ public class UserInfo {
   /**
    * Get links
    * @return links
-  */
+   */
   @Valid 
   @Schema(name = "_links", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("_links")
@@ -290,7 +86,7 @@ public class UserInfo {
    * User internal identifier.
    * minimum: 0
    * @return id
-  */
+   */
   @Min(0L) 
   @Schema(name = "id", description = "User internal identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -310,7 +106,7 @@ public class UserInfo {
   /**
    * User ID for external systems.
    * @return uuid
-  */
+   */
   @Valid 
   @Schema(name = "uuid", description = "User ID for external systems.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("uuid")
@@ -330,7 +126,7 @@ public class UserInfo {
   /**
    * When user's account was created.
    * @return createdAt
-  */
+   */
   @Valid 
   @Schema(name = "created_at", description = "When user's account was created.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("created_at")
@@ -350,7 +146,7 @@ public class UserInfo {
   /**
    * When user's data was modified.
    * @return updatedAt
-  */
+   */
   @Valid 
   @Schema(name = "updated_at", description = "When user's data was modified.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("updated_at")
@@ -370,7 +166,7 @@ public class UserInfo {
   /**
    * When user last logged in.
    * @return lastLoginAt
-  */
+   */
   @Valid 
   @Schema(name = "last_login_at", description = "When user last logged in.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("last_login_at")
@@ -382,6 +178,36 @@ public class UserInfo {
     this.lastLoginAt = lastLoginAt;
   }
 
+
+  public UserInfo email(String email) {
+    super.email(email);
+    return this;
+  }
+
+  public UserInfo fullName(String fullName) {
+    super.fullName(fullName);
+    return this;
+  }
+
+  public UserInfo instanceRole(InstanceRoleEnum instanceRole) {
+    super.instanceRole(instanceRole);
+    return this;
+  }
+
+  public UserInfo accountType(AccountTypeEnum accountType) {
+    super.accountType(accountType);
+    return this;
+  }
+
+  public UserInfo externalId(String externalId) {
+    super.externalId(externalId);
+    return this;
+  }
+
+  public UserInfo active(Boolean active) {
+    super.active(active);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -391,35 +217,25 @@ public class UserInfo {
       return false;
     }
     UserInfo userInfo = (UserInfo) o;
-    return Objects.equals(this.email, userInfo.email) &&
-        Objects.equals(this.fullName, userInfo.fullName) &&
-        Objects.equals(this.instanceRole, userInfo.instanceRole) &&
-        Objects.equals(this.accountType, userInfo.accountType) &&
-        Objects.equals(this.externalId, userInfo.externalId) &&
-        Objects.equals(this.active, userInfo.active) &&
-        Objects.equals(this.links, userInfo.links) &&
+    return Objects.equals(this.links, userInfo.links) &&
         Objects.equals(this.id, userInfo.id) &&
         Objects.equals(this.uuid, userInfo.uuid) &&
         Objects.equals(this.createdAt, userInfo.createdAt) &&
         Objects.equals(this.updatedAt, userInfo.updatedAt) &&
-        Objects.equals(this.lastLoginAt, userInfo.lastLoginAt);
+        Objects.equals(this.lastLoginAt, userInfo.lastLoginAt) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, fullName, instanceRole, accountType, externalId, active, links, id, uuid, createdAt, updatedAt, lastLoginAt);
+    return Objects.hash(links, id, uuid, createdAt, updatedAt, lastLoginAt, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserInfo {\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
-    sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
-    sb.append("    instanceRole: ").append(toIndentedString(instanceRole)).append("\n");
-    sb.append("    accountType: ").append(toIndentedString(accountType)).append("\n");
-    sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
-    sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    links: ").append(toIndentedString(links)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    uuid: ").append(toIndentedString(uuid)).append("\n");
@@ -440,5 +256,132 @@ public class UserInfo {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends UserBase.Builder {
+
+    private UserInfo instance;
+
+    public Builder() {
+      this(new UserInfo());
+    }
+
+    protected Builder(UserInfo instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(UserInfo value) { 
+      super.copyOf(instance);
+      this.instance.setLinks(value.links);
+      this.instance.setId(value.id);
+      this.instance.setUuid(value.uuid);
+      this.instance.setCreatedAt(value.createdAt);
+      this.instance.setUpdatedAt(value.updatedAt);
+      this.instance.setLastLoginAt(value.lastLoginAt);
+      return this;
+    }
+
+    public Builder links(UserLinksLinks links) {
+      this.instance.links(links);
+      return this;
+    }
+    
+    public Builder id(Long id) {
+      this.instance.id(id);
+      return this;
+    }
+    
+    public Builder uuid(UUID uuid) {
+      this.instance.uuid(uuid);
+      return this;
+    }
+    
+    public Builder createdAt(Instant createdAt) {
+      this.instance.createdAt(createdAt);
+      return this;
+    }
+    
+    public Builder updatedAt(Instant updatedAt) {
+      this.instance.updatedAt(updatedAt);
+      return this;
+    }
+    
+    public Builder lastLoginAt(Instant lastLoginAt) {
+      this.instance.lastLoginAt(lastLoginAt);
+      return this;
+    }
+    
+    @Override
+    public Builder email(String email) {
+      this.instance.email(email);
+      return this;
+    }
+    
+    @Override
+    public Builder fullName(String fullName) {
+      this.instance.fullName(fullName);
+      return this;
+    }
+    
+    @Override
+    public Builder instanceRole(InstanceRoleEnum instanceRole) {
+      this.instance.instanceRole(instanceRole);
+      return this;
+    }
+    
+    @Override
+    public Builder accountType(AccountTypeEnum accountType) {
+      this.instance.accountType(accountType);
+      return this;
+    }
+    
+    @Override
+    public Builder externalId(String externalId) {
+      this.instance.externalId(externalId);
+      return this;
+    }
+    
+    @Override
+    public Builder active(Boolean active) {
+      this.instance.active(active);
+      return this;
+    }
+    
+    /**
+    * returns a built UserInfo instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public UserInfo build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

@@ -16,13 +16,25 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Schema(name = "ProjectStats_launch_stats", description = "Statistics about launches associated with the project.")
 @JsonTypeName("ProjectStats_launch_stats")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class ProjectStatsLaunchStats {
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
   private Instant lastOccurredAt;
 
   private Integer totalCount;
+
+  public ProjectStatsLaunchStats() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public ProjectStatsLaunchStats(Instant lastOccurredAt, Integer totalCount) {
+      this.lastOccurredAt = lastOccurredAt;
+      this.totalCount = totalCount;
+  }
 
   public ProjectStatsLaunchStats lastOccurredAt(Instant lastOccurredAt) {
     this.lastOccurredAt = lastOccurredAt;
@@ -32,7 +44,7 @@ public class ProjectStatsLaunchStats {
   /**
    * The date and time of the last launch occurred in the project.
    * @return lastOccurredAt
-  */
+   */
   @Valid 
   @Schema(name = "last_occurred_at", description = "The date and time of the last launch occurred in the project.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("last_occurred_at")
@@ -53,7 +65,7 @@ public class ProjectStatsLaunchStats {
    * Total number of launches in the project.
    * minimum: 0
    * @return totalCount
-  */
+   */
   @Min(0) 
   @Schema(name = "total_count", description = "Total number of launches in the project.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("total_count")
@@ -103,5 +115,69 @@ public class ProjectStatsLaunchStats {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private ProjectStatsLaunchStats instance;
+
+    public Builder() {
+      this(new ProjectStatsLaunchStats());
+    }
+
+    protected Builder(ProjectStatsLaunchStats instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(ProjectStatsLaunchStats value) { 
+      this.instance.setLastOccurredAt(value.lastOccurredAt);
+      this.instance.setTotalCount(value.totalCount);
+      return this;
+    }
+
+    public Builder lastOccurredAt(Instant lastOccurredAt) {
+      this.instance.lastOccurredAt(lastOccurredAt);
+      return this;
+    }
+    
+    public Builder totalCount(Integer totalCount) {
+      this.instance.totalCount(totalCount);
+      return this;
+    }
+    
+    /**
+    * returns a built ProjectStatsLaunchStats instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public ProjectStatsLaunchStats build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

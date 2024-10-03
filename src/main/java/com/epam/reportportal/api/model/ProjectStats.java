@@ -11,7 +11,7 @@ import javax.validation.Valid;
  */
 
 @Schema(name = "ProjectStats", description = "Aggregated statistics about a project including user, launch, and billing information.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class ProjectStats {
 
   private ProjectStatsUserStats userStats;
@@ -19,6 +19,19 @@ public class ProjectStats {
   private ProjectStatsLaunchStats launchStats;
 
   private ProjectStatsBillingStats billingStats;
+
+  public ProjectStats() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public ProjectStats(ProjectStatsUserStats userStats, ProjectStatsLaunchStats launchStats, ProjectStatsBillingStats billingStats) {
+      this.userStats = userStats;
+      this.launchStats = launchStats;
+      this.billingStats = billingStats;
+  }
 
   public ProjectStats userStats(ProjectStatsUserStats userStats) {
     this.userStats = userStats;
@@ -28,7 +41,7 @@ public class ProjectStats {
   /**
    * Get userStats
    * @return userStats
-  */
+   */
   @Valid 
   @Schema(name = "user_stats", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("user_stats")
@@ -48,7 +61,7 @@ public class ProjectStats {
   /**
    * Get launchStats
    * @return launchStats
-  */
+   */
   @Valid 
   @Schema(name = "launch_stats", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("launch_stats")
@@ -68,7 +81,7 @@ public class ProjectStats {
   /**
    * Get billingStats
    * @return billingStats
-  */
+   */
   @Valid 
   @Schema(name = "billing_stats", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("billing_stats")
@@ -120,5 +133,75 @@ public class ProjectStats {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private ProjectStats instance;
+
+    public Builder() {
+      this(new ProjectStats());
+    }
+
+    protected Builder(ProjectStats instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(ProjectStats value) { 
+      this.instance.setUserStats(value.userStats);
+      this.instance.setLaunchStats(value.launchStats);
+      this.instance.setBillingStats(value.billingStats);
+      return this;
+    }
+
+    public Builder userStats(ProjectStatsUserStats userStats) {
+      this.instance.userStats(userStats);
+      return this;
+    }
+    
+    public Builder launchStats(ProjectStatsLaunchStats launchStats) {
+      this.instance.launchStats(launchStats);
+      return this;
+    }
+    
+    public Builder billingStats(ProjectStatsBillingStats billingStats) {
+      this.instance.billingStats(billingStats);
+      return this;
+    }
+    
+    /**
+    * returns a built ProjectStats instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public ProjectStats build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

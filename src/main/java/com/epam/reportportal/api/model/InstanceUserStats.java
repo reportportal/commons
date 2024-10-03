@@ -10,10 +10,21 @@ import javax.validation.Valid;
  * InstanceUserStats
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class InstanceUserStats {
 
   private InstanceUserStatsOrgStats orgStats;
+
+  public InstanceUserStats() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public InstanceUserStats(InstanceUserStatsOrgStats orgStats) {
+      this.orgStats = orgStats;
+  }
 
   public InstanceUserStats orgStats(InstanceUserStatsOrgStats orgStats) {
     this.orgStats = orgStats;
@@ -23,7 +34,7 @@ public class InstanceUserStats {
   /**
    * Get orgStats
    * @return orgStats
-  */
+   */
   @Valid 
   @Schema(name = "org_stats", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("org_stats")
@@ -71,5 +82,63 @@ public class InstanceUserStats {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private InstanceUserStats instance;
+
+    public Builder() {
+      this(new InstanceUserStats());
+    }
+
+    protected Builder(InstanceUserStats instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(InstanceUserStats value) { 
+      this.instance.setOrgStats(value.orgStats);
+      return this;
+    }
+
+    public Builder orgStats(InstanceUserStatsOrgStats orgStats) {
+      this.instance.orgStats(orgStats);
+      return this;
+    }
+    
+    /**
+    * returns a built InstanceUserStats instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public InstanceUserStats build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

@@ -1,8 +1,6 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
 import javax.annotation.Generated;
@@ -13,66 +11,21 @@ import javax.validation.constraints.Min;
  */
 
 @Schema(name = "UserOrgInfo", description = "Information about user's organization.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class UserOrgInfo {
-
-  /**
-   * Organization user role.
-   */
-  public enum OrgRoleEnum {
-    MEMBER("MEMBER"),
-    
-    MANAGER("MANAGER");
-
-    private String value;
-
-    OrgRoleEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OrgRoleEnum fromValue(String value) {
-      for (OrgRoleEnum b : OrgRoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class UserOrgInfo extends UserOrgRole {
 
   private Long id;
 
-  public UserOrgInfo orgRole(OrgRoleEnum orgRole) {
-    this.orgRole = orgRole;
-    return this;
+  public UserOrgInfo() {
+    super();
   }
 
   /**
-   * Organization user role.
-   * @return orgRole
-  */
-  
-  @Schema(name = "org_role", description = "Organization user role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("org_role")
-  public OrgRoleEnum getOrgRole() {
-    return orgRole;
-  }
-
-  public void setOrgRole(OrgRoleEnum orgRole) {
-    this.orgRole = orgRole;
+   * Constructor with all args parameters
+   */
+  public UserOrgInfo(Long id, OrgRoleEnum orgRole) {
+      super(orgRole);
+      this.id = id;
   }
 
   public UserOrgInfo id(Long id) {
@@ -84,7 +37,7 @@ public class UserOrgInfo {
    * Organization internal identifier.
    * minimum: 0
    * @return id
-  */
+   */
   @Min(0L) 
   @Schema(name = "id", description = "Organization internal identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -96,6 +49,11 @@ public class UserOrgInfo {
     this.id = id;
   }
 
+
+  public UserOrgInfo orgRole(OrgRoleEnum orgRole) {
+    super.orgRole(orgRole);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -105,20 +63,20 @@ public class UserOrgInfo {
       return false;
     }
     UserOrgInfo userOrgInfo = (UserOrgInfo) o;
-    return Objects.equals(this.orgRole, userOrgInfo.orgRole) &&
-        Objects.equals(this.id, userOrgInfo.id);
+    return Objects.equals(this.id, userOrgInfo.id) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orgRole, id);
+    return Objects.hash(id, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserOrgInfo {\n");
-    sb.append("    orgRole: ").append(toIndentedString(orgRole)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -134,5 +92,72 @@ public class UserOrgInfo {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends UserOrgRole.Builder {
+
+    private UserOrgInfo instance;
+
+    public Builder() {
+      this(new UserOrgInfo());
+    }
+
+    protected Builder(UserOrgInfo instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(UserOrgInfo value) { 
+      super.copyOf(instance);
+      this.instance.setId(value.id);
+      return this;
+    }
+
+    public Builder id(Long id) {
+      this.instance.id(id);
+      return this;
+    }
+    
+    @Override
+    public Builder orgRole(OrgRoleEnum orgRole) {
+      this.instance.orgRole(orgRole);
+      return this;
+    }
+    
+    /**
+    * returns a built UserOrgInfo instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public UserOrgInfo build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

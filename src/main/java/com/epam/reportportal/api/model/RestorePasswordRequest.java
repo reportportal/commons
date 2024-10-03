@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
  * RestorePasswordRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class RestorePasswordRequest {
 
   private String email;
@@ -21,7 +21,7 @@ public class RestorePasswordRequest {
   }
 
   /**
-   * Constructor with only required parameters
+   * Constructor with only required parameters and all parameters
    */
   public RestorePasswordRequest(String email) {
     this.email = email;
@@ -35,7 +35,7 @@ public class RestorePasswordRequest {
   /**
    * User email for password recovery.
    * @return email
-  */
+   */
   @NotNull @Email
   @Schema(name = "email", description = "User email for password recovery.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("email")
@@ -83,5 +83,63 @@ public class RestorePasswordRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private RestorePasswordRequest instance;
+
+    public Builder() {
+      this(new RestorePasswordRequest());
+    }
+
+    protected Builder(RestorePasswordRequest instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(RestorePasswordRequest value) { 
+      this.instance.setEmail(value.email);
+      return this;
+    }
+
+    public Builder email(String email) {
+      this.instance.email(email);
+      return this;
+    }
+    
+    /**
+    * returns a built RestorePasswordRequest instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public RestorePasswordRequest build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

@@ -5,28 +5,14 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.Objects;
 import javax.annotation.Generated;
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  * ApiKeyCreateResponse
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class ApiKeyCreateResponse {
-
-  private Integer id;
-
-  private String name;
-
-  private Integer userId;
-
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private Instant createdAt;
-
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  private Instant lastUsedAt;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class ApiKeyCreateResponse extends ApiKey {
 
   private String apiKey;
 
@@ -38,107 +24,16 @@ public class ApiKeyCreateResponse {
    * Constructor with only required parameters
    */
   public ApiKeyCreateResponse(String apiKey) {
+    super();
     this.apiKey = apiKey;
   }
 
-  public ApiKeyCreateResponse id(Integer id) {
-    this.id = id;
-    return this;
-  }
-
   /**
-   * Internal identifier
-   * @return id
-  */
-  
-  @Schema(name = "id", description = "Internal identifier", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("id")
-  public Integer getId() {
-    return id;
-  }
-
-  public void setId(Integer id) {
-    this.id = id;
-  }
-
-  public ApiKeyCreateResponse name(String name) {
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * API Key unique name
-   * @return name
-  */
-  
-  @Schema(name = "name", description = "API Key unique name", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("name")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public ApiKeyCreateResponse userId(Integer userId) {
-    this.userId = userId;
-    return this;
-  }
-
-  /**
-   * API Key owner
-   * @return userId
-  */
-  
-  @Schema(name = "user_id", description = "API Key owner", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("user_id")
-  public Integer getUserId() {
-    return userId;
-  }
-
-  public void setUserId(Integer userId) {
-    this.userId = userId;
-  }
-
-  public ApiKeyCreateResponse createdAt(Instant createdAt) {
-    this.createdAt = createdAt;
-    return this;
-  }
-
-  /**
-   * Date time with milliseconds
-   * @return createdAt
-  */
-  @Valid 
-  @Schema(name = "created_at", example = "2019-07-30T06:43:40.252Z", description = "Date time with milliseconds", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("created_at")
-  public Instant getCreatedAt() {
-    return createdAt;
-  }
-
-  public void setCreatedAt(Instant createdAt) {
-    this.createdAt = createdAt;
-  }
-
-  public ApiKeyCreateResponse lastUsedAt(Instant lastUsedAt) {
-    this.lastUsedAt = lastUsedAt;
-    return this;
-  }
-
-  /**
-   * Date time with milliseconds
-   * @return lastUsedAt
-  */
-  @Valid 
-  @Schema(name = "last_used_at", example = "2019-07-30T06:43:40.252Z", description = "Date time with milliseconds", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("last_used_at")
-  public Instant getLastUsedAt() {
-    return lastUsedAt;
-  }
-
-  public void setLastUsedAt(Instant lastUsedAt) {
-    this.lastUsedAt = lastUsedAt;
+   * Constructor with all args parameters
+   */
+  public ApiKeyCreateResponse(String apiKey, Integer id, String name, Integer userId, Instant createdAt, Instant lastUsedAt) {
+      super(id, name, userId, createdAt, lastUsedAt);
+      this.apiKey = apiKey;
   }
 
   public ApiKeyCreateResponse apiKey(String apiKey) {
@@ -149,7 +44,7 @@ public class ApiKeyCreateResponse {
   /**
    * The generated API key
    * @return apiKey
-  */
+   */
   @NotNull 
   @Schema(name = "api_key", description = "The generated API key", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("api_key")
@@ -161,6 +56,31 @@ public class ApiKeyCreateResponse {
     this.apiKey = apiKey;
   }
 
+
+  public ApiKeyCreateResponse id(Integer id) {
+    super.id(id);
+    return this;
+  }
+
+  public ApiKeyCreateResponse name(String name) {
+    super.name(name);
+    return this;
+  }
+
+  public ApiKeyCreateResponse userId(Integer userId) {
+    super.userId(userId);
+    return this;
+  }
+
+  public ApiKeyCreateResponse createdAt(Instant createdAt) {
+    super.createdAt(createdAt);
+    return this;
+  }
+
+  public ApiKeyCreateResponse lastUsedAt(Instant lastUsedAt) {
+    super.lastUsedAt(lastUsedAt);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -170,28 +90,20 @@ public class ApiKeyCreateResponse {
       return false;
     }
     ApiKeyCreateResponse apiKeyCreateResponse = (ApiKeyCreateResponse) o;
-    return Objects.equals(this.id, apiKeyCreateResponse.id) &&
-        Objects.equals(this.name, apiKeyCreateResponse.name) &&
-        Objects.equals(this.userId, apiKeyCreateResponse.userId) &&
-        Objects.equals(this.createdAt, apiKeyCreateResponse.createdAt) &&
-        Objects.equals(this.lastUsedAt, apiKeyCreateResponse.lastUsedAt) &&
-        Objects.equals(this.apiKey, apiKeyCreateResponse.apiKey);
+    return Objects.equals(this.apiKey, apiKeyCreateResponse.apiKey) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, userId, createdAt, lastUsedAt, apiKey);
+    return Objects.hash(apiKey, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ApiKeyCreateResponse {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
-    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    lastUsedAt: ").append(toIndentedString(lastUsedAt)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    apiKey: ").append(toIndentedString(apiKey)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -207,5 +119,96 @@ public class ApiKeyCreateResponse {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends ApiKey.Builder {
+
+    private ApiKeyCreateResponse instance;
+
+    public Builder() {
+      this(new ApiKeyCreateResponse());
+    }
+
+    protected Builder(ApiKeyCreateResponse instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(ApiKeyCreateResponse value) { 
+      super.copyOf(instance);
+      this.instance.setApiKey(value.apiKey);
+      return this;
+    }
+
+    public Builder apiKey(String apiKey) {
+      this.instance.apiKey(apiKey);
+      return this;
+    }
+    
+    @Override
+    public Builder id(Integer id) {
+      this.instance.id(id);
+      return this;
+    }
+    
+    @Override
+    public Builder name(String name) {
+      this.instance.name(name);
+      return this;
+    }
+    
+    @Override
+    public Builder userId(Integer userId) {
+      this.instance.userId(userId);
+      return this;
+    }
+    
+    @Override
+    public Builder createdAt(Instant createdAt) {
+      this.instance.createdAt(createdAt);
+      return this;
+    }
+    
+    @Override
+    public Builder lastUsedAt(Instant lastUsedAt) {
+      this.instance.lastUsedAt(lastUsedAt);
+      return this;
+    }
+    
+    /**
+    * returns a built ApiKeyCreateResponse instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public ApiKeyCreateResponse build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

@@ -11,10 +11,21 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("User_Assignment_Response")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class UserAssignmentResponse {
 
   private String message = "The user was added to the organization.";
+
+  public UserAssignmentResponse() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public UserAssignmentResponse(String message) {
+      this.message = message;
+  }
 
   public UserAssignmentResponse message(String message) {
     this.message = message;
@@ -24,7 +35,7 @@ public class UserAssignmentResponse {
   /**
    * Get message
    * @return message
-  */
+   */
   
   @Schema(name = "message", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("message")
@@ -72,5 +83,63 @@ public class UserAssignmentResponse {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private UserAssignmentResponse instance;
+
+    public Builder() {
+      this(new UserAssignmentResponse());
+    }
+
+    protected Builder(UserAssignmentResponse instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(UserAssignmentResponse value) { 
+      this.instance.setMessage(value.message);
+      return this;
+    }
+
+    public Builder message(String message) {
+      this.instance.message(message);
+      return this;
+    }
+    
+    /**
+    * returns a built UserAssignmentResponse instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public UserAssignmentResponse build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

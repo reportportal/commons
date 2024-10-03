@@ -14,10 +14,21 @@ import javax.validation.constraints.Min;
 
 @Schema(name = "ProjectStats_billing_stats", description = "Statistics about the project's billing information. Available only if the billing plugin is enabled.")
 @JsonTypeName("ProjectStats_billing_stats")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class ProjectStatsBillingStats {
 
   private Integer storageUsage;
+
+  public ProjectStatsBillingStats() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public ProjectStatsBillingStats(Integer storageUsage) {
+      this.storageUsage = storageUsage;
+  }
 
   public ProjectStatsBillingStats storageUsage(Integer storageUsage) {
     this.storageUsage = storageUsage;
@@ -29,7 +40,7 @@ public class ProjectStatsBillingStats {
    * minimum: 0
    * maximum: 100
    * @return storageUsage
-  */
+   */
   @Min(0) @Max(100) 
   @Schema(name = "storage_usage", description = "The percentage of storage used by the project.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("storage_usage")
@@ -77,5 +88,63 @@ public class ProjectStatsBillingStats {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private ProjectStatsBillingStats instance;
+
+    public Builder() {
+      this(new ProjectStatsBillingStats());
+    }
+
+    protected Builder(ProjectStatsBillingStats instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(ProjectStatsBillingStats value) { 
+      this.instance.setStorageUsage(value.storageUsage);
+      return this;
+    }
+
+    public Builder storageUsage(Integer storageUsage) {
+      this.instance.storageUsage(storageUsage);
+      return this;
+    }
+    
+    /**
+    * returns a built ProjectStatsBillingStats instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public ProjectStatsBillingStats build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

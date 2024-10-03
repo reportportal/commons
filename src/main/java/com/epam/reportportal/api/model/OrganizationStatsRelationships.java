@@ -12,7 +12,7 @@ import javax.validation.Valid;
  */
 
 @JsonTypeName("OrganizationStats_relationships")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class OrganizationStatsRelationships {
 
   private OrganizationStatsRelationshipsUsers users;
@@ -23,6 +23,20 @@ public class OrganizationStatsRelationships {
 
   private OrganizationStatsRelationshipsBilling billing;
 
+  public OrganizationStatsRelationships() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public OrganizationStatsRelationships(OrganizationStatsRelationshipsUsers users, OrganizationStatsRelationshipsProjects projects, OrganizationStatsRelationshipsLaunches launches, OrganizationStatsRelationshipsBilling billing) {
+      this.users = users;
+      this.projects = projects;
+      this.launches = launches;
+      this.billing = billing;
+  }
+
   public OrganizationStatsRelationships users(OrganizationStatsRelationshipsUsers users) {
     this.users = users;
     return this;
@@ -31,7 +45,7 @@ public class OrganizationStatsRelationships {
   /**
    * Get users
    * @return users
-  */
+   */
   @Valid 
   @Schema(name = "users", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("users")
@@ -51,7 +65,7 @@ public class OrganizationStatsRelationships {
   /**
    * Get projects
    * @return projects
-  */
+   */
   @Valid 
   @Schema(name = "projects", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("projects")
@@ -71,7 +85,7 @@ public class OrganizationStatsRelationships {
   /**
    * Get launches
    * @return launches
-  */
+   */
   @Valid 
   @Schema(name = "launches", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("launches")
@@ -91,7 +105,7 @@ public class OrganizationStatsRelationships {
   /**
    * Get billing
    * @return billing
-  */
+   */
   @Valid 
   @Schema(name = "billing", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("billing")
@@ -145,5 +159,81 @@ public class OrganizationStatsRelationships {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private OrganizationStatsRelationships instance;
+
+    public Builder() {
+      this(new OrganizationStatsRelationships());
+    }
+
+    protected Builder(OrganizationStatsRelationships instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(OrganizationStatsRelationships value) { 
+      this.instance.setUsers(value.users);
+      this.instance.setProjects(value.projects);
+      this.instance.setLaunches(value.launches);
+      this.instance.setBilling(value.billing);
+      return this;
+    }
+
+    public Builder users(OrganizationStatsRelationshipsUsers users) {
+      this.instance.users(users);
+      return this;
+    }
+    
+    public Builder projects(OrganizationStatsRelationshipsProjects projects) {
+      this.instance.projects(projects);
+      return this;
+    }
+    
+    public Builder launches(OrganizationStatsRelationshipsLaunches launches) {
+      this.instance.launches(launches);
+      return this;
+    }
+    
+    public Builder billing(OrganizationStatsRelationshipsBilling billing) {
+      this.instance.billing(billing);
+      return this;
+    }
+    
+    /**
+    * returns a built OrganizationStatsRelationships instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public OrganizationStatsRelationships build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

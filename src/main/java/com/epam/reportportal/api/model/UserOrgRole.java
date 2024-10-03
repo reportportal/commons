@@ -12,7 +12,7 @@ import javax.annotation.Generated;
  */
 
 @Schema(name = "UserOrgRole", description = "Basic information about a user in the organization.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class UserOrgRole {
 
   /**
@@ -52,6 +52,17 @@ public class UserOrgRole {
 
   private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
 
+  public UserOrgRole() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public UserOrgRole(OrgRoleEnum orgRole) {
+      this.orgRole = orgRole;
+  }
+
   public UserOrgRole orgRole(OrgRoleEnum orgRole) {
     this.orgRole = orgRole;
     return this;
@@ -60,7 +71,7 @@ public class UserOrgRole {
   /**
    * Organization user role.
    * @return orgRole
-  */
+   */
   
   @Schema(name = "org_role", description = "Organization user role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("org_role")
@@ -108,5 +119,63 @@ public class UserOrgRole {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private UserOrgRole instance;
+
+    public Builder() {
+      this(new UserOrgRole());
+    }
+
+    protected Builder(UserOrgRole instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(UserOrgRole value) { 
+      this.instance.setOrgRole(value.orgRole);
+      return this;
+    }
+
+    public Builder orgRole(OrgRoleEnum orgRole) {
+      this.instance.orgRole(orgRole);
+      return this;
+    }
+    
+    /**
+    * returns a built UserOrgRole instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public UserOrgRole build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

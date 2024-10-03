@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
  */
 
 @Schema(name = "UserBase", description = "User's base information.  User has a unique email address, full name, and account type.  Instance account role can be either `ADMIN` or `USER`. Only `ADMIN` users have access to change account type.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class UserBase {
 
   private String email;
@@ -121,6 +121,18 @@ public class UserBase {
     this.fullName = fullName;
   }
 
+  /**
+   * Constructor with all args parameters
+   */
+  public UserBase(String email, String fullName, InstanceRoleEnum instanceRole, AccountTypeEnum accountType, String externalId, Boolean active) {
+      this.email = email;
+      this.fullName = fullName;
+      this.instanceRole = instanceRole;
+      this.accountType = accountType;
+      this.externalId = externalId;
+      this.active = active;
+  }
+
   public UserBase email(String email) {
     this.email = email;
     return this;
@@ -129,7 +141,7 @@ public class UserBase {
   /**
    * User email.
    * @return email
-  */
+   */
   @NotNull @Email
   @Schema(name = "email", description = "User email.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("email")
@@ -149,7 +161,7 @@ public class UserBase {
   /**
    * Display name.
    * @return fullName
-  */
+   */
   @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
   @Schema(name = "full_name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("full_name")
@@ -169,7 +181,7 @@ public class UserBase {
   /**
    * Instance account role.
    * @return instanceRole
-  */
+   */
   
   @Schema(name = "instance_role", description = "Instance account role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("instance_role")
@@ -189,7 +201,7 @@ public class UserBase {
   /**
    * Indicates through which service or authentication method the user account was created.
    * @return accountType
-  */
+   */
   
   @Schema(name = "account_type", description = "Indicates through which service or authentication method the user account was created.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("account_type")
@@ -209,7 +221,7 @@ public class UserBase {
   /**
    * User external identifier. Provided by external systems.
    * @return externalId
-  */
+   */
   
   @Schema(name = "external_id", description = "User external identifier. Provided by external systems.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("external_id")
@@ -229,7 +241,7 @@ public class UserBase {
   /**
    * Soft delete user attribute.
    * @return active
-  */
+   */
   
   @Schema(name = "active", description = "Soft delete user attribute.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("active")
@@ -287,5 +299,93 @@ public class UserBase {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private UserBase instance;
+
+    public Builder() {
+      this(new UserBase());
+    }
+
+    protected Builder(UserBase instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(UserBase value) { 
+      this.instance.setEmail(value.email);
+      this.instance.setFullName(value.fullName);
+      this.instance.setInstanceRole(value.instanceRole);
+      this.instance.setAccountType(value.accountType);
+      this.instance.setExternalId(value.externalId);
+      this.instance.setActive(value.active);
+      return this;
+    }
+
+    public Builder email(String email) {
+      this.instance.email(email);
+      return this;
+    }
+    
+    public Builder fullName(String fullName) {
+      this.instance.fullName(fullName);
+      return this;
+    }
+    
+    public Builder instanceRole(InstanceRoleEnum instanceRole) {
+      this.instance.instanceRole(instanceRole);
+      return this;
+    }
+    
+    public Builder accountType(AccountTypeEnum accountType) {
+      this.instance.accountType(accountType);
+      return this;
+    }
+    
+    public Builder externalId(String externalId) {
+      this.instance.externalId(externalId);
+      return this;
+    }
+    
+    public Builder active(Boolean active) {
+      this.instance.active(active);
+      return this;
+    }
+    
+    /**
+    * returns a built UserBase instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public UserBase build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

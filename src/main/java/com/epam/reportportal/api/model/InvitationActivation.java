@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
  */
 
 @Schema(name = "InvitationActivation", description = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class InvitationActivation {
 
   /**
@@ -62,7 +62,7 @@ public class InvitationActivation {
   }
 
   /**
-   * Constructor with only required parameters
+   * Constructor with only required parameters and all parameters
    */
   public InvitationActivation(StatusEnum status, String fullName, String password) {
     this.status = status;
@@ -78,7 +78,7 @@ public class InvitationActivation {
   /**
    * Change status to ACTIVATED to create a user.
    * @return status
-  */
+   */
   @NotNull 
   @Schema(name = "status", description = "Change status to ACTIVATED to create a user.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("status")
@@ -98,7 +98,7 @@ public class InvitationActivation {
   /**
    * Display name.
    * @return fullName
-  */
+   */
   @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
   @Schema(name = "full_name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("full_name")
@@ -118,7 +118,7 @@ public class InvitationActivation {
   /**
    * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
    * @return password
-  */
+   */
   @NotNull @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$") @Size(min = 8, max = 256) 
   @Schema(name = "password", description = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("password")
@@ -170,5 +170,75 @@ public class InvitationActivation {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private InvitationActivation instance;
+
+    public Builder() {
+      this(new InvitationActivation());
+    }
+
+    protected Builder(InvitationActivation instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(InvitationActivation value) { 
+      this.instance.setStatus(value.status);
+      this.instance.setFullName(value.fullName);
+      this.instance.setPassword(value.password);
+      return this;
+    }
+
+    public Builder status(StatusEnum status) {
+      this.instance.status(status);
+      return this;
+    }
+    
+    public Builder fullName(String fullName) {
+      this.instance.fullName(fullName);
+      return this;
+    }
+    
+    public Builder password(String password) {
+      this.instance.password(password);
+      return this;
+    }
+    
+    /**
+    * returns a built InvitationActivation instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public InvitationActivation build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

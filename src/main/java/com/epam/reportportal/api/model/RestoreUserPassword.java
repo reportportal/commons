@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
  * RestoreUserPassword
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class RestoreUserPassword {
 
   private UUID token;
@@ -26,7 +26,7 @@ public class RestoreUserPassword {
   }
 
   /**
-   * Constructor with only required parameters
+   * Constructor with only required parameters and all parameters
    */
   public RestoreUserPassword(UUID token, String newPassword) {
     this.token = token;
@@ -41,7 +41,7 @@ public class RestoreUserPassword {
   /**
    * Token for password recovery. It's provided in email.
    * @return token
-  */
+   */
   @NotNull @Valid 
   @Schema(name = "token", description = "Token for password recovery. It's provided in email.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("token")
@@ -61,7 +61,7 @@ public class RestoreUserPassword {
   /**
    * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
    * @return newPassword
-  */
+   */
   @NotNull @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$") @Size(min = 8, max = 256) 
   @Schema(name = "new_password", description = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("new_password")
@@ -111,5 +111,69 @@ public class RestoreUserPassword {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private RestoreUserPassword instance;
+
+    public Builder() {
+      this(new RestoreUserPassword());
+    }
+
+    protected Builder(RestoreUserPassword instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(RestoreUserPassword value) { 
+      this.instance.setToken(value.token);
+      this.instance.setNewPassword(value.newPassword);
+      return this;
+    }
+
+    public Builder token(UUID token) {
+      this.instance.token(token);
+      return this;
+    }
+    
+    public Builder newPassword(String newPassword) {
+      this.instance.newPassword(newPassword);
+      return this;
+    }
+    
+    /**
+    * returns a built RestoreUserPassword instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public RestoreUserPassword build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

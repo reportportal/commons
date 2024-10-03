@@ -13,10 +13,21 @@ import javax.validation.Valid;
 
 @Schema(name = "OrganizationStats_relationships_launches", description = "General information about the organization launches.")
 @JsonTypeName("OrganizationStats_relationships_launches")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class OrganizationStatsRelationshipsLaunches {
 
   private OrganizationStatsRelationshipsLaunchesMeta meta;
+
+  public OrganizationStatsRelationshipsLaunches() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public OrganizationStatsRelationshipsLaunches(OrganizationStatsRelationshipsLaunchesMeta meta) {
+      this.meta = meta;
+  }
 
   public OrganizationStatsRelationshipsLaunches meta(OrganizationStatsRelationshipsLaunchesMeta meta) {
     this.meta = meta;
@@ -26,7 +37,7 @@ public class OrganizationStatsRelationshipsLaunches {
   /**
    * Get meta
    * @return meta
-  */
+   */
   @Valid 
   @Schema(name = "meta", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("meta")
@@ -74,5 +85,63 @@ public class OrganizationStatsRelationshipsLaunches {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private OrganizationStatsRelationshipsLaunches instance;
+
+    public Builder() {
+      this(new OrganizationStatsRelationshipsLaunches());
+    }
+
+    protected Builder(OrganizationStatsRelationshipsLaunches instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(OrganizationStatsRelationshipsLaunches value) { 
+      this.instance.setMeta(value.meta);
+      return this;
+    }
+
+    public Builder meta(OrganizationStatsRelationshipsLaunchesMeta meta) {
+      this.instance.meta(meta);
+      return this;
+    }
+    
+    /**
+    * returns a built OrganizationStatsRelationshipsLaunches instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public OrganizationStatsRelationshipsLaunches build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  * ApiKeyCreateRequest
  */
 
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class ApiKeyCreateRequest {
 
   private String name;
@@ -20,7 +20,7 @@ public class ApiKeyCreateRequest {
   }
 
   /**
-   * Constructor with only required parameters
+   * Constructor with only required parameters and all parameters
    */
   public ApiKeyCreateRequest(String name) {
     this.name = name;
@@ -34,7 +34,7 @@ public class ApiKeyCreateRequest {
   /**
    * Unique name for the new API key
    * @return name
-  */
+   */
   @NotNull 
   @Schema(name = "name", description = "Unique name for the new API key", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("name")
@@ -82,5 +82,63 @@ public class ApiKeyCreateRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private ApiKeyCreateRequest instance;
+
+    public Builder() {
+      this(new ApiKeyCreateRequest());
+    }
+
+    protected Builder(ApiKeyCreateRequest instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(ApiKeyCreateRequest value) { 
+      this.instance.setName(value.name);
+      return this;
+    }
+
+    public Builder name(String name) {
+      this.instance.name(name);
+      return this;
+    }
+    
+    /**
+    * returns a built ApiKeyCreateRequest instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public ApiKeyCreateRequest build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

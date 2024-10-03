@@ -1,9 +1,7 @@
 package com.epam.reportportal.api.model;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,50 +16,13 @@ import javax.validation.constraints.NotNull;
  */
 
 @JsonTypeName("User_Assignment_Request")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class UserAssignmentRequest {
-
-  /**
-   * Organization user role.
-   */
-  public enum OrgRoleEnum {
-    MEMBER("MEMBER"),
-    
-    MANAGER("MANAGER");
-
-    private String value;
-
-    OrgRoleEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OrgRoleEnum fromValue(String value) {
-      for (OrgRoleEnum b : OrgRoleEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class UserAssignmentRequest extends UserOrgRole {
 
   private Long id;
 
   @Valid
-  private List<UserProjectInfo> projects;
+  private List<UserProjectInfo> projects = new ArrayList<>();
 
   public UserAssignmentRequest() {
     super();
@@ -71,27 +32,17 @@ public class UserAssignmentRequest {
    * Constructor with only required parameters
    */
   public UserAssignmentRequest(Long id) {
+    super();
     this.id = id;
   }
 
-  public UserAssignmentRequest orgRole(OrgRoleEnum orgRole) {
-    this.orgRole = orgRole;
-    return this;
-  }
-
   /**
-   * Organization user role.
-   * @return orgRole
-  */
-  
-  @Schema(name = "org_role", description = "Organization user role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("org_role")
-  public OrgRoleEnum getOrgRole() {
-    return orgRole;
-  }
-
-  public void setOrgRole(OrgRoleEnum orgRole) {
-    this.orgRole = orgRole;
+   * Constructor with all args parameters
+   */
+  public UserAssignmentRequest(Long id, List<UserProjectInfo> projects, OrgRoleEnum orgRole) {
+      super(orgRole);
+      this.id = id;
+      this.projects = projects;
   }
 
   public UserAssignmentRequest id(Long id) {
@@ -103,7 +54,7 @@ public class UserAssignmentRequest {
    * User's internal identifier.
    * minimum: 0
    * @return id
-  */
+   */
   @NotNull @Min(0L) 
   @Schema(name = "id", description = "User's internal identifier.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("id")
@@ -131,7 +82,7 @@ public class UserAssignmentRequest {
   /**
    * Get projects
    * @return projects
-  */
+   */
   @Valid 
   @Schema(name = "projects", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("projects")
@@ -143,6 +94,11 @@ public class UserAssignmentRequest {
     this.projects = projects;
   }
 
+
+  public UserAssignmentRequest orgRole(OrgRoleEnum orgRole) {
+    super.orgRole(orgRole);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -152,21 +108,21 @@ public class UserAssignmentRequest {
       return false;
     }
     UserAssignmentRequest userAssignmentRequest = (UserAssignmentRequest) o;
-    return Objects.equals(this.orgRole, userAssignmentRequest.orgRole) &&
-        Objects.equals(this.id, userAssignmentRequest.id) &&
-        Objects.equals(this.projects, userAssignmentRequest.projects);
+    return Objects.equals(this.id, userAssignmentRequest.id) &&
+        Objects.equals(this.projects, userAssignmentRequest.projects) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orgRole, id, projects);
+    return Objects.hash(id, projects, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserAssignmentRequest {\n");
-    sb.append("    orgRole: ").append(toIndentedString(orgRole)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
@@ -183,5 +139,78 @@ public class UserAssignmentRequest {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends UserOrgRole.Builder {
+
+    private UserAssignmentRequest instance;
+
+    public Builder() {
+      this(new UserAssignmentRequest());
+    }
+
+    protected Builder(UserAssignmentRequest instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(UserAssignmentRequest value) { 
+      super.copyOf(instance);
+      this.instance.setId(value.id);
+      this.instance.setProjects(value.projects);
+      return this;
+    }
+
+    public Builder id(Long id) {
+      this.instance.id(id);
+      return this;
+    }
+    
+    public Builder projects(List<UserProjectInfo> projects) {
+      this.instance.projects(projects);
+      return this;
+    }
+    
+    @Override
+    public Builder orgRole(OrgRoleEnum orgRole) {
+      this.instance.orgRole(orgRole);
+      return this;
+    }
+    
+    /**
+    * returns a built UserAssignmentRequest instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public UserAssignmentRequest build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

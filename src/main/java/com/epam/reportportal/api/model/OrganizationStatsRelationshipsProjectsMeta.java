@@ -12,10 +12,21 @@ import javax.validation.constraints.Min;
  */
 
 @JsonTypeName("OrganizationStats_relationships_projects_meta")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class OrganizationStatsRelationshipsProjectsMeta {
 
   private Integer count;
+
+  public OrganizationStatsRelationshipsProjectsMeta() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public OrganizationStatsRelationshipsProjectsMeta(Integer count) {
+      this.count = count;
+  }
 
   public OrganizationStatsRelationshipsProjectsMeta count(Integer count) {
     this.count = count;
@@ -26,7 +37,7 @@ public class OrganizationStatsRelationshipsProjectsMeta {
    * Total count of projects in the organization.
    * minimum: 0
    * @return count
-  */
+   */
   @Min(0) 
   @Schema(name = "count", description = "Total count of projects in the organization.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("count")
@@ -74,5 +85,63 @@ public class OrganizationStatsRelationshipsProjectsMeta {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private OrganizationStatsRelationshipsProjectsMeta instance;
+
+    public Builder() {
+      this(new OrganizationStatsRelationshipsProjectsMeta());
+    }
+
+    protected Builder(OrganizationStatsRelationshipsProjectsMeta instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(OrganizationStatsRelationshipsProjectsMeta value) { 
+      this.instance.setCount(value.count);
+      return this;
+    }
+
+    public Builder count(Integer count) {
+      this.instance.count(count);
+      return this;
+    }
+    
+    /**
+    * returns a built OrganizationStatsRelationshipsProjectsMeta instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public OrganizationStatsRelationshipsProjectsMeta build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

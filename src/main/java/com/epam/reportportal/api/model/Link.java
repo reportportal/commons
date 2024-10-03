@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Schema(name = "Link", description = "JSON Hypertext Application Language (HAL) model for a link.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class Link {
 
   private URI href;
@@ -33,6 +33,15 @@ public class Link {
     this.href = href;
   }
 
+  /**
+   * Constructor with all args parameters
+   */
+  public Link(URI href, String type, String title) {
+      this.href = href;
+      this.type = type;
+      this.title = title;
+  }
+
   public Link href(URI href) {
     this.href = href;
     return this;
@@ -41,7 +50,7 @@ public class Link {
   /**
    * The URI of the resource.
    * @return href
-  */
+   */
   @NotNull @Valid 
   @Schema(name = "href", description = "The URI of the resource.", requiredMode = Schema.RequiredMode.REQUIRED)
   @JsonProperty("href")
@@ -61,7 +70,7 @@ public class Link {
   /**
    * The media type of the resource (e.g., 'application/json' or 'image/png').
    * @return type
-  */
+   */
   
   @Schema(name = "type", description = "The media type of the resource (e.g., 'application/json' or 'image/png').", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("type")
@@ -81,7 +90,7 @@ public class Link {
   /**
    * A human-readable description of the link.
    * @return title
-  */
+   */
   
   @Schema(name = "title", description = "A human-readable description of the link.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("title")
@@ -133,5 +142,75 @@ public class Link {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private Link instance;
+
+    public Builder() {
+      this(new Link());
+    }
+
+    protected Builder(Link instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(Link value) { 
+      this.instance.setHref(value.href);
+      this.instance.setType(value.type);
+      this.instance.setTitle(value.title);
+      return this;
+    }
+
+    public Builder href(URI href) {
+      this.instance.href(href);
+      return this;
+    }
+    
+    public Builder type(String type) {
+      this.instance.type(type);
+      return this;
+    }
+    
+    public Builder title(String title) {
+      this.instance.title(title);
+      return this;
+    }
+    
+    /**
+    * returns a built Link instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public Link build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

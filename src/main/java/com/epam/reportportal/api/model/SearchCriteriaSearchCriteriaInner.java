@@ -13,7 +13,7 @@ import javax.annotation.Generated;
  */
 
 @JsonTypeName("SearchCriteria_search_criteria_inner")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class SearchCriteriaSearchCriteriaInner {
 
   private String filterKey;
@@ -65,6 +65,19 @@ public class SearchCriteriaSearchCriteriaInner {
 
   private String value;
 
+  public SearchCriteriaSearchCriteriaInner() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public SearchCriteriaSearchCriteriaInner(String filterKey, OperationEnum operation, String value) {
+      this.filterKey = filterKey;
+      this.operation = operation;
+      this.value = value;
+  }
+
   public SearchCriteriaSearchCriteriaInner filterKey(String filterKey) {
     this.filterKey = filterKey;
     return this;
@@ -73,7 +86,7 @@ public class SearchCriteriaSearchCriteriaInner {
   /**
    * search by field
    * @return filterKey
-  */
+   */
   
   @Schema(name = "filter_key", description = "search by field", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("filter_key")
@@ -93,7 +106,7 @@ public class SearchCriteriaSearchCriteriaInner {
   /**
    * operation to perform for the filter
    * @return operation
-  */
+   */
   
   @Schema(name = "operation", description = "operation to perform for the filter", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("operation")
@@ -113,7 +126,7 @@ public class SearchCriteriaSearchCriteriaInner {
   /**
    * search value
    * @return value
-  */
+   */
   
   @Schema(name = "value", description = "search value", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("value")
@@ -165,5 +178,75 @@ public class SearchCriteriaSearchCriteriaInner {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private SearchCriteriaSearchCriteriaInner instance;
+
+    public Builder() {
+      this(new SearchCriteriaSearchCriteriaInner());
+    }
+
+    protected Builder(SearchCriteriaSearchCriteriaInner instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(SearchCriteriaSearchCriteriaInner value) { 
+      this.instance.setFilterKey(value.filterKey);
+      this.instance.setOperation(value.operation);
+      this.instance.setValue(value.value);
+      return this;
+    }
+
+    public Builder filterKey(String filterKey) {
+      this.instance.filterKey(filterKey);
+      return this;
+    }
+    
+    public Builder operation(OperationEnum operation) {
+      this.instance.operation(operation);
+      return this;
+    }
+    
+    public Builder value(String value) {
+      this.instance.value(value);
+      return this;
+    }
+    
+    /**
+    * returns a built SearchCriteriaSearchCriteriaInner instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public SearchCriteriaSearchCriteriaInner build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

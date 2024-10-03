@@ -12,10 +12,21 @@ import javax.validation.constraints.Min;
  */
 
 @JsonTypeName("OrganizationStats_relationships_users_meta")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class OrganizationStatsRelationshipsUsersMeta {
 
   private Integer count;
+
+  public OrganizationStatsRelationshipsUsersMeta() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public OrganizationStatsRelationshipsUsersMeta(Integer count) {
+      this.count = count;
+  }
 
   public OrganizationStatsRelationshipsUsersMeta count(Integer count) {
     this.count = count;
@@ -26,7 +37,7 @@ public class OrganizationStatsRelationshipsUsersMeta {
    * Total count of users in the organization.
    * minimum: 0
    * @return count
-  */
+   */
   @Min(0) 
   @Schema(name = "count", description = "Total count of users in the organization.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("count")
@@ -74,5 +85,63 @@ public class OrganizationStatsRelationshipsUsersMeta {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private OrganizationStatsRelationshipsUsersMeta instance;
+
+    public Builder() {
+      this(new OrganizationStatsRelationshipsUsersMeta());
+    }
+
+    protected Builder(OrganizationStatsRelationshipsUsersMeta instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(OrganizationStatsRelationshipsUsersMeta value) { 
+      this.instance.setCount(value.count);
+      return this;
+    }
+
+    public Builder count(Integer count) {
+      this.instance.count(count);
+      return this;
+    }
+    
+    /**
+    * returns a built OrganizationStatsRelationshipsUsersMeta instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public OrganizationStatsRelationshipsUsersMeta build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

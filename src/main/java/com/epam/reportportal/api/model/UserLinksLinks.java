@@ -12,7 +12,7 @@ import javax.validation.Valid;
  */
 
 @JsonTypeName("UserLinks__links")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
 public class UserLinksLinks {
 
   private Link self;
@@ -20,6 +20,19 @@ public class UserLinksLinks {
   private Link profilePicture;
 
   private Link profilePictureThumbnail;
+
+  public UserLinksLinks() {
+    super();
+  }
+
+  /**
+   * Constructor with all args parameters
+   */
+  public UserLinksLinks(Link self, Link profilePicture, Link profilePictureThumbnail) {
+      this.self = self;
+      this.profilePicture = profilePicture;
+      this.profilePictureThumbnail = profilePictureThumbnail;
+  }
 
   public UserLinksLinks self(Link self) {
     this.self = self;
@@ -29,7 +42,7 @@ public class UserLinksLinks {
   /**
    * Get self
    * @return self
-  */
+   */
   @Valid 
   @Schema(name = "self", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("self")
@@ -49,7 +62,7 @@ public class UserLinksLinks {
   /**
    * Get profilePicture
    * @return profilePicture
-  */
+   */
   @Valid 
   @Schema(name = "profile_picture", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("profile_picture")
@@ -69,7 +82,7 @@ public class UserLinksLinks {
   /**
    * Get profilePictureThumbnail
    * @return profilePictureThumbnail
-  */
+   */
   @Valid 
   @Schema(name = "profile_picture_thumbnail", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("profile_picture_thumbnail")
@@ -121,5 +134,75 @@ public class UserLinksLinks {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder {
+
+    private UserLinksLinks instance;
+
+    public Builder() {
+      this(new UserLinksLinks());
+    }
+
+    protected Builder(UserLinksLinks instance) {
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(UserLinksLinks value) { 
+      this.instance.setSelf(value.self);
+      this.instance.setProfilePicture(value.profilePicture);
+      this.instance.setProfilePictureThumbnail(value.profilePictureThumbnail);
+      return this;
+    }
+
+    public Builder self(Link self) {
+      this.instance.self(self);
+      return this;
+    }
+    
+    public Builder profilePicture(Link profilePicture) {
+      this.instance.profilePicture(profilePicture);
+      return this;
+    }
+    
+    public Builder profilePictureThumbnail(Link profilePictureThumbnail) {
+      this.instance.profilePictureThumbnail(profilePictureThumbnail);
+      return this;
+    }
+    
+    /**
+    * returns a built UserLinksLinks instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public UserLinksLinks build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 

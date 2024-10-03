@@ -7,9 +7,6 @@ import java.util.Objects;
 import javax.annotation.Generated;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -17,12 +14,8 @@ import org.springframework.format.annotation.DateTimeFormat;
  */
 
 @Schema(name = "ProjectInfo", description = "General information about a project.")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
-public class ProjectInfo {
-
-  private String name;
-
-  private String slug;
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.8.0")
+public class ProjectInfo extends ProjectBase {
 
   private Long id;
 
@@ -46,47 +39,20 @@ public class ProjectInfo {
    * Constructor with only required parameters
    */
   public ProjectInfo(String name) {
-    this.name = name;
-  }
-
-  public ProjectInfo name(String name) {
-    this.name = name;
-    return this;
+    super(name);
   }
 
   /**
-   * Display name.
-   * @return name
-  */
-  @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
-  @Schema(name = "name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
-  @JsonProperty("name")
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public ProjectInfo slug(String slug) {
-    this.slug = slug;
-    return this;
-  }
-
-  /**
-   * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.
-   * @return slug
-  */
-  @Pattern(regexp = "^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min = 3, max = 60) 
-  @Schema(name = "slug", description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
-  @JsonProperty("slug")
-  public String getSlug() {
-    return slug;
-  }
-
-  public void setSlug(String slug) {
-    this.slug = slug;
+   * Constructor with all args parameters
+   */
+  public ProjectInfo(Long id, String key, Long organizationId, Instant createdAt, Instant updatedAt, ProjectStats stats, String name, String slug) {
+      super(name, slug);
+      this.id = id;
+      this.key = key;
+      this.organizationId = organizationId;
+      this.createdAt = createdAt;
+      this.updatedAt = updatedAt;
+      this.stats = stats;
   }
 
   public ProjectInfo id(Long id) {
@@ -98,7 +64,7 @@ public class ProjectInfo {
    * Project internal identifier.
    * minimum: 0
    * @return id
-  */
+   */
   @Min(0L) 
   @Schema(name = "id", description = "Project internal identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("id")
@@ -118,7 +84,7 @@ public class ProjectInfo {
   /**
    * Unique identifying part of a project in an instance. Generated from an organization slug and project slug.
    * @return key
-  */
+   */
   
   @Schema(name = "key", description = "Unique identifying part of a project in an instance. Generated from an organization slug and project slug.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("key")
@@ -139,7 +105,7 @@ public class ProjectInfo {
    * Organization ID to which the project belongs.
    * minimum: 0
    * @return organizationId
-  */
+   */
   @Min(0L) 
   @Schema(name = "organization_id", description = "Organization ID to which the project belongs.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("organization_id")
@@ -159,7 +125,7 @@ public class ProjectInfo {
   /**
    * Timestamp when project was created.
    * @return createdAt
-  */
+   */
   @Valid 
   @Schema(name = "created_at", description = "Timestamp when project was created.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("created_at")
@@ -179,7 +145,7 @@ public class ProjectInfo {
   /**
    * Timestamp when project was last updated.
    * @return updatedAt
-  */
+   */
   @Valid 
   @Schema(name = "updated_at", description = "Timestamp when project was last updated.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("updated_at")
@@ -199,7 +165,7 @@ public class ProjectInfo {
   /**
    * Get stats
    * @return stats
-  */
+   */
   @Valid 
   @Schema(name = "stats", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
   @JsonProperty("stats")
@@ -211,6 +177,16 @@ public class ProjectInfo {
     this.stats = stats;
   }
 
+
+  public ProjectInfo name(String name) {
+    super.name(name);
+    return this;
+  }
+
+  public ProjectInfo slug(String slug) {
+    super.slug(slug);
+    return this;
+  }
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -220,27 +196,25 @@ public class ProjectInfo {
       return false;
     }
     ProjectInfo projectInfo = (ProjectInfo) o;
-    return Objects.equals(this.name, projectInfo.name) &&
-        Objects.equals(this.slug, projectInfo.slug) &&
-        Objects.equals(this.id, projectInfo.id) &&
+    return Objects.equals(this.id, projectInfo.id) &&
         Objects.equals(this.key, projectInfo.key) &&
         Objects.equals(this.organizationId, projectInfo.organizationId) &&
         Objects.equals(this.createdAt, projectInfo.createdAt) &&
         Objects.equals(this.updatedAt, projectInfo.updatedAt) &&
-        Objects.equals(this.stats, projectInfo.stats);
+        Objects.equals(this.stats, projectInfo.stats) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, slug, id, key, organizationId, createdAt, updatedAt, stats);
+    return Objects.hash(id, key, organizationId, createdAt, updatedAt, stats, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ProjectInfo {\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
     sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
@@ -261,5 +235,108 @@ public class ProjectInfo {
     }
     return o.toString().replace("\n", "\n    ");
   }
+  
+  public static class Builder extends ProjectBase.Builder {
+
+    private ProjectInfo instance;
+
+    public Builder() {
+      this(new ProjectInfo());
+    }
+
+    protected Builder(ProjectInfo instance) {
+      super(instance); // the parent builder shares the same instance
+      this.instance = instance;
+    }
+
+    protected Builder copyOf(ProjectInfo value) { 
+      super.copyOf(instance);
+      this.instance.setId(value.id);
+      this.instance.setKey(value.key);
+      this.instance.setOrganizationId(value.organizationId);
+      this.instance.setCreatedAt(value.createdAt);
+      this.instance.setUpdatedAt(value.updatedAt);
+      this.instance.setStats(value.stats);
+      return this;
+    }
+
+    public Builder id(Long id) {
+      this.instance.id(id);
+      return this;
+    }
+    
+    public Builder key(String key) {
+      this.instance.key(key);
+      return this;
+    }
+    
+    public Builder organizationId(Long organizationId) {
+      this.instance.organizationId(organizationId);
+      return this;
+    }
+    
+    public Builder createdAt(Instant createdAt) {
+      this.instance.createdAt(createdAt);
+      return this;
+    }
+    
+    public Builder updatedAt(Instant updatedAt) {
+      this.instance.updatedAt(updatedAt);
+      return this;
+    }
+    
+    public Builder stats(ProjectStats stats) {
+      this.instance.stats(stats);
+      return this;
+    }
+    
+    @Override
+    public Builder name(String name) {
+      this.instance.name(name);
+      return this;
+    }
+    
+    @Override
+    public Builder slug(String slug) {
+      this.instance.slug(slug);
+      return this;
+    }
+    
+    /**
+    * returns a built ProjectInfo instance.
+    *
+    * The builder is not reusable (NullPointerException)
+    */
+    public ProjectInfo build() {
+      try {
+        return this.instance;
+      } finally {
+        // ensure that this.instance is not reused
+        super.build();
+        this.instance = null;
+      }
+    }
+
+    @Override
+    public String toString() {
+      return getClass() + "=(" + instance + ")";
+    }
+  }
+
+  /**
+  * Create a builder with no initialized field (except for the default values).
+  */
+  public static Builder builder() {
+    return new Builder();
+  }
+
+  /**
+  * Create a builder with a shallow copy of this instance.
+  */
+  public Builder toBuilder() {
+    Builder builder = new Builder();
+    return builder.copyOf(this);
+  }
+
 }
 
