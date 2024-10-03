@@ -5,24 +5,33 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
 
 /**
  * InvitationRequest
  */
-@Validated
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class InvitationRequest {
 
+  private String email;
 
-public class InvitationRequest   {
-  @JsonProperty("email")
-  private String email = null;
-
-  @JsonProperty("organizations")
   @Valid
-  private List<UserOrgInfoWithProjects> organizations = null;
+  private List<InvitationRequestOrganizationsInner> organizations;
+
+  public InvitationRequest() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public InvitationRequest(String email) {
+    this.email = email;
+  }
 
   public InvitationRequest email(String email) {
     this.email = email;
@@ -32,11 +41,11 @@ public class InvitationRequest   {
   /**
    * Email for invitation.
    * @return email
-   **/
-  @Schema(required = true, description = "Email for invitation.")
-      @NotNull
-
-    public String getEmail() {
+  */
+  @NotNull @Email
+  @Schema(name = "email", description = "Email for invitation.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("email")
+  public String getEmail() {
     return email;
   }
 
@@ -44,12 +53,12 @@ public class InvitationRequest   {
     this.email = email;
   }
 
-  public InvitationRequest organizations(List<UserOrgInfoWithProjects> organizations) {
+  public InvitationRequest organizations(List<InvitationRequestOrganizationsInner> organizations) {
     this.organizations = organizations;
     return this;
   }
 
-  public InvitationRequest addOrganizationsItem(UserOrgInfoWithProjects organizationsItem) {
+  public InvitationRequest addOrganizationsItem(InvitationRequestOrganizationsInner organizationsItem) {
     if (this.organizations == null) {
       this.organizations = new ArrayList<>();
     }
@@ -60,18 +69,17 @@ public class InvitationRequest   {
   /**
    * Organizations to assign a user.
    * @return organizations
-   **/
-  @Schema(description = "Organizations to assign a user.")
-      @NotNull
-    @Valid
-    public List<UserOrgInfoWithProjects> getOrganizations() {
+  */
+  @Valid 
+  @Schema(name = "organizations", description = "Organizations to assign a user.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("organizations")
+  public List<InvitationRequestOrganizationsInner> getOrganizations() {
     return organizations;
   }
 
-  public void setOrganizations(List<UserOrgInfoWithProjects> organizations) {
+  public void setOrganizations(List<InvitationRequestOrganizationsInner> organizations) {
     this.organizations = organizations;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -95,7 +103,6 @@ public class InvitationRequest   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvitationRequest {\n");
-    
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    organizations: ").append(toIndentedString(organizations)).append("\n");
     sb.append("}");
@@ -113,3 +120,4 @@ public class InvitationRequest   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

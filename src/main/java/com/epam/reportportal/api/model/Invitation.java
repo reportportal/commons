@@ -4,29 +4,34 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
+import java.net.URI;
 import java.time.Instant;
 import java.util.Objects;
 import java.util.UUID;
+import javax.annotation.Generated;
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * Invitation
+ * Invitation information.  Invitation status can be &#x60;PENDING&#x60; or &#x60;ACTIVATED&#x60;.
  */
-@Validated
 
+@Schema(name = "Invitation", description = "Invitation information.  Invitation status can be `PENDING` or `ACTIVATED`.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class Invitation {
 
+  private UUID id;
 
-public class Invitation   {
-  @JsonProperty("id")
-  private UUID id = null;
+  private Long userId;
 
-  @JsonProperty("user_id")
-  private Long userId = null;
+  private String fullName;
 
-  @JsonProperty("email")
-  private String email = null;
+  private String email;
 
   /**
    * User invitations status.
@@ -42,33 +47,49 @@ public class Invitation   {
       this.value = value;
     }
 
-    @Override
     @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
     public String toString() {
       return String.valueOf(value);
     }
 
     @JsonCreator
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String value) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
-  @JsonProperty("status")
-  private StatusEnum status = null;
 
-  @JsonProperty("link")
-  private String link = null;
+  private StatusEnum status;
 
-  @JsonProperty("created_at")
-  private Instant createdAt = null;
+  private URI link;
 
-  @JsonProperty("expires_at")
-  private Instant expiresAt = null;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  private Instant createdAt;
+
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  private Instant expiresAt;
+
+  public Invitation() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public Invitation(UUID id, String email, StatusEnum status) {
+    this.id = id;
+    this.email = email;
+    this.status = status;
+  }
 
   public Invitation id(UUID id) {
     this.id = id;
@@ -78,12 +99,11 @@ public class Invitation   {
   /**
    * Invitation identifier.
    * @return id
-   **/
-  @Schema(description = "Invitation identifier.")
-      @NotNull
-
-    @Valid
-    public UUID getId() {
+  */
+  @NotNull @Valid 
+  @Schema(name = "id", description = "Invitation identifier.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("id")
+  public UUID getId() {
     return id;
   }
 
@@ -97,18 +117,39 @@ public class Invitation   {
   }
 
   /**
-   * User identifier. For activated users only.
+   * User identifier.
+   * minimum: 0
    * @return userId
-   **/
-  @Schema(description = "User identifier. For activated users only.")
-      @NotNull
-
-    public Long getUserId() {
+  */
+  @Min(0L) 
+  @Schema(name = "user_id", description = "User identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("user_id")
+  public Long getUserId() {
     return userId;
   }
 
   public void setUserId(Long userId) {
     this.userId = userId;
+  }
+
+  public Invitation fullName(String fullName) {
+    this.fullName = fullName;
+    return this;
+  }
+
+  /**
+   * Display name.
+   * @return fullName
+  */
+  @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
+  @Schema(name = "full_name", description = "Display name.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("full_name")
+  public String getFullName() {
+    return fullName;
+  }
+
+  public void setFullName(String fullName) {
+    this.fullName = fullName;
   }
 
   public Invitation email(String email) {
@@ -119,11 +160,11 @@ public class Invitation   {
   /**
    * User's email.
    * @return email
-   **/
-  @Schema(description = "User's email.")
-      @NotNull
-
-    public String getEmail() {
+  */
+  @NotNull @Email
+  @Schema(name = "email", description = "User's email.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("email")
+  public String getEmail() {
     return email;
   }
 
@@ -139,11 +180,11 @@ public class Invitation   {
   /**
    * User invitations status.
    * @return status
-   **/
-  @Schema(description = "User invitations status.")
-      @NotNull
-
-    public StatusEnum getStatus() {
+  */
+  @NotNull 
+  @Schema(name = "status", description = "User invitations status.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("status")
+  public StatusEnum getStatus() {
     return status;
   }
 
@@ -151,7 +192,7 @@ public class Invitation   {
     this.status = status;
   }
 
-  public Invitation link(String link) {
+  public Invitation link(URI link) {
     this.link = link;
     return this;
   }
@@ -159,15 +200,15 @@ public class Invitation   {
   /**
    * Link to invitation form.
    * @return link
-   **/
-  @Schema(description = "Link to invitation form.")
-      @NotNull
-
-    public String getLink() {
+  */
+  @Valid 
+  @Schema(name = "link", description = "Link to invitation form.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("link")
+  public URI getLink() {
     return link;
   }
 
-  public void setLink(String link) {
+  public void setLink(URI link) {
     this.link = link;
   }
 
@@ -179,12 +220,11 @@ public class Invitation   {
   /**
    * Creation date.
    * @return createdAt
-   **/
-  @Schema(description = "Creation date.")
-      @NotNull
-
-    @Valid
-    public Instant getCreatedAt() {
+  */
+  @Valid 
+  @Schema(name = "created_at", description = "Creation date.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("created_at")
+  public Instant getCreatedAt() {
     return createdAt;
   }
 
@@ -198,21 +238,19 @@ public class Invitation   {
   }
 
   /**
-   * Experation date.
+   * Expiration date.
    * @return expiresAt
-   **/
-  @Schema(description = "Experation date.")
-      @NotNull
-
-    @Valid
-    public Instant getExpiresAt() {
+  */
+  @Valid 
+  @Schema(name = "expires_at", description = "Expiration date.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("expires_at")
+  public Instant getExpiresAt() {
     return expiresAt;
   }
 
   public void setExpiresAt(Instant expiresAt) {
     this.expiresAt = expiresAt;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -225,6 +263,7 @@ public class Invitation   {
     Invitation invitation = (Invitation) o;
     return Objects.equals(this.id, invitation.id) &&
         Objects.equals(this.userId, invitation.userId) &&
+        Objects.equals(this.fullName, invitation.fullName) &&
         Objects.equals(this.email, invitation.email) &&
         Objects.equals(this.status, invitation.status) &&
         Objects.equals(this.link, invitation.link) &&
@@ -234,16 +273,16 @@ public class Invitation   {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, userId, email, status, link, createdAt, expiresAt);
+    return Objects.hash(id, userId, fullName, email, status, link, createdAt, expiresAt);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Invitation {\n");
-    
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    link: ").append(toIndentedString(link)).append("\n");
@@ -264,3 +303,4 @@ public class Invitation   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

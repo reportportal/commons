@@ -5,18 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
+import javax.annotation.Generated;
 
 /**
- * Information about user&#x27;s project role.
+ * Information about user&#39;s project role.
  */
-@Schema(description = "Information about user's project role.")
-@Validated
 
+@Schema(name = "UserProjectRole", description = "Information about user's project role.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class UserProjectRole {
 
-
-public class UserProjectRole   {
   /**
    * User role in the project.
    */
@@ -31,23 +29,27 @@ public class UserProjectRole   {
       this.value = value;
     }
 
-    @Override
     @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
     public String toString() {
       return String.valueOf(value);
     }
 
     @JsonCreator
-    public static ProjectRoleEnum fromValue(String text) {
+    public static ProjectRoleEnum fromValue(String value) {
       for (ProjectRoleEnum b : ProjectRoleEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
-  @JsonProperty("project_role")
+
   private ProjectRoleEnum projectRole = ProjectRoleEnum.VIEWER;
 
   public UserProjectRole projectRole(ProjectRoleEnum projectRole) {
@@ -58,18 +60,17 @@ public class UserProjectRole   {
   /**
    * User role in the project.
    * @return projectRole
-   **/
-  @Schema(description = "User role in the project.")
-      @NotNull
-
-    public ProjectRoleEnum getProjectRole() {
+  */
+  
+  @Schema(name = "project_role", description = "User role in the project.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("project_role")
+  public ProjectRoleEnum getProjectRole() {
     return projectRole;
   }
 
   public void setProjectRole(ProjectRoleEnum projectRole) {
     this.projectRole = projectRole;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -92,7 +93,6 @@ public class UserProjectRole   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserProjectRole {\n");
-    
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -109,3 +109,4 @@ public class UserProjectRole   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

@@ -5,21 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
 
 /**
- * Information about user&#x27;s project.
+ * Information about user&#39;s project.
  */
-@Schema(description = "Information about user's project.")
-@Validated
 
-
-
-public class UserProjectInfo   {
-  @JsonProperty("id")
-  private Long id = null;
+@Schema(name = "UserProjectInfo", description = "Information about user's project.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class UserProjectInfo {
 
   /**
    * User role in the project.
@@ -35,24 +30,50 @@ public class UserProjectInfo   {
       this.value = value;
     }
 
-    @Override
     @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
     public String toString() {
       return String.valueOf(value);
     }
 
     @JsonCreator
-    public static ProjectRoleEnum fromValue(String text) {
+    public static ProjectRoleEnum fromValue(String value) {
       for (ProjectRoleEnum b : ProjectRoleEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
-  @JsonProperty("project_role")
+
   private ProjectRoleEnum projectRole = ProjectRoleEnum.VIEWER;
+
+  private Long id;
+
+  public UserProjectInfo projectRole(ProjectRoleEnum projectRole) {
+    this.projectRole = projectRole;
+    return this;
+  }
+
+  /**
+   * User role in the project.
+   * @return projectRole
+  */
+  
+  @Schema(name = "project_role", description = "User role in the project.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("project_role")
+  public ProjectRoleEnum getProjectRole() {
+    return projectRole;
+  }
+
+  public void setProjectRole(ProjectRoleEnum projectRole) {
+    this.projectRole = projectRole;
+  }
 
   public UserProjectInfo id(Long id) {
     this.id = id;
@@ -63,38 +84,17 @@ public class UserProjectInfo   {
    * Project's internal identifier.
    * minimum: 0
    * @return id
-   **/
-  @Schema(description = "Project's internal identifier.")
-      @NotNull
-
-  @Min(0L)  public Long getId() {
+  */
+  @Min(0L) 
+  @Schema(name = "id", description = "Project's internal identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
+  public Long getId() {
     return id;
   }
 
   public void setId(Long id) {
     this.id = id;
   }
-
-  public UserProjectInfo projectRole(ProjectRoleEnum projectRole) {
-    this.projectRole = projectRole;
-    return this;
-  }
-
-  /**
-   * User role in the project.
-   * @return projectRole
-   **/
-  @Schema(description = "User role in the project.")
-      @NotNull
-
-    public ProjectRoleEnum getProjectRole() {
-    return projectRole;
-  }
-
-  public void setProjectRole(ProjectRoleEnum projectRole) {
-    this.projectRole = projectRole;
-  }
-
 
   @Override
   public boolean equals(Object o) {
@@ -105,22 +105,21 @@ public class UserProjectInfo   {
       return false;
     }
     UserProjectInfo userProjectInfo = (UserProjectInfo) o;
-    return Objects.equals(this.id, userProjectInfo.id) &&
-        Objects.equals(this.projectRole, userProjectInfo.projectRole);
+    return Objects.equals(this.projectRole, userProjectInfo.projectRole) &&
+        Objects.equals(this.id, userProjectInfo.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projectRole);
+    return Objects.hash(projectRole, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserProjectInfo {\n");
-    
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    projectRole: ").append(toIndentedString(projectRole)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -136,3 +135,4 @@ public class UserProjectInfo   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

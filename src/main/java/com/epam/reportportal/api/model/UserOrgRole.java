@@ -5,18 +5,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
+import javax.annotation.Generated;
 
 /**
  * Basic information about a user in the organization.
  */
-@Schema(description = "Basic information about a user in the organization.")
-@Validated
 
+@Schema(name = "UserOrgRole", description = "Basic information about a user in the organization.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class UserOrgRole {
 
-
-public class UserOrgRole   {
   /**
    * Organization user role.
    */
@@ -31,23 +29,27 @@ public class UserOrgRole   {
       this.value = value;
     }
 
-    @Override
     @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
     public String toString() {
       return String.valueOf(value);
     }
 
     @JsonCreator
-    public static OrgRoleEnum fromValue(String text) {
+    public static OrgRoleEnum fromValue(String value) {
       for (OrgRoleEnum b : OrgRoleEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
-  @JsonProperty("org_role")
+
   private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
 
   public UserOrgRole orgRole(OrgRoleEnum orgRole) {
@@ -58,18 +60,17 @@ public class UserOrgRole   {
   /**
    * Organization user role.
    * @return orgRole
-   **/
-  @Schema(description = "Organization user role.")
-      @NotNull
-
-    public OrgRoleEnum getOrgRole() {
+  */
+  
+  @Schema(name = "org_role", description = "Organization user role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("org_role")
+  public OrgRoleEnum getOrgRole() {
     return orgRole;
   }
 
   public void setOrgRole(OrgRoleEnum orgRole) {
     this.orgRole = orgRole;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -92,7 +93,6 @@ public class UserOrgRole   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserOrgRole {\n");
-    
     sb.append("    orgRole: ").append(toIndentedString(orgRole)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -109,3 +109,4 @@ public class UserOrgRole   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

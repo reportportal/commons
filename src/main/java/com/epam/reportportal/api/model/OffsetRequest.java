@@ -5,28 +5,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
 
 /**
  * Offset-based pagination
  */
-@Schema(description = "Offset-based pagination")
-@Validated
 
+@Schema(name = "OffsetRequest", description = "Offset-based pagination")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class OffsetRequest {
 
-
-public class OffsetRequest   {
-  @JsonProperty("offset")
   private Integer offset = 0;
 
-  @JsonProperty("limit")
   private Integer limit = 300;
 
-  @JsonProperty("sort")
-  private String sort = null;
+  private String sort;
 
   /**
    * To indicate sorting direction. Ascending or Descending.
@@ -42,23 +37,27 @@ public class OffsetRequest   {
       this.value = value;
     }
 
-    @Override
     @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
     public String toString() {
       return String.valueOf(value);
     }
 
     @JsonCreator
-    public static OrderEnum fromValue(String text) {
+    public static OrderEnum fromValue(String value) {
       for (OrderEnum b : OrderEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
-  @JsonProperty("order")
+
   private OrderEnum order = OrderEnum.ASC;
 
   public OffsetRequest offset(Integer offset) {
@@ -70,11 +69,11 @@ public class OffsetRequest   {
    * The offset used for this page of results.
    * minimum: 0
    * @return offset
-   **/
-  @Schema(description = "The offset used for this page of results.")
-      @NotNull
-
-  @Min(0)  public Integer getOffset() {
+  */
+  @Min(0) 
+  @Schema(name = "offset", description = "The offset used for this page of results.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("offset")
+  public Integer getOffset() {
     return offset;
   }
 
@@ -92,11 +91,11 @@ public class OffsetRequest   {
    * minimum: 0
    * maximum: 1000
    * @return limit
-   **/
-  @Schema(description = "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.")
-      @NotNull
-
-  @Min(0) @Max(1000)   public Integer getLimit() {
+  */
+  @Min(0) @Max(1000) 
+  @Schema(name = "limit", description = "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("limit")
+  public Integer getLimit() {
     return limit;
   }
 
@@ -112,11 +111,11 @@ public class OffsetRequest   {
   /**
    * Field to define the sort field.
    * @return sort
-   **/
-  @Schema(description = "Field to define the sort field.")
-      @NotNull
-
-    public String getSort() {
+  */
+  
+  @Schema(name = "sort", description = "Field to define the sort field.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("sort")
+  public String getSort() {
     return sort;
   }
 
@@ -132,18 +131,17 @@ public class OffsetRequest   {
   /**
    * To indicate sorting direction. Ascending or Descending.
    * @return order
-   **/
-  @Schema(description = "To indicate sorting direction. Ascending or Descending.")
-      @NotNull
-
-    public OrderEnum getOrder() {
+  */
+  
+  @Schema(name = "order", description = "To indicate sorting direction. Ascending or Descending.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("order")
+  public OrderEnum getOrder() {
     return order;
   }
 
   public void setOrder(OrderEnum order) {
     this.order = order;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -169,7 +167,6 @@ public class OffsetRequest   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OffsetRequest {\n");
-    
     sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
     sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
     sb.append("    sort: ").append(toIndentedString(sort)).append("\n");
@@ -189,3 +186,4 @@ public class OffsetRequest   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

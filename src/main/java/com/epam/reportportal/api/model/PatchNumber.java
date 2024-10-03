@@ -6,18 +6,16 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.math.BigDecimal;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
 
 /**
  * PatchNumber
  */
-@Validated
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class PatchNumber implements PatchOperation {
 
-
-public class PatchNumber  implements PatchOperation {
   /**
    * Gets or Sets op
    */
@@ -34,30 +32,32 @@ public class PatchNumber  implements PatchOperation {
       this.value = value;
     }
 
-    @Override
     @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
     public String toString() {
       return String.valueOf(value);
     }
 
     @JsonCreator
-    public static OpEnum fromValue(String text) {
+    public static OpEnum fromValue(String value) {
       for (OpEnum b : OpEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
-  @JsonProperty("op")
-  private OpEnum op = null;
 
-  @JsonProperty("path")
-  private String path = null;
+  private OpEnum op;
 
-  @JsonProperty("value")
-  private BigDecimal value = null;
+  private String path;
+
+  private BigDecimal value;
 
   public PatchNumber op(OpEnum op) {
     this.op = op;
@@ -67,11 +67,11 @@ public class PatchNumber  implements PatchOperation {
   /**
    * Get op
    * @return op
-   **/
-  @Schema(description = "")
-      @NotNull
-
-    public OpEnum getOp() {
+  */
+  
+  @Schema(name = "op", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("op")
+  public OpEnum getOp() {
     return op;
   }
 
@@ -87,11 +87,11 @@ public class PatchNumber  implements PatchOperation {
   /**
    * Get path
    * @return path
-   **/
-  @Schema(description = "")
-      @NotNull
-
-    public String getPath() {
+  */
+  
+  @Schema(name = "path", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("path")
+  public String getPath() {
     return path;
   }
 
@@ -107,19 +107,17 @@ public class PatchNumber  implements PatchOperation {
   /**
    * Get value
    * @return value
-   **/
-  @Schema(description = "")
-      @NotNull
-
-    @Valid
-    public BigDecimal getValue() {
+  */
+  @Valid 
+  @Schema(name = "value", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("value")
+  public BigDecimal getValue() {
     return value;
   }
 
   public void setValue(BigDecimal value) {
     this.value = value;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -144,7 +142,6 @@ public class PatchNumber  implements PatchOperation {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PatchNumber {\n");
-    
     sb.append("    op: ").append(toIndentedString(op)).append("\n");
     sb.append("    path: ").append(toIndentedString(path)).append("\n");
     sb.append("    value: ").append(toIndentedString(value)).append("\n");
@@ -163,3 +160,4 @@ public class PatchNumber  implements PatchOperation {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

@@ -1,27 +1,175 @@
 package com.epam.reportportal.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
+import javax.validation.constraints.Min;
 
 /**
  * InvitationPage
  */
-@Validated
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class InvitationPage {
 
+  private Integer offset = 0;
 
-public class InvitationPage extends Offset  {
-  @JsonProperty("items")
+  private Integer limit = 300;
+
+  private Integer totalCount;
+
+  private String sort;
+
+  /**
+   * To indicate sorting direction. Ascending or Descending.
+   */
+  public enum OrderEnum {
+    ASC("ASC"),
+    
+    DESC("DESC");
+
+    private String value;
+
+    OrderEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static OrderEnum fromValue(String value) {
+      for (OrderEnum b : OrderEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  private OrderEnum order;
+
   @Valid
-  private List<Invitation> items = null;
+  private List<@Valid Invitation> items;
 
-  public InvitationPage items(List<Invitation> items) {
+  public InvitationPage offset(Integer offset) {
+    this.offset = offset;
+    return this;
+  }
+
+  /**
+   * The offset used for this page of results.
+   * minimum: 0
+   * @return offset
+  */
+  @Min(0) 
+  @Schema(name = "offset", description = "The offset used for this page of results.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("offset")
+  public Integer getOffset() {
+    return offset;
+  }
+
+  public void setOffset(Integer offset) {
+    this.offset = offset;
+  }
+
+  public InvitationPage limit(Integer limit) {
+    this.limit = limit;
+    return this;
+  }
+
+  /**
+   * The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.
+   * minimum: 0
+   * @return limit
+  */
+  @Min(0) 
+  @Schema(name = "limit", description = "The limit used for this page of results. This will be the same as the limit query parameter unless it exceeded the maximum value allowed for this API endpoint.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("limit")
+  public Integer getLimit() {
+    return limit;
+  }
+
+  public void setLimit(Integer limit) {
+    this.limit = limit;
+  }
+
+  public InvitationPage totalCount(Integer totalCount) {
+    this.totalCount = totalCount;
+    return this;
+  }
+
+  /**
+   * One greater than the offset of the last item in the entire collection. The total number of items in the collection may be less than total_count.
+   * minimum: 0
+   * @return totalCount
+  */
+  @Min(0) 
+  @Schema(name = "total_count", description = "One greater than the offset of the last item in the entire collection. The total number of items in the collection may be less than total_count.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("total_count")
+  public Integer getTotalCount() {
+    return totalCount;
+  }
+
+  public void setTotalCount(Integer totalCount) {
+    this.totalCount = totalCount;
+  }
+
+  public InvitationPage sort(String sort) {
+    this.sort = sort;
+    return this;
+  }
+
+  /**
+   * Field to define the sort field.
+   * @return sort
+  */
+  
+  @Schema(name = "sort", description = "Field to define the sort field.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("sort")
+  public String getSort() {
+    return sort;
+  }
+
+  public void setSort(String sort) {
+    this.sort = sort;
+  }
+
+  public InvitationPage order(OrderEnum order) {
+    this.order = order;
+    return this;
+  }
+
+  /**
+   * To indicate sorting direction. Ascending or Descending.
+   * @return order
+  */
+  
+  @Schema(name = "order", description = "To indicate sorting direction. Ascending or Descending.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("order")
+  public OrderEnum getOrder() {
+    return order;
+  }
+
+  public void setOrder(OrderEnum order) {
+    this.order = order;
+  }
+
+  public InvitationPage items(List<@Valid Invitation> items) {
     this.items = items;
     return this;
   }
@@ -37,18 +185,17 @@ public class InvitationPage extends Offset  {
   /**
    * Get items
    * @return items
-   **/
-  @Schema(description = "")
-      @NotNull
-    @Valid
-    public List<Invitation> getItems() {
+  */
+  @Valid 
+  @Schema(name = "items", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("items")
+  public List<@Valid Invitation> getItems() {
     return items;
   }
 
-  public void setItems(List<Invitation> items) {
+  public void setItems(List<@Valid Invitation> items) {
     this.items = items;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -59,20 +206,28 @@ public class InvitationPage extends Offset  {
       return false;
     }
     InvitationPage invitationPage = (InvitationPage) o;
-    return Objects.equals(this.items, invitationPage.items) &&
-        super.equals(o);
+    return Objects.equals(this.offset, invitationPage.offset) &&
+        Objects.equals(this.limit, invitationPage.limit) &&
+        Objects.equals(this.totalCount, invitationPage.totalCount) &&
+        Objects.equals(this.sort, invitationPage.sort) &&
+        Objects.equals(this.order, invitationPage.order) &&
+        Objects.equals(this.items, invitationPage.items);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(items, super.hashCode());
+    return Objects.hash(offset, limit, totalCount, sort, order, items);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvitationPage {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    offset: ").append(toIndentedString(offset)).append("\n");
+    sb.append("    limit: ").append(toIndentedString(limit)).append("\n");
+    sb.append("    totalCount: ").append(toIndentedString(totalCount)).append("\n");
+    sb.append("    sort: ").append(toIndentedString(sort)).append("\n");
+    sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    items: ").append(toIndentedString(items)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -89,3 +244,4 @@ public class InvitationPage extends Offset  {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

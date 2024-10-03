@@ -1,20 +1,19 @@
 package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
+import javax.annotation.Generated;
 
 /**
  * UserAssignmentResponse
  */
-@Validated
 
+@JsonTypeName("User_Assignment_Response")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class UserAssignmentResponse {
 
-
-public class UserAssignmentResponse   {
-  @JsonProperty("message")
   private String message = "The user was added to the organization.";
 
   public UserAssignmentResponse message(String message) {
@@ -25,18 +24,17 @@ public class UserAssignmentResponse   {
   /**
    * Get message
    * @return message
-   **/
-  @Schema(description = "")
-      @NotNull
-
-    public String getMessage() {
+  */
+  
+  @Schema(name = "message", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("message")
+  public String getMessage() {
     return message;
   }
 
   public void setMessage(String message) {
     this.message = message;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -59,7 +57,6 @@ public class UserAssignmentResponse   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserAssignmentResponse {\n");
-    
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -76,3 +73,4 @@ public class UserAssignmentResponse   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

@@ -5,28 +5,25 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
 
 /**
  * SearchCriteria
  */
-@Validated
 
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class SearchCriteria {
 
-
-public class SearchCriteria   {
-  @JsonProperty("search_criteria")
   @Valid
-  private List<SearchCriteriaSearchCriteria> searchCriteria = null;
+  private List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria;
 
-  public SearchCriteria searchCriteria(List<SearchCriteriaSearchCriteria> searchCriteria) {
+  public SearchCriteria searchCriteria(List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria) {
     this.searchCriteria = searchCriteria;
     return this;
   }
 
-  public SearchCriteria addSearchCriteriaItem(SearchCriteriaSearchCriteria searchCriteriaItem) {
+  public SearchCriteria addSearchCriteriaItem(SearchCriteriaSearchCriteriaInner searchCriteriaItem) {
     if (this.searchCriteria == null) {
       this.searchCriteria = new ArrayList<>();
     }
@@ -37,18 +34,17 @@ public class SearchCriteria   {
   /**
    * Get searchCriteria
    * @return searchCriteria
-   **/
-  @Schema(description = "")
-      @NotNull
-    @Valid
-    public List<SearchCriteriaSearchCriteria> getSearchCriteria() {
+  */
+  @Valid 
+  @Schema(name = "search_criteria", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("search_criteria")
+  public List<@Valid SearchCriteriaSearchCriteriaInner> getSearchCriteria() {
     return searchCriteria;
   }
 
-  public void setSearchCriteria(List<SearchCriteriaSearchCriteria> searchCriteria) {
+  public void setSearchCriteria(List<@Valid SearchCriteriaSearchCriteriaInner> searchCriteria) {
     this.searchCriteria = searchCriteria;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -71,7 +67,6 @@ public class SearchCriteria   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SearchCriteria {\n");
-    
     sb.append("    searchCriteria: ").append(toIndentedString(searchCriteria)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -88,3 +83,4 @@ public class SearchCriteria   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

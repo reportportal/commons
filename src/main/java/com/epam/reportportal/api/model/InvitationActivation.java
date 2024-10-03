@@ -5,18 +5,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import org.springframework.validation.annotation.Validated;
 
 /**
- * InvitationActivation
+ * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
  */
-@Validated
 
+@Schema(name = "InvitationActivation", description = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class InvitationActivation {
 
-
-public class InvitationActivation   {
   /**
    * Change status to ACTIVATED to create a user.
    */
@@ -29,33 +30,45 @@ public class InvitationActivation   {
       this.value = value;
     }
 
-    @Override
     @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
     public String toString() {
       return String.valueOf(value);
     }
 
     @JsonCreator
-    public static StatusEnum fromValue(String text) {
+    public static StatusEnum fromValue(String value) {
       for (StatusEnum b : StatusEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
-  @JsonProperty("status")
-  private StatusEnum status = StatusEnum.ACTIVATED;
 
-  @JsonProperty("email")
-  private String email = null;
+  private StatusEnum status;
 
-  @JsonProperty("full_name")
-  private String fullName = null;
+  private String fullName;
 
-  @JsonProperty("password")
-  private String password = null;
+  private String password;
+
+  public InvitationActivation() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public InvitationActivation(StatusEnum status, String fullName, String password) {
+    this.status = status;
+    this.fullName = fullName;
+    this.password = password;
+  }
 
   public InvitationActivation status(StatusEnum status) {
     this.status = status;
@@ -65,36 +78,16 @@ public class InvitationActivation   {
   /**
    * Change status to ACTIVATED to create a user.
    * @return status
-   **/
-  @Schema(description = "Change status to ACTIVATED to create a user.")
-      @NotNull
-
-    public StatusEnum getStatus() {
+  */
+  @NotNull 
+  @Schema(name = "status", description = "Change status to ACTIVATED to create a user.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("status")
+  public StatusEnum getStatus() {
     return status;
   }
 
   public void setStatus(StatusEnum status) {
     this.status = status;
-  }
-
-  public InvitationActivation email(String email) {
-    this.email = email;
-    return this;
-  }
-
-  /**
-   * New email.
-   * @return email
-   **/
-  @Schema(description = "New email.")
-      @NotNull
-
-    public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
   }
 
   public InvitationActivation fullName(String fullName) {
@@ -103,13 +96,13 @@ public class InvitationActivation   {
   }
 
   /**
-   * User full name.
+   * Display name.
    * @return fullName
-   **/
-  @Schema(description = "User full name.")
-      @NotNull
-
-  @Size(max=60)   public String getFullName() {
+  */
+  @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
+  @Schema(name = "full_name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("full_name")
+  public String getFullName() {
     return fullName;
   }
 
@@ -123,20 +116,19 @@ public class InvitationActivation   {
   }
 
   /**
-   * User password. Will be ignored for `PENDING` status. Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
+   * Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.
    * @return password
-   **/
-  @Schema(required = true, description = "User password. Will be ignored for `PENDING` status. Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.")
-      @NotNull
-
-    public String getPassword() {
+  */
+  @NotNull @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$") @Size(min = 8, max = 256) 
+  @Schema(name = "password", description = "Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("password")
+  public String getPassword() {
     return password;
   }
 
   public void setPassword(String password) {
     this.password = password;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -148,23 +140,20 @@ public class InvitationActivation   {
     }
     InvitationActivation invitationActivation = (InvitationActivation) o;
     return Objects.equals(this.status, invitationActivation.status) &&
-        Objects.equals(this.email, invitationActivation.email) &&
         Objects.equals(this.fullName, invitationActivation.fullName) &&
         Objects.equals(this.password, invitationActivation.password);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, email, fullName, password);
+    return Objects.hash(status, fullName, password);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InvitationActivation {\n");
-    
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("}");
@@ -182,3 +171,4 @@ public class InvitationActivation   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

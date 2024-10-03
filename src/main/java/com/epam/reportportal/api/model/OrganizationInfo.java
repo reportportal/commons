@@ -6,22 +6,29 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.time.Instant;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
- * Various information about the organization information.
+ * Various information about an organization.
  */
-@Schema(description = "Various information about the organization information.")
-@Validated
 
+@Schema(name = "OrganizationInfo", description = "Various information about an organization.")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class OrganizationInfo {
 
+  private String name;
 
-public class OrganizationInfo extends OrganizationDetails  {
-  @JsonProperty("id")
-  private Long id = null;
+  private String slug;
+
+  private OrganizationStatsRelationships relationships;
+
+  private Long id;
 
   /**
    * Type for automatization purposes.  There are three types: - INTERNAL: created by API request. - PERSONAL: created for a user after the user creating. Only Enterprise edition feature. - EXTERNAL: created for external integrations.
@@ -39,33 +46,107 @@ public class OrganizationInfo extends OrganizationDetails  {
       this.value = value;
     }
 
-    @Override
     @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
     public String toString() {
       return String.valueOf(value);
     }
 
     @JsonCreator
-    public static TypeEnum fromValue(String text) {
+    public static TypeEnum fromValue(String value) {
       for (TypeEnum b : TypeEnum.values()) {
-        if (String.valueOf(b.value).equals(text)) {
+        if (b.value.equals(value)) {
           return b;
         }
       }
-      return null;
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
     }
   }
-  @JsonProperty("type")
-  private TypeEnum type = null;
 
-  @JsonProperty("external_id")
-  private String externalId = null;
+  private TypeEnum type;
 
-  @JsonProperty("created_at")
-  private Instant createdAt = null;
+  private String externalId;
 
-  @JsonProperty("updated_at")
-  private Instant updatedAt = null;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  private Instant createdAt;
+
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  private Instant updatedAt;
+
+  public OrganizationInfo() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public OrganizationInfo(String name) {
+    this.name = name;
+  }
+
+  public OrganizationInfo name(String name) {
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * Display name.
+   * @return name
+  */
+  @NotNull @Pattern(regexp = "^[A-Za-z0-9._\\- ]+$") @Size(min = 3, max = 60) 
+  @Schema(name = "name", description = "Display name.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("name")
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public OrganizationInfo slug(String slug) {
+    this.slug = slug;
+    return this;
+  }
+
+  /**
+   * A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.
+   * @return slug
+  */
+  @Pattern(regexp = "^[a-z0-9]+(?:-[a-z0-9]+)*$") @Size(min = 3, max = 60) 
+  @Schema(name = "slug", description = "A slug is used to identify a resource. It should be unique and contain only lowercase letters, numbers, and hyphens. It should not start or end with a hyphen.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("slug")
+  public String getSlug() {
+    return slug;
+  }
+
+  public void setSlug(String slug) {
+    this.slug = slug;
+  }
+
+  public OrganizationInfo relationships(OrganizationStatsRelationships relationships) {
+    this.relationships = relationships;
+    return this;
+  }
+
+  /**
+   * Get relationships
+   * @return relationships
+  */
+  @Valid 
+  @Schema(name = "relationships", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("relationships")
+  public OrganizationStatsRelationships getRelationships() {
+    return relationships;
+  }
+
+  public void setRelationships(OrganizationStatsRelationships relationships) {
+    this.relationships = relationships;
+  }
 
   public OrganizationInfo id(Long id) {
     this.id = id;
@@ -76,11 +157,11 @@ public class OrganizationInfo extends OrganizationDetails  {
    * Organization ReportPortal identifier.
    * minimum: 0
    * @return id
-   **/
-  @Schema(description = "Organization ReportPortal identifier.")
-      @NotNull
-
-  @Min(0L)  public Long getId() {
+  */
+  @Min(0L) 
+  @Schema(name = "id", description = "Organization ReportPortal identifier.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("id")
+  public Long getId() {
     return id;
   }
 
@@ -96,11 +177,11 @@ public class OrganizationInfo extends OrganizationDetails  {
   /**
    * Type for automatization purposes.  There are three types: - INTERNAL: created by API request. - PERSONAL: created for a user after the user creating. Only Enterprise edition feature. - EXTERNAL: created for external integrations.
    * @return type
-   **/
-  @Schema(description = "Type for automatization purposes.  There are three types: - INTERNAL: created by API request. - PERSONAL: created for a user after the user creating. Only Enterprise edition feature. - EXTERNAL: created for external integrations.")
-      @NotNull
-
-    public TypeEnum getType() {
+  */
+  
+  @Schema(name = "type", description = "Type for automatization purposes.  There are three types: - INTERNAL: created by API request. - PERSONAL: created for a user after the user creating. Only Enterprise edition feature. - EXTERNAL: created for external integrations.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("type")
+  public TypeEnum getType() {
     return type;
   }
 
@@ -116,11 +197,11 @@ public class OrganizationInfo extends OrganizationDetails  {
   /**
    * External organization identifier. It is created for integration.
    * @return externalId
-   **/
-  @Schema(description = "External organization identifier. It is created for integration.")
-      @NotNull
-
-    public String getExternalId() {
+  */
+  
+  @Schema(name = "external_id", description = "External organization identifier. It is created for integration.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("external_id")
+  public String getExternalId() {
     return externalId;
   }
 
@@ -136,12 +217,11 @@ public class OrganizationInfo extends OrganizationDetails  {
   /**
    * Creation date.
    * @return createdAt
-   **/
-  @Schema(description = "Creation date.")
-      @NotNull
-
-    @Valid
-    public Instant getCreatedAt() {
+  */
+  @Valid 
+  @Schema(name = "created_at", description = "Creation date.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("created_at")
+  public Instant getCreatedAt() {
     return createdAt;
   }
 
@@ -157,19 +237,17 @@ public class OrganizationInfo extends OrganizationDetails  {
   /**
    * Last update date.
    * @return updatedAt
-   **/
-  @Schema(description = "Last update date.")
-      @NotNull
-
-    @Valid
-    public Instant getUpdatedAt() {
+  */
+  @Valid 
+  @Schema(name = "updated_at", description = "Last update date.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("updated_at")
+  public Instant getUpdatedAt() {
     return updatedAt;
   }
 
   public void setUpdatedAt(Instant updatedAt) {
     this.updatedAt = updatedAt;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -180,24 +258,28 @@ public class OrganizationInfo extends OrganizationDetails  {
       return false;
     }
     OrganizationInfo organizationInfo = (OrganizationInfo) o;
-    return Objects.equals(this.id, organizationInfo.id) &&
+    return Objects.equals(this.name, organizationInfo.name) &&
+        Objects.equals(this.slug, organizationInfo.slug) &&
+        Objects.equals(this.relationships, organizationInfo.relationships) &&
+        Objects.equals(this.id, organizationInfo.id) &&
         Objects.equals(this.type, organizationInfo.type) &&
         Objects.equals(this.externalId, organizationInfo.externalId) &&
         Objects.equals(this.createdAt, organizationInfo.createdAt) &&
-        Objects.equals(this.updatedAt, organizationInfo.updatedAt) &&
-        super.equals(o);
+        Objects.equals(this.updatedAt, organizationInfo.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, type, externalId, createdAt, updatedAt, super.hashCode());
+    return Objects.hash(name, slug, relationships, id, type, externalId, createdAt, updatedAt);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class OrganizationInfo {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    slug: ").append(toIndentedString(slug)).append("\n");
+    sb.append("    relationships: ").append(toIndentedString(relationships)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    externalId: ").append(toIndentedString(externalId)).append("\n");
@@ -218,3 +300,4 @@ public class OrganizationInfo extends OrganizationDetails  {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

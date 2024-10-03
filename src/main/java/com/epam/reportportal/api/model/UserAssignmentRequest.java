@@ -1,29 +1,98 @@
 package com.epam.reportportal.api.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import javax.annotation.Generated;
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
 
 /**
  * UserAssignmentRequest
  */
-@Validated
 
+@JsonTypeName("User_Assignment_Request")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class UserAssignmentRequest {
 
+  /**
+   * Organization user role.
+   */
+  public enum OrgRoleEnum {
+    MEMBER("MEMBER"),
+    
+    MANAGER("MANAGER");
 
-public class UserAssignmentRequest extends OrganizationUserBase  {
-  @JsonProperty("id")
-  private Long id = null;
+    private String value;
 
-  @JsonProperty("projects")
+    OrgRoleEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static OrgRoleEnum fromValue(String value) {
+      for (OrgRoleEnum b : OrgRoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  private OrgRoleEnum orgRole = OrgRoleEnum.MEMBER;
+
+  private Long id;
+
   @Valid
-  private List<UserProjectInfo> projects = null;
+  private List<UserProjectInfo> projects;
+
+  public UserAssignmentRequest() {
+    super();
+  }
+
+  /**
+   * Constructor with only required parameters
+   */
+  public UserAssignmentRequest(Long id) {
+    this.id = id;
+  }
+
+  public UserAssignmentRequest orgRole(OrgRoleEnum orgRole) {
+    this.orgRole = orgRole;
+    return this;
+  }
+
+  /**
+   * Organization user role.
+   * @return orgRole
+  */
+  
+  @Schema(name = "org_role", description = "Organization user role.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("org_role")
+  public OrgRoleEnum getOrgRole() {
+    return orgRole;
+  }
+
+  public void setOrgRole(OrgRoleEnum orgRole) {
+    this.orgRole = orgRole;
+  }
 
   public UserAssignmentRequest id(Long id) {
     this.id = id;
@@ -34,11 +103,11 @@ public class UserAssignmentRequest extends OrganizationUserBase  {
    * User's internal identifier.
    * minimum: 0
    * @return id
-   **/
-  @Schema(required = true, description = "User's internal identifier.")
-      @NotNull
-
-  @Min(0L)  public Long getId() {
+  */
+  @NotNull @Min(0L) 
+  @Schema(name = "id", description = "User's internal identifier.", requiredMode = Schema.RequiredMode.REQUIRED)
+  @JsonProperty("id")
+  public Long getId() {
     return id;
   }
 
@@ -62,18 +131,17 @@ public class UserAssignmentRequest extends OrganizationUserBase  {
   /**
    * Get projects
    * @return projects
-   **/
-  @Schema(description = "")
-      @NotNull
-    @Valid
-    public List<UserProjectInfo> getProjects() {
+  */
+  @Valid 
+  @Schema(name = "projects", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("projects")
+  public List<UserProjectInfo> getProjects() {
     return projects;
   }
 
   public void setProjects(List<UserProjectInfo> projects) {
     this.projects = projects;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -84,21 +152,21 @@ public class UserAssignmentRequest extends OrganizationUserBase  {
       return false;
     }
     UserAssignmentRequest userAssignmentRequest = (UserAssignmentRequest) o;
-    return Objects.equals(this.id, userAssignmentRequest.id) &&
-        Objects.equals(this.projects, userAssignmentRequest.projects) &&
-        super.equals(o);
+    return Objects.equals(this.orgRole, userAssignmentRequest.orgRole) &&
+        Objects.equals(this.id, userAssignmentRequest.id) &&
+        Objects.equals(this.projects, userAssignmentRequest.projects);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, projects, super.hashCode());
+    return Objects.hash(orgRole, id, projects);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UserAssignmentRequest {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    orgRole: ").append(toIndentedString(orgRole)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    projects: ").append(toIndentedString(projects)).append("\n");
     sb.append("}");
@@ -116,3 +184,4 @@ public class UserAssignmentRequest extends OrganizationUserBase  {
     return o.toString().replace("\n", "\n    ");
   }
 }
+

@@ -1,21 +1,20 @@
 package com.epam.reportportal.api.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import io.swagger.v3.oas.annotations.media.Schema;
 import java.util.Objects;
-import javax.validation.constraints.NotNull;
-import org.springframework.validation.annotation.Validated;
+import javax.annotation.Generated;
 
 /**
  * SuccessfulUpdate
  */
-@Validated
 
+@JsonTypeName("Successful_update")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", comments = "Generator version: 7.4.0")
+public class SuccessfulUpdate {
 
-
-public class SuccessfulUpdate   {
-  @JsonProperty("message")
-  private String message = null;
+  private String message;
 
   public SuccessfulUpdate message(String message) {
     this.message = message;
@@ -25,18 +24,17 @@ public class SuccessfulUpdate   {
   /**
    * Get message
    * @return message
-   **/
-  @Schema(example = "The update was completed successfully.", description = "")
-      @NotNull
-
-    public String getMessage() {
+  */
+  
+  @Schema(name = "message", example = "The update was completed successfully.", requiredMode = Schema.RequiredMode.NOT_REQUIRED)
+  @JsonProperty("message")
+  public String getMessage() {
     return message;
   }
 
   public void setMessage(String message) {
     this.message = message;
   }
-
 
   @Override
   public boolean equals(Object o) {
@@ -59,7 +57,6 @@ public class SuccessfulUpdate   {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class SuccessfulUpdate {\n");
-    
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -76,3 +73,4 @@ public class SuccessfulUpdate   {
     return o.toString().replace("\n", "\n    ");
   }
 }
+
