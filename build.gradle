@@ -60,9 +60,6 @@ dependencies {
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    // required for generated models
-    implementation "org.apache.tomcat:tomcat-annotations-api:9.0.75"
-
     testImplementation "junit:junit:${junitVersion}"
     testImplementation "org.mockito:mockito-junit-jupiter:${mockitoJunitJupiter}"
     testImplementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
