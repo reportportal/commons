@@ -74,3 +74,7 @@ dependencies {
 wrapper {
     gradleVersion = '8.5'
 }
+
+tasks.preTagCommit.enabled = false
+tasks.updateVersion.enabled = false
+tasks.commitNewVersion.enabled = false
