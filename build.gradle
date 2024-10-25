@@ -31,15 +31,15 @@ repositories {
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE'
-        mavenBom('com.epam.reportportal:commons-bom:5.12.0')
+        mavenBom('com.epam.reportportal:commons-bom:5.12.2')
     }
 }
 
 dependencies {
     if (releaseMode) {
-        api 'com.epam.reportportal:commons-reporting:5.12.1'
+        api 'com.epam.reportportal:commons-reporting:5.12.2'
     } else {
-        api 'com.github.reportportal:commons-reporting:ad1f69b'
+        api 'com.github.reportportal:commons-reporting:1ba2bb3'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
@@ -74,3 +74,7 @@ dependencies {
 wrapper {
     gradleVersion = '8.5'
 }
+
+tasks.preTagCommit.enabled = false
+tasks.updateVersion.enabled = false
+tasks.commitNewVersion.enabled = false
