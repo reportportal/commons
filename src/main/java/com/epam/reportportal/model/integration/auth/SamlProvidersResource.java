@@ -17,23 +17,20 @@
 package com.epam.reportportal.model.integration.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import jakarta.validation.Valid;
 import java.util.List;
-import javax.validation.Valid;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ihar_kahadouski@epam.com">Ihar Kahadouski</a>
  */
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SamlProvidersResource extends AbstractAuthResource {
 
   @Valid
   private List<SamlResource> providers;
 
-  public List<SamlResource> getProviders() {
-    return providers;
-  }
-
-  public void setProviders(List<SamlResource> providers) {
-    this.providers = providers;
-  }
 }

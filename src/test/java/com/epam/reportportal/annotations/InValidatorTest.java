@@ -16,17 +16,20 @@
 
 package com.epam.reportportal.annotations;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import com.epam.ta.reportportal.ws.annotations.In;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import lombok.Getter;
+import lombok.Setter;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:ihar_kahadouski@epam.com">Ihar Kahadouski</a>
@@ -35,7 +38,7 @@ public class InValidatorTest {
 
   private static Validator validator;
 
-  @BeforeClass
+  @BeforeAll
   public static void init() {
     validator = Validation.buildDefaultValidatorFactory().getValidator();
   }
@@ -119,31 +122,21 @@ public class InValidatorTest {
     assertFalse(constaints.isEmpty());
   }
 
+  @Setter
+  @Getter
   private static class StringTestEntity {
 
     @In(allowedValues = {"allowed1", "allowed2"})
     private String field;
 
-    public String getField() {
-      return field;
-    }
-
-    public void setField(String field) {
-      this.field = field;
-    }
   }
 
+  @Setter
+  @Getter
   private static class CollectionTestEntity {
 
     @In(allowedValues = {"allowed1", "allowed2"})
     private List<String> field;
 
-    public List<String> getField() {
-      return field;
-    }
-
-    public void setField(List<String> field) {
-      this.field = field;
-    }
   }
 }

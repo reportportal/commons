@@ -18,34 +18,16 @@ package com.epam.reportportal.rules.commons.exception.rest;
 
 import com.epam.reportportal.rules.exception.ErrorRS;
 import com.epam.reportportal.rules.exception.ErrorType;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
  * Rest Error representation. Contains rest error template and real exception data
  *
+ * @param httpStatus HTTP Status
  * @author Andrei Varabyeu
  */
-public class RestError {
-
-  private final ErrorRS errorRS;
-
-  /**
-   * HTTP Status
-   */
-  private final HttpStatus httpStatus;
-
-  public RestError(HttpStatus httpStatus, ErrorRS errorRS) {
-    this.httpStatus = httpStatus;
-    this.errorRS = errorRS;
-  }
-
-  public ErrorRS getErrorRS() {
-    return errorRS;
-  }
-
-  public HttpStatus getHttpStatus() {
-    return httpStatus;
-  }
+public record RestError(HttpStatus httpStatus, ErrorRS errorRS) {
 
   /**
    * Builder for Rest Error

@@ -17,16 +17,17 @@
 package com.epam.reportportal.model.validation;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertThat;
 
-import com.epam.reportportal.annotations.NotBlankWithSize;
+import com.epam.ta.reportportal.ws.annotations.NotBlankWithSize;
 import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import lombok.Getter;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:tatyana_gladysheva@epam.com">Tatyana Gladysheva</a>
@@ -51,7 +52,7 @@ public class NotBlankWithSizeValidatorTest {
 
   private static Validator validator;
 
-  @BeforeClass
+  @BeforeAll
   public static void init() {
     validator = Validation.buildDefaultValidatorFactory().getValidator();
   }
@@ -189,14 +190,11 @@ public class NotBlankWithSizeValidatorTest {
     assertThat(violations.isEmpty(), is(true));
   }
 
+  @Getter
   private static class AnnotationOnFieldClass {
 
     @NotBlankWithSize(min = 3, max = 128)
     private String name;
-
-    public String getName() {
-      return name;
-    }
 
     void setName(String name) {
       this.name = name;
@@ -336,14 +334,11 @@ public class NotBlankWithSizeValidatorTest {
     assertThat(violations.isEmpty(), is(true));
   }
 
+  @Getter
   private static class AnnotationOnMethodClass {
 
-    private String name;
-
     @NotBlankWithSize(min = 3, max = 128)
-    public String getName() {
-      return name;
-    }
+    private String name;
 
     void setName(String name) {
       this.name = name;
