@@ -18,7 +18,6 @@ package com.epam.reportportal.rules.commons.exception.rest;
 
 import com.epam.reportportal.rules.exception.ErrorRS;
 import com.epam.reportportal.rules.exception.ErrorType;
-import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
