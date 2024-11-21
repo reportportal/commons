@@ -49,7 +49,7 @@ dependencies {
 
     implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
     implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    implementation "javax.validation:validation-api:${validationApiVersion}"
+    api "javax.validation:validation-api:${validationApiVersion}"
     implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
     implementation group: 'com.google.guava', name: 'guava', version: '28.2-jre'
     implementation 'javax.servlet:javax.servlet-api'
