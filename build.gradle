@@ -48,7 +48,7 @@ dependencies {
     api 'org.apache.tika:tika-core'
 
     implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
-    implementation "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
+    api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     api "javax.validation:validation-api:${validationApiVersion}"
     implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
     implementation group: 'com.google.guava', name: 'guava', version: '28.2-jre'
