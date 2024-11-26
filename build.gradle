@@ -39,7 +39,7 @@ dependencies {
     if (releaseMode) {
         api 'com.epam.reportportal:commons-reporting:5.12.3'
     } else {
-        api 'com.github.reportportal:commons-reporting:1eaa63a'
+        api 'com.github.reportportal:commons-reporting:5b9bbd8'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
