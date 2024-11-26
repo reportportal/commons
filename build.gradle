@@ -31,12 +31,16 @@ repositories {
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE'
-        mavenBom('com.epam.reportportal:commons-bom:5.11.6')
+        mavenBom('com.epam.reportportal:commons-bom:5.12.3')
     }
 }
 
 dependencies {
-    api 'com.github.reportportal:commons-reporting:4ada762'
+    if (releaseMode) {
+        api 'com.epam.reportportal:commons-reporting:5.12.3'
+    } else {
+        api 'com.github.reportportal:commons-reporting:1eaa63a'
+    }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
@@ -70,3 +74,7 @@ dependencies {
 wrapper {
     gradleVersion = '8.5'
 }
+
+tasks.preTagCommit.enabled = false
+tasks.updateVersion.enabled = false
+tasks.commitNewVersion.enabled = false
