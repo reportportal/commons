@@ -20,6 +20,7 @@ import static com.epam.reportportal.model.ValidationConstraints.MAX_SHOULD_MATCH
 import static com.epam.reportportal.model.ValidationConstraints.MIN_NUMBER_OF_LOG_LINES;
 import static com.epam.reportportal.model.ValidationConstraints.MIN_SHOULD_MATCH;
 
+import com.epam.ta.reportportal.ws.annotations.In;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
