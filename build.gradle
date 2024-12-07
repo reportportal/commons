@@ -52,7 +52,7 @@ dependencies {
     api "org.springdoc:springdoc-openapi-starter-common:${springDocVersion}"
     api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     api "org.apache.commons:commons-lang3:${commonsLangVersion}"
-    api 'com.google.guava:guava:33.2.1-jre'
+    api "com.google.guava:guava:${guava}"
     implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
     implementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
 
