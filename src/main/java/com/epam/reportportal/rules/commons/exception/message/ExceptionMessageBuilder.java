@@ -18,7 +18,7 @@ package com.epam.reportportal.rules.commons.exception.message;
 
 /**
  * Builds custom exception strings from Exception. Lots of exceptions have custom data which should
- * be showed to clients in custom way
+ * be shown to the clients in custom way
  *
  * @author Andrei Varabyeu
  */

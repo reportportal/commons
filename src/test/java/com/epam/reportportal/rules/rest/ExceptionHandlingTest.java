@@ -16,6 +16,9 @@
 
 package com.epam.reportportal.rules.rest;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.epam.reportportal.rules.commons.ExceptionMappings;
 import com.epam.reportportal.rules.commons.exception.rest.DefaultErrorResolver;
 import com.epam.reportportal.rules.commons.exception.rest.ErrorResolver;
@@ -23,47 +26,28 @@ import com.epam.reportportal.rules.commons.exception.rest.RestError;
 import com.epam.reportportal.rules.exception.ErrorType;
 import com.epam.reportportal.rules.exception.ReportPortalException;
 import com.google.common.base.Strings;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
+
 
 /**
  * Error Resolver Tests
  *
  * @author Andrei Varabyeu
  */
-@RunWith(Parameterized.class)
 public class ExceptionHandlingTest {
 
   private static final String EXCEPTION_MESSAGE = "Some exception";
 
-  private final ErrorResolver errorResolver = new DefaultErrorResolver(ExceptionMappings.DEFAULT_MAPPING);
+  private final ErrorResolver errorResolver = new DefaultErrorResolver(
+      ExceptionMappings.DEFAULT_MAPPING);
 
-  private final Exception exception;
-
-  private final ErrorType errorType;
-
-  private final HttpStatus httpStatus;
-
-  private final String errorMessage;
-
-  public ExceptionHandlingTest(Exception exception, ErrorType errorType, HttpStatus httpStatus,
-      String errorMessage) {
-    this.exception = exception;
-    this.errorType = errorType;
-    this.httpStatus = httpStatus;
-    this.errorMessage = errorMessage;
-  }
-
-  @Parameterized.Parameters(name = "{index}:{0},{1},{2}")
   public static List<Object[]> getParameters() {
     return Arrays.asList(new Object[][]{
         {new ReportPortalException(EXCEPTION_MESSAGE), ErrorType.UNCLASSIFIED_REPORT_PORTAL_ERROR,
@@ -79,21 +63,22 @@ public class ExceptionHandlingTest {
             "Incorrect Request. Required request parameter 'test' for method parameter type test is not present"}});
   }
 
-  @Test
-  public void testErrorHandlingException()
-      throws IllegalArgumentException, SecurityException, InstantiationException, IllegalAccessException, InvocationTargetException,
-      NoSuchMethodException {
+  @ParameterizedTest
+  @MethodSource("getParameters")
+  public void testErrorHandlingException(Exception exception, ErrorType errorType,
+      HttpStatus httpStatus, String errorMessage)
+      throws IllegalArgumentException, SecurityException {
     RestError restError = errorResolver.resolveError(exception);
     validate(restError, errorType, httpStatus, errorMessage);
   }
 
   private void validate(RestError restError, ErrorType errorType, HttpStatus httpStatus,
       String exceptionMessage) {
-    Assert.assertThat(restError.getErrorRS().getMessage(),
+    assertThat(restError.errorRS().getMessage(),
         Matchers.containsString(
             Strings.isNullOrEmpty(exceptionMessage) ? EXCEPTION_MESSAGE : exceptionMessage));
-    Assert.assertEquals(errorType, restError.getErrorRS().getErrorType());
-    Assert.assertEquals(httpStatus, restError.getHttpStatus());
+    assertEquals(errorType, restError.errorRS().getErrorType());
+    assertEquals(httpStatus, restError.httpStatus());
   }
 
 }

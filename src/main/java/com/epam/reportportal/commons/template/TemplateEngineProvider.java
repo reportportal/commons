@@ -6,8 +6,8 @@ import com.google.common.base.Charsets;
 import com.google.common.base.Preconditions;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
+import jakarta.inject.Provider;
 import java.util.Locale;
-import javax.inject.Provider;
 
 /**
  * Factory bean for {@link TemplateEngine}

@@ -12,28 +12,28 @@
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- */ 
+ */
 package com.epam.reportportal.rules;
 
-import com.epam.reportportal.rules.exception.ErrorType;
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.epam.reportportal.rules.exception.ErrorType;
 import java.util.HashSet;
 import java.util.Set;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author Dzmitry_Kavalets
  */
 public class ErrorTypeTest {
 
-	@Test
-	public void duplicateCodes() {
-		final int length = ErrorType.values().length;
-		Set<Integer> codes = new HashSet<>();
-		for (ErrorType errorType : ErrorType.values()) {
-			codes.add(errorType.getCode());
-		}
-		Assert.assertEquals(length, codes.size());
-	}
+  @Test
+  public void duplicateCodes() {
+    final int length = ErrorType.values().length;
+    Set<Integer> codes = new HashSet<>();
+    for (ErrorType errorType : ErrorType.values()) {
+      codes.add(errorType.getCode());
+    }
+    assertEquals(length, codes.size());
+  }
 }

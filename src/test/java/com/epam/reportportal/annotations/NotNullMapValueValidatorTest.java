@@ -16,23 +16,25 @@
 
 package com.epam.reportportal.annotations;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import lombok.Getter;
+import lombok.Setter;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 public class NotNullMapValueValidatorTest {
 
   private static Validator validator;
 
-  @BeforeClass
+  @BeforeAll
   public static void init() {
     validator = Validation.buildDefaultValidatorFactory().getValidator();
   }
@@ -58,17 +60,12 @@ public class NotNullMapValueValidatorTest {
     assertFalse(constraints.isEmpty());
   }
 
+  @Setter
+  @Getter
   private static class TestClass {
 
     @NotNullMapValue
     private Map<String, String> map;
 
-    public Map<String, String> getMap() {
-      return map;
-    }
-
-    public void setMap(Map<String, String> map) {
-      this.map = map;
-    }
   }
 }

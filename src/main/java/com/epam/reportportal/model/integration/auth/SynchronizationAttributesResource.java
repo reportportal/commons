@@ -18,12 +18,16 @@ package com.epam.reportportal.model.integration.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotBlank;
 import java.io.Serializable;
-import javax.validation.constraints.NotBlank;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SynchronizationAttributesResource implements Serializable {
 
@@ -42,46 +46,6 @@ public class SynchronizationAttributesResource implements Serializable {
 
   @JsonProperty(value = "photo")
   private String photo;
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
-  public String getFullName() {
-    return fullName;
-  }
-
-  public void setFullName(String fullName) {
-    this.fullName = fullName;
-  }
-
-  public String getPhoto() {
-    return photo;
-  }
-
-  public void setPhoto(String photo) {
-    this.photo = photo;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
 
   @Override
   public String toString() {

@@ -18,6 +18,7 @@ package com.epam.reportportal.model;
 
 import java.util.Collection;
 import java.util.Iterator;
+import lombok.Getter;
 
 /**
  * Paged response  representation Re-implementation of Spring's HATEAOS Page implementation to get
@@ -25,6 +26,7 @@ import java.util.Iterator;
  *
  * @author Andrei Varabyeu
  */
+@Getter
 public class Page<T> implements Iterable<T> {
 
   private final Collection<T> content;
@@ -52,19 +54,12 @@ public class Page<T> implements Iterable<T> {
     this.page = new PageMetadata(size, number, totalElements);
   }
 
-  public Collection<T> getContent() {
-    return content;
-  }
-
-  public PageMetadata getPage() {
-    return page;
-  }
-
   @Override
   public Iterator<T> iterator() {
     return content.iterator();
   }
 
+  @Getter
   public static class PageMetadata {
 
     long number;
@@ -94,22 +89,6 @@ public class Page<T> implements Iterable<T> {
     public PageMetadata(long size, long number, long totalElements) {
       this(size, number, totalElements,
           size == 0 ? 0 : (long) Math.ceil((double) totalElements / (double) size));
-    }
-
-    public long getNumber() {
-      return number;
-    }
-
-    public long getSize() {
-      return size;
-    }
-
-    public long getTotalElements() {
-      return totalElements;
-    }
-
-    public long getTotalPages() {
-      return totalPages;
     }
 
     @Override

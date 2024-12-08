@@ -19,31 +19,25 @@ package com.epam.reportportal.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Response when some entry has been created and we need to return ID
  *
  * @author Andrei Varabyeu
  */
+@Setter
+@Getter
 @JsonInclude(Include.NON_NULL)
+@NoArgsConstructor
 public class EntryCreatedRS {
 
   @JsonProperty("id")
   private Long id;
 
-  public EntryCreatedRS() {
-
-  }
-
   public EntryCreatedRS(Long id) {
-    this.id = id;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
     this.id = id;
   }
 

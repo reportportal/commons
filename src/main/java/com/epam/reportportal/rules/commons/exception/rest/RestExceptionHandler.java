@@ -16,11 +16,11 @@
 
 package com.epam.reportportal.rules.commons.exception.rest;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -93,10 +93,10 @@ public class RestExceptionHandler extends DefaultHandlerExceptionResolver {
     if (error == null) {
       return null;
     }
-    applyStatusIfPossible(webRequest, error.getHttpStatus());
+    applyStatusIfPossible(webRequest, error.httpStatus());
 
     try {
-      return handleResponseBody(error.getErrorRS(), webRequest);
+      return handleResponseBody(error.errorRS(), webRequest);
     } catch (IOException e) {
       if (logger.isWarnEnabled()) {
         logger.warn("Unable to write error message", e);

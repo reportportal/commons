@@ -21,12 +21,13 @@
 
 package com.epam.reportportal.commons;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import javax.imageio.ImageIO;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Set of tests for Thumbnailator
@@ -54,8 +55,8 @@ public class ThumbnailatorImplTest {
 
     BufferedImage image = ImageIO.read(is);
 
-    Assert.assertEquals("Incorrect image height", THUMBNAIL_HEIGHT, image.getHeight());
-    Assert.assertEquals("Incorrect image width", THUMBNAIL_WIDTH, image.getWidth());
+    assertEquals(THUMBNAIL_HEIGHT, image.getHeight(), "Incorrect image height");
+    assertEquals(THUMBNAIL_WIDTH, image.getWidth(), "Incorrect image width");
 
   }
 }
