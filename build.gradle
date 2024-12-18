@@ -33,13 +33,13 @@ repositories {
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE'
-        mavenBom('com.epam.reportportal:commons-bom:5.12.3')
+        mavenBom('com.epam.reportportal:commons-bom:5.13.0')
     }
 }
 
 dependencies {
     if (releaseMode) {
-        api 'com.epam.reportportal:commons-reporting:5.12.3'
+        api 'com.epam.reportportal:commons-reporting:5.13.0'
     } else {
         api 'com.github.reportportal:commons-reporting:8939b78'
     }
