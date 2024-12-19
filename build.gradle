@@ -6,13 +6,13 @@ plugins {
 }
 
 project.ext {
-    releaseMode = project.hasProperty("releaseMode")
+    releaseMode = project.hasProperty("releaseMode") ? project.releaseMode.toBoolean() : false
     publishRepo = "https://maven.pkg.github.com/reportportal/commons"
     dependencyRepos = ["commons-bom"]
+    scriptVersion = project.hasProperty("scripts.version") ? project.scriptVersion : "develop"
 }
 
-def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/' +
-        (releaseMode ? getProperty('scripts.version') : 'develop')
+def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/' + scriptVersion
 
 apply from: scriptsUrl + '/release-commons.gradle'
 apply from: scriptsUrl + '/signing.gradle'
@@ -71,10 +71,6 @@ dependencies {
     testImplementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
     testImplementation "javax.el:javax.el-api:${elApiVersion}"
     testImplementation "org.glassfish:javax.el:${elApiVersion}"
-}
-
-wrapper {
-    gradleVersion = '8.10'
 }
 
 tasks.preTagCommit.enabled = false
