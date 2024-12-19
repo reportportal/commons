@@ -9,7 +9,7 @@ project.ext {
     releaseMode = project.hasProperty("releaseMode") ? project.releaseMode.toBoolean() : false
     publishRepo = "https://maven.pkg.github.com/reportportal/commons"
     dependencyRepos = ["commons-bom"]
-    scriptVersion = project.hasProperty("scripts.version") ? project.scriptVersion : "develop"
+    scriptVersion = project.hasProperty("scripts.version") ? project.scripts.version : "develop"
 }
 
 def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/' + scriptVersion
