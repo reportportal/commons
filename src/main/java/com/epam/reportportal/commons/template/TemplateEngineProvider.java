@@ -33,7 +33,7 @@ public class TemplateEngineProvider implements Provider<TemplateEngine> {
 
   @Override
   public TemplateEngine get() {
-    Version version = new Version(2, 3, 25);
+    Version version = new Version(2, 3, 34);
     freemarker.template.Configuration cfg = new freemarker.template.Configuration(version);
 
     cfg.setClassForTemplateLoading(this.getClass(), basePackagePath);

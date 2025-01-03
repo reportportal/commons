@@ -34,7 +34,6 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
         mavenBom('com.epam.reportportal:commons-bom:5.13.0')
     }
 }
@@ -43,23 +42,23 @@ dependencies {
     if (releaseMode) {
         api 'com.epam.reportportal:commons-reporting:5.13.0'
     } else {
-        api 'com.github.reportportal:commons-reporting:b997ee3'
+        api 'com.github.reportportal:commons-reporting:6369bc5'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
 
-    api "org.springdoc:springdoc-openapi-starter-common:${springDocVersion}"
+    implementation "io.swagger.core.v3:swagger-annotations-jakarta:2.2.25"
     api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     api "org.apache.commons:commons-lang3:${commonsLangVersion}"
     api "com.google.guava:guava:${guava}"
     implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
     implementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
 
-    implementation 'org.freemarker:freemarker'
+    implementation 'org.freemarker:freemarker:2.3.34'
     implementation 'ch.qos.logback:logback-classic'
     implementation 'net.coobird:thumbnailator:0.4.20'
-    api 'jakarta.inject:jakarta.inject-api:2.0.1'
+    implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
 
     // add lombok support
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
