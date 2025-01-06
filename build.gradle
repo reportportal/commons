@@ -55,7 +55,7 @@ dependencies {
     implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
     implementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
 
-    implementation 'org.freemarker:freemarker:2.3.34'
+    implementation 'org.freemarker:freemarker:2.3.33'
     implementation 'ch.qos.logback:logback-classic'
     implementation 'net.coobird:thumbnailator:0.4.20'
     implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
