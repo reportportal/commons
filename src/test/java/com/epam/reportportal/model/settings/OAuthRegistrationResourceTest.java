@@ -16,12 +16,14 @@
 
 package com.epam.reportportal.model.settings;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
@@ -65,7 +67,7 @@ public class OAuthRegistrationResourceTest {
 
     for (String url : correctUrls) {
       Matcher matcher = pattern.matcher(url);
-      Assert.assertTrue(matcher.matches());
+      assertTrue(matcher.matches());
     }
   }
 
@@ -75,7 +77,7 @@ public class OAuthRegistrationResourceTest {
 
     for (String url : wrongUrls) {
       Matcher matcher = pattern.matcher(url);
-      Assert.assertFalse(matcher.matches());
+      assertFalse(matcher.matches());
     }
   }
 

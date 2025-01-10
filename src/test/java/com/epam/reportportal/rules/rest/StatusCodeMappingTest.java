@@ -16,10 +16,11 @@
 
 package com.epam.reportportal.rules.rest;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import com.epam.reportportal.rules.commons.exception.rest.StatusCodeMapping;
 import com.epam.reportportal.rules.exception.ErrorType;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Status Code mapping test
@@ -37,6 +38,6 @@ public class StatusCodeMappingTest {
       }
     }
 
-    Assert.assertEquals(errors.toString(), 0, errors.length());
+    assertEquals(0, errors.length(), errors.toString());
   }
 }

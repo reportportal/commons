@@ -20,11 +20,12 @@ import com.epam.reportportal.model.ValidationConstraints;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import java.util.List;
 import java.util.Map;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Size;
+import lombok.Setter;
 
 /**
  * Domain object for creating ticket in bug tracking system.
@@ -32,6 +33,7 @@ import javax.validation.constraints.Size;
  * @author Aliaksei_Makayed
  * @author Andrei_Ramanchuk
  */
+@Setter
 @JsonInclude(Include.NON_NULL)
 public class PostTicketRQ extends Authentic {
 
@@ -63,14 +65,6 @@ public class PostTicketRQ extends Authentic {
     return backLinks;
   }
 
-  public void setBackLinks(Map<Long, String> backLinks) {
-    this.backLinks = backLinks;
-  }
-
-  public void setFields(List<PostFormField> data) {
-    this.fields = data;
-  }
-
   public List<PostFormField> getFields() {
     return fields;
   }
@@ -79,40 +73,20 @@ public class PostTicketRQ extends Authentic {
     return isIncludeLogs;
   }
 
-  public void setIsIncludeLogs(boolean isIncludeLogs) {
-    this.isIncludeLogs = isIncludeLogs;
-  }
-
   public boolean getIsIncludeScreenshots() {
     return isIncludeScreenshots;
-  }
-
-  public void setIsIncludeScreenshots(boolean isIncludeScreenshots) {
-    this.isIncludeScreenshots = isIncludeScreenshots;
   }
 
   public boolean getIsIncludeComments() {
     return isIncludeComments;
   }
 
-  public void setIsIncludeComments(boolean value) {
-    this.isIncludeComments = value;
-  }
-
   public int getNumberOfLogs() {
     return numberOfLogs;
   }
 
-  public void setNumberOfLogs(int numberOfLogs) {
-    this.numberOfLogs = numberOfLogs;
-  }
-
   public Long getTestItemId() {
     return testItemId;
-  }
-
-  public void setTestItemId(Long testItemId) {
-    this.testItemId = testItemId;
   }
 
   @Override

@@ -19,12 +19,16 @@ package com.epam.reportportal.model.integration.auth;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
-import javax.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotEmpty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ihar_kahadouski@epam.com">Ihar Kahadouski</a>
  */
 
+@Setter
+@Getter
 @Schema
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class SamlResource extends AbstractAuthResource {
@@ -78,99 +82,4 @@ public class SamlResource extends AbstractAuthResource {
    */
   private boolean enabled;
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getCallbackUrl() {
-    return callbackUrl;
-  }
-
-  public void setCallbackUrl(String callbackUrl) {
-    this.callbackUrl = callbackUrl;
-  }
-
-  public String getIdentityProviderName() {
-    return identityProviderName;
-  }
-
-  public void setIdentityProviderName(String identityProviderName) {
-    this.identityProviderName = identityProviderName;
-  }
-
-  public String getIdentityProviderAlias() {
-    return identityProviderAlias;
-  }
-
-  public void setIdentityProviderAlias(String identityProviderAlias) {
-    this.identityProviderAlias = identityProviderAlias;
-  }
-
-  public String getIdentityProviderMetadataUrl() {
-    return identityProviderMetadataUrl;
-  }
-
-  public void setIdentityProviderMetadataUrl(String identityProviderMetadataUrl) {
-    this.identityProviderMetadataUrl = identityProviderMetadataUrl;
-  }
-
-  public String getIdentityProviderNameId() {
-    return identityProviderNameId;
-  }
-
-  public void setIdentityProviderNameId(String identityProviderNameId) {
-    this.identityProviderNameId = identityProviderNameId;
-  }
-
-  public String getIdentityProviderUrl() {
-    return identityProviderUrl;
-  }
-
-  public void setIdentityProviderUrl(String identityProviderUrl) {
-    this.identityProviderUrl = identityProviderUrl;
-  }
-
-  public String getFullNameAttribute() {
-    return fullNameAttribute;
-  }
-
-  public void setFullNameAttribute(String fullNameAttribute) {
-    this.fullNameAttribute = fullNameAttribute;
-  }
-
-  public String getFirstNameAttribute() {
-    return firstNameAttribute;
-  }
-
-  public void setFirstNameAttribute(String firstNameAttribute) {
-    this.firstNameAttribute = firstNameAttribute;
-  }
-
-  public String getLastNameAttribute() {
-    return lastNameAttribute;
-  }
-
-  public void setLastNameAttribute(String lastNameAttribute) {
-    this.lastNameAttribute = lastNameAttribute;
-  }
-
-  public String getEmailAttribute() {
-    return emailAttribute;
-  }
-
-  public void setEmailAttribute(String emailAttribute) {
-    this.emailAttribute = emailAttribute;
-  }
-
-  public boolean isEnabled() {
-    return enabled;
-  }
-
-  public void setEnabled(boolean enabled) {
-    this.enabled = enabled;
-  }
 }

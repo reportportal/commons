@@ -16,15 +16,17 @@
 
 package com.epam.reportportal.annotations;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import lombok.Getter;
+import lombok.Setter;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:ihar_kahadouski@epam.com">Ihar Kahadouski</a>
@@ -33,7 +35,7 @@ public class NotBlankStringValidatorTest {
 
   private static Validator validator;
 
-  @BeforeClass
+  @BeforeAll
   public static void init() {
     validator = Validation.buildDefaultValidatorFactory().getValidator();
   }
@@ -57,18 +59,13 @@ public class NotBlankStringValidatorTest {
     assertFalse(constraints.isEmpty());
   }
 
+  @Setter
+  @Getter
   private static class TestClass {
 
     @NotBlankString
     private String value;
 
-    public String getValue() {
-      return value;
-    }
-
-    public void setValue(String value) {
-      this.value = value;
-    }
   }
 
 }

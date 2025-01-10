@@ -18,11 +18,15 @@ package com.epam.reportportal.model.integration.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.Valid;
+import jakarta.validation.Valid;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public abstract class AbstractLdapResource extends AbstractAuthResource {
 
@@ -32,22 +36,6 @@ public abstract class AbstractLdapResource extends AbstractAuthResource {
   @Valid
   @JsonProperty(value = "ldapAttributes")
   private LdapAttributes ldapAttributes;
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public LdapAttributes getLdapAttributes() {
-    return ldapAttributes;
-  }
-
-  public void setLdapAttributes(LdapAttributes ldapAttributes) {
-    this.ldapAttributes = ldapAttributes;
-  }
 
   @Override
   public String toString() {

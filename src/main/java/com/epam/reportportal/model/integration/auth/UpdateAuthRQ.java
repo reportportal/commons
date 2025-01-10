@@ -18,13 +18,17 @@ package com.epam.reportportal.model.integration.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import java.util.Map;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ihar_kahadouski@epam.com">Ihar Kahadouski</a>
  */
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class UpdateAuthRQ {
 
@@ -34,22 +38,6 @@ public class UpdateAuthRQ {
   @NotEmpty
   @JsonProperty("integrationParameters")
   private Map<String, Object> integrationParams;
-
-  public Boolean getEnabled() {
-    return enabled;
-  }
-
-  public void setEnabled(Boolean enabled) {
-    this.enabled = enabled;
-  }
-
-  public Map<String, Object> getIntegrationParams() {
-    return integrationParams;
-  }
-
-  public void setIntegrationParams(Map<String, Object> integrationParams) {
-    this.integrationParams = integrationParams;
-  }
 
   @Override
   public String toString() {

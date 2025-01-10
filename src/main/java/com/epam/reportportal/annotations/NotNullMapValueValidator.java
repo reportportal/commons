@@ -16,9 +16,9 @@
 
 package com.epam.reportportal.annotations;
 
+import jakarta.validation.ConstraintValidator;
+import jakarta.validation.ConstraintValidatorContext;
 import java.util.Map;
-import javax.validation.ConstraintValidator;
-import javax.validation.ConstraintValidatorContext;
 
 public class NotNullMapValueValidator implements ConstraintValidator<NotNullMapValue, Map<?, ?>> {
 

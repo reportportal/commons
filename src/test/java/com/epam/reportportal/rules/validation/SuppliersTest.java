@@ -17,11 +17,12 @@
 package com.epam.reportportal.rules.validation;
 
 import static com.epam.reportportal.rules.commons.validation.Suppliers.trimMessage;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.epam.reportportal.rules.commons.validation.Suppliers;
 import org.hamcrest.Matchers;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * Several tests for {@link Suppliers}
@@ -34,22 +35,22 @@ public class SuppliersTest {
   public void testSimpleSupplier() {
     String demoString = "demo string";
     String suppliedString = Suppliers.stringSupplier(demoString).get();
-    Assert.assertEquals("Initial and supplied strings are not equal", demoString, suppliedString);
+    assertEquals(demoString, suppliedString, "Initial and supplied strings are not equal");
   }
 
   @Test
   public void testFormattedSupplier() {
     String demoString = "here is {} parameter";
     String suppliedString = Suppliers.formattedSupplier(demoString, "first").get();
-    Assert.assertEquals("Initial and supplied strings are not equal", "here is first parameter",
-        suppliedString);
+    assertEquals("here is first parameter",
+        suppliedString, "Initial and supplied strings are not equal");
   }
 
   @Test
   public void checkNoParamsInMessage() {
     String demoString = "here is parameter {}";
     String suppliedString = Suppliers.formattedSupplier(demoString).get();
-    Assert.assertThat("Incorrect message builder", suppliedString,
+    assertThat("Incorrect message builder", suppliedString,
         Matchers.is("here is parameter"));
   }
 
@@ -57,7 +58,7 @@ public class SuppliersTest {
   public void checkParamsInMessage() {
     String demoString = "here is parameter {}";
     String suppliedString = Suppliers.formattedSupplier(demoString, ":hello world").get();
-    Assert.assertThat("Incorrect message builder", suppliedString,
+    assertThat("Incorrect message builder", suppliedString,
         Matchers.is("here is parameter :hello world"));
   }
 
@@ -66,17 +67,17 @@ public class SuppliersTest {
     String errMessage = "Incorrect truncate";
     String toTrim = "hello world";
 
-    Assert.assertEquals(errMessage, "hello worl", trimMessage(toTrim, 10));
-    Assert.assertEquals(errMessage, "hello world", trimMessage(toTrim, 15));
-    Assert.assertEquals(errMessage, "hello world", trimMessage(toTrim, 11));
-    Assert.assertEquals(errMessage, "hello", trimMessage(toTrim, 5));
+    assertEquals("hello worl", trimMessage(toTrim, 10), errMessage);
+    assertEquals("hello world", trimMessage(toTrim, 15), errMessage);
+    assertEquals("hello world", trimMessage(toTrim, 11), errMessage);
+    assertEquals("hello", trimMessage(toTrim, 5), errMessage);
   }
 
   @Test
   public void trimFormattedSupplierMessageTest() {
     String demoString = "here is parameter {}";
     String suppliedString = Suppliers.formattedSupplier(demoString, () -> "param").get();
-    Assert.assertThat("Incorrect message builder", suppliedString,
+    assertThat("Incorrect message builder", suppliedString,
         Matchers.is("here is parameter param"));
   }
 

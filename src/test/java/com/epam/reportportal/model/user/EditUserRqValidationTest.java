@@ -16,13 +16,15 @@
 
 package com.epam.reportportal.model.user;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
@@ -35,9 +37,9 @@ public class EditUserRqValidationTest {
   private List<String> correctNames;
   private List<String> incorrectNames;
 
-  @Before
+  @BeforeEach
   public void setUp() {
-    correctNames = new ArrayList<String>() {
+    correctNames = new ArrayList<>() {
       {
         add("J J");
         add("J");
@@ -47,7 +49,7 @@ public class EditUserRqValidationTest {
       }
     };
 
-    incorrectNames = new ArrayList<String>() {
+    incorrectNames = new ArrayList<>() {
       {
         add("  ");
         add("");
@@ -62,12 +64,12 @@ public class EditUserRqValidationTest {
   public void validateFullName() {
     for (String name : correctNames) {
       Matcher matcher = pattern.matcher(name);
-      Assert.assertTrue(matcher.matches());
+      assertTrue(matcher.matches());
     }
 
     for (String name : incorrectNames) {
       Matcher matcher = pattern.matcher(name);
-      Assert.assertFalse(matcher.matches());
+      assertFalse(matcher.matches());
     }
   }
 }
