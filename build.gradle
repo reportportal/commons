@@ -9,10 +9,10 @@ project.ext {
     releaseMode = project.hasProperty("releaseMode") ? project.releaseMode.toBoolean() : false
     publishRepo = "https://maven.pkg.github.com/reportportal/commons"
     dependencyRepos = ["commons-bom"]
+    scriptVersion = project.hasProperty("scripts.version") ? project.scripts.version : "develop"
 }
 
-def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/' +
-        (releaseMode ? getProperty('scripts.version') : 'develop')
+def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/' + scriptVersion
 
 apply from: scriptsUrl + '/release-commons.gradle'
 apply from: scriptsUrl + '/signing.gradle'
@@ -41,7 +41,7 @@ dependencies {
     if (releaseMode) {
         api 'com.epam.reportportal:commons-reporting:5.13.0'
     } else {
-        api 'com.github.reportportal:commons-reporting:develop-SNAPSHOT'
+        api 'com.github.reportportal:commons-reporting:b98588a'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
@@ -71,10 +71,6 @@ dependencies {
     testImplementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
     testImplementation "javax.el:javax.el-api:${elApiVersion}"
     testImplementation "org.glassfish:javax.el:${elApiVersion}"
-}
-
-wrapper {
-    gradleVersion = '8.10'
 }
 
 tasks.preTagCommit.enabled = false
