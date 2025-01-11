@@ -33,15 +33,15 @@ repositories {
 dependencyManagement {
     imports {
         mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE'
-        mavenBom('com.epam.reportportal:commons-bom:5.13.0')
+        mavenBom('com.epam.reportportal:commons-bom:5.13.1')
     }
 }
 
 dependencies {
     if (releaseMode) {
-        api 'com.epam.reportportal:commons-reporting:5.13.0'
+        api 'com.epam.reportportal:commons-reporting:5.13.1'
     } else {
-        api 'com.github.reportportal:commons-reporting:develop-SNAPSHOT'
+        api 'com.github.reportportal:commons-reporting:ba11c68'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
