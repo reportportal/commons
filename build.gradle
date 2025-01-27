@@ -1,8 +1,8 @@
 plugins {
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
     id 'java-library'
-    id 'org.owasp.dependencycheck' version '11.1.1'
+    id 'org.owasp.dependencycheck' version '12.0.1'
 }
 
 project.ext {
@@ -42,20 +42,20 @@ dependencies {
     if (releaseMode) {
         api 'com.epam.reportportal:commons-reporting:5.13.0'
     } else {
-        api 'com.github.reportportal:commons-reporting:6369bc5'
+        api 'com.github.reportportal:commons-reporting:c21da87'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
 
-    implementation "io.swagger.core.v3:swagger-annotations-jakarta:2.2.25"
+    implementation "io.swagger.core.v3:swagger-annotations-jakarta:2.2.27"
     api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
     api "org.apache.commons:commons-lang3:${commonsLangVersion}"
     api "com.google.guava:guava:${guava}"
     implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
     implementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
 
-    implementation 'org.freemarker:freemarker:2.3.33'
+    implementation 'org.freemarker:freemarker'
     implementation 'ch.qos.logback:logback-classic'
     implementation 'net.coobird:thumbnailator:0.4.20'
     implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
