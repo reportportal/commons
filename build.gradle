@@ -6,7 +6,7 @@ plugins {
 }
 
 project.ext {
-    releaseMode = project.hasProperty("releaseMode")
+    releaseMode = project.hasProperty("releaseMode") ? project.releaseMode.toBoolean() : false
     publishRepo = "https://maven.pkg.github.com/reportportal/commons"
     dependencyRepos = ["commons-bom"]
 }
@@ -34,13 +34,13 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom('com.epam.reportportal:commons-bom:5.13.0')
+        mavenBom('com.epam.reportportal:commons-bom:5.13.1')
     }
 }
 
 dependencies {
     if (releaseMode) {
-        api 'com.epam.reportportal:commons-reporting:5.13.0'
+        api 'com.epam.reportportal:commons-reporting:5.13.1'
     } else {
         api 'com.github.reportportal:commons-reporting:c21da87'
     }
