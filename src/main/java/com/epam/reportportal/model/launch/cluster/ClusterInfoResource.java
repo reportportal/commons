@@ -19,11 +19,18 @@ package com.epam.reportportal.model.launch.cluster;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
 public class ClusterInfoResource {
 
   @JsonProperty(value = "id")
@@ -44,9 +51,6 @@ public class ClusterInfoResource {
   @JsonProperty(value = "matchedTests")
   private Long matchedTests;
 
-  public ClusterInfoResource() {
-  }
-
   public ClusterInfoResource(Long id, Long index, Long launchId, String message, Long matchedTests) {
     this.id = id;
     this.index = index;
@@ -55,51 +59,4 @@ public class ClusterInfoResource {
     this.matchedTests = matchedTests;
   }
 
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public Long getIndex() {
-    return index;
-  }
-
-  public void setIndex(Long index) {
-    this.index = index;
-  }
-
-  public Long getLaunchId() {
-    return launchId;
-  }
-
-  public void setLaunchId(Long launchId) {
-    this.launchId = launchId;
-  }
-
-  public String getMessage() {
-    return message;
-  }
-
-  public void setMessage(String message) {
-    this.message = message;
-  }
-
-  public Map<String, Object> getMetadata() {
-    return metadata;
-  }
-
-  public void setMetadata(Map<String, Object> metadata) {
-    this.metadata = metadata;
-  }
-
-  public Long getMatchedTests() {
-    return matchedTests;
-  }
-
-  public void setMatchedTests(Long matchedTests) {
-    this.matchedTests = matchedTests;
-  }
 }

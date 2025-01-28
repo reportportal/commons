@@ -16,6 +16,8 @@
 
 package com.epam.reportportal.rules.commons.exception.message;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.validation.ObjectError;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
  *
  * @author Andrei Varabyeu
  */
+@Setter
+@Getter
 public class ArgumentNotValidMessageBuilder implements
     ExceptionMessageBuilder<MethodArgumentNotValidException> {
 
@@ -46,14 +50,6 @@ public class ArgumentNotValidMessageBuilder implements
           .append("] ");
     }
     return sb.toString();
-  }
-
-  public ReloadableResourceBundleMessageSource getMessageSource() {
-    return messageSource;
-  }
-
-  public void setMessageSource(ReloadableResourceBundleMessageSource messageSource) {
-    this.messageSource = messageSource;
   }
 
 
