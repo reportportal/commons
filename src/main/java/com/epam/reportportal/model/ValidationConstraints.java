@@ -56,7 +56,7 @@ public class ValidationConstraints {
   public static final int MAX_HISTORY_SIZE_BOUND = 31;
   public static final int MIN_LOGIN_LENGTH = 1;
   public static final int MAX_LOGIN_LENGTH = 128;
-  public static final int MIN_PASSWORD_LENGTH = 4;
+  public static final int MIN_PASSWORD_LENGTH = 8;
   public static final int MAX_PASSWORD_LENGTH = 256;
   public static final int TICKET_MIN_LOG_SIZE = 0;
   public static final int TICKET_MAX_LOG_SIZE = 50;
@@ -81,6 +81,7 @@ public class ValidationConstraints {
   public static final int MIN_NUMBER_OF_LOG_LINES = -1;
   public static final String HEX_COLOR_REGEXP = "#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$";
   public static final String PROJECT_NAME_REGEXP = "[a-zA-Z0-9-_]+";
+  public static final String USER_PASSWORD_REGEXP = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[\\W_]).+$";
 
   private ValidationConstraints() {
 
