@@ -166,8 +166,7 @@ public class RestExceptionHandler extends DefaultHandlerExceptionResolver {
   protected ModelAndView handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
       HttpServletRequest request,
       HttpServletResponse response, Object handler) throws IOException {
-    Exception causeException = ex.getCause() != null ? (Exception) ex.getCause() : ex;
-    return handleCustomException(request, response, causeException);
+    return handleCustomException(request, response, new HttpMessageNotReadableException("Invalid JSON input"));
   }
 
   @Override
