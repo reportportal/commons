@@ -1,8 +1,8 @@
 plugins {
-    id 'io.spring.dependency-management' version '1.1.6'
+    id 'io.spring.dependency-management' version '1.1.7'
     id 'java'
     id 'java-library'
-    id 'org.owasp.dependencycheck' version '11.1.0'
+    id 'org.owasp.dependencycheck' version '12.0.1'
 }
 
 project.ext {
@@ -16,12 +16,14 @@ def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/
 
 apply from: scriptsUrl + '/release-commons.gradle'
 apply from: scriptsUrl + '/signing.gradle'
-//apply from: scriptsUrl + '/build-quality.gradle'
+//apply from: scriptsUrl + '/build-quality.gradle' // TODO: fix scripts
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
 }
+
+ext['spring-boot.version'] = "${springBootVersion}"
 
 repositories {
     mavenCentral { url "https://repo1.maven.org/maven2" }
@@ -32,7 +34,6 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.boot:spring-boot-dependencies:2.1.5.RELEASE'
         mavenBom('com.epam.reportportal:commons-bom:5.13.1')
     }
 }
@@ -41,24 +42,23 @@ dependencies {
     if (releaseMode) {
         api 'com.epam.reportportal:commons-reporting:5.13.1'
     } else {
-        api 'com.github.reportportal:commons-reporting:428d023'
+        api 'com.github.reportportal:commons-reporting:56e3113'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
     api 'org.apache.tika:tika-core'
 
-    implementation "org.springdoc:springdoc-openapi-data-rest:${sprindocAnnotationsVersion}"
+    implementation "io.swagger.core.v3:swagger-annotations-jakarta:2.2.27"
     api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
-    api "javax.validation:validation-api:${validationApiVersion}"
-    implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
-    implementation group: 'com.google.guava', name: 'guava', version: '28.2-jre'
-    implementation 'javax.servlet:javax.servlet-api'
+    api "org.apache.commons:commons-lang3:${commonsLangVersion}"
+    api "com.google.guava:guava:${guava}"
+    implementation 'jakarta.servlet:jakarta.servlet-api:6.1.0'
+    implementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
 
     implementation 'org.freemarker:freemarker'
     implementation 'ch.qos.logback:logback-classic'
-    implementation 'net.coobird:thumbnailator:0.4.11'
-    implementation 'com.google.guava:guava'
-    implementation 'javax.inject:javax.inject:1'
+    implementation 'net.coobird:thumbnailator:0.4.20'
+    implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
 
     // add lombok support
     compileOnly "org.projectlombok:lombok:${lombokVersion}"
@@ -66,15 +66,23 @@ dependencies {
     testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
     testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 
-    testImplementation "junit:junit:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-params:${junitVersion}"
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
     testImplementation "org.mockito:mockito-junit-jupiter:${mockitoJunitJupiter}"
-    testImplementation "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
-    testImplementation "javax.el:javax.el-api:${elApiVersion}"
-    testImplementation "org.glassfish:javax.el:${elApiVersion}"
+    testImplementation "org.hamcrest:hamcrest:2.2"
+    testImplementation "org.glassfish:jakarta.el:4.0.2"
 }
 
-wrapper {
-    gradleVersion = '8.10'
+test {
+    useJUnitPlatform()
+    testLogging {
+        events = ['failed']
+        exceptionFormat = 'short'
+    }
+    reports {
+        junitXml.required = true
+    }
 }
 
 tasks.preTagCommit.enabled = false

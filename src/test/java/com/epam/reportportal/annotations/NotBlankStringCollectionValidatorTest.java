@@ -16,17 +16,19 @@
 
 package com.epam.reportportal.annotations;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
-import javax.validation.ConstraintViolation;
-import javax.validation.Validation;
-import javax.validation.Validator;
-import javax.validation.ValidatorFactory;
-import org.junit.Test;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
+import lombok.Getter;
+import lombok.Setter;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:ihar_kahadouski@epam.com">Ihar Kahadouski</a>
@@ -123,17 +125,12 @@ public class NotBlankStringCollectionValidatorTest {
     assertFalse(found);
   }
 
+  @Setter
+  @Getter
   private static class TestEntity {
 
     @NotBlankStringCollection
     private List<String> collection;
 
-    public List<String> getCollection() {
-      return collection;
-    }
-
-    public void setCollection(List<String> collection) {
-      this.collection = collection;
-    }
   }
 }

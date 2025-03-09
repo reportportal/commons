@@ -18,12 +18,18 @@ package com.epam.reportportal.model.launch.cluster;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@NoArgsConstructor
 public class CreateClustersRQ {
 
   @NotNull
@@ -33,22 +39,4 @@ public class CreateClustersRQ {
   @JsonProperty(value = "removeNumbers")
   private boolean removeNumbers;
 
-  public CreateClustersRQ() {
-  }
-
-  public Long getLaunchId() {
-    return launchId;
-  }
-
-  public void setLaunchId(Long launchId) {
-    this.launchId = launchId;
-  }
-
-  public boolean isRemoveNumbers() {
-    return removeNumbers;
-  }
-
-  public void setRemoveNumbers(boolean removeNumbers) {
-    this.removeNumbers = removeNumbers;
-  }
 }

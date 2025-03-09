@@ -18,6 +18,7 @@ package com.epam.reportportal.rules.commons.exception.rest;
 
 import com.epam.reportportal.rules.commons.exception.message.ExceptionMessageBuilder;
 import com.epam.reportportal.rules.exception.ErrorType;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
 /**
@@ -27,7 +28,9 @@ import org.springframework.http.HttpStatus;
  */
 public class RestErrorDefinition<T extends Exception> {
 
+  @Getter
   private final HttpStatus httpStatus;
+  @Getter
   private final ErrorType error;
   private final ExceptionMessageBuilder<T> exceptionMessageBuilder;
 
@@ -42,14 +45,6 @@ public class RestErrorDefinition<T extends Exception> {
   public RestErrorDefinition(int httpStatus, ErrorType error,
       ExceptionMessageBuilder<T> exceptionMessageBuilder) {
     this(HttpStatus.valueOf(httpStatus), error, exceptionMessageBuilder);
-  }
-
-  public HttpStatus getHttpStatus() {
-    return httpStatus;
-  }
-
-  public ErrorType getError() {
-    return error;
   }
 
   public String getExceptionMessage(T e) {

@@ -32,6 +32,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.io.IOException;
 import java.io.Serializable;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Base Error response body for all Report Portal exceptions
@@ -39,8 +42,11 @@ import java.io.Serializable;
  * @author Andrei Varabyeu
  * 
  */
+@Setter
+@Getter
 @JsonPropertyOrder({ "errorCode", "message", "stackTrace" })
 @JsonInclude(Include.NON_NULL)
+@EqualsAndHashCode
 public class ErrorRS implements Serializable {
 	/**
 	 * Generated SVUID
@@ -58,61 +64,6 @@ public class ErrorRS implements Serializable {
 	@JsonProperty("message")
 	private String message;
 
-	public ErrorType getErrorType() {
-		return errorType;
-	}
-
-	public void setErrorType(ErrorType errorType) {
-		this.errorType = errorType;
-	}
-
-	public String getStackTrace() {
-		return stackTrace;
-	}
-
-	public void setStackTrace(String stackTrace) {
-		this.stackTrace = stackTrace;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((errorType == null) ? 0 : errorType.hashCode());
-		result = prime * result + ((message == null) ? 0 : message.hashCode());
-		result = prime * result + ((stackTrace == null) ? 0 : stackTrace.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ErrorRS other = (ErrorRS) obj;
-		if (errorType != other.errorType)
-			return false;
-		if (message == null) {
-			if (other.message != null)
-				return false;
-		} else if (!message.equals(other.message))
-			return false;
-		if (stackTrace == null) {
-			return other.stackTrace == null;
-		} else
-			return stackTrace.equals(other.stackTrace);
-	}
 
 	private static class ErrorTypeDeserializer extends JsonDeserializer<ErrorType> {
 

@@ -16,11 +16,14 @@
 
 package com.epam.reportportal.rules.exception;
 
+import lombok.Getter;
+
 /**
  * Report Portal's exception list
  *
  * @author Andrei Varabyeu
  */
+@Getter
 public enum ErrorType {
 
   /**
@@ -510,14 +513,6 @@ public enum ErrorType {
   ErrorType(int code, String description) {
     this.code = code;
     this.description = description;
-  }
-
-  public int getCode() {
-    return code;
-  }
-
-  public String getDescription() {
-    return description;
   }
 
   /**

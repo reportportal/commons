@@ -20,14 +20,15 @@
  */
 package com.epam.reportportal.commons.template;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import freemarker.template.Configuration;
 import freemarker.template.TemplateExceptionHandler;
 import freemarker.template.Version;
 import java.util.Collections;
 import java.util.Locale;
 import org.hamcrest.CoreMatchers;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 /**
  * @author <a href="mailto:andrei_varabyeu@epam.com">Andrei Varabyeu</a>
@@ -52,7 +53,7 @@ public class TemplateEngineTest {
     String result = new FreemarkerTemplateEngine(cfg).merge("template.ftl",
         Collections.singletonMap("var", "hello world"));
 
-    Assert.assertThat(result, CoreMatchers.is("hello world"));
+    assertThat(result, CoreMatchers.is("hello world"));
   }
 
 }

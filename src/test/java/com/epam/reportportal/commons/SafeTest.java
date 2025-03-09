@@ -21,10 +21,13 @@
 package com.epam.reportportal.commons;
 
 import static com.epam.reportportal.commons.Safe.safe;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.concurrent.atomic.AtomicBoolean;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+
 
 /**
  * Tests for {@link Safe}
@@ -37,7 +40,7 @@ public class SafeTest {
   public void testHappy() {
     AtomicBoolean result = new AtomicBoolean(false);
     safe(() -> result.set(true));
-    Assert.assertTrue("Action is not executed", result.get());
+    assertTrue(result.get(), "Action is not executed");
   }
 
   @Test
@@ -56,7 +59,7 @@ public class SafeTest {
       throw new Exception("hello");
     }, e -> result.set(true));
 
-    Assert.assertTrue("Callback is not executed", result.get());
+    assertTrue(result.get(), "Callback is not executed");
 
   }
 
@@ -71,12 +74,12 @@ public class SafeTest {
         throw new RuntimeException("wraps error", e);
       });
     } catch (RuntimeException e) {
-      Assert.assertEquals("Incorrect message", "wraps error", e.getMessage());
+      assertEquals("wraps error", e.getMessage(), "Incorrect message");
       return;
     }
-    Assert.fail("Exception hasn't been thrown");
+    fail("Exception hasn't been thrown");
 
-    Assert.assertTrue("Callback is not executed", result.get());
+    assertTrue(result.get(), "Callback is not executed");
 
   }
 
