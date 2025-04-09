@@ -16,6 +16,8 @@
 
 package com.epam.reportportal.rules.commons.exception.message;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * Default exception builder. Just reads the exception message
  *
@@ -25,7 +27,7 @@ public class DefaultExceptionMessageBuilder implements ExceptionMessageBuilder<E
 
   @Override
   public String buildMessage(Exception e) {
-    return e.getMessage();
+    return StringUtils.substringBefore(e.getMessage(), "\n");
   }
 
 }
