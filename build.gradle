@@ -34,13 +34,13 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom('com.epam.reportportal:commons-bom:5.13.4')
+        mavenBom('com.epam.reportportal:commons-bom:5.14.0')
     }
 }
 
 dependencies {
     if (releaseMode) {
-        api 'com.epam.reportportal:commons-reporting:5.13.1'
+        api 'com.epam.reportportal:commons-reporting:5.14.0'
     } else {
         api 'com.github.reportportal:commons-reporting:56e3113'
     }
