@@ -33,6 +33,7 @@ package com.epam.reportportal.rules.commons.exception.forwarding;
 
 import com.google.common.io.ByteStreams;
 import java.io.IOException;
+import lombok.Getter;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.client.ClientHttpResponse;
@@ -42,6 +43,7 @@ import org.springframework.http.client.ClientHttpResponse;
  *
  * @author Andrei Varabyeu
  */
+@Getter
 public class ResponseForwardingException extends RuntimeException {
 
   private final byte[] body;
@@ -50,19 +52,8 @@ public class ResponseForwardingException extends RuntimeException {
 
   public ResponseForwardingException(ClientHttpResponse response) throws IOException {
     this.headers = response.getHeaders();
-    this.status = response.getStatusCode();
+    this.status = HttpStatus.valueOf(response.getStatusCode().value());
     this.body = ByteStreams.toByteArray(response.getBody());
   }
 
-  public byte[] getBody() {
-    return body;
-  }
-
-  public HttpHeaders getHeaders() {
-    return headers;
-  }
-
-  public HttpStatus getStatus() {
-    return status;
-  }
 }

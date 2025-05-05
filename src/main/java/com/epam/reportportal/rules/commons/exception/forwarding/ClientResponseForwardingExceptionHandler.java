@@ -16,10 +16,11 @@
 package com.epam.reportportal.rules.commons.exception.forwarding;
 
 import com.google.common.io.ByteStreams;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
@@ -32,6 +33,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author Andrei Varabyeu
  */
+@Setter
 public class ClientResponseForwardingExceptionHandler implements HandlerExceptionResolver, Ordered {
 
   private static final Logger LOGGER = LoggerFactory.getLogger(
@@ -76,7 +78,4 @@ public class ClientResponseForwardingExceptionHandler implements HandlerExceptio
     return order;
   }
 
-  public void setOrder(int order) {
-    this.order = order;
-  }
 }

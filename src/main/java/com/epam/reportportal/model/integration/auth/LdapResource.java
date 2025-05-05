@@ -18,10 +18,14 @@ package com.epam.reportportal.model.integration.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class LdapResource extends AbstractLdapResource {
 
@@ -45,62 +49,6 @@ public class LdapResource extends AbstractLdapResource {
 
   @JsonProperty(value = "managerDn")
   private String managerDn;
-
-  public String getUserDnPattern() {
-    return userDnPattern;
-  }
-
-  public void setUserDnPattern(String userDnPattern) {
-    this.userDnPattern = userDnPattern;
-  }
-
-  public String getUserSearchFilter() {
-    return userSearchFilter;
-  }
-
-  public void setUserSearchFilter(String userSearchFilter) {
-    this.userSearchFilter = userSearchFilter;
-  }
-
-  public String getGroupSearchBase() {
-    return groupSearchBase;
-  }
-
-  public void setGroupSearchBase(String groupSearchBase) {
-    this.groupSearchBase = groupSearchBase;
-  }
-
-  public String getGroupSearchFilter() {
-    return groupSearchFilter;
-  }
-
-  public void setGroupSearchFilter(String groupSearchFilter) {
-    this.groupSearchFilter = groupSearchFilter;
-  }
-
-  public String getPasswordEncoderType() {
-    return passwordEncoderType;
-  }
-
-  public void setPasswordEncoderType(String passwordEncoderType) {
-    this.passwordEncoderType = passwordEncoderType;
-  }
-
-  public String getPasswordAttribute() {
-    return passwordAttribute;
-  }
-
-  public void setPasswordAttribute(String passwordAttribute) {
-    this.passwordAttribute = passwordAttribute;
-  }
-
-  public String getManagerDn() {
-    return managerDn;
-  }
-
-  public void setManagerDn(String managerDn) {
-    this.managerDn = managerDn;
-  }
 
   @Override
   public String toString() {

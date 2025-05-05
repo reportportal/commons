@@ -28,7 +28,7 @@ import java.util.function.Supplier;
 public class BusinessRule {
 
   private BusinessRule() {
-    //should be create by factory-methods only
+    //should be created by factory-methods only
   }
 
   /**

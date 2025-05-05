@@ -18,10 +18,14 @@ package com.epam.reportportal.model.integration.auth;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * @author <a href="mailto:ivan_budayeu@epam.com">Ivan Budayeu</a>
  */
+@Setter
+@Getter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class ActiveDirectoryResource extends AbstractLdapResource {
 
@@ -30,22 +34,6 @@ public class ActiveDirectoryResource extends AbstractLdapResource {
 
   @JsonProperty(value = "searchFilter")
   private String searchFilter;
-
-  public String getDomain() {
-    return domain;
-  }
-
-  public void setDomain(String domain) {
-    this.domain = domain;
-  }
-
-  public String getSearchFilter() {
-    return searchFilter;
-  }
-
-  public void setSearchFilter(String searchFilter) {
-    this.searchFilter = searchFilter;
-  }
 
   @Override
   public String toString() {
