@@ -116,6 +116,7 @@ public class StatusCodeMapping {
       // Server Settings related
       put(ErrorType.SERVER_SETTINGS_NOT_FOUND, HttpStatus.NOT_FOUND);
       put(ErrorType.SERVER_SETTINGS_ALREADY_EXISTS, HttpStatus.CONFLICT);
+      put(ErrorType.USER_ALREADY_ASSIGNED, HttpStatus.CONFLICT);
       put(ErrorType.EMAIL_CONFIGURATION_IS_INCORRECT, HttpStatus.FORBIDDEN);
       // ======================
 
