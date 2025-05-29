@@ -304,7 +304,7 @@ public enum ErrorType {
   DASHBOARD_UPDATE_ERROR(4096, "Dashboard update request contains invalid data. {}"),
 
   /**
-   * If widget content can't be loaded because some of properties are incorrect
+   * If widget content can't be loaded because some of the properties are incorrect
    */
   UNABLE_LOAD_WIDGET_CONTENT(4097,
       "Unable to load widget content. Widget properties contain errors: {}"),
@@ -325,6 +325,12 @@ public enum ErrorType {
    */
   SERVER_SETTINGS_ALREADY_EXISTS(40911,
       "Server settings with '{}' profile already exists. You couldn't create the duplicate."),
+
+  /**
+   * Unable to assign user to the organization or project twice
+   */
+  USER_ALREADY_ASSIGNED(40912, "User '{}' cannot be assigned to {} twice. You couldn't create the duplicate."),
+
 
   /**
    * Unable remove resource from favorites
