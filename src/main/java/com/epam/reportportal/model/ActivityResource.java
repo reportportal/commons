@@ -79,6 +79,9 @@ public class ActivityResource {
   @Schema(description = "The name of the project in which the activity was performed", example = "project")
   private String projectName;
 
+  @JsonProperty(value = "projectKey")
+  private String projectKey;
+
   @JsonProperty(value = "details")
   @Schema(description = "The details of the activity, for example history of value", example = "{\"history\": [{\"field\": \"status\", \"newValue\": \"FAILED\", \"oldValue\": \"PASSED\"}]}")
   private Object details;
