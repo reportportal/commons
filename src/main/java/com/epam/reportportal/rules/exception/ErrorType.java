@@ -47,6 +47,11 @@ public enum ErrorType {
   ADDRESS_LOCKED(4004, "Address is locked due to several incorrect login attempts"),
 
   /**
+   * UPSA users denied
+   */
+  UPSA_USER_DENIED(4005, "Unable to assign/unassign user to/from project. Please verify user assignment to the organization in EPAM internal system: delivery.epam.com"),
+
+  /**
    * If specified by id Project or by ProjectName not found
    */
   PROJECT_NOT_FOUND(4040, "Project '{}' not found. Did you use correct project name?"),
