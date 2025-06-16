@@ -62,7 +62,7 @@ public class ValidationConstraints {
   public static final int TICKET_MAX_LOG_SIZE = 50;
   public static final int MAX_CUSTOMER_LENGTH = 64;
   public static final int MIN_USER_NAME_LENGTH = 3;
-  public static final int MAX_USER_NAME_LENGTH = 256;
+  public static final int MAX_USER_NAME_LENGTH = 60;
   public static final int MAX_PHOTO_SIZE = 1024 * 1024;
   public static final int MAX_PHOTO_HEIGHT = 500;
   public static final int MAX_PHOTO_WIDTH = 300;
