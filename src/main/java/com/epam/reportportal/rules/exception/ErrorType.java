@@ -214,6 +214,11 @@ public enum ErrorType {
   NOT_FOUND(40430, "'{}' not found. Did you use correct ID?"),
 
   /**
+   * If specified by id Project not found
+   */
+  PROJECT_BY_ID_NOT_FOUND(40431, "Project '{}' not found. Did you use correct project id?"),
+
+  /**
    * If provided filtering parameters are incorrect
    */
   INCORRECT_FILTER_PARAMETERS(40011, "Incorrect filtering parameters. {}"),
