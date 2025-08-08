@@ -51,6 +51,11 @@ public class ActivityResource {
   private String user;
 
   @NotNull
+  @JsonProperty(value = "userId", required = true)
+  @Schema(requiredMode = RequiredMode.REQUIRED, description = "The ID of the user who performed the activity", example = "1")
+  private Long userId;
+
+  @NotNull
   @JsonProperty(value = "loggedObjectId", required = true)
   @Schema(requiredMode = RequiredMode.REQUIRED, description = "The ID of the object on which activity was performed", example = "1")
   private Long loggedObjectId;
