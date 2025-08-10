@@ -67,4 +67,7 @@ public class AnalyzerConfig {
   @JsonProperty(value = "allMessagesShouldMatch")
   private boolean allMessagesShouldMatch;
 
+  @JsonProperty(value = "largestRetryPriority")
+  private boolean largestRetryPriority;
+
 }
