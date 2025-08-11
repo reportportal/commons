@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import lombok.AllArgsConstructor;
 
 /**
  * Represents log container in index/analysis request/response.
@@ -29,6 +30,7 @@ import java.util.Objects;
  * @author Ivan Sharamet
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@AllArgsConstructor
 public class IndexLog {
 
   @JsonProperty("logId")
