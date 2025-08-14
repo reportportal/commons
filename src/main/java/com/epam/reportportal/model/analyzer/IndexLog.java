@@ -20,6 +20,7 @@ import com.epam.reportportal.databind.LocalDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -48,6 +49,14 @@ public class IndexLog {
   private Long clusterId;
 
   public IndexLog() {
+  }
+
+  public IndexLog(Long logId, int logLevel, Timestamp logTime, String message, Long clusterId) {
+    this.logId = logId;
+    this.logLevel = logLevel;
+    this.logTime = logTime != null ? logTime.toLocalDateTime() : null;
+    this.message = message;
+    this.clusterId = clusterId;
   }
 
   public Long getLogId() {
