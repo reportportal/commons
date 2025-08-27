@@ -52,6 +52,16 @@ public enum ErrorType {
   UPSA_USER_DENIED(4005, "Unable to assign/unassign user to/from project. Please verify user assignment to the organization in EPAM internal system: delivery.epam.com"),
 
   /**
+   * If operation requires payment
+   */
+  PAYMENT_REQUIRED(4020, "Payment Required. {}"),
+
+  /**
+   * If operation requires a paid plugin
+   */
+  PAID_PLUGIN_REQUIRED(4021, "Plugin '{}' is required. {}"),
+
+  /**
    * If specified by id Project or by ProjectName not found
    */
   PROJECT_NOT_FOUND(4040, "Project '{}' not found. Did you use correct project name?"),
