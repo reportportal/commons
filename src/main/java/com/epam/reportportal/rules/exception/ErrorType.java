@@ -64,7 +64,7 @@ public enum ErrorType {
   /**
    * If specified by id Project or by ProjectName not found
    */
-  PROJECT_NOT_FOUND(4040, "Project '{}' not found. Did you use correct project name?"),
+  PROJECT_NOT_FOUND(4040, "Project '{}' not found. Did you use correct project {}?"),
 
   /**
    * If specified by id Launch not found
