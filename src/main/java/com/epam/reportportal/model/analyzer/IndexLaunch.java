@@ -24,6 +24,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import lombok.AllArgsConstructor;
 
 /**
  * Represents launch container in index/analysis request/response.
@@ -31,6 +32,7 @@ import java.util.Map;
  * @author Ivan Sharamet
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@AllArgsConstructor
 public class IndexLaunch {
 
   @JsonProperty("launchId")
