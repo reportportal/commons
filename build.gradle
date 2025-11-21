@@ -42,7 +42,7 @@ dependencies {
     if (releaseMode) {
         api 'com.epam.reportportal:commons-reporting:5.14.0'
     } else {
-        api 'com.github.reportportal:commons-reporting:344c150'
+        api 'com.github.reportportal:commons-reporting:e856d399'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
@@ -57,7 +57,7 @@ dependencies {
 
     implementation 'org.freemarker:freemarker'
     implementation 'ch.qos.logback:logback-classic'
-    implementation 'net.coobird:thumbnailator:0.4.20'
+    implementation 'net.coobird:thumbnailator:0.4.21'
     implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
 
     // add lombok support
