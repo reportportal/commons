@@ -42,11 +42,11 @@ dependencies {
     if (releaseMode) {
         api 'com.epam.reportportal:commons-reporting:5.14.0'
     } else {
-        api 'com.github.reportportal:commons-reporting:c09cc61'
+        api 'com.github.reportportal:commons-reporting:e856d399'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
-    api 'org.apache.tika:tika-core'
+    api 'org.apache.tika:tika-core:3.2.2'
 
     implementation "io.swagger.core.v3:swagger-annotations-jakarta:2.2.27"
     api "com.fasterxml.jackson.core:jackson-databind:${jacksonVersion}"
@@ -57,7 +57,7 @@ dependencies {
 
     implementation 'org.freemarker:freemarker'
     implementation 'ch.qos.logback:logback-classic'
-    implementation 'net.coobird:thumbnailator:0.4.20'
+    implementation 'net.coobird:thumbnailator:0.4.21'
     implementation 'jakarta.inject:jakarta.inject-api:2.0.1'
 
     // add lombok support
