@@ -12,7 +12,7 @@ project.ext {
 }
 
 def scriptsUrl = 'https://raw.githubusercontent.com/reportportal/gradle-scripts/' +
-        (releaseMode ? getProperty('scripts.version') : 'develop')
+        (releaseMode ? getProperty('scripts.version') : '5.14.0')
 
 apply from: scriptsUrl + '/release-commons.gradle'
 apply from: scriptsUrl + '/signing.gradle'
@@ -34,15 +34,15 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom('com.epam.reportportal:commons-bom:5.14.0')
+        mavenBom('com.epam.reportportal:commons-bom:5.15.1')
     }
 }
 
 dependencies {
     if (releaseMode) {
-        api 'com.epam.reportportal:commons-reporting:5.14.0'
+        api 'com.epam.reportportal:commons-reporting:5.15.1'
     } else {
-        api 'com.github.reportportal:commons-reporting:e856d399'
+        api 'com.github.reportportal:commons-reporting:b114c22'
     }
     api 'org.springframework:spring-webmvc'
     api 'org.springframework.security:spring-security-core'
