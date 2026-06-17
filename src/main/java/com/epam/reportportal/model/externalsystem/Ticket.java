@@ -39,6 +39,21 @@ public class Ticket {
   @JsonProperty(value = "pluginName")
   private String pluginName;
 
+  @JsonProperty(value = "reporter")
+  private String reporter;
+
+  @JsonProperty(value = "assignee")
+  private String assignee;
+
+  @JsonProperty(value = "created")
+  private String created;
+
+  @JsonProperty(value = "fixVersions")
+  private String fixVersions;
+
+  @JsonProperty(value = "severity")
+  private String severity;
+
   public String getId() {
     return id;
   }
@@ -79,11 +94,53 @@ public class Ticket {
     this.pluginName = pluginName;
   }
 
+  public String getReporter() {
+    return reporter;
+  }
+
+  public void setReporter(String reporter) {
+    this.reporter = reporter;
+  }
+
+  public String getAssignee() {
+    return assignee;
+  }
+
+  public void setAssignee(String assignee) {
+    this.assignee = assignee;
+  }
+
+  public String getCreated() {
+    return created;
+  }
+
+  public void setCreated(String created) {
+    this.created = created;
+  }
+
+  public String getFixVersions() {
+    return fixVersions;
+  }
+
+  public void setFixVersions(String fixVersions) {
+    this.fixVersions = fixVersions;
+  }
+
+  public String getSeverity() {
+    return severity;
+  }
+
+  public void setSeverity(String severity) {
+    this.severity = severity;
+  }
+
   @Override
   public String toString() {
     return "Ticket{" + "id='" + id + '\'' + ", summary='" + summary + '\'' + ", status='" + status
         + '\'' + ", ticketUrl='" + ticketUrl
-        + '\'' + ", pluginName='" + pluginName + '\'' + '}';
+        + '\'' + ", pluginName='" + pluginName + '\'' + ", reporter='" + reporter + '\''
+        + ", assignee='" + assignee + '\'' + ", created='" + created + '\'' + ", fixVersions='"
+        + fixVersions + '\'' + ", severity='" + severity + '\'' + '}';
   }
 
   @Override
@@ -97,11 +154,15 @@ public class Ticket {
     Ticket ticket = (Ticket) o;
     return Objects.equals(id, ticket.id) && Objects.equals(summary, ticket.summary)
         && Objects.equals(status, ticket.status)
-        && ticketUrl.equals(ticket.ticketUrl) && Objects.equals(pluginName, ticket.pluginName);
+        && ticketUrl.equals(ticket.ticketUrl) && Objects.equals(pluginName, ticket.pluginName)
+        && Objects.equals(reporter, ticket.reporter) && Objects.equals(assignee, ticket.assignee)
+        && Objects.equals(created, ticket.created) && Objects.equals(fixVersions, ticket.fixVersions)
+        && Objects.equals(severity, ticket.severity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, summary, status, ticketUrl, pluginName);
+    return Objects.hash(id, summary, status, ticketUrl, pluginName, reporter, assignee, created,
+        fixVersions, severity);
   }
 }
