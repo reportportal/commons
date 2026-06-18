@@ -48,9 +48,6 @@ public class Ticket {
   @JsonProperty(value = "created")
   private String created;
 
-  @JsonProperty(value = "fixVersions")
-  private String fixVersions;
-
   @JsonProperty(value = "severity")
   private String severity;
 
@@ -118,14 +115,6 @@ public class Ticket {
     this.created = created;
   }
 
-  public String getFixVersions() {
-    return fixVersions;
-  }
-
-  public void setFixVersions(String fixVersions) {
-    this.fixVersions = fixVersions;
-  }
-
   public String getSeverity() {
     return severity;
   }
@@ -139,8 +128,8 @@ public class Ticket {
     return "Ticket{" + "id='" + id + '\'' + ", summary='" + summary + '\'' + ", status='" + status
         + '\'' + ", ticketUrl='" + ticketUrl
         + '\'' + ", pluginName='" + pluginName + '\'' + ", reporter='" + reporter + '\''
-        + ", assignee='" + assignee + '\'' + ", created='" + created + '\'' + ", fixVersions='"
-        + fixVersions + '\'' + ", severity='" + severity + '\'' + '}';
+        + ", assignee='" + assignee + '\'' + ", created='" + created + '\'' + ", severity='"
+        + severity + '\'' + '}';
   }
 
   @Override
@@ -156,13 +145,12 @@ public class Ticket {
         && Objects.equals(status, ticket.status)
         && ticketUrl.equals(ticket.ticketUrl) && Objects.equals(pluginName, ticket.pluginName)
         && Objects.equals(reporter, ticket.reporter) && Objects.equals(assignee, ticket.assignee)
-        && Objects.equals(created, ticket.created) && Objects.equals(fixVersions, ticket.fixVersions)
-        && Objects.equals(severity, ticket.severity);
+        && Objects.equals(created, ticket.created) && Objects.equals(severity, ticket.severity);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(id, summary, status, ticketUrl, pluginName, reporter, assignee, created,
-        fixVersions, severity);
+        severity);
   }
 }
