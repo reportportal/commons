@@ -38,7 +38,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.15.3' : 'com.github.reportportal:commons-bom:5.15.3')
+        mavenBom(releaseMode ? 'com.epam.reportportal:commons-bom:5.15.2' : 'com.github.reportportal:commons-bom:48f92b6e68')
         // Later imports win over Boot/commons-bom managed versions.
         mavenBom "com.fasterxml.jackson:jackson-bom:${jacksonVersion}"
         mavenBom "org.springframework:spring-framework-bom:${springFrameworkVersion}"
